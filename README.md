@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Akram Hafaiedh - Portfolio
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. This portfolio showcases my skills, experience, and projects as a Software Engineer and Full Stack Developer.
 
-First, run the development server:
+## 🚀 Features
 
+- **Modern Design**: Clean and professional design with smooth animations
+- **Responsive**: Fully responsive design that works on all devices
+- **Dark Mode**: Toggle between light and dark themes
+- **Fast Performance**: Built with Next.js for optimal performance
+- **SEO Optimized**: Proper meta tags and structured data
+- **Accessible**: Follows accessibility best practices
+- **Mobile First**: Optimized for mobile devices with touch-friendly navigation
+
+## 🛠️ Technologies Used
+
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: React Icons
+- **Deployment**: Vercel
+
+## 📋 Sections
+
+1. **Hero Section**: Introduction and call-to-action
+2. **About**: Personal information and background
+3. **Experience**: Work history and achievements
+4. **Skills**: Technical skills and technologies
+5. **Projects**: Featured projects with descriptions
+6. **Contact**: Contact information and social links
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+### Building for Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+portfolio/
+├── app/
+│   ├── components/
+│   │   ├── Navigation.tsx
+│   │   └── ThemeToggle.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+├── package.json
+└── README.md
+```
 
-## Deploy on Vercel
+## 🎨 Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Personal Information
+Update the following in `app/page.tsx`:
+- Name and title
+- About section content
+- Experience details
+- Skills and technologies
+- Project information
+- Contact details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Styling
+- Colors and themes can be customized in `app/globals.css`
+- Tailwind classes can be modified for different styling
+- Icons can be changed using different React Icons
+
+### Adding New Sections
+1. Create new section components in `app/components/`
+2. Add navigation links in `Navigation.tsx`
+3. Import and use components in `page.tsx`
+
+## 📱 Responsive Design
+
+The portfolio is fully responsive with breakpoints:
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## 🌙 Dark Mode
+
+The portfolio includes a dark mode toggle that:
+- Respects user's system preference
+- Saves preference in localStorage
+- Provides smooth transitions between themes
+
+## 🚀 Deployment
+
+This portfolio is optimized for deployment on Vercel:
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy automatically on every push
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Contact
+
+- **LinkedIn**: [Akram Hafaiedh](https://www.linkedin.com/in/akram-hafaiedh-368b3312b/)
+- **Email**: akram.hafaiedh@example.com
+- **Location**: Tunisia
+
+---
+
+Built with ❤️ using Next.js and Tailwind CSS
