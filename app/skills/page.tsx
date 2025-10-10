@@ -1,29 +1,63 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import Skills from "../components/Skills";
+import AllSkills from "../components/AllSkills";
+import { FaBriefcase } from "react-icons/fa";
 
 export default function SkillsPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <Navigation />
 
-            {/* Hero Section */}
-            <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+            {/* Enhanced Hero Section */}
+            <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+
+                <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute -top-40 -right-32 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float"></div>
+                    <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+                </div>
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center">
+                        <div className="relative inline-block mb-8">
+                            <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center animate-bounce-in shadow-lg">
+                                <FaBriefcase className="text-white text-3xl" />
+                            </div>
+                            <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                                5+ Years
+                            </div>
+                        </div>
                         <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-4 animate-fade-in">
-                            Skills & Technologies
+                            Technical Expertise
                         </h1>
                         <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto animate-slide-up">
-                            A comprehensive overview of my technical expertise and the tools I use to bring ideas to life
+                            Comprehensive overview of my technical stack, tools, and methodologies
                         </p>
+
+                        {/* Quick Stats */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12">
+                            <div className="text-center p-4">
+                                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">9+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Skill Categories</div>
+                            </div>
+                            <div className="text-center p-4">
+                                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">50+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Technologies</div>
+                            </div>
+                            <div className="text-center p-4">
+                                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">5+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Years Learning</div>
+                            </div>
+                            <div className="text-center p-4">
+                                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">10+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Projects Built</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Skills Component */}
-            <Skills />
+            <AllSkills />
 
             {/* Additional Skills Section */}
             <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-800">

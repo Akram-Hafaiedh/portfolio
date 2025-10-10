@@ -1,49 +1,111 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaGlobe, FaRoute } from "react-icons/fa";
 
 export default function AboutPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <Navigation />
 
-            {/* Hero Section */}
-            <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-6xl mx-auto">
+            {/* Enhanced Hero Section */}
+            <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute -top-40 -right-32 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float"></div>
+                    <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+                </div>
+
+                <div className="max-w-6xl mx-auto relative">
                     <div className="text-center">
-                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-4 animate-fade-in">
+                        {/* Animated Avatar/Badge */}
+                        <div className="relative inline-block mb-8">
+                            <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center animate-bounce-in shadow-lg">
+                                <FaRoute className="text-white text-3xl" />
+                            </div>
+                            <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                                5+ Years
+                            </div>
+                        </div>
+
+                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up">
                             About Me
                         </h1>
-                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto animate-slide-up">
-                            Get to know more about my background, education, and what drives me as a Full Stack Developer
-                        </p>
+
+
+
+                        {/* Quick Stats */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaGraduationCap className="text-blue-600 dark:text-blue-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">Master's</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Degree</div>
+                            </div>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaCode className="text-green-600 dark:text-green-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">10+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Projects</div>
+                            </div>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaGlobe className="text-purple-600 dark:text-purple-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">4</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Languages</div>
+                            </div>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaMapMarkerAlt className="text-orange-600 dark:text-orange-400 text-2xl mx-auto mb-2" />
+                                <div className="text-sm font-bold text-slate-900 dark:text-white">Tunisia</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Remote</div>
+                            </div>
+                        </div>
+
+                        {/* Scroll Indicator */}
+                        <div className="mt-16 animate-bounce">
+                            <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center mx-auto">
+                                <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Scroll to explore</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Main Content */}
+            {/* Main Content - Rest of your existing About page content remains the same */}
             <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid lg:grid-cols-3 gap-12">
-                        {/* Personal Story */}
+                        {/* Personal Story - Your existing content */}
                         <div className="lg:col-span-2 animate-slide-up">
-                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">My Story</h2>
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">My Journey into Web Development</h2>
                             <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300">
                                 <p>
-                                    I am a Full Stack Developer based in the northern suburbs of Tunis. I specialize in full
-                                    stack development and database management systems (DBMS). I dedicate all my energy and
-                                    passion to building robust applications and websites to enhance the client experience.
+                                    My passion for web development started during my Master's in Biomedical Instrumentation,
+                                    in a course called <strong>"Medical Informatics"</strong> taught by{' '}
+                                    <a
+                                        href="https://www.linkedin.com/in/hanene-boussi-79234419"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                                    >
+                                        Miss Hanen Boussi
+                                    </a>.
                                 </p>
                                 <p>
-                                    With expertise in modern web technologies like React, Vue.js, Laravel, and Node.js,
-                                    I specialize in building scalable, user-friendly applications that deliver exceptional experiences.
-                                    My journey in web development started with a curiosity about how things work on the internet,
-                                    and it has evolved into a passion for creating digital solutions that make a difference.
+                                    We built a <strong>hospital dashboard project</strong> with SQL authentication systems
+                                    where doctors could manage appointments and patients could book visits. That moment
+                                    when I saw how code could create real-world solutions was my <strong>"click" moment</strong> -
+                                    I was fascinated by how authentication worked and how we could build practical tools that help people.
                                 </p>
                                 <p>
+                                    After graduating with top marks in that subject, I dove into web development, starting
+                                    with <strong>Laravel and Blade</strong>, then advancing to <strong>Livewire, Inertia, and Vue.js</strong>.
+                                    I combined Vue with Laravel to build more dynamic applications, then expanded my skills
+                                    by learning <strong>Angular and React</strong>. Eventually, I explored <strong>Node.js</strong>
+                                    to become a versatile full-stack developer comfortable across multiple technology stacks.
+                                </p>
+                                <p>
+                                    Today, I bring that same passion for building practical solutions to every project I work on.
                                     I believe in writing clean, maintainable code and staying up-to-date with the latest
-                                    industry trends and best practices. Every project I work on is an opportunity to learn
-                                    something new and push the boundaries of what's possible.
+                                    industry trends and best practices.
                                 </p>
                                 <p>
                                     When I'm not coding, you can find me playing football, weight lifting, or exploring various music genres.
@@ -54,14 +116,24 @@ export default function AboutPage() {
 
                         {/* Sidebar Info */}
                         <div className="space-y-8 animate-fade-in">
-                            {/* Education */}
+                            {/* Education - More compact version if needed */}
                             <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg">
                                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">Education</h3>
                                 <div className="space-y-4">
                                     <div>
-                                        <h4 className="font-medium text-slate-900 dark:text-white">Master in Biomedical Instrumentation</h4>
+                                        <h4 className="font-medium text-slate-900 dark:text-white">Master's in Biomedical Engineering</h4>
                                         <p className="text-slate-600 dark:text-slate-300">Higher Institute of Medical Technologies, Tunis</p>
-                                        <p className="text-sm text-slate-500 dark:text-slate-400">2018 - 2020</p>
+                                        <p className="text-sm text-slate-500 dark:text-slate-400">2016 - 2018</p>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium text-slate-900 dark:text-white">Bachelor's in Biomedical Engineering</h4>
+                                        <p className="text-slate-600 dark:text-slate-300">Higher Institute of Medical Technologies, Tunis</p>
+                                        <p className="text-sm text-slate-500 dark:text-slate-400">2013 - 2016</p>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium text-slate-900 dark:text-white">High School Diploma in Science</h4>
+                                        <p className="text-slate-600 dark:text-slate-300">Carthage Présidence High School</p>
+                                        <p className="text-sm text-slate-500 dark:text-slate-400">2009 - 2013</p>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +141,7 @@ export default function AboutPage() {
                             {/* Location */}
                             <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg">
                                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">Location</h3>
-                                <p className="text-slate-600 dark:text-slate-300">Carthage Salammbô, Tunis, Tunisia</p>
+                                <p className="text-slate-600 dark:text-slate-300">Carthage, Tunis, Tunisia</p>
                                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Available for remote work worldwide</p>
                             </div>
 
@@ -83,7 +155,7 @@ export default function AboutPage() {
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-slate-600 dark:text-slate-300">French</span>
-                                        <span className="text-slate-500 dark:text-slate-400">Fluent</span>
+                                        <span className="text-slate-500 dark:text-slate-400">Native</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-slate-600 dark:text-slate-300">English</span>

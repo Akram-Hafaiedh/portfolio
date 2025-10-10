@@ -3,11 +3,13 @@ import {
     SiVuedotjs, SiLaravel, SiDjango, SiPhp, SiPython, SiNextdotjs, SiAngular, SiTailwindcss,
     SiBootstrap, SiMysql, SiRedis, SiAmazon, SiVercel, SiGithub, SiFigma, SiAdobexd,
     SiJira, SiTrello, SiSlack, SiWordpress, SiShopify, SiStripe, SiPaypal, SiFirebase,
-    SiGraphql, SiWebpack, SiBabel, SiEslint, SiJest, SiCypress, SiSelenium
+    SiGraphql, SiWebpack, SiBabel, SiEslint, SiJest, SiCypress, SiSelenium,
+    SiFlutter,
+    SiIonic
 } from "react-icons/si";
 import { FaMobile, FaDatabase, FaServer, FaCloud, FaTools, FaCode } from "react-icons/fa";
 
-export default function Skills() {
+export default function AllSkills() {
     const skillCategories = [
         {
             title: "Frontend Development",
@@ -54,6 +56,8 @@ export default function Skills() {
             icon: <FaMobile className="w-6 h-6" />,
             skills: [
                 { name: "React Native", icon: <SiReact />, color: "text-blue-500" },
+                { name: "Ionic", icon: <SiIonic />, color: "text-purple-500" },
+                { name: "Flutter", icon: <SiFlutter />, color: "text-blue-600" },
                 { name: "Mobile Apps", icon: <FaMobile />, color: "text-purple-500" },
                 { name: "PWA", icon: <FaCode />, color: "text-blue-600" },
             ]

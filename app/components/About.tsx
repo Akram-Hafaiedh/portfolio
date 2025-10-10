@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function About() {
     return (
         <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
@@ -6,31 +8,45 @@ export default function About() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="animate-slide-up">
                         <p className="text-lg text-slate-600 dark:text-slate-300 mb-6">
-                            I am a Full Stack Developer based in the northern suburbs of Tunis. I specialize in full
-                            stack development and database management systems (DBMS). I dedicate all my energy and
-                            passion to building robust applications and websites to enhance the client experience.
+                            I'm a Full Stack Developer passionate about building scalable web applications that solve real-world problems.
+                            With expertise across both <strong>JavaScript</strong> (React, Vue.js, Next.js, Node.js) and <strong>PHP</strong> (Laravel) ecosystems,
+                            I bring versatility and depth to every project.
                         </p>
                         <p className="text-lg text-slate-600 dark:text-slate-300 mb-6">
-                            With expertise in modern web technologies like React, Vue.js, Laravel, and Node.js,
-                            I specialize in building scalable, user-friendly applications that deliver exceptional experiences.
+                            My approach combines technical excellence with user-centric design, ensuring that every application
+                            I build is not only powerful under the hood but also delightful to use.
                         </p>
-                        <p className="text-lg text-slate-600 dark:text-slate-300">
-                            When I'm not coding, you can find me playing football, weight lifting, or exploring various music genres.
-                        </p>
+                        <div className="flex gap-4">
+                            <Link
+                                href="/about"
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                            >
+                                My Full Story
+                            </Link>
+                            {/* <Link
+                                href="/projects"
+                                className="border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 px-6 py-2 rounded-lg font-medium transition-colors"
+                            >
+                                See My Work
+                            </Link> */}
+                        </div>
                     </div>
-                    <div className="space-y-4 animate-fade-in">
-                        <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Education</h3>
-                            <p className="text-slate-600 dark:text-slate-300">Master in Biomedical Instrumentation</p>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Higher Institute of Medical Technologies, Tunis</p>
+                    <div className="grid grid-cols-2 gap-4 animate-fade-in">
+                        <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-lg text-center hover:scale-105 transform transition duration-200">
+                            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">5+</div>
+                            <div className="text-sm text-slate-600 dark:text-slate-300">Years Experience</div>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Location</h3>
-                            <p className="text-slate-600 dark:text-slate-300">Carthage Salammbô, Tunis, Tunisia</p>
+                        <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-6 rounded-lg text-center hover:scale-105 transform transition duration-200">
+                            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">10+</div>
+                            <div className="text-sm text-slate-600 dark:text-slate-300">Projects Completed</div>
                         </div>
-                        <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg hover:shadow-lg transition-shadow">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Languages</h3>
-                            <p className="text-slate-600 dark:text-slate-300">Arabic (Native), French (Fluent), English (Intermediate), Spanish (Basic)</p>
+                        <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-lg text-center hover:scale-105 transform transition duration-200">
+                            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">6+</div>
+                            <div className="text-sm text-slate-600 dark:text-slate-300">Technologies</div>
+                        </div>
+                        <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-6 rounded-lg text-center hover:scale-105 transform transition duration-200">
+                            <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-2">4</div>
+                            <div className="text-sm text-slate-600 dark:text-slate-300">Languages</div>
                         </div>
                     </div>
                 </div>
