@@ -59,10 +59,13 @@ export default function Hero() {
                     </div>
 
                     {/* Optional: Animated scroll indicator */}
-                    <div className="mt-16 animate-bounce flex justify-center">
-                        <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center">
+                    <div className="mt-16 animate-bounce">
+                        <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center mx-auto">
                             <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
                         </div>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                            Scroll to explore
+                        </p>
                     </div>
                 </div>
             </div>

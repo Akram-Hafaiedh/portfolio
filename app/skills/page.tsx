@@ -34,7 +34,7 @@ export default function SkillsPage() {
                         </p>
 
                         {/* Quick Stats */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12 pb-12 relative">
                             <div className="text-center p-4">
                                 <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">9+</div>
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Skill Categories</div>
@@ -51,6 +51,16 @@ export default function SkillsPage() {
                                 <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">10+</div>
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Projects Built</div>
                             </div>
+
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse-slow"></div>
+                        </div>
+
+                        {/* Scroll Indicator */}
+                        <div className="mt-16 animate-bounce">
+                            <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center mx-auto">
+                                <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Scroll to explore my journey</p>
                         </div>
                     </div>
                 </div>

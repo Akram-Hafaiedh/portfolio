@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import ContactForm from "../components/ContactForm";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGitlab, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { faqData } from "@/lib/faq";
 
 export default function ContactPage() {
     return (
@@ -33,9 +34,28 @@ export default function ContactPage() {
                             Contact Me
                         </h1>
 
-                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto animate-slide-up mb-8">
-                            Let's discuss your project and bring your ideas to life. I'm here to help you succeed.
-                        </p>
+
+                        {/* Enhanced Subtitle */}
+                        <div className="relative inline-block max-w-3xl mx-auto">
+                            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-slide-up">
+                                Let's discuss your project and bring your ideas to life
+                                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
+                                    I'm here to help you succeed.
+                                </span>
+                            </p>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse-slow"></div>
+                        </div>
+
+
+                        {/* Scroll Indicator */}
+                        <div className="mt-16 animate-bounce">
+                            <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center mx-auto">
+                                <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                Scroll to explore contact options
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -82,9 +102,9 @@ export default function ContactPage() {
                                             +216 50 569 298
                                         </a>
                                         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                                            <a 
-                                                href="https://wa.me/21650569298" 
-                                                target="_blank" 
+                                            <a
+                                                href="https://wa.me/21650569298"
+                                                target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-green-600 dark:text-green-400 hover:underline flex items-center gap-1"
                                             >
@@ -201,37 +221,17 @@ export default function ContactPage() {
                     </h2>
 
                     <div className="space-y-6">
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm animate-slide-up">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What types of projects do you work on?</h3>
-                            <p className="text-slate-600 dark:text-slate-300">
-                                I specialize in full-stack web development, including e-commerce platforms, business management systems,
-                                mobile applications, and custom web solutions. I work with both startups and established companies.
-                            </p>
-                        </div>
 
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm animate-slide-up">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Do you work remotely?</h3>
-                            <p className="text-slate-600 dark:text-slate-300">
-                                Yes, I primarily work remotely and have experience collaborating with international teams.
-                                I'm available for both remote and on-site projects depending on requirements.
-                            </p>
-                        </div>
-
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm animate-slide-up">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What's your typical project timeline?</h3>
-                            <p className="text-slate-600 dark:text-slate-300">
-                                Project timelines vary depending on complexity. Small projects typically take 2-4 weeks,
-                                medium projects 1-3 months, and large projects 3-6 months. I always provide detailed timelines during project planning.
-                            </p>
-                        </div>
-
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm animate-slide-up">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Do you provide ongoing support?</h3>
-                            <p className="text-slate-600 dark:text-slate-300">
-                                Yes, I offer ongoing maintenance, updates, and support for all projects I develop.
-                                I can also provide training and documentation to help your team manage the system.
-                            </p>
-                        </div>
+                        {
+                            faqData.map((item, index) => (
+                                <div key={index} className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm animate-slide-up">
+                                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">{item.question}</h3>
+                                    <p className="text-slate-600 dark:text-slate-300">
+                                        {item.answer}
+                                    </p>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </section>

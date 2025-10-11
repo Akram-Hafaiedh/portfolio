@@ -57,6 +57,7 @@ export default function AboutPage() {
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Remote</div>
                             </div>
                         </div>
+                        
 
                         {/* Scroll Indicator */}
                         <div className="mt-16 animate-bounce">
