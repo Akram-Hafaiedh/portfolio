@@ -1,6 +1,7 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import Link from "next/link";
 
 export default function ProjectsPage() {
     const projects = [
@@ -204,12 +205,12 @@ export default function ProjectsPage() {
                         I'm always open to discussing new opportunities and exciting projects.
                         Let's create something amazing together!
                     </p>
-                    <a
+                    <Link
                         href="/contact"
                         className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors hover:scale-105 transform duration-200 inline-block"
                     >
                         Get In Touch
-                    </a>
+                    </Link>
                 </div>
             </section>
 

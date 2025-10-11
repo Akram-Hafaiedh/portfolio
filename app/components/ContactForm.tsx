@@ -126,7 +126,7 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-blue-400 disabled:to-purple-400 text-white font-medium py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2 hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
             >
                 {isSubmitting ? (
                     <>
@@ -135,7 +135,7 @@ export default function ContactForm() {
                     </>
                 ) : (
                     <>
-                        <FaPaperPlane />
+                        <FaPaperPlane className="group-hover:animate-bounce" />
                         Send Message
                     </>
                 )}

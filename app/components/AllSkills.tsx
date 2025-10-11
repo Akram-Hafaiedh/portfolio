@@ -8,117 +8,65 @@ import {
     SiIonic
 } from "react-icons/si";
 import { FaMobile, FaDatabase, FaServer, FaCloud, FaTools, FaCode } from "react-icons/fa";
+import { skillsData } from "@/lib/skills";
+
+interface IconMap {
+    [key: string]: typeof FaCode;
+}
+
+const iconMap: IconMap = {
+    FaCode: FaCode,
+    FaServer: FaServer,
+    FaDatabase: FaDatabase,
+    FaMobile: FaMobile,
+    FaCloud: FaCloud,
+    FaTools: FaTools,
+    SiReact: SiReact,
+    SiVuedotjs: SiVuedotjs,
+    SiAngular: SiAngular,
+    SiNextdotjs: SiNextdotjs,
+    SiJavascript: SiJavascript,
+    SiTypescript: SiTypescript,
+    SiTailwindcss: SiTailwindcss,
+    SiBootstrap: SiBootstrap,
+    SiNodedotjs: SiNodedotjs,
+    SiLaravel: SiLaravel,
+    SiDjango: SiDjango,
+    SiPhp: SiPhp,
+    SiPython: SiPython,
+    SiGraphql: SiGraphql,
+    SiMysql: SiMysql,
+    SiPostgresql: SiPostgresql,
+    SiMongodb: SiMongodb,
+    SiRedis: SiRedis,
+    SiFirebase: SiFirebase,
+    SiIonic: SiIonic,
+    SiFlutter: SiFlutter,
+    SiGit: SiGit,
+    SiDocker: SiDocker,
+    SiAmazon: SiAmazon,
+    SiVercel: SiVercel,
+    SiGithub: SiGithub,
+    SiWebpack: SiWebpack,
+    SiBabel: SiBabel,
+    SiEslint: SiEslint,
+    SiJest: SiJest,
+    SiCypress: SiCypress,
+    SiSelenium: SiSelenium,
+    SiFigma: SiFigma,
+    SiAdobexd: SiAdobexd,
+    SiJira: SiJira,
+    SiTrello: SiTrello,
+    SiSlack: SiSlack,
+    SiWordpress: SiWordpress,
+    SiShopify: SiShopify,
+    SiStripe: SiStripe,
+    SiPaypal: SiPaypal,
+
+};
 
 export default function AllSkills() {
-    const skillCategories = [
-        {
-            title: "Frontend Development",
-            icon: <FaCode className="w-6 h-6" />,
-            skills: [
-                { name: "React", icon: <SiReact />, color: "text-blue-500" },
-                { name: "Vue.js", icon: <SiVuedotjs />, color: "text-green-500" },
-                { name: "Angular", icon: <SiAngular />, color: "text-red-500" },
-                { name: "Next.js", icon: <SiNextdotjs />, color: "text-black dark:text-white" },
-                { name: "JavaScript", icon: <SiJavascript />, color: "text-yellow-500" },
-                { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
-                { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-cyan-500" },
-                { name: "Bootstrap", icon: <SiBootstrap />, color: "text-purple-500" },
-            ]
-        },
-        {
-            title: "Backend Development",
-            icon: <FaServer className="w-6 h-6" />,
-            skills: [
-                { name: "Node.js", icon: <SiNodedotjs />, color: "text-green-600" },
-                { name: "Laravel", icon: <SiLaravel />, color: "text-red-600" },
-                { name: "Django", icon: <SiDjango />, color: "text-green-700" },
-                { name: "PHP", icon: <SiPhp />, color: "text-purple-600" },
-                { name: "Python", icon: <SiPython />, color: "text-blue-600" },
-                { name: "Express.js", icon: <SiNodedotjs />, color: "text-gray-600" },
-                { name: "GraphQL", icon: <SiGraphql />, color: "text-pink-600" },
-                { name: "REST API", icon: <FaCode />, color: "text-blue-500" },
-            ]
-        },
-        {
-            title: "Databases & Storage",
-            icon: <FaDatabase className="w-6 h-6" />,
-            skills: [
-                { name: "MySQL", icon: <SiMysql />, color: "text-blue-600" },
-                { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-700" },
-                { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600" },
-                { name: "Redis", icon: <SiRedis />, color: "text-red-600" },
-                { name: "Firebase", icon: <SiFirebase />, color: "text-orange-500" },
-                { name: "AWS S3", icon: <SiAmazon />, color: "text-yellow-600" },
-            ]
-        },
-        {
-            title: "Mobile Development",
-            icon: <FaMobile className="w-6 h-6" />,
-            skills: [
-                { name: "React Native", icon: <SiReact />, color: "text-blue-500" },
-                { name: "Ionic", icon: <SiIonic />, color: "text-purple-500" },
-                { name: "Flutter", icon: <SiFlutter />, color: "text-blue-600" },
-                { name: "Mobile Apps", icon: <FaMobile />, color: "text-purple-500" },
-                { name: "PWA", icon: <FaCode />, color: "text-blue-600" },
-            ]
-        },
-        {
-            title: "DevOps & Tools",
-            icon: <FaTools className="w-6 h-6" />,
-            skills: [
-                { name: "Git", icon: <SiGit />, color: "text-orange-600" },
-                { name: "Docker", icon: <SiDocker />, color: "text-blue-600" },
-                { name: "AWS", icon: <SiAmazon />, color: "text-yellow-600" },
-                { name: "Vercel", icon: <SiVercel />, color: "text-black dark:text-white" },
-                { name: "GitHub", icon: <SiGithub />, color: "text-black dark:text-white" },
-                { name: "Webpack", icon: <SiWebpack />, color: "text-blue-600" },
-                { name: "Babel", icon: <SiBabel />, color: "text-yellow-600" },
-                { name: "ESLint", icon: <SiEslint />, color: "text-purple-600" },
-            ]
-        },
-        {
-            title: "Testing & Quality",
-            icon: <FaCode className="w-6 h-6" />,
-            skills: [
-                { name: "Jest", icon: <SiJest />, color: "text-red-600" },
-                { name: "Cypress", icon: <SiCypress />, color: "text-green-600" },
-                { name: "Selenium", icon: <SiSelenium />, color: "text-green-700" },
-                { name: "Unit Testing", icon: <FaCode />, color: "text-blue-500" },
-                { name: "E2E Testing", icon: <FaCode />, color: "text-purple-500" },
-            ]
-        },
-        {
-            title: "Design & UI/UX",
-            icon: <FaCode className="w-6 h-6" />,
-            skills: [
-                { name: "Figma", icon: <SiFigma />, color: "text-purple-600" },
-                { name: "Adobe XD", icon: <SiAdobexd />, color: "text-pink-600" },
-                { name: "UI/UX Design", icon: <FaCode />, color: "text-blue-500" },
-                { name: "Responsive Design", icon: <FaCode />, color: "text-green-500" },
-            ]
-        },
-        {
-            title: "Project Management",
-            icon: <FaTools className="w-6 h-6" />,
-            skills: [
-                { name: "Agile", icon: <FaCode />, color: "text-blue-500" },
-                { name: "Scrum", icon: <FaCode />, color: "text-green-500" },
-                { name: "Jira", icon: <SiJira />, color: "text-blue-600" },
-                { name: "Trello", icon: <SiTrello />, color: "text-blue-500" },
-                { name: "Slack", icon: <SiSlack />, color: "text-purple-500" },
-            ]
-        },
-        {
-            title: "E-commerce & CMS",
-            icon: <FaCode className="w-6 h-6" />,
-            skills: [
-                { name: "WordPress", icon: <SiWordpress />, color: "text-blue-600" },
-                { name: "Shopify", icon: <SiShopify />, color: "text-green-600" },
-                { name: "Stripe", icon: <SiStripe />, color: "text-purple-600" },
-                { name: "PayPal", icon: <SiPaypal />, color: "text-blue-600" },
-            ]
-        }
-    ];
+    const skillCategories = skillsData;
 
     return (
         <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
@@ -128,38 +76,44 @@ export default function AllSkills() {
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {skillCategories.map((category, categoryIndex) => (
-                        <div
-                            key={categoryIndex}
-                            className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg hover:shadow-lg transition-all duration-300 animate-slide-up group"
-                            style={{ animationDelay: `${categoryIndex * 100}ms` }}
-                        >
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                    {category.icon}
-                                </div>
-                                <h3 className="font-semibold text-slate-900 dark:text-white text-lg">
-                                    {category.title}
-                                </h3>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-3">
-                                {category.skills.map((skill, skillIndex) => (
-                                    <div
-                                        key={skillIndex}
-                                        className="flex items-center gap-2 p-2 rounded-md hover:bg-white dark:hover:bg-slate-700 transition-colors group/skill"
-                                    >
-                                        <div className={`${skill.color} group-hover/skill:scale-110 transition-transform duration-200 animate-float`}>
-                                            {skill.icon}
-                                        </div>
-                                        <span className="text-sm text-slate-600 dark:text-slate-300 font-medium">
-                                            {skill.name}
-                                        </span>
+                    {skillCategories.map((category, categoryIndex) => {
+                        const IconComponent = iconMap[category.icon];
+                        return (
+                            <div
+                                key={categoryIndex}
+                                className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg hover:shadow-lg transition-all duration-300 animate-slide-up group"
+                                style={{ animationDelay: `${categoryIndex * 100}ms` }}
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                        <IconComponent />
                                     </div>
-                                ))}
+                                    <h3 className="font-semibold text-slate-900 dark:text-white text-lg">
+                                        {category.title}
+                                    </h3>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3">
+                                    {category.skills.map((skill, skillIndex) => {
+                                        const SkillIcon = iconMap[skill.icon] || FaCode;
+                                        return (
+                                            <div
+                                                key={skillIndex}
+                                                className="flex items-center gap-2 p-2 rounded-md hover:bg-white dark:hover:bg-slate-700 transition-colors group/skill"
+                                            >
+                                                <div className={`${skill.color} group-hover/skill:scale-110 transition-transform duration-200 animate-float`}>
+                                                    <SkillIcon />
+                                                </div>
+                                                <span className="text-sm text-slate-600 dark:text-slate-300 font-medium">
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
 
                 {/* Additional Skills Summary */}

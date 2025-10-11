@@ -1,88 +1,62 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import { getAllExperiences } from "@/lib/experiences";
+import { FaBriefcase, FaBuilding, FaRocket } from "react-icons/fa6";
+import { FaMapMarkerAlt, FaRegCalendarAlt } from "react-icons/fa";
 
 export default function ExperiencePage() {
-    const experiences = [
-        {
-            title: "Full Stack Developer",
-            company: "Iberis",
-            location: "Lac1, Tunis",
-            period: "December 2023 - Present",
-            type: "Full-time",
-            description: "Migrated and enhanced UI/UX of Iberis online management and billing platform by integrating Vue.js with Laravel, improving key features like invoicing, expense tracking, client and stock management.",
-            achievements: [
-                "Successfully migrated legacy system to modern Vue.js frontend",
-                "Improved user experience and interface design",
-                "Enhanced billing and invoicing system functionality",
-                "Optimized database queries and performance"
-            ],
-            skills: ["Laravel", "Vue.js", "MySQL", "Bootstrap", "REST API", "Git", "Docker"]
-        },
-        {
-            title: "Full Stack Developer | Freelance",
-            company: "Casagroup",
-            location: "Germany (Remote)",
-            period: "January 2024 - June 2025",
-            type: "Freelance",
-            description: "Home services platform with resource management system, PDF generation (AWS S3), CV generation app with advanced search (Melisearch), and planning management.",
-            achievements: [
-                "Built comprehensive home services management platform",
-                "Implemented advanced search functionality with Meilisearch",
-                "Integrated AWS S3 for document storage and PDF generation",
-                "Developed CV generation system with customizable templates"
-            ],
-            skills: ["React", "shadcn/ui", "TailwindCSS", "Laravel", "Node.js", "AWS S3", "Meilisearch"]
-        },
-        {
-            title: "Full Stack Developer",
-            company: "Next Consulting",
-            location: "Tunis",
-            period: "August 2023 - November 2024",
-            type: "Full-time",
-            description: "Patient management app with real-time messaging via WebSockets. Transport solution with push notifications via Pusher. Real estate marketplace with advanced search engine (Melisearch).",
-            achievements: [
-                "Developed real-time patient management system with WebSocket integration",
-                "Built transport solution with push notification system",
-                "Created real estate marketplace with advanced search capabilities",
-                "Implemented real-time messaging features"
-            ],
-            skills: ["Laravel", "Vue.js", "Next.js", "Node.js", "WebSocket", "Pusher", "Meilisearch"]
-        },
-        {
-            title: "Full Stack Developer",
-            company: "Dcarte Solutions",
-            location: "Lac2, Tunis",
-            period: "March 2022 - October 2023",
-            type: "Full-time",
-            description: "Developed web interface and mobile application for startup's NFC business card system. Full project lifecycle management, from design to production deployment.",
-            achievements: [
-                "Led development of NFC business card system from concept to production",
-                "Built both web interface and mobile application",
-                "Managed complete project lifecycle and deployment",
-                "Implemented NFC technology integration"
-            ],
-            skills: ["React", "React Native", "Django", "Laravel", "TailwindCSS", "NFC", "Mobile Development"]
-        }
-    ];
+    const experiences = getAllExperiences();
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <Navigation />
 
-            {/* Hero Section */}
-            <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-6xl mx-auto">
+            <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute -top-40 -right-32 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float pointer-events-none"></div>
+                    <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float pointer-events-none" style={{ animationDelay: '2s' }}></div>
+                </div>
+
+                <div className="max-w-6xl mx-auto relative">
                     <div className="text-center">
-                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-4 animate-fade-in">
+                        {/* Animated Icon/Badge */}
+                        <div className="relative inline-block mb-8">
+                            <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center animate-bounce-in shadow-lg">
+                                <FaBriefcase className="text-white text-3xl" />
+                            </div>
+                            <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                                4 Roles
+                            </div>
+                        </div>
+
+                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up">
                             Experience
                         </h1>
-                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto animate-slide-up">
-                            My professional journey and the projects that have shaped my career as a Full Stack Developer
-                        </p>
+
+                        {/* Enhanced Subtitle */}
+                        <div className="relative inline-block max-w-3xl mx-auto">
+                            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-slide-up">
+                                My professional journey through{" "}
+                                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
+                                    innovative companies and challenging projects
+                                </span>
+                            </p>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse-slow"></div>
+                        </div>
+
+                        {/* Scroll Indicator */}
+                        <div className="mt-16 animate-bounce">
+                            <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center mx-auto">
+                                <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Scroll to explore my journey</p>
+                        </div>
                     </div>
                 </div>
             </section>
+
 
             {/* Experience Timeline */}
             <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
