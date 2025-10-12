@@ -2,215 +2,144 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import Link from "next/link";
+import { projects } from "@/lib/projects";
+import { FaRocket, FaCode, FaUsers, FaLightbulb, FaArrowRight } from "react-icons/fa";
+import ProjectCard from "../components/ProjectCard";
 
 export default function ProjectsPage() {
-    const projects = [
-        {
-            title: "Iberis Management Platform",
-            description: "Migrated and enhanced UI/UX of online management and billing platform with Vue.js and Laravel, improving invoicing, expense tracking, client and stock management.",
-            longDescription: "A comprehensive business management platform that handles all aspects of company operations including invoicing, expense tracking, client management, and inventory control. The project involved migrating from a legacy system to a modern Vue.js frontend with Laravel backend, significantly improving user experience and system performance.",
-            technologies: ["Laravel", "Vue.js", "MySQL", "Bootstrap", "REST API", "Git", "Docker"],
-            features: [
-                "Modern responsive UI with Vue.js",
-                "Real-time invoice generation and tracking",
-                "Advanced client management system",
-                "Inventory and stock management",
-                "Expense tracking and reporting",
-                "Multi-user role-based access control"
-            ],
-            challenges: [
-                "Migrating legacy system without downtime",
-                "Optimizing database queries for large datasets",
-                "Implementing real-time updates across multiple users",
-                "Ensuring data integrity during migration"
-            ],
-            gradient: "from-blue-500 to-purple-600",
-            demoLink: "#",
-            codeLink: "#",
-            status: "Live"
-        },
-        {
-            title: "Home Services Platform",
-            description: "Home services platform with resource management system, PDF generation (AWS S3), CV generation app with advanced search (Melisearch), and planning management.",
-            longDescription: "A comprehensive platform for managing home services, connecting service providers with customers. Features include advanced search functionality, document generation, CV management for service providers, and comprehensive planning tools for service scheduling and management.",
-            technologies: ["React", "shadcn/ui", "TailwindCSS", "Laravel", "Node.js", "AWS S3", "Meilisearch"],
-            features: [
-                "Advanced search with Meilisearch integration",
-                "PDF generation and document management",
-                "CV generation system for service providers",
-                "Real-time booking and scheduling",
-                "Payment integration and invoicing",
-                "Mobile-responsive design"
-            ],
-            challenges: [
-                "Implementing complex search algorithms",
-                "Integrating multiple third-party services",
-                "Optimizing PDF generation for large documents",
-                "Managing real-time data synchronization"
-            ],
-            gradient: "from-green-500 to-teal-600",
-            demoLink: "#",
-            codeLink: "#",
-            status: "Live"
-        },
-        {
-            title: "NFC Business Card System",
-            description: "Developed web interface and mobile application for startup's NFC business card system. Full project lifecycle management, from design to production deployment.",
-            longDescription: "An innovative NFC-based business card system that allows users to share contact information digitally. The system includes both web and mobile applications, enabling users to create, customize, and share digital business cards using NFC technology.",
-            technologies: ["React", "React Native", "Django", "Laravel", "TailwindCSS", "NFC", "Mobile Development"],
-            features: [
-                "NFC technology integration",
-                "Cross-platform mobile application",
-                "Customizable business card templates",
-                "Contact information management",
-                "Analytics and tracking",
-                "Offline functionality"
-            ],
-            challenges: [
-                "Integrating NFC technology across different devices",
-                "Ensuring cross-platform compatibility",
-                "Managing offline data synchronization",
-                "Implementing secure data transfer"
-            ],
-            gradient: "from-purple-500 to-pink-600",
-            demoLink: "#",
-            codeLink: "#",
-            status: "Live"
-        }
-    ];
-
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <Navigation />
 
-            {/* Hero Section */}
-            <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-6xl mx-auto">
+            {/* Enhanced Hero Section */}
+            <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute -top-40 -right-32 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float pointer-events-none"></div>
+                    <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 animate-float pointer-events-none" style={{ animationDelay: '2s' }}></div>
+                </div>
+
+                <div className="max-w-6xl mx-auto relative">
                     <div className="text-center">
-                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-4 animate-fade-in">
-                            Projects
+                        {/* Animated Icon/Badge */}
+                        <div className="relative inline-block mb-8">
+                            <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center animate-bounce-in shadow-lg">
+                                <FaRocket className="text-white text-3xl" />
+                            </div>
+                            <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                                {projects.length}+ Projects
+                            </div>
+                        </div>
+
+                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up">
+                            My Projects
                         </h1>
-                        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto animate-slide-up">
-                            Explore my portfolio of projects that showcase my skills in full-stack development and problem-solving
-                        </p>
+
+                        <div className="relative inline-block max-w-3xl mx-auto">
+                            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-slide-up">
+                                Building <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">scalable solutions</span> that solve real business problems
+                            </p>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse-slow"></div>
+                        </div>
+
+                        {/* Project Stats */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaCode className="text-blue-600 dark:text-blue-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">{projects.length}+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Projects</div>
+                            </div>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaUsers className="text-green-600 dark:text-green-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">4</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Companies</div>
+                            </div>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaLightbulb className="text-purple-600 dark:text-purple-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">5+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Years Exp</div>
+                            </div>
+                            <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
+                                <FaRocket className="text-orange-600 dark:text-orange-400 text-2xl mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">6+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-300">Technologies</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Projects Grid */}
+            {/* Projects Grid Section */}
             <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
                 <div className="max-w-6xl mx-auto">
-                    <div className="space-y-16">
+                    {/* Filter Tabs */}
+                    <div className="flex flex-wrap gap-4 mb-12 justify-center">
+                        <button className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium transition-colors">
+                            All Projects
+                        </button>
+                        <button className="px-6 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition-colors">
+                            Full Stack
+                        </button>
+                        <button className="px-6 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition-colors">
+                            Frontend
+                        </button>
+                        <button className="px-6 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition-colors">
+                            Backend
+                        </button>
+                    </div>
+
+                    {/* Projects Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className="animate-slide-up"
-                                style={{ animationDelay: `${index * 200}ms` }}
-                            >
-                                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                                    {/* Project Image/Preview */}
-                                    <div className="order-2 lg:order-1">
-                                        <div className={`h-80 bg-gradient-to-br ${project.gradient} rounded-lg flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300`}>
-                                            <div className="text-center text-white">
-                                                <h3 className="text-3xl font-bold mb-2">{project.title.split(' ')[0]}</h3>
-                                                <p className="text-lg opacity-90">Platform</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Project Details */}
-                                    <div className="order-1 lg:order-2">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{project.title}</h2>
-                                            <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">
-                                                {project.status}
-                                            </span>
-                                        </div>
-
-                                        <p className="text-lg text-slate-600 dark:text-slate-300 mb-6">
-                                            {project.longDescription}
-                                        </p>
-
-                                        {/* Technologies */}
-                                        <div className="mb-6">
-                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Technologies Used:</h4>
-                                            <div className="flex flex-wrap gap-2">
-                                                {project.technologies.map((tech, techIndex) => (
-                                                    <span
-                                                        key={techIndex}
-                                                        className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform"
-                                                    >
-                                                        {tech}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        {/* Features */}
-                                        <div className="mb-6">
-                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Key Features:</h4>
-                                            <ul className="space-y-2">
-                                                {project.features.map((feature, featureIndex) => (
-                                                    <li key={featureIndex} className="flex items-start gap-2">
-                                                        <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
-                                                        <span className="text-slate-600 dark:text-slate-300">{feature}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Challenges */}
-                                        <div className="mb-6">
-                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Challenges Overcome:</h4>
-                                            <ul className="space-y-2">
-                                                {project.challenges.map((challenge, challengeIndex) => (
-                                                    <li key={challengeIndex} className="flex items-start gap-2">
-                                                        <span className="text-orange-600 dark:text-orange-400 mt-1">•</span>
-                                                        <span className="text-slate-600 dark:text-slate-300">{challenge}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Links */}
-                                        <div className="flex gap-4">
-                                            <a
-                                                href={project.demoLink}
-                                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors hover:scale-105 transform duration-200"
-                                            >
-                                                Live Demo
-                                            </a>
-                                            <a
-                                                href={project.codeLink}
-                                                className="border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 px-6 py-2 rounded-lg font-medium transition-colors hover:scale-105 transform duration-200"
-                                            >
-                                                Source Code
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ProjectCard
+                                key={project.id}
+                                project={project}
+                                index={index}
+                                showFeaturedBadge={false} // Don't show featured badge on projects page
+                            />
                         ))}
+                    </div>
+
+                    {/* Load More Button (if you add pagination later) */}
+                    <div className="text-center mt-12">
+                        <button className="inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 transform">
+                            Load More Projects
+                            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </button>
                     </div>
                 </div>
             </section>
 
-            {/* Call to Action */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-800">
-                <div className="max-w-4xl mx-auto text-center">
+            {/* Enhanced Call to Action */}
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-800 relative overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 animate-float pointer-events-none"></div>
+                    <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-200 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 animate-float pointer-events-none" style={{ animationDelay: '2s' }}></div>
+                </div>
+
+                <div className="max-w-4xl mx-auto text-center relative">
                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in">
-                        Interested in Working Together?
+                        Ready to Start Your Project?
                     </h2>
-                    <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 animate-slide-up">
-                        I'm always open to discussing new opportunities and exciting projects.
-                        Let's create something amazing together!
+                    <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 animate-slide-up max-w-2xl mx-auto">
+                        I'm passionate about turning ideas into reality. Let's discuss how we can bring your vision to life with cutting-edge technology and exceptional user experiences.
                     </p>
-                    <Link
-                        href="/contact"
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors hover:scale-105 transform duration-200 inline-block"
-                    >
-                        Get In Touch
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
+                        <Link
+                            href="/contact"
+                            className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 transform shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+                        >
+                            <FaRocket className="group-hover:animate-bounce" />
+                            Start a Project
+                        </Link>
+                        <Link
+                            href="/experience"
+                            className="group border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 transform inline-flex items-center gap-2"
+                        >
+                            View My Experience
+                        </Link>
+                    </div>
                 </div>
             </section>
 

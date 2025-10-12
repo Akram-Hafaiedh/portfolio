@@ -1,3 +1,4 @@
+import { projects } from "@/lib/projects";
 import Link from "next/link";
 
 export default function About() {
@@ -37,7 +38,7 @@ export default function About() {
                             <div className="text-sm text-slate-600 dark:text-slate-300">Years Experience</div>
                         </div>
                         <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-6 rounded-lg text-center hover:scale-105 transform transition duration-200">
-                            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">10+</div>
+                            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">{projects.length}</div>
                             <div className="text-sm text-slate-600 dark:text-slate-300">Projects Completed</div>
                         </div>
                         <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-lg text-center hover:scale-105 transform transition duration-200">

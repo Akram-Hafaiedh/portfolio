@@ -2,6 +2,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaGlobe, FaRoute } from "react-icons/fa";
+import { projects } from "@/lib/projects";
 
 export default function AboutPage() {
     return (
@@ -43,7 +44,7 @@ export default function AboutPage() {
                             </div>
                             <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
                                 <FaCode className="text-green-600 dark:text-green-400 text-2xl mx-auto mb-2" />
-                                <div className="text-2xl font-bold text-slate-900 dark:text-white">10+</div>
+                                <div className="text-2xl font-bold text-slate-900 dark:text-white">{projects.length}</div>
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Projects</div>
                             </div>
                             <div className="text-center p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:scale-105 transform transition duration-200">
@@ -57,7 +58,7 @@ export default function AboutPage() {
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Remote</div>
                             </div>
                         </div>
-                        
+
 
                         {/* Scroll Indicator */}
                         <div className="mt-16 animate-bounce">

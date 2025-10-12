@@ -1,12 +1,12 @@
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import SkillsHighlights from "./components/SkillsHighlights";
 import ExperienceHighlights from "./components/ExperienceHighlights";
+import ProjectsHighlights from "./components/ProjectsHighlights";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <About />
       <ExperienceHighlights />
       <SkillsHighlights />
-      <Projects />
+      <ProjectsHighlights />
       <Contact />
       <Footer />
       <ScrollToTop />

@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import AllSkills from "../components/AllSkills";
 import { FaBriefcase } from "react-icons/fa";
+import { projects } from "@/lib/projects";
 
 export default function SkillsPage() {
     return (
@@ -48,7 +49,7 @@ export default function SkillsPage() {
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Years Learning</div>
                             </div>
                             <div className="text-center p-4">
-                                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">10+</div>
+                                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">{projects.length}</div>
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Projects Built</div>
                             </div>
 

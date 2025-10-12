@@ -44,7 +44,7 @@ export default function ExperienceHighlights() {
                         href="/experience"
                         className="inline-flex items-center gap-2 text-white hover:text-blue-700 dark:hover:text-blue-400 font-medium"
                     >
-                        View All Experiences
+                        View all Experiences
                         <FaArrowRight />
                     </Link>
                 </div>
