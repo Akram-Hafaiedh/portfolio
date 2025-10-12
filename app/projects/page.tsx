@@ -35,12 +35,12 @@ export default function ProjectsPage() {
                             My Projects
                         </h1>
 
-                        <div className="relative inline-block max-w-3xl mx-auto">
+                        {/* <div className="relative inline-block max-w-3xl mx-auto">
                             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-slide-up">
                                 Building <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">scalable solutions</span> that solve real business problems
                             </p>
                             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse-slow"></div>
-                        </div>
+                        </div> */}
 
                         {/* Project Stats */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
@@ -64,6 +64,14 @@ export default function ProjectsPage() {
                                 <div className="text-2xl font-bold text-slate-900 dark:text-white">6+</div>
                                 <div className="text-sm text-slate-600 dark:text-slate-300">Technologies</div>
                             </div>
+                        </div>
+
+                        {/* Scroll Indicator */}
+                        <div className="mt-16 animate-bounce">
+                            <div className="w-6 h-10 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center mx-auto">
+                                <div className="w-1 h-3 bg-slate-400 dark:bg-slate-600 rounded-full mt-2 animate-pulse"></div>
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Scroll to explore</p>
                         </div>
                     </div>
                 </div>
