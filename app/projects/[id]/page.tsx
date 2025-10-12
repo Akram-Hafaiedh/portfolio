@@ -8,13 +8,13 @@ import { notFound } from "next/navigation";
 import { FaArrowLeft, FaBuilding, FaCalendarAlt, FaChartLine, FaCheckCircle, FaExternalLinkAlt, FaGithub, FaLightbulb, FaRocket, FaUserTie } from "react-icons/fa";
 
 interface ProjectPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
-    const { id } = params;
+    const { id } = await params;
     const project = getProjectById(id);
 
     if (!project) {
@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: ProjectPageProps) {
     };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-
-    const project = getProjectById(params.id);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+    const { id } = await params;
+    const project = getProjectById(id);
 
     if (!project) {
         notFound();
