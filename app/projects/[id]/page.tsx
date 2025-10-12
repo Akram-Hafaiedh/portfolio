@@ -14,7 +14,7 @@ interface ProjectPageProps {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
-    const { id } = await params;
+    const { id } = params;
     const project = getProjectById(id);
 
     if (!project) {
