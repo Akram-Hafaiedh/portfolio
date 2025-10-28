@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +31,15 @@ export default function Navigation() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* <div className="text-xl font-bold text-slate-800 dark:text-white">AK</div> */}
-                    <Image src="/icon0.svg" alt="Logo" width={50} height={50} />
+                    <Link href="/">
+                        <Image
+                            src="/logo.svg"
+                            alt="Logo"
+                            width={40}
+                            height={40}
+                            className="w-10 h-10 object-contain"
+                        />
+                    </Link>
 
 
                     {/* Desktop Navigation */}
