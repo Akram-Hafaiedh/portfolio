@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     description: "Professional portfolio showcasing full stack development projects and expertise",
     type: "website",
   },
+  appleWebApp: {
+    title: 'MyWebSite',
+  },
 };
 
 export default function RootLayout({
