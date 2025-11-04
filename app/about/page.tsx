@@ -1,8 +1,9 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaGlobe, FaRoute } from "react-icons/fa";
+import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaGlobe, FaRoute, FaRocket } from "react-icons/fa";
 import { projects } from "@/lib/projects";
+import Link from "next/link";
 
 export default function AboutPage() {
     return (
@@ -179,6 +180,24 @@ export default function AboutPage() {
                                     <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">Music</span>
                                     <span className="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-sm">Technology</span>
                                 </div>
+                            </div>
+
+                            {/* Resume Section */}
+
+                            <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-lg border-2 border-blue-200 dark:border-blue-800">
+                                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                    <FaRocket className="text-blue-600 dark:text-blue-400" />
+                                    My Resume
+                                </h3>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
+                                    Download my complete resume with detailed experience, skills, and achievements in both English and French.
+                                </p>
+                                <Link
+                                    href="/resume"
+                                    className="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
+                                >
+                                    View Full Resume →
+                                </Link>
                             </div>
                         </div>
                     </div>

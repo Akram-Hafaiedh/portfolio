@@ -1,9 +1,11 @@
+'use client';
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import ContactForm from "../components/ContactForm";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGitlab, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGitlab, FaFacebookF, FaWhatsapp, FaRocket } from "react-icons/fa";
 import { faqData } from "@/lib/faq";
+import Link from "next/link";
 
 export default function ContactPage() {
     return (
@@ -200,6 +202,19 @@ export default function ContactPage() {
                                         <span className="text-green-600 dark:text-green-400">✓</span>
                                         <span className="text-slate-600 dark:text-slate-300">Quick response time</span>
                                     </div>
+                                </div>
+
+                                <div className="mt-6 pt-6 border-t border-blue-200 dark:border-blue-800">
+                                    <Link
+                                        href="/resume"
+                                        className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
+                                    >
+                                        <FaRocket />
+                                        View My Resume
+                                    </Link>
+                                    <p className="text-xs text-center text-slate-500 dark:text-slate-400 mt-2">
+                                        Available in English & French
+                                    </p>
                                 </div>
                             </div>
                         </div>

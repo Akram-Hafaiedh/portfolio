@@ -50,6 +50,13 @@ export default function Hero() {
                             Contact Me
                         </Link>
                         <Link
+                            href="/resume"
+                            className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-lg font-medium transition-all flex items-center gap-2 hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
+                        >
+                            <FaRocket />
+                            View Resume
+                        </Link>
+                        <Link
                             href="/projects"
                             className="group border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 px-8 py-3 rounded-lg font-medium transition-all flex items-center gap-2 hover:scale-105 transform duration-200"
                         >
