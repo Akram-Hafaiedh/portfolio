@@ -3,7 +3,8 @@ import { AppointmentRequest } from "@/types/booking";
 import { isValidEmail } from "@/lib/helper";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { createCalendarEvent } from "@/lib/google-calendar";
+import { createCalendarEvent } from "@/lib/google-calendar-oauth";
+import { CalendarEventData, getICalendarAttachment } from "@/lib/icalendar";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -42,13 +43,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         const startDateTime = new Date(date);
         const endDateTime = new Date(startDateTime.getTime() + duration * 60000);
 
-        // Create Google Calendar event with Meet link
+        // Create Google Calendar event WITHOUT attendees (just for your calendar)
         const eventResult = await createCalendarEvent({
             summary: `${subject} - Meeting with ${name}`,
             description: `Meeting with ${name} (${email})\n\nMessage:\n${message}`,
             startDateTime: startDateTime.toISOString(),
             endDateTime: endDateTime.toISOString(),
-            attendeeEmail: email,
+            attendeeEmail: email, // We still pass this for description purposes
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
         });
 
@@ -63,7 +64,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         await sendConfirmationEmails(
             body,
             eventResult.meetLink || undefined,
-            eventResult.htmlLink || undefined
+            eventResult.htmlLink || undefined,
+            eventResult.eventId || `event-${Date.now()}`
         );
 
         return NextResponse.json(
@@ -88,18 +90,42 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 async function sendConfirmationEmails(
     data: AppointmentRequest,
     meetLink: string | undefined,
-    calendarLink: string | undefined
+    calendarLink: string | undefined,
+    eventId: string
 ): Promise<void> {
     try {
-        // Send email to the person who booked
+
+        const startDateTime = new Date(data.date);
+        const endDateTime = new Date(startDateTime.getTime() + data.duration * 60000);
+
+        // Prepare calendar event data for .ics generation
+        const calendarEventData: CalendarEventData = {
+            summary: `${data.subject} - Meeting with Akram Hafaiedh`,
+            description: `Meeting with Akram Hafaiedh\n\nTopic: ${data.subject}\n\nMessage:\n${data.message}`,
+            startDateTime: startDateTime.toISOString(),
+            endDateTime: endDateTime.toISOString(),
+            organizerEmail: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID || 'hafaiedhakram@gmail.com',
+            organizerName: 'Akram Hafaiedh',
+            attendeeEmail: data.email,
+            attendeeName: data.name,
+            meetLink: meetLink,
+            eventId: eventId,
+        };
+
+
+        // Get the .ics attachment
+        const icsAttachment = getICalendarAttachment(calendarEventData);
+
+        // Send email to the person who booked WITH .ics attachment
         await resend.emails.send({
             from: 'Appointments <onboarding@resend.dev>',
             to: data.email,
             subject: `Meeting Confirmed: ${data.subject}`,
             html: generateRecruiterEmailHTML(data, meetLink, calendarLink),
+            attachments: [icsAttachment],
         });
 
-        // Send notification to yourself
+        // Send notification to yourself (without .ics since it's already in your calendar)
         await resend.emails.send({
             from: 'Appointments <onboarding@resend.dev>',
             to: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID || 'hafaiedhakram@gmail.com',
@@ -176,7 +202,7 @@ function generateRecruiterEmailHTML(
                     </table>
                 </div>
                 
-                <!-- Action Buttons -->
+                 <!-- Action Buttons -->
                 ${meetLink ? `
                 <div style="text-align: center; margin: 30px 0;">
                     <a href="${meetLink}" style="display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 16px;">
@@ -185,19 +211,13 @@ function generateRecruiterEmailHTML(
                 </div>
                 ` : ''}
                 
-                ${calendarLink ? `
-                <div style="text-align: center; margin: 20px 0;">
-                    <a href="${calendarLink}" style="color: #3b82f6; text-decoration: none; font-size: 14px;">
-                        📆 Add to Calendar
-                    </a>
-                </div>
-                ` : ''}
-                
-                <!-- Important Notes -->
+                 <!-- Important Notes -->
                 <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; padding: 16px; border-radius: 8px; margin: 30px 0;">
                     <p style="margin: 0; color: #1e40af; font-size: 14px; line-height: 1.6;">
                         <strong>📌 Important:</strong><br>
-                        • You'll receive a calendar invitation shortly<br>
+                        • A calendar invite (.ics file) is attached to this email<br>
+                        • Click the attachment to add this meeting to your calendar<br>
+                        • Works with Google Calendar, Outlook, Apple Calendar, and more<br>
                         • The Google Meet link will be active 15 minutes before the meeting<br>
                         • Please join on time to make the most of our session
                     </p>

@@ -1,7 +1,7 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaGlobe, FaRoute, FaRocket } from "react-icons/fa";
+import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaGlobe, FaRoute, FaRocket, FaCalendar } from "react-icons/fa";
 import { projects } from "@/lib/projects";
 import Link from "next/link";
 
@@ -199,6 +199,23 @@ export default function AboutPage() {
                                     View Full Resume →
                                 </Link>
                             </div>
+
+                            <div className="bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-lg border-2 border-green-200 dark:border-green-800">
+                                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                                    <FaCalendar className="text-green-600 dark:text-green-400" />
+                                    Let's Talk
+                                </h3>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
+                                    Want to learn more? Schedule a free 30-minute call to discuss opportunities.
+                                </p>
+                                <Link
+                                    href="/booking"
+                                    className="block w-full text-center bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
+                                >
+                                    Schedule a Call →
+                                </Link>
+                            </div>
+
                         </div>
                     </div>
                 </div>

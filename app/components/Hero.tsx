@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaEnvelope, FaCode, FaRocket } from "react-icons/fa";
+import { FaEnvelope, FaCode, FaRocket, FaCalendar } from "react-icons/fa";
 
 export default function Hero() {
     return (
@@ -40,29 +40,43 @@ export default function Hero() {
                         </p>
                     </div>
 
-                    {/* Buttons with enhanced animations */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-                        <Link
-                            href="/contact"
-                            className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-all flex items-center gap-2 hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl animate-pulse-slow"
-                        >
-                            <FaEnvelope />
-                            Contact Me
-                        </Link>
-                        <Link
-                            href="/resume"
-                            className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-lg font-medium transition-all flex items-center gap-2 hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
-                        >
-                            <FaRocket />
-                            View Resume
-                        </Link>
-                        <Link
-                            href="/projects"
-                            className="group border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 px-8 py-3 rounded-lg font-medium transition-all flex items-center gap-2 hover:scale-105 transform duration-200"
-                        >
-                            <FaCode />
-                            View My Work
-                        </Link>
+                    <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                        {/* Primary Actions - Top Row */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Link
+                                href="/booking"
+                                className="group w-full sm:w-auto bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 hover:scale-105 transform duration-200 shadow-xl hover:shadow-2xl animate-pulse-slow"
+                            >
+                                <FaCalendar />
+                                Book a Meeting
+                                {/* <span className="ml-2 text-xs bg-white/20 px-2 py-1 rounded-full">Free</span> */}
+                            </Link>
+                            <Link
+                                href="/contact"
+                                className="group w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 hover:scale-105 transform duration-200 shadow-lg hover:shadow-xl"
+                            >
+                                <FaEnvelope />
+                                Send Message
+                            </Link>
+                        </div>
+
+                        {/* Secondary Actions - Bottom Row */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Link
+                                href="/resume"
+                                className="group w-full sm:w-auto border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 px-6 py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 hover:scale-105 transform duration-200"
+                            >
+                                <FaRocket />
+                                View Resume
+                            </Link>
+                            <Link
+                                href="/projects"
+                                className="group w-full sm:w-auto border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 px-6 py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 hover:scale-105 transform duration-200"
+                            >
+                                <FaCode />
+                                View Projects
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Optional: Animated scroll indicator */}

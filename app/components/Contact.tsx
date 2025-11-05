@@ -1,5 +1,7 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar } from "react-icons/fa";
 import ContactForm from "./ContactForm";
+import Link from "next/link";
+import { Video } from "lucide-react";
 
 export default function Contact() {
     return (
@@ -15,7 +17,24 @@ export default function Contact() {
                             I'm always interested in new opportunities and exciting projects.
                             Feel free to reach out if you'd like to collaborate or just say hello!
                         </p>
-                        
+
+                        <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                                <FaCalendar className="text-blue-600" />
+                                Prefer a Live Meeting?
+                            </h4>
+                            <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm">
+                                Schedule a video call to discuss your project, job opportunity, or collaboration.
+                            </p>
+                            <Link
+                                href="/booking"
+                                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all hover:scale-105"
+                            >
+                                <Video className="text-lg" />
+                                Schedule a Meeting
+                            </Link>
+                        </div>
+
                         {/* Enhanced Contact Info */}
                         <div className="space-y-4 mb-8">
                             <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
@@ -29,7 +48,7 @@ export default function Contact() {
                                     </a>
                                 </div>
                             </div>
-                            
+
                             <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <FaPhone className="text-green-600 dark:text-green-400 text-xl" />
                                 <div>
@@ -41,7 +60,7 @@ export default function Contact() {
                                     </a>
                                 </div>
                             </div>
-                            
+
                             <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
                                 <FaMapMarkerAlt className="text-purple-600 dark:text-purple-400 text-xl" />
                                 <div>
@@ -83,7 +102,7 @@ export default function Contact() {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="animate-fade-in">
                         <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6">Send a Message</h3>
                         <ContactForm />

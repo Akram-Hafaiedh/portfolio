@@ -3,9 +3,10 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import ContactForm from "../components/ContactForm";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGitlab, FaFacebookF, FaWhatsapp, FaRocket } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGitlab, FaFacebookF, FaWhatsapp, FaRocket, FaCalendar } from "react-icons/fa";
 import { faqData } from "@/lib/faq";
 import Link from "next/link";
+import { Video } from "lucide-react";
 
 export default function ContactPage() {
     return (
@@ -114,6 +115,25 @@ export default function ContactPage() {
                                                 Chat on WhatsApp
                                             </a>
                                         </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <FaCalendar className="text-green-600 dark:text-green-400" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Schedule a Meeting</h3>
+                                        <p className="text-slate-600 dark:text-slate-300 text-sm mb-3">
+                                            Book a free video consultation to discuss your project or opportunity.
+                                        </p>
+                                        <Link
+                                            href="/booking"
+                                            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 shadow-md"
+                                        >
+                                            <Video className="w-4 h-4" />
+                                            Book Now
+                                        </Link>
                                     </div>
                                 </div>
 
