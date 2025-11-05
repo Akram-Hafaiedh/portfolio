@@ -1,12 +1,57 @@
+'use client'
+
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
-import { FaRocket, FaCode, FaUsers, FaLightbulb, FaArrowRight } from "react-icons/fa";
+import { FaRocket, FaCode, FaUsers, FaLightbulb, FaArrowRight, FaCalendar } from "react-icons/fa";
 import ProjectCard from "../components/ProjectCard";
+import { useMemo, useState } from "react";
+
+type FilterType = 'all' | 'Full Stack' | 'Frontend' | 'Backend' | 'Mobile' | 'Freelance';
 
 export default function ProjectsPage() {
+
+    const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+    const [visibleProjects, setVisibleProjects] = useState(6);
+
+
+    const filteredProjects = useMemo(() => {
+        if (activeFilter === 'all') return projects;
+
+        return projects.filter(project => project.type === activeFilter);
+    }, [activeFilter]);
+
+
+    const displayedProjects = filteredProjects.slice(0, visibleProjects);
+
+
+    const filterButtons: { key: FilterType; label: string }[] = [
+        { key: 'all', label: 'All Projects' },
+        { key: 'Full Stack', label: 'Full Stack' },
+        { key: 'Frontend', label: 'Frontend' },
+        { key: 'Backend', label: 'Backend' },
+        { key: 'Mobile', label: 'Mobile' },
+        { key: 'Freelance', label: 'Freelance' },
+    ];
+
+
+    const handleLoadMore = () => {
+        setVisibleProjects(prev => prev + 6);
+    };
+
+
+    const getButtonClasses = (filterKey: FilterType) => {
+        const baseClasses = "px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105";
+
+        if (activeFilter === filterKey) {
+            return `${baseClasses} bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg`;
+        }
+
+        return `${baseClasses} bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700`;
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <Navigation />
@@ -82,39 +127,67 @@ export default function ProjectsPage() {
                 <div className="max-w-6xl mx-auto">
                     {/* Filter Tabs */}
                     <div className="flex flex-wrap gap-4 mb-12 justify-center">
-                        <button className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium transition-colors">
-                            All Projects
-                        </button>
-                        <button className="px-6 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition-colors">
-                            Full Stack
-                        </button>
-                        <button className="px-6 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition-colors">
-                            Frontend
-                        </button>
-                        <button className="px-6 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition-colors">
-                            Backend
-                        </button>
+                        {filterButtons.map((button) => (
+                            <button
+                                key={button.key}
+                                onClick={() => {
+                                    setActiveFilter(button.key);
+                                    setVisibleProjects(6); // Reset visible projects when filter changes
+                                }}
+                                className={getButtonClasses(button.key)}
+                            >
+                                {button.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Results Count */}
+                    <div className="text-center mb-8">
+                        <p className="text-slate-600 dark:text-slate-300">
+                            Showing {displayedProjects.length} of {filteredProjects.length} projects
+                            {activeFilter !== 'all' && ` in ${activeFilter}`}
+                        </p>
                     </div>
 
                     {/* Projects Grid */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {projects.map((project, index) => (
+                        {displayedProjects.map((project, index) => (
                             <ProjectCard
                                 key={project.id}
                                 project={project}
                                 index={index}
-                                showFeaturedBadge={false} // Don't show featured badge on projects page
+                                showFeaturedBadge={false}
                             />
                         ))}
                     </div>
 
-                    {/* Load More Button (if you add pagination later) */}
-                    <div className="text-center mt-12">
-                        <button className="inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 transform">
-                            Load More Projects
-                            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                        </button>
-                    </div>
+                    {/* No Results Message */}
+                    {displayedProjects.length === 0 && (
+                        <div className="text-center py-12">
+                            <div className="text-slate-400 dark:text-slate-500 text-lg mb-4">
+                                No {activeFilter !== 'all' ? activeFilter.toLowerCase() : ''} projects found.
+                            </div>
+                            <button
+                                onClick={() => setActiveFilter('all')}
+                                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+                            >
+                                Show All Projects
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Load More Button */}
+                    {filteredProjects.length > visibleProjects && (
+                        <div className="text-center mt-12">
+                            <button
+                                onClick={handleLoadMore}
+                                className="group inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 transform"
+                            >
+                                Load More Projects ({filteredProjects.length - visibleProjects} remaining)
+                                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -134,12 +207,20 @@ export default function ProjectsPage() {
                         I'm passionate about turning ideas into reality. Let's discuss how we can bring your vision to life with cutting-edge technology and exceptional user experiences.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
-                        <Link
+                        {/* <Link
                             href="/contact"
                             className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 transform shadow-lg hover:shadow-xl inline-flex items-center gap-2"
                         >
                             <FaRocket className="group-hover:animate-bounce" />
                             Start a Project
+                        </Link> */}
+
+                        <Link
+                            href="/booking"  // Changed from /contact
+                            className="group bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 transform shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+                        >
+                            <FaCalendar className="group-hover:animate-bounce" />
+                            Book a Project Call
                         </Link>
                         <Link
                             href="/experience"
