@@ -61,6 +61,17 @@ export default function BookingCalendar() {
     }, []);
 
 
+    const isFormValid = () => {
+        return (
+            selectedSlot !== null &&
+            formData.name.trim() !== '' &&
+            formData.email.trim() !== '' &&
+            formData.subject.trim() !== '' &&
+            !isBooking
+        );
+    };
+
+
     const handleDateChange = (date: string) => {
         setSelectedDate(date);
         setSelectedSlot(null);
@@ -399,7 +410,7 @@ export default function BookingCalendar() {
 
                                 <button
                                     type="submit"
-                                    disabled={!selectedSlot || isBooking}
+                                    disabled={!isFormValid()}
                                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-slate-400 disabled:to-slate-500 text-white py-4 px-8 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl disabled:shadow-none"
                                 >
                                     {isBooking ? (
