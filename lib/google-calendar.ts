@@ -69,7 +69,7 @@ export async function createCalendarEvent(params: CreateEventParams): Promise<{
             },
             attendees: [
                 { email: attendeeEmail },
-                { email: process.env.GOOGLE_CALENDAR_ID }, // Your email
+                { email: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID }, // Your email
             ],
             conferenceData: {
                 createRequest: {
@@ -92,7 +92,7 @@ export async function createCalendarEvent(params: CreateEventParams): Promise<{
         };
 
         const response = await calendar.events.insert({
-            calendarId: process.env.GOOGLE_CALENDAR_ID,
+            calendarId: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID,
             conferenceDataVersion: 1,
             requestBody: event,
             sendUpdates: 'all', // Send email invitations to all attendees
@@ -123,11 +123,11 @@ export async function createCalendarEvent(params: CreateEventParams): Promise<{
 export async function getBusySlots(date: string) {
     try {
         const calendar = getCalendarClient();
-        
-        // Set time range for the entire day
+
+        // Set time range for the entire day in UTC
         const startOfDay = new Date(date);
         startOfDay.setHours(0, 0, 0, 0);
-        
+
         const endOfDay = new Date(date);
         endOfDay.setHours(23, 59, 59, 999);
 
@@ -135,13 +135,13 @@ export async function getBusySlots(date: string) {
             requestBody: {
                 timeMin: startOfDay.toISOString(),
                 timeMax: endOfDay.toISOString(),
-                items: [{ id: process.env.GOOGLE_CALENDAR_ID }],
+                items: [{ id: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID }],
                 timeZone: 'UTC',
             },
         });
 
-        const busySlots = response.data.calendars?.[process.env.GOOGLE_CALENDAR_ID!]?.busy || [];
-        
+        const busySlots = response.data.calendars?.[process.env.PORTFOLIO_GOOGLE_CALENDAR_ID!]?.busy || [];
+
         return {
             success: true,
             busySlots: busySlots.map((slot) => ({
@@ -167,7 +167,7 @@ export function isSlotAvailable(
 ): boolean {
     for (const busy of busySlots) {
         if (!busy.start || !busy.end) continue;
-        
+
         const busyStart = new Date(busy.start);
         const busyEnd = new Date(busy.end);
 
@@ -183,9 +183,9 @@ export function isSlotAvailable(
 export async function deleteCalendarEvent(eventId: string) {
     try {
         const calendar = getCalendarClient();
-        
+
         await calendar.events.delete({
-            calendarId: process.env.GOOGLE_CALENDAR_ID,
+            calendarId: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID,
             eventId,
             sendUpdates: 'all',
         });
@@ -210,9 +210,9 @@ export async function updateCalendarEvent(
 ) {
     try {
         const calendar = getCalendarClient();
-        
+
         const updateData: any = {};
-        
+
         if (params.summary) updateData.summary = params.summary;
         if (params.description) updateData.description = params.description;
         if (params.startDateTime) {
@@ -230,12 +230,12 @@ export async function updateCalendarEvent(
         if (params.attendeeEmail) {
             updateData.attendees = [
                 { email: params.attendeeEmail },
-                { email: process.env.GOOGLE_CALENDAR_ID },
+                { email: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID },
             ];
         }
 
         const response = await calendar.events.patch({
-            calendarId: process.env.GOOGLE_CALENDAR_ID,
+            calendarId: process.env.PORTFOLIO_GOOGLE_CALENDAR_ID,
             eventId,
             requestBody: updateData,
             sendUpdates: 'all',

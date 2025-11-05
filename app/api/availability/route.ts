@@ -102,9 +102,10 @@ function generateAvailableSlots(
                 (slotEndHour === workingHours.end && slotEndMinute > 0)) {
                 continue;
             }
-
             // Check if slot is available (not busy)
-            if (isSlotAvailable(slotStart, slotEnd, busySlots)) {
+            const isAvailable = isSlotAvailable(slotStart, slotEnd, busySlots);
+
+            if (isAvailable) {
                 slots.push({
                     start: slotStart.toISOString(),
                     end: slotEnd.toISOString(),
