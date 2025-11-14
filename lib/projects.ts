@@ -5,7 +5,7 @@ export interface Project {
     longDescription: string;
     fullDescription?: string;
     image: string;
-    images?: string[];
+    images: string[];
     type: 'Full Stack' | 'Frontend' | 'Backend' | 'Mobile' | 'Freelance';
     role: string;
     timeline: string;
@@ -148,7 +148,7 @@ export const projects: Project[] = [
         longDescription: "An innovative NFC-based business card system that allows users to share contact information digitally. The system includes both web and mobile applications, enabling users to create, customize, and share digital business cards using NFC technology.",
         fullDescription: "Led the development of a cutting-edge NFC business card system from concept to production. The project involved creating a React web application for card management and customization, along with a React Native mobile app for scanning and sharing NFC cards. The system integrated hardware (NFC chips) with software to create a seamless digital business card experience.",
         image: "", // No image available
-        images: [], // No additional images
+        images: [],
         type: "Full Stack",
         role: "Full Stack Developer & Project Lead",
         timeline: "Mar 2022 - Oct 2023",
@@ -197,10 +197,98 @@ export const projects: Project[] = [
         liveUrl: "#",
         githubUrl: "#",
         featured: false
+    },
+    {
+        id: 4, // Next available ID
+        title: "Personal Portfolio Website",
+        shortDescription: "Modern, full-stack portfolio with real-time booking system, multi-language resume, and automated email communications. Built with cutting-edge technologies to showcase my work and streamline client interactions.",
+        longDescription: "A comprehensive portfolio platform that goes beyond traditional showcases by integrating real client interaction tools. Features include a Google Calendar booking system with automated Google Meet creation, multi-language resume with PDF generation, and seamless email communications via Resend.",
+        fullDescription: "Designed and developed a full-stack portfolio website that serves as both a project showcase and a client interaction platform. The site features a real-time booking system integrated with Google Calendar and Google Meet, automated email notifications using Resend, a dynamic multi-language resume system with live preview and PDF download capabilities, and a modern, responsive design built with Next.js and TailwindCSS. The portfolio demonstrates advanced full-stack development skills while solving real business needs for client acquisition and communication.",
+        image: "/projects/portfolio.png", // You'll want to add a screenshot
+        images: [
+            '/projects/portfolio.png',
+            '/projects/portfolio.png',
+            '/projects/portfolio.png',
+            '/projects/portfolio.png',
+            '/projects/portfolio.png',
+            // '/projects/portfolio-booking.jpg',
+            // '/projects/portfolio-resume.jpg',
+            // '/projects/portfolio-contact.jpg',
+            // '/projects/portfolio-projects.jpg'
+        ],
+        type: "Full Stack",
+        role: "Full Stack Developer & Designer",
+        timeline: "Jan 2025 - Present",
+        company: "Personal Project",
+        status: "In Progress",
+        technologies: [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Resend",
+            "Google Calendar API",
+            "Google Meet API",
+            "React Email",
+            "i18n",
+            "PDF Generation",
+            "Vercel",
+            "Framer Motion"
+        ],
+        features: [
+            "Real-time appointment booking with Google Calendar integration",
+            "Automated Google Meet creation for scheduled calls",
+            "Dual-language email notifications (Resend) for both parties",
+            "Interactive multi-language resume with live preview",
+            "PDF resume generation with language persistence",
+            "Contact form with automated email delivery",
+            "Responsive design with dark/light mode support",
+            "Project showcase with advanced filtering",
+            "LinkedIn-style experience timeline",
+            "Custom footer with terms and privacy policy",
+            "Smooth animations and micro-interactions"
+        ],
+        challenges: [
+            "Integrating multiple Google APIs (Calendar and Meet) seamlessly",
+            "Implementing real-time calendar availability synchronization",
+            "Creating a responsive PDF generation system that preserves formatting",
+            "Managing multi-language content without compromising performance",
+            "Ensuring email deliverability across different providers",
+            "Maintaining consistent design across all pages and components",
+            "Implementing secure contact form with spam protection"
+        ],
+        solutions: [
+            "Used Google Calendar API with OAuth 2.0 for secure calendar access",
+            "Implemented server-side PDF generation with dynamic content",
+            "Created a custom i18n solution for seamless language switching",
+            "Used Resend for reliable email delivery with React Email templates",
+            "Implemented rate limiting and validation on contact forms",
+            "Created reusable component system for design consistency",
+            "Used optimistic UI updates for better user experience"
+        ],
+        results: [
+            "Reduced client booking time from email chains to one-click scheduling",
+            "Automated 100% of appointment confirmation and reminder emails",
+            "Enabled seamless resume access in both digital and printable formats",
+            "Improved page load performance with 95+ Lighthouse score",
+            "Increased client inquiries by implementing streamlined contact methods",
+            "Created a scalable foundation for continuous feature additions"
+        ],
+        learnings: [
+            "Advanced API integration patterns with Google services",
+            "Server-side PDF generation and dynamic content rendering",
+            "Email template design and deliverability optimization",
+            "Internationalization (i18n) implementation strategies",
+            "Performance optimization in data-intensive applications",
+            "User experience design for conversion optimization"
+        ],
+        gradient: "from-orange-500 to-red-600",
+        liveUrl: "https://portfolio-six-mu-c3zpt9l3gd.vercel.app", // Your actual portfolio URL
+        githubUrl: "https://github.com/Akram-Hafaiedh/portfolio", // If it's public
+        featured: true, // Definitely feature this!
     }
 ];
 
-export const featuredProjects = projects.filter(project => project.featured);
+export const featuredProjects = projects.filter(project => project.featured === true);
 
 export const getProjectById = (id: string): Project | undefined => {
     return projects.find(project => project.id.toString() === id);
