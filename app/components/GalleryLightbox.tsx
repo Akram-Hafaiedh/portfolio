@@ -1,0 +1,135 @@
+'use client';
+
+import { useState, useEffect } from "react";
+import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+interface GalleryImage {
+    url: string;
+    caption: string;
+    category?: string;
+}
+
+interface GalleryLightboxProps {
+    images: GalleryImage[];
+    isOpen: boolean;
+    initialIndex: number;
+    onClose: () => void;
+}
+
+export default function GalleryLightbox({ images, isOpen, initialIndex, onClose }: GalleryLightboxProps) {
+    const [currentImageIndex, setCurrentImageIndex] = useState(initialIndex);
+
+    useEffect(() => {
+        setCurrentImageIndex(initialIndex);
+    }, [initialIndex]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!isOpen) return;
+
+            if (e.key === 'Escape') {
+                onClose();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, currentImageIndex]);
+
+    // Prevent body scroll when lightbox is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen]);
+
+    const nextImage = () => {
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    if (!isOpen) return null;
+
+    const currentImage = images[currentImageIndex];
+
+    return (
+        <div
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-fade-in"
+            onClick={onClose}
+        >
+            {/* Close Button */}
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onClose();
+                }}
+                className="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 transition-colors z-10 p-2 hover:bg-white/10 rounded-full"
+                aria-label="Close lightbox"
+            >
+                <FaTimes />
+            </button>
+
+            {/* Previous Button */}
+            {images.length > 1 && (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        prevImage();
+                    }}
+                    className="absolute left-4 text-white text-4xl hover:text-gray-300 transition-colors z-10 p-2 hover:bg-white/10 rounded-full"
+                    aria-label="Previous image"
+                >
+                    <FaChevronLeft />
+                </button>
+            )}
+
+            {/* Image Container */}
+            <div className="max-w-5xl w-full max-h-full" onClick={(e) => e.stopPropagation()}>
+                <img
+                    src={currentImage.url}
+                    alt={currentImage.caption}
+                    className="w-full h-auto max-h-[80vh] object-contain rounded-lg animate-slide-up"
+                />
+                <div className="text-center mt-4">
+                    {currentImage.category && (
+                        <span className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full mr-3">
+                            {currentImage.category}
+                        </span>
+                    )}
+                    <p className="text-white text-lg mt-2">{currentImage.caption}</p>
+                    {images.length > 1 && (
+                        <p className="text-gray-400 text-sm mt-1">
+                            {currentImageIndex + 1} / {images.length}
+                        </p>
+                    )}
+                </div>
+            </div>
+
+            {/* Next Button */}
+            {images.length > 1 && (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        nextImage();
+                    }}
+                    className="absolute right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10 p-2 hover:bg-white/10 rounded-full"
+                    aria-label="Next image"
+                >
+                    <FaChevronRight />
+                </button>
+            )}
+        </div>
+    );
+}

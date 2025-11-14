@@ -15,7 +15,7 @@ export default function ProjectsHighlights() {
                 </div>
 
                 {/* Featured Projects Grid */}
-                <div className="grid md:grid-cols-2 gap-8 mb-12">
+                <div className="grid md:grid-cols-3 gap-8 mb-12">
                     {featuredProjects.map((project, index) => (
                         <ProjectCard
                             key={project.id}

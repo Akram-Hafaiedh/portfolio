@@ -1,11 +1,12 @@
 import Footer from "@/app/components/Footer";
 import Navigation from "@/app/components/Navigation";
+import ProjectGallery from "@/app/components/ProjectGallery";
 import ProjectImage from "@/app/components/ProjectImage";
 import ScrollToTop from "@/app/components/ScrollToTop";
 import { getProjectById } from "@/lib/projects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FaArrowLeft, FaBuilding, FaCalendarAlt, FaChartLine, FaCheckCircle, FaExternalLinkAlt, FaGithub, FaLightbulb, FaRocket, FaUserTie } from "react-icons/fa";
+import { FaArrowLeft, FaBuilding, FaCalendar, FaCalendarAlt, FaChartLine, FaCheckCircle, FaExternalLinkAlt, FaGithub, FaImages, FaLightbulb, FaRocket, FaUserTie } from "react-icons/fa";
 
 interface ProjectPageProps {
     params: Promise<{
@@ -37,6 +38,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         notFound();
     }
 
+    // Create gallery from project images
+    const hasImages = project.images && project.images.length > 0;
+    const gallery = hasImages
+        ? project.images.map((img, index) => ({
+            url: img,
+            caption: `${project.title} - View ${index + 1}`,
+            category: index === 0 ? "dashboard" : "feature"
+        }))
+        : [];
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
 
@@ -63,15 +74,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                                 <ProjectImage
                                     project={project}
+                                    imageUrl={project.image}
                                     className="w-full h-80 object-cover hover:scale-105 transition-transform duration-700"
-                                    showIcon={true}
                                 />
                                 <div className="absolute top-4 left-4">
                                     <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                                         {project.type}
                                     </span>
                                 </div>
-                                {/* Optional: Add status badge for abandoned projects */}
                                 {project.status === 'Abandoned' && (
                                     <div className="absolute top-4 right-4">
                                         <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
@@ -82,7 +92,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             </div>
                         </div>
 
-                        {/* Rest of your project header content remains the same */}
+                        {/* Project Info */}
                         <div className="animate-fade-in-up">
                             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                                 {project.title}
@@ -166,11 +176,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
 
 
-            {/* Project Details */}
+
+            {/* Main Content with sidebar */}
             <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid lg:grid-cols-3 gap-12">
-                        {/* Main Content */}
+                        {/* Main Content - 2/3 width */}
                         <div className="lg:col-span-2 space-y-12">
                             {/* Overview */}
                             <div className="animate-slide-up">
@@ -184,6 +195,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                     </p>
                                 </div>
                             </div>
+
+                            {/* Gallery - Integrated in main content */}
+                            {gallery.length > 0 && (
+                                <div className="animate-slide-up">
+                                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                                        <FaImages /> Project Gallery
+                                    </h2>
+                                    <ProjectGallery images={gallery} title="" />
+                                </div>
+                            )}
 
                             {/* Features */}
                             <div className="animate-slide-up">
@@ -239,6 +260,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                 </div>
                             )}
                         </div>
+
+
 
                         {/* Sidebar */}
                         <div className="lg:col-span-1">
@@ -321,11 +344,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         <div className="text-sm text-slate-500 dark:text-slate-400">
                             Ready to start your project?
                         </div>
-                        <Link
+                        {/* <Link
                             href="/contact"
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors hover:scale-105 transform duration-200"
                         >
                             Get In Touch
+                        </Link> */}
+
+                        <Link
+                            href="/booking"  // Changed from /contact
+                            className="group bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 transform shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+                        >
+                            <FaCalendar className="group-hover:animate-bounce" />
+                            Book a Project Call
                         </Link>
                     </div>
                 </div>
