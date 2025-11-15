@@ -208,6 +208,9 @@ export default function BookingCalendar() {
                                         Choose a Date
                                     </label>
                                     <input
+                                        name="date"
+                                        id="date"
+                                        placeholder="Select a date"
                                         type="date"
                                         min={new Date().toISOString().split('T')[0]}
                                         value={selectedDate}
@@ -223,7 +226,9 @@ export default function BookingCalendar() {
                                         Meeting Duration
                                     </label>
                                     <select
+                                        id="duration"
                                         name="duration"
+                                        title='duration'
                                         value={formData.duration}
                                         onChange={handleInputChange}
                                         className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"

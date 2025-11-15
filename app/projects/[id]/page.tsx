@@ -39,14 +39,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     }
 
     // Create gallery from project images
-    const hasImages = project.images && project.images.length > 0;
-    const gallery = hasImages
-        ? project.images.map((img, index) => ({
-            url: img,
-            caption: `${project.title} - View ${index + 1}`,
-            category: index === 0 ? "dashboard" : "feature"
-        }))
-        : [];
+    const hasGallery = project.gallery && project.gallery.length > 0;
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
@@ -196,13 +189,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                 </div>
                             </div>
 
-                            {/* Gallery - Integrated in main content */}
-                            {gallery.length > 0 && (
+                            {/* Gallery - Only show if gallery exists */}
+                            { hasGallery && (
                                 <div className="animate-slide-up">
                                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                                         <FaImages /> Project Gallery
                                     </h2>
-                                    <ProjectGallery images={gallery} title="" />
+                                    <ProjectGallery images={project.gallery} title="" />
                                 </div>
                             )}
 

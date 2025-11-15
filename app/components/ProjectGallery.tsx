@@ -1,15 +1,11 @@
 'use client';
 import { useState } from "react";
 import GalleryLightbox from "./GalleryLightbox";
+import { ProjectImage } from "@/lib/projects";
 
-interface GalleryImage {
-    url: string;
-    caption: string;
-    category?: string;
-}
 
 interface ProjectGalleryProps {
-    images: GalleryImage[];
+    images?: ProjectImage[];
     title?: string;
 }
 

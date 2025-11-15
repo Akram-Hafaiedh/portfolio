@@ -1,3 +1,9 @@
+export interface ProjectImage {
+    url: string;
+    caption: string;
+    category?: string;
+}
+
 export interface Project {
     id: number;
     title: string;
@@ -5,7 +11,7 @@ export interface Project {
     longDescription: string;
     fullDescription?: string;
     image: string;
-    images: string[];
+    gallery?: ProjectImage[];
     type: 'Full Stack' | 'Frontend' | 'Backend' | 'Mobile' | 'Freelance';
     role: string;
     timeline: string;
@@ -27,56 +33,245 @@ export const projects: Project[] = [
     {
         id: 1,
         title: "Iberis.io",
-        shortDescription: "Migrated and enhanced UI/UX of online management and billing platform with Vue.js and Laravel, improving invoicing, expense tracking, client and stock management.",
-        longDescription: "A comprehensive business management platform that handles all aspects of company operations including invoicing, expense tracking, client management, and inventory control. The project involved migrating from a legacy system to a modern Vue.js frontend with Laravel backend, significantly improving user experience and system performance.",
-        fullDescription: 'Led the complete overhaul of Iberis\'s management platform, transforming a legacy system into a modern, efficient web application. The project involved migrating from outdated technologies to a Vue.js frontend with Laravel backend, significantly improving user experience and system performance. Implemented real-time features, optimized database queries, and created an intuitive user interface that reduced training time for new users.',
+        shortDescription: "Multi-tenant SaaS ERP with three-tier architecture: Master Admin (company management), Business Dashboard (ERP operations), and Client Portal (supplier/customer access). Features automated subscription billing, shareholder analytics, recursive self-management, and complete business lifecycle automation.",
+        longDescription: "A multi-tenant SaaS ERP platform with recursive architecture - Iberis uses its own system to manage customer subscriptions, generate invoices, and track revenue. The platform handles complete business lifecycle: sales, purchases, inventory, accounting, with automated subscription-to-invoice pipeline. When customers subscribe or add modules (POS, extra users, API calls), the system automatically generates invoices and tracks payments - effectively managing itself. Built with Vue.js frontend and Laravel backend, featuring Open API for third-party integrations and optional Point of Sale module for retail operations.",
+        fullDescription: 'Led the development of a multi-tenant SaaS ERP platform with recursive, self-managing architecture. The unique aspect: Iberis uses its own system to manage customer subscriptions and billing - when customers subscribe or purchase add-ons (POS modules, extra users, API quotas), the system automatically generates invoices and tracks payments through the same ERP it provides to customers. This creates a self-sustaining business operations loop. Implemented complete sales cycle (quotes, delivery notes, invoices, credit notes, payment tracking), full purchase management (orders, receipts, supplier invoices), expense tracking with multiple document types, and multi-warehouse inventory control. Added enterprise-grade features including multi-user collaboration with granular role-based permissions, comprehensive activity logging across all modules, two-factor authentication, Open API with usage limits for third-party integrations, and an optional Point of Sale module for retail operations. Built automated subscription-to-invoice pipeline that transforms subscription purchases into accounting entries. The platform now supports complete audit trails and multi-tenant architecture, allowing Iberis to scale infinitely while managing its own operations through the same system it sells.',
         image: "/projects/iberis.png",
-        images: [
-            '/projects/iberis-dashboard.jpg',
-            '/projects/iberis-invoicing.jpg',
-            '/projects/iberis-clients.jpg'
+        gallery: [ // This is the new property for ProjectGallery component
+            {
+                url: '/projects/iberis-dashboard.png',
+                caption: 'Main Dashboard - Real-time Business Insights & Analytics',
+                category: 'Dashboard'
+            },
+            {
+                url: '/projects/iberis-invoicing.png',
+                caption: 'Invoice Management System - Multi-currency/Statuses Support & PDF Generation',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-invoice-creation.png',
+                caption: 'Invoice Creation Interface - Intuitive Form with Real-time Calculations',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-invoice-editing.png',
+                caption: 'Invoice Management - Edit, Track & Generate Professional PDFs',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-clients.png',
+                caption: 'Client Management - Comprehensive Contact & History Tracking',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-providers.png',
+                caption: 'Providers Management - Comprehensive Contact & History Tracking',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-item-form.png',
+                caption: 'Item Management - Comprehensive product creation with image upload and pricing',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-stock-synthesis.png',
+                caption: 'Stock Synthesis - Quick access to inventory metrics and article listing',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-warehouse.png',
+                caption: 'Warehouse Management - Multi-location inventory control',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-movements.png',
+                caption: 'Stock Movements - Complete audit trail of inventory transactions',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-collaborators.png',
+                caption: 'Team Collaboration - Multi-user management with activity tracking and analytics',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-permissions.png',
+                caption: 'Role-Based Access Control - Granular permissions across all system modules',
+                category: 'Security'
+            },
+            {
+                url: '/projects/iberis-activity-logs.png',
+                caption: 'Activity Logs - Comprehensive audit trail tracking all user actions with timestamps',
+                category: 'Analytics'
+            },
+            {
+                url: '/projects/iberis-sales-menu.png',
+                caption: 'Sales Module - Complete sales cycle from quotes to payments (delivery notes, invoices, credit notes, recalls)',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-purchases-menu.png',
+                caption: 'Purchase Management - Full procurement cycle (orders, receipts, supplier invoices, returns)',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-general-balance.png',
+                caption: 'General Balance Sheet - Complete chart of accounts with debit/credit/balance tracking',
+                category: 'Analytics'
+            },
+            {
+                url: '/projects/iberis-balance-tiers.png',
+                caption: 'Third-Party Balances - Client and supplier account balances with aging reports',
+                category: 'Analytics'
+            },
+            {
+                url: '/projects/iberis-chart-of-accounts.png',
+                caption: 'Chart of Accounts - Comprehensive accounting plan with hierarchical structure',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-journal-entry.png',
+                caption: 'Journal Entry Creation - Double-entry bookkeeping with automatic validation',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-expenses.png',
+                caption: 'Expense Tracking & Financial Reporting',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/iberis-user-security.png',
+                caption: 'Security & Authentication - Two-factor authentication, session management, and account controls',
+                category: 'Security'
+            },
+            {
+                url: '/projects/iberis-api-management.png',
+                caption: 'Open API Management - usage limits and API key generation',
+                category: 'Developer'
+            },
+            {
+                url: '/projects/iberis-api-documentation.png',
+                caption: 'Open API Documentation - Developer access with API key',
+                category: 'Developer'
+            },
+            {
+                url: '/projects/iberis-subscription.png',
+                caption: 'Subscription Management - Flexible pricing plans with add-ons (users, APIs, POS)',
+                category: 'Business Model'
+            },
+            {
+                url: '/projects/iberis-reports.png',
+                caption: 'Automated Report Generation - Business Intelligence Dashboard',
+                category: 'Analytics'
+            }
         ],
         type: "Full Stack",
         role: "Full Stack Developer",
         timeline: "Dec 2023 - Present",
         company: "Iberis",
         status: "Completed",
-        technologies: ["Laravel", "Vue.js", "MySQL", "Bootstrap", "REST API", "Git", "Docker"],
+        technologies: [
+            "Laravel",
+            "Yajra DataTables",
+            "datatables.net",
+            "Konnect API",
+            "OAuth 2.0",
+            "Two-Factor Authentication (2FA)",
+            "RESTful API",
+            "Vue.js",
+            "MySQL",
+            "Bootstrap",
+            "Metronic 8",
+            "REST API",
+            "OpenAPI",
+            "Webhooks",
+            "Git",
+            "Docker",
+            "Stripe/Payment Integration"
+        ],
         features: [
-            'Real-time invoicing and billing system',
-            'Client and stock management dashboard',
-            'Expense tracking and reporting',
-            'User authentication and role-based access',
+            'Multi-tenant SaaS architecture with recursive self-management',
+            'Automated subscription-to-invoice pipeline (subscription → invoice → payment → accounting)',
+            'Platform manages its own customer billing and revenue through the same system',
+            'Master admin dashboard for managing all tenant companies',
+            'Complete sales cycle: quotes, delivery notes, invoices, credit notes, payments',
+            'Full purchase management: orders, receipts, supplier invoices, returns',
+            'Optional Point of Sale module with real-time checkout and payment processing',
+            'Open API with usage limits and developer documentation',
+            'Subscription-based business model with flexible add-ons (users, POS, APIs)',
+            'Two-factor authentication (2FA) and session management',
+            'Referral/affiliate system for customer acquisition',
+            'Integrated support ticketing system',
+            'Highly customizable PDF generation with multiple templates for all document types',
+            'Multi-user collaboration with role-based access control',
+            'Comprehensive activity logging and audit trails',
+            'Client and supplier management with transaction history',
+            'Multi-warehouse inventory control with stock movements',
+            'Expense tracking with multiple document types',
+            'Granular permissions system across all modules',
+            'User activity analytics and monitoring',
+            'Automated accounting entries from business operations',
             'Responsive design for all devices',
             'Automated report generation',
-            'Multi-currency support'
+            'Multi-currency and multi-tax support',
+            'Customizable notification preferences'
         ],
         challenges: [
+            "Designing multi-tenant architecture where the platform manages itself (recursive)",
+            "Building automated subscription-to-invoice-to-accounting pipeline",
+            "Implementing tenant isolation while maintaining code efficiency",
+            "Creating flexible PDF generation system supporting multiple document types and formats across sales and purchases",
+            "Implementing complete sales and purchase cycles with proper state management and business rules",
+            "Building optional POS module that integrates seamlessly with existing inventory and invoicing",
+            "Implementing comprehensive multi-user collaboration with granular permissions",
+            "Building detailed activity logging system without performance impact",
+            "Managing complex business workflows (quote → delivery → invoice → payment)",
             "Migrating legacy system without downtime",
-            "Optimizing database queries for large datasets",
-            "Implementing real-time updates across multiple users",
-            "Ensuring data integrity during migration",
-            "Training non-technical staff on new system"
+            "Optimizing database queries for large datasets across multiple tenants",
+            "Implementing real-time updates across multiple users and companies",
+            "Ensuring data integrity and isolation between tenants"
         ],
         solutions: [
+            'Implemented multi-tenant database architecture with tenant-aware middleware and query scopes',
+            'Created automated event-driven subscription pipeline (webhook → invoice creation → payment tracking → accounting entry)',
+            'Used Laravel tenant scoping to ensure complete data isolation between companies',
+            'Built comprehensive PDF customization engine with template management, dynamic layouts, and signature integration for all document types',
+            'Implemented state machine pattern for document workflows with proper validation and transitions',
+            'Created modular POS system as optional add-on with payment gateway integration',
+            'Implemented granular role-based access control system with module-level permissions',
+            'Created efficient activity logging with indexed database queries and archiving strategy',
+            'Used Laravel\'s event system and observers for complex business logic orchestration',
             'Implemented phased migration strategy with rollback capabilities',
-            'Optimized database queries and added caching layer',
-            'Used WebSockets for real-time updates',
-            'Created data validation scripts and backup systems',
-            'Developed comprehensive user documentation and training materials'
+            'Optimized database queries with eager loading, caching, and tenant-aware query optimization',
+            'Used WebSockets with tenant isolation for real-time updates across sales, purchases, and inventory',
+            'Created data validation scripts and backup systems with tenant-level granularity'
         ],
         results: [
             'Reduced loading times by 40%',
             'Improved user satisfaction by 60%',
             'Decreased support tickets by 35%',
-            'Enabled real-time business insights',
-            'Reduced manual data entry by 70%'
+            'Enabled real-time business insights across all operations',
+            'Reduced manual data entry by 70%',
+            'Automated complete sales-to-payment workflow',
+            'Integrated POS module for retail operations',
+            'Complete audit trail compliance for accounting regulations',
+            'Built subscription-based revenue model with flexible add-ons',
+            'Enabled third-party integrations via Open API',
+            'Implemented enterprise-grade security with 2FA'
         ],
         learnings: [
+            'Multi-tenant SaaS architecture patterns and tenant isolation strategies',
+            'Recursive system design - building platforms that manage themselves',
+            'Event-driven architecture for subscription lifecycle automation',
             'Importance of stakeholder communication in legacy migrations',
-            'Performance optimization techniques for large datasets',
+            'Performance optimization techniques for large datasets across multiple tenants',
             'Best practices for secure payment integrations',
-            'User-centered design principles for business applications'
+            'User-centered design principles for business applications',
+            'Customizing and extending Metronic Bootstrap template for business applications',
+            'Complex workflow management with state machines',
+            'Modular architecture for optional features (POS)',
+            'ERP system design patterns and business logic orchestration',
+            'Database optimization for multi-tenant applications',
+            'Scaling strategies for SaaS platforms'
         ],
         gradient: "from-blue-500 to-purple-600",
         liveUrl: "https://finances.iberis.io/fr/",
@@ -90,10 +285,22 @@ export const projects: Project[] = [
         longDescription: "A comprehensive platform for managing home services, connecting service providers with customers. Features include advanced search functionality, document generation, CV management for service providers, and comprehensive planning tools for service scheduling and management.",
         fullDescription: "Developed a full-stack home services platform that revolutionizes how service providers connect with clients. The platform includes advanced search capabilities powered by Meilisearch, automated PDF generation for quotes and invoices stored on AWS S3, and a sophisticated CV generation system for service providers to showcase their skills and experience.",
         image: "/projects/casagroup.png",
-        images: [
-            '/projects/casagroup-dashboard.jpg',
-            '/projects/casagroup-search.jpg',
-            '/projects/casagroup-booking.jpg'
+        gallery: [
+            {
+                url: '/projects/casagroup-dashboard.jpg',
+                caption: 'Service Provider Dashboard',
+                category: 'Dashboard'
+            },
+            {
+                url: '/projects/casagroup-search.jpg',
+                caption: 'Advanced Search with Meilisearch',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-booking.jpg',
+                caption: 'Real-time Booking System',
+                category: 'Feature'
+            }
         ],
         type: "Full Stack",
         role: "Full Stack Developer",
@@ -148,7 +355,7 @@ export const projects: Project[] = [
         longDescription: "An innovative NFC-based business card system that allows users to share contact information digitally. The system includes both web and mobile applications, enabling users to create, customize, and share digital business cards using NFC technology.",
         fullDescription: "Led the development of a cutting-edge NFC business card system from concept to production. The project involved creating a React web application for card management and customization, along with a React Native mobile app for scanning and sharing NFC cards. The system integrated hardware (NFC chips) with software to create a seamless digital business card experience.",
         image: "", // No image available
-        images: [],
+        gallery: undefined,
         type: "Full Stack",
         role: "Full Stack Developer & Project Lead",
         timeline: "Mar 2022 - Oct 2023",
@@ -205,16 +412,32 @@ export const projects: Project[] = [
         longDescription: "A comprehensive portfolio platform that goes beyond traditional showcases by integrating real client interaction tools. Features include a Google Calendar booking system with automated Google Meet creation, multi-language resume with PDF generation, and seamless email communications via Resend.",
         fullDescription: "Designed and developed a full-stack portfolio website that serves as both a project showcase and a client interaction platform. The site features a real-time booking system integrated with Google Calendar and Google Meet, automated email notifications using Resend, a dynamic multi-language resume system with live preview and PDF download capabilities, and a modern, responsive design built with Next.js and TailwindCSS. The portfolio demonstrates advanced full-stack development skills while solving real business needs for client acquisition and communication.",
         image: "/projects/portfolio.png", // You'll want to add a screenshot
-        images: [
-            '/projects/portfolio.png',
-            '/projects/portfolio.png',
-            '/projects/portfolio.png',
-            '/projects/portfolio.png',
-            '/projects/portfolio.png',
-            // '/projects/portfolio-booking.jpg',
-            // '/projects/portfolio-resume.jpg',
-            // '/projects/portfolio-contact.jpg',
-            // '/projects/portfolio-projects.jpg'
+        gallery: [
+            {
+                url: '/projects/portfolio-architecture.png',
+                caption: 'Full System Architecture - Next.js 15, TypeScript, Google APIs, Resend Email',
+                category: 'Architecture'
+            },
+            {
+                url: '/projects/portfolio-deployment.png',
+                caption: 'Vercel Deployment History - Fast Build Times & Continuous Deployment',
+                category: 'DevOps'
+            },
+            {
+                url: '/projects/portfolio-booking-interface.png',
+                caption: 'Complete Booking Experience - Date Selection, Time Slots & Information Form',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/portfolio-booking-admin-email.png',
+                caption: 'Admin Notification Email - Automated Meeting Alerts with Client Details',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/portfolio-booking-calendar-invite.png',
+                caption: 'Automated Calendar Invitations - Google Meet Integration with .ics Attachmentss',
+                category: 'Performance'
+            }
         ],
         type: "Full Stack",
         role: "Full Stack Developer & Designer",

@@ -1,27 +1,11 @@
 export const allExperiences = [
+
     {
         id: 1,
-        title: "Full Stack Developer",
-        company: "Iberis",
-        location: "Lac1, Tunis",
-        period: "December 2023 - Present",
-        type: "Full-time",
-        description: "Migrated and enhanced UI/UX of Iberis online management and billing platform by integrating Vue.js with Laravel, improving key features like invoicing, expense tracking, client and stock management.",
-        achievements: [
-            "Successfully migrated legacy system to modern Vue.js frontend",
-            "Improved user experience and interface design",
-            "Enhanced billing and invoicing system functionality",
-            "Optimized database queries and performance"
-        ],
-        skills: ["Laravel", "Vue.js", "MySQL", "Bootstrap", "REST API", "Git", "Docker"],
-        featured: true
-    },
-    {
-        id: 2,
         title: "Full Stack Developer | Freelance",
         company: "Casagroup",
         location: "Germany (Remote)",
-        period: "January 2024 - June 2025",
+        period: "July 2025 - October 2025",
         type: "Freelance",
         description: "Home services platform with resource management system, PDF generation (AWS S3), CV generation app with advanced search (Melisearch), and planning management.",
         achievements: [
@@ -33,6 +17,24 @@ export const allExperiences = [
         skills: ["React", "shadcn/ui", "TailwindCSS", "Laravel", "Node.js", "AWS S3", "Meilisearch"],
         featured: true
     },
+    {
+        id: 2,
+        title: "Full Stack Developer",
+        company: "Iberis",
+        location: "Lac1, Tunis",
+        period: "December 2023 - June 2025",
+        type: "Full-time",
+        description: "Migrated and enhanced UI/UX of Iberis online management and billing platform by integrating Vue.js with Laravel, improving key features like invoicing, expense tracking, client and stock management.",
+        achievements: [
+            "Successfully migrated legacy system to modern Vue.js frontend",
+            "Improved user experience and interface design",
+            "Enhanced billing and invoicing system functionality",
+            "Optimized database queries and performance"
+        ],
+        skills: ["Laravel", "Vue.js", "MySQL", "Bootstrap", "REST API", "Git", "Docker"],
+        featured: true
+    },
+
     {
         id: 3,
         title: "Full Stack Developer",
