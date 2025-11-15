@@ -7,12 +7,13 @@ import { ProjectImage } from "@/lib/projects";
 interface ProjectGalleryProps {
     images?: ProjectImage[];
     title?: string;
+    initialDisplayCount?: number;
 }
 
-export default function ProjectGallery({ images, title = "Project Gallery" }: ProjectGalleryProps) {
+export default function ProjectGallery({ images, title = "Project Gallery", initialDisplayCount = 6 }: ProjectGalleryProps) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
+    const [displayCount, setDisplayCount] = useState(initialDisplayCount);
     const openLightbox = (index: number) => {
         setSelectedImageIndex(index);
         setLightboxOpen(true);
@@ -22,7 +23,19 @@ export default function ProjectGallery({ images, title = "Project Gallery" }: Pr
         setLightboxOpen(false);
     };
 
+    const loadMore = () => {
+        setDisplayCount(prev => Math.min(prev + 6, images?.length || 0));
+    };
+
+    const showAll = () => {
+        setDisplayCount(images?.length || 0);
+    };
+
     if (!images || images.length === 0) return null;
+
+    const displayedImages = images.slice(0, displayCount);
+    const remainingCount = images.length - displayCount;
+    const hasMore = remainingCount > 0;
 
     return (
         <>
@@ -35,7 +48,7 @@ export default function ProjectGallery({ images, title = "Project Gallery" }: Pr
 
             {/* Grid layout - removed extra padding and container */}
             <div className={`grid ${images.length === 1 ? 'grid-cols-1' : images.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'} gap-4`}>
-                {images.map((image, index) => (
+                {displayedImages.map((image, index) => (
                     <div
                         key={index}
                         onClick={() => openLightbox(index)}
@@ -66,6 +79,33 @@ export default function ProjectGallery({ images, title = "Project Gallery" }: Pr
                     </div>
                 ))}
             </div>
+
+            {/* Load More Button */}
+            {hasMore && (
+                <div className="mt-8 flex flex-col items-center gap-4">
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        Showing {displayCount} of {images.length} images
+                    </p>
+                    <div className="flex gap-3">
+                        <button
+                            type="button"
+                            onClick={loadMore}
+                            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
+                        >
+                            Load {Math.min(6, remainingCount)} More
+                        </button>
+                        {remainingCount > 6 && (
+                            <button
+                                type="button"
+                                onClick={showAll}
+                                className="px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-medium rounded-lg transition-all duration-300"
+                            >
+                                Show All ({remainingCount} remaining)
+                            </button>
+                        )}
+                    </div>
+                </div>
+            )}
 
             <GalleryLightbox
                 images={images}

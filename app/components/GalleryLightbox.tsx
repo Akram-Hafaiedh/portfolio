@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaTimes, FaChevronLeft, FaChevronRight, FaDownload } from "react-icons/fa";
 
 interface GalleryImage {
     url: string;
@@ -60,6 +60,23 @@ export default function GalleryLightbox({ images, isOpen, initialIndex, onClose 
         setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     };
 
+    const downloadImage = async () => {
+        try {
+            const response = await fetch(currentImage.url);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${currentImage.caption.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Download failed:', error);
+        }
+    };
+
     if (!isOpen) return null;
 
     const currentImage = images[currentImageIndex];
@@ -71,6 +88,7 @@ export default function GalleryLightbox({ images, isOpen, initialIndex, onClose 
         >
             {/* Close Button */}
             <button
+                type="button"
                 onClick={(e) => {
                     e.stopPropagation();
                     onClose();
@@ -81,9 +99,24 @@ export default function GalleryLightbox({ images, isOpen, initialIndex, onClose 
                 <FaTimes />
             </button>
 
+            {/* Download Button */}
+            <button
+                type="button"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    downloadImage();
+                }}
+                className="absolute top-4 right-20 text-white text-2xl hover:text-gray-300 transition-colors z-10 p-2 hover:bg-white/10 rounded-full"
+                aria-label="Download image"
+                title="Download image"
+            >
+                <FaDownload />
+            </button>
+
             {/* Previous Button */}
             {images.length > 1 && (
                 <button
+                    type="button"
                     onClick={(e) => {
                         e.stopPropagation();
                         prevImage();
