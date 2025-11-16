@@ -180,6 +180,7 @@ export default function ProjectsPage() {
                     {filteredProjects.length > visibleProjects && (
                         <div className="text-center mt-12">
                             <button
+                                type="button"
                                 onClick={handleLoadMore}
                                 className="group inline-flex items-center gap-2 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 transform"
                             >
