@@ -58,11 +58,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </div>
             </section>
 
-            {/* Project Hero */}
+            {/* Project Hero - Updated with shortDescription */}
             <section className="py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        {/* Project Image - Updated to use ProjectImage */}
+                        {/* Project Image */}
                         <div className="animate-slide-up">
                             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                                 <ProjectImage
@@ -85,13 +85,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             </div>
                         </div>
 
-                        {/* Project Info */}
+                        {/* Project Info - Now uses shortDescription */}
                         <div className="animate-fade-in-up">
                             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                                 {project.title}
                             </h1>
                             <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-                                {project.fullDescription}
+                                {project.shortDescription || project.longDescription}
                             </p>
 
                             {/* Project Metadata */}
@@ -183,14 +183,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                     Project Overview
                                 </h2>
                                 <div className="prose prose-lg dark:prose-invert max-w-none">
-                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                                         {project.fullDescription}
                                     </p>
                                 </div>
                             </div>
 
                             {/* Gallery - Only show if gallery exists */}
-                            { hasGallery && (
+                            {hasGallery && (
                                 <div className="animate-slide-up">
                                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                                         <FaImages /> Project Gallery

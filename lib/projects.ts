@@ -32,10 +32,310 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: 1,
+        title: "Personal Portfolio Website",
+        shortDescription: "Modern, full-stack portfolio with real-time booking system, multi-language resume, and automated email communications. Built with cutting-edge technologies to showcase my work and streamline client interactions.",
+        longDescription: "A comprehensive portfolio platform that goes beyond traditional showcases by integrating real client interaction tools. Features include a Google Calendar booking system with automated Google Meet creation, multi-language resume with PDF generation, and seamless email communications via Resend.",
+        fullDescription: "Designed and developed a full-stack portfolio website that serves as both a project showcase and a client interaction platform. The site features a real-time booking system integrated with Google Calendar and Google Meet, automated email notifications using Resend, a dynamic multi-language resume system with live preview and PDF download capabilities, and a modern, responsive design built with Next.js and TailwindCSS. The portfolio demonstrates advanced full-stack development skills while solving real business needs for client acquisition and communication.",
+        image: "/projects/portfolio.png", // You'll want to add a screenshot
+        gallery: [
+            {
+                url: '/projects/portfolio-architecture.png',
+                caption: 'Full System Architecture - Next.js 15, TypeScript, Google APIs, Resend Email',
+                category: 'Architecture'
+            },
+            {
+                url: '/projects/portfolio-deployment.png',
+                caption: 'Vercel Deployment History - Fast Build Times & Continuous Deployment',
+                category: 'DevOps'
+            },
+            {
+                url: '/projects/portfolio-booking-interface.png',
+                caption: 'Complete Booking Experience - Date Selection, Time Slots & Information Form',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/portfolio-booking-admin-email.png',
+                caption: 'Admin Notification Email - Automated Meeting Alerts with Client Details',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/portfolio-booking-calendar-invite.png',
+                caption: 'Automated Calendar Invitations - Google Meet Integration with .ics Attachmentss',
+                category: 'Performance'
+            }
+        ],
+        type: "Full Stack",
+        role: "Full Stack Developer & Designer",
+        timeline: "Oct 2025 - Present",
+        company: "Personal Project",
+        status: "In Progress",
+        technologies: [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Resend",
+            "Google Calendar API",
+            "Google Meet API",
+            "React Email",
+            "i18n",
+            "PDF Generation",
+            "Vercel",
+            "Framer Motion"
+        ],
+        features: [
+            "Real-time appointment booking with Google Calendar integration",
+            "Automated Google Meet creation for scheduled calls",
+            "Dual-language email notifications (Resend) for both parties",
+            "Interactive multi-language resume with live preview",
+            "PDF resume generation with language persistence",
+            "Contact form with automated email delivery",
+            "Responsive design with dark/light mode support",
+            "Project showcase with advanced filtering",
+            "LinkedIn-style experience timeline",
+            "Custom footer with terms and privacy policy",
+            "Smooth animations and micro-interactions"
+        ],
+        challenges: [
+            "Integrating multiple Google APIs (Calendar and Meet) seamlessly",
+            "Implementing real-time calendar availability synchronization",
+            "Creating a responsive PDF generation system that preserves formatting",
+            "Managing multi-language content without compromising performance",
+            "Ensuring email deliverability across different providers",
+            "Maintaining consistent design across all pages and components",
+            "Implementing secure contact form with spam protection"
+        ],
+        solutions: [
+            "Used Google Calendar API with OAuth 2.0 for secure calendar access",
+            "Implemented server-side PDF generation with dynamic content",
+            "Created a custom i18n solution for seamless language switching",
+            "Used Resend for reliable email delivery with React Email templates",
+            "Implemented rate limiting and validation on contact forms",
+            "Created reusable component system for design consistency",
+            "Used optimistic UI updates for better user experience"
+        ],
+        results: [
+            "Reduced client booking time from email chains to one-click scheduling",
+            "Automated 100% of appointment confirmation and reminder emails",
+            "Enabled seamless resume access in both digital and printable formats",
+            "Improved page load performance with 95+ Lighthouse score",
+            "Increased client inquiries by implementing streamlined contact methods",
+            "Created a scalable foundation for continuous feature additions"
+        ],
+        learnings: [
+            "Advanced API integration patterns with Google services",
+            "Server-side PDF generation and dynamic content rendering",
+            "Email template design and deliverability optimization",
+            "Internationalization (i18n) implementation strategies",
+            "Performance optimization in data-intensive applications",
+            "User experience design for conversion optimization"
+        ],
+        gradient: "from-orange-500 to-red-600",
+        liveUrl: "https://portfolio-six-mu-c3zpt9l3gd.vercel.app", // Your actual portfolio URL
+        githubUrl: "https://github.com/Akram-Hafaiedh/portfolio", // If it's public
+        featured: true, // Definitely feature this!
+    },
+    {
+        id: 2,
+        title: "Casa-Group.ch",
+        shortDescription: "Internal operations management platform for insurance company, featuring comprehensive client/employee management, insurance policy tracking, document management, email communication system, project management, vacation workflows, and granular role-based permissions across 300+ system actions.",
+        longDescription: "Built for a German insurance company struggling with employee coordination, client management, insurance documentation, and email tracking. The platform centralizes all business operations with multi-step client onboarding, insurance policy management, file organization, internal email system with templates, project tracking with budgets, vacation approval workflows, and enterprise-level permissions for 10+ role types across all departments.",
+        fullDescription: `Built a comprehensive operations platform for Casa-Group, a German insurance company struggling with scattered client data, lost insurance documents, and untraceable emails. The platform centralizes all business operations through integrated modules that eliminated their chaos.
+
+            Implemented a guided 5-step client onboarding wizard (information → insurance → accounting → taxes → review) ensuring complete data capture. Document management with server-based storage on OVH Cloud turned hours of searching into instant retrieval through category-based organization (policies, contracts, claims, client documents).
+
+            The email communication system includes templated emails for common insurance scenarios, automatic logging of all communications, and searchable history with complete audit trails. Employee coordination features comprehensive HR management with vacation approval workflows, department organization, and real-time availability tracking.
+
+            Added project management with budget tracking and team assignments, plus an enterprise permissions system with 300+ granular permissions across all modules. Created 10 predefined roles matching their organizational structure with complete activity logging for compliance. The platform transformed Casa-Group from constantly losing information to having every operation tracked, searchable, and secure.`,
+        image: "/projects/casagroup.png",
+        gallery: [
+            {
+                url: '/projects/casagroup-dashboard.png',
+                caption: 'Dashboard Overview - Task tracking, client demographics, and team performance analytics',
+                category: 'Dashboard'
+            },
+            {
+                url: '/projects/casagroup-client-profile.png',
+                caption: 'Client Profile - Complete insurance information, accounting details, and activity history',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-client-creation.png',
+                caption: 'Multi-Step Client Onboarding - Insurance, accounting, and tax information wizard',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-departments.png',
+                caption: 'Department Management - Organizational structure and team coordination',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-email-compose.png',
+                caption: 'Email System - Internal communication with attachments and templates',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-email-settings.png',
+                caption: 'Email Configuration - Company branding and signature templates',
+                category: 'Configuration'
+            },
+            {
+                url: '/projects/casagroup-email-logs.png',
+                caption: 'Email History Tracking - Complete communication audit trail',
+                category: 'Analytics'
+            },
+            {
+                url: '/projects/casagroup-employee-profile.png',
+                caption: 'Employee Management - HR details, contracts, and performance tracking',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-employee-creation.png',
+                caption: 'Employee Onboarding - Comprehensive HR information wizard',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-project-creation.png',
+                caption: 'Project Management - Budget tracking, team assignment, and file management',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-permissions.png',
+                caption: 'Granular Permissions Matrix - 300+ actions across all system modules',
+                category: 'Security'
+            },
+            {
+                url: '/projects/casagroup-roles.png',
+                caption: 'Role Management - 10 predefined roles with customizable permissions',
+                category: 'Security'
+            },
+            {
+                url: '/projects/casagroup-vacation-calendar.png',
+                caption: 'Vacation Calendar - Team availability and time-off tracking',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-vacation-management.png',
+                caption: 'Vacation Approval Workflow - Request management with balance tracking',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-file-manager.png',
+                caption: 'Document Management - Organized file storage with category-based access',
+                category: 'Feature'
+            },
+            {
+                url: '/projects/casagroup-activity-logs.png',
+                caption: 'Activity Logs - Complete audit trail of all system actions',
+                category: 'Analytics'
+            }
+        ],
+        type: "Full Stack",
+        role: "Full Stack Developer",
+        timeline: "Jun 2025 - Oct 2025",
+        company: "Casa-Group (Germany)",
+        status: "Completed",
+        technologies: [
+            "React",
+            "shadcn/ui",
+            "TailwindCSS",
+            "Laravel",
+            "MySQL",
+            "OVH Cloud Hosting",
+            "RESTful API",
+            "Email Integration",
+            "Docker",
+            "Git"
+        ],
+        features: [
+            'Multi-step client onboarding wizard (Info → Insurance → Accounting → Taxes → Review)',
+            'Comprehensive insurance policy tracking and management',
+            'Organized file management system with category-based access (Policies, Contracts, Claims)',
+            'Server-based secure document storage with access controls',
+            'Internal email system with templated communications',
+            'Complete email history tracking with sender/recipient logs',
+            'Searchable email archives for client communication audit',
+            'Employee management with HR details and department organization',
+            'Project management with budget tracking and team assignment',
+            'Vacation calendar with approval workflow and balance tracking',
+            'Granular role-based permissions across 300+ system actions',
+            '10 predefined roles with customizable access levels',
+            'Complete activity logging for all user actions',
+            'Department-based organizational structure',
+            'Client demographics analytics and reporting',
+            'Task management with completion tracking',
+            'Time log management for projects',
+            'Responsive design with dark mode support'
+        ],
+        challenges: [
+            "Consolidating scattered client and employee information into unified system",
+            "Tracking insurance policies across multiple clients without losing documentation",
+            "Managing email communications that were previously lost or hard to find",
+            "Creating intuitive multi-step workflows for insurance-specific data entry",
+            "Implementing secure file storage with proper access controls for sensitive insurance documents",
+            "Designing granular permission system for diverse roles (from CEO to regular employees)",
+            "Building vacation approval workflow that doesn't disrupt business operations",
+            "Ensuring data privacy compliance for insurance client information",
+            "Creating searchable email history without overwhelming storage",
+            "Managing complex relationships between clients, policies, employees, and projects"
+        ],
+        solutions: [
+            'Built multi-step wizard interface for structured client data entry with validation at each step',
+            'Created centralized client profile aggregating all insurance policies, documents, and communications',
+            'Implemented internal email system with automatic logging and categorization',
+            'Used server-based storage with folder-based organization (Clients, Policies, Projects, Employees)',
+            'Designed 300+ granular permissions mapped to business operations across all modules',
+            'Created 10 role templates matching company hierarchy for easy assignment',
+            'Built vacation calendar with automatic balance calculation and manager approval workflow',
+            'Implemented activity logging middleware tracking all CRUD operations with user attribution',
+            'Used full-text search on email content and metadata for quick retrieval',
+            'Applied Laravel relationships and eager loading for efficient data querying across entities',
+            'Created department-based data scoping for organizational structure',
+            'Built file manager with category-based folders and access controls'
+        ],
+        results: [
+            'Eliminated lost client information - all data now centralized and searchable',
+            'Reduced time to find client insurance documents from hours to seconds',
+            'Complete email communication history - no more lost correspondence',
+            'Streamlined client onboarding from scattered forms to structured 5-step wizard',
+            'Improved team coordination with visibility into employee workload and availability',
+            'Automated vacation approval workflow reducing HR administrative overhead',
+            'Enhanced security with role-based access ensuring employees only see relevant data',
+            'Enabled management oversight with complete activity logs and analytics',
+            'Improved project tracking with budget monitoring and team assignment visibility',
+            'Decreased onboarding time for new employees with clear role-based permissions',
+            'Enhanced compliance with audit trails for all sensitive operations'
+        ],
+        learnings: [
+            'Insurance industry workflow requirements and compliance needs',
+            'Designing multi-step forms with data persistence and validation',
+            'Email system integration with automatic logging and archiving',
+            'Server-based file organization strategies for business document management',
+            'Granular permission system design for enterprise applications',
+            'Building approval workflows without blocking business operations',
+            'Activity logging patterns for audit trail compliance',
+            'Department-based organizational structure in software design',
+            'User experience design for non-technical insurance industry users',
+            'Data privacy considerations for sensitive client information',
+            'File management UX for quick document retrieval',
+            'Role-based access control at scale (300+ permissions)'
+        ],
+        gradient: "from-green-500 to-teal-600",
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: true
+    },
+    {
+        id: 3,
         title: "Iberis.io",
         shortDescription: "Multi-tenant SaaS ERP with three-tier architecture: Master Admin (company management), Business Dashboard (ERP operations), and Client Portal (supplier/customer access). Features automated subscription billing, shareholder analytics, recursive self-management, and complete business lifecycle automation.",
         longDescription: "A multi-tenant SaaS ERP platform with recursive architecture - Iberis uses its own system to manage customer subscriptions, generate invoices, and track revenue. The platform handles complete business lifecycle: sales, purchases, inventory, accounting, with automated subscription-to-invoice pipeline. When customers subscribe or add modules (POS, extra users, API calls), the system automatically generates invoices and tracks payments - effectively managing itself. Built with Vue.js frontend and Laravel backend, featuring Open API for third-party integrations and optional Point of Sale module for retail operations.",
-        fullDescription: 'Led the development of a multi-tenant SaaS ERP platform with recursive, self-managing architecture. The unique aspect: Iberis uses its own system to manage customer subscriptions and billing - when customers subscribe or purchase add-ons (POS modules, extra users, API quotas), the system automatically generates invoices and tracks payments through the same ERP it provides to customers. This creates a self-sustaining business operations loop. Implemented complete sales cycle (quotes, delivery notes, invoices, credit notes, payment tracking), full purchase management (orders, receipts, supplier invoices), expense tracking with multiple document types, and multi-warehouse inventory control. Added enterprise-grade features including multi-user collaboration with granular role-based permissions, comprehensive activity logging across all modules, two-factor authentication, Open API with usage limits for third-party integrations, and an optional Point of Sale module for retail operations. Built automated subscription-to-invoice pipeline that transforms subscription purchases into accounting entries. The platform now supports complete audit trails and multi-tenant architecture, allowing Iberis to scale infinitely while managing its own operations through the same system it sells.',
+        fullDescription: `Led the development of a multi-tenant SaaS ERP platform with recursive, self-managing architecture. The unique aspect: Iberis uses its own system to manage customer subscriptions and billing—when customers subscribe or purchase add-ons (POS modules, extra users, API quotas), the system automatically generates invoices and tracks payments through the same ERP it provides to customers.
+
+This creates a self-sustaining business operations loop. Implemented complete sales cycle (quotes, delivery notes, invoices, credit notes, payment tracking), full purchase management (orders, receipts, supplier invoices), expense tracking with multiple document types, and multi-warehouse inventory control.
+
+Added enterprise-grade features including multi-user collaboration with granular role-based permissions, comprehensive activity logging across all modules, two-factor authentication, Open API with usage limits for third-party integrations, and an optional Point of Sale module for retail operations.
+
+Built automated subscription-to-invoice pipeline that transforms subscription purchases into accounting entries. The platform now supports complete audit trails and multi-tenant architecture, allowing Iberis to scale infinitely while managing its own operations through the same system it sells.`,
         image: "/projects/iberis.png",
         gallery: [ // This is the new property for ProjectGallery component
             {
@@ -166,7 +466,7 @@ export const projects: Project[] = [
         ],
         type: "Full Stack",
         role: "Full Stack Developer",
-        timeline: "Dec 2023 - Present",
+        timeline: "Dec 2023 - Jun 2025",
         company: "Iberis",
         status: "Completed",
         technologies: [
@@ -278,78 +578,9 @@ export const projects: Project[] = [
         githubUrl: "#",
         featured: true,
     },
+
     {
-        id: 2,
-        title: "Casa-Group.ch",
-        shortDescription: "Home services platform with resource management system, PDF generation (AWS S3), CV generation app with advanced search (Melisearch), and planning management.",
-        longDescription: "A comprehensive platform for managing home services, connecting service providers with customers. Features include advanced search functionality, document generation, CV management for service providers, and comprehensive planning tools for service scheduling and management.",
-        fullDescription: "Developed a full-stack home services platform that revolutionizes how service providers connect with clients. The platform includes advanced search capabilities powered by Meilisearch, automated PDF generation for quotes and invoices stored on AWS S3, and a sophisticated CV generation system for service providers to showcase their skills and experience.",
-        image: "/projects/casagroup.png",
-        gallery: [
-            {
-                url: '/projects/casagroup-dashboard.jpg',
-                caption: 'Service Provider Dashboard',
-                category: 'Dashboard'
-            },
-            {
-                url: '/projects/casagroup-search.jpg',
-                caption: 'Advanced Search with Meilisearch',
-                category: 'Feature'
-            },
-            {
-                url: '/projects/casagroup-booking.jpg',
-                caption: 'Real-time Booking System',
-                category: 'Feature'
-            }
-        ],
-        type: "Full Stack",
-        role: "Full Stack Developer",
-        timeline: "Jan 2024 - Jun 2025",
-        company: "Casagroup (Germany)",
-        status: "Completed",
-        technologies: ["React", "shadcn/ui", "TailwindCSS", "Laravel", "Node.js", "AWS S3", "Meilisearch", "Docker"],
-        features: [
-            "Advanced search with Meilisearch integration",
-            "PDF generation and document management with AWS S3",
-            "CV generation system for service providers",
-            "Real-time booking and scheduling",
-            "Payment integration and invoicing",
-            "Mobile-responsive design",
-            "Multi-language support"
-        ],
-        challenges: [
-            "Implementing complex search algorithms across multiple data types",
-            "Integrating multiple third-party services (AWS, payment gateways)",
-            "Optimizing PDF generation for large documents",
-            "Managing real-time data synchronization between providers and clients",
-            "Ensuring data privacy and security for user documents"
-        ],
-        solutions: [
-            "Implemented Meilisearch for fast, relevant search results",
-            "Used AWS S3 for secure document storage with proper access controls",
-            "Created a PDF microservice for efficient document generation",
-            "Implemented WebSocket connections for real-time updates",
-            "Applied encryption and access control for sensitive data"
-        ],
-        results: [
-            "Reduced search response time to under 200ms",
-            "Automated 90% of document generation processes",
-            "Increased booking conversion rate by 25%",
-            "Improved user engagement with real-time notifications"
-        ],
-        learnings: [
-            "Advanced search implementation with Meilisearch",
-            "AWS S3 integration and file management best practices",
-            "Real-time application architecture with WebSockets",
-            "Multi-tenant application security considerations"
-        ],
-        gradient: "from-green-500 to-teal-600",
-        liveUrl: "#",
-        githubUrl: "#",
-        featured: true
-    },
-    {
-        id: 3,
+        id: 4,
         title: "NFC Business Card System",
         shortDescription: "Developed web interface and mobile application for startup's NFC business card system. Full project lifecycle management, from design to production deployment.",
         longDescription: "An innovative NFC-based business card system that allows users to share contact information digitally. The system includes both web and mobile applications, enabling users to create, customize, and share digital business cards using NFC technology.",
@@ -405,110 +636,7 @@ export const projects: Project[] = [
         githubUrl: "#",
         featured: false
     },
-    {
-        id: 4, // Next available ID
-        title: "Personal Portfolio Website",
-        shortDescription: "Modern, full-stack portfolio with real-time booking system, multi-language resume, and automated email communications. Built with cutting-edge technologies to showcase my work and streamline client interactions.",
-        longDescription: "A comprehensive portfolio platform that goes beyond traditional showcases by integrating real client interaction tools. Features include a Google Calendar booking system with automated Google Meet creation, multi-language resume with PDF generation, and seamless email communications via Resend.",
-        fullDescription: "Designed and developed a full-stack portfolio website that serves as both a project showcase and a client interaction platform. The site features a real-time booking system integrated with Google Calendar and Google Meet, automated email notifications using Resend, a dynamic multi-language resume system with live preview and PDF download capabilities, and a modern, responsive design built with Next.js and TailwindCSS. The portfolio demonstrates advanced full-stack development skills while solving real business needs for client acquisition and communication.",
-        image: "/projects/portfolio.png", // You'll want to add a screenshot
-        gallery: [
-            {
-                url: '/projects/portfolio-architecture.png',
-                caption: 'Full System Architecture - Next.js 15, TypeScript, Google APIs, Resend Email',
-                category: 'Architecture'
-            },
-            {
-                url: '/projects/portfolio-deployment.png',
-                caption: 'Vercel Deployment History - Fast Build Times & Continuous Deployment',
-                category: 'DevOps'
-            },
-            {
-                url: '/projects/portfolio-booking-interface.png',
-                caption: 'Complete Booking Experience - Date Selection, Time Slots & Information Form',
-                category: 'Feature'
-            },
-            {
-                url: '/projects/portfolio-booking-admin-email.png',
-                caption: 'Admin Notification Email - Automated Meeting Alerts with Client Details',
-                category: 'Feature'
-            },
-            {
-                url: '/projects/portfolio-booking-calendar-invite.png',
-                caption: 'Automated Calendar Invitations - Google Meet Integration with .ics Attachmentss',
-                category: 'Performance'
-            }
-        ],
-        type: "Full Stack",
-        role: "Full Stack Developer & Designer",
-        timeline: "Jan 2025 - Present",
-        company: "Personal Project",
-        status: "In Progress",
-        technologies: [
-            "Next.js 14",
-            "TypeScript",
-            "TailwindCSS",
-            "Resend",
-            "Google Calendar API",
-            "Google Meet API",
-            "React Email",
-            "i18n",
-            "PDF Generation",
-            "Vercel",
-            "Framer Motion"
-        ],
-        features: [
-            "Real-time appointment booking with Google Calendar integration",
-            "Automated Google Meet creation for scheduled calls",
-            "Dual-language email notifications (Resend) for both parties",
-            "Interactive multi-language resume with live preview",
-            "PDF resume generation with language persistence",
-            "Contact form with automated email delivery",
-            "Responsive design with dark/light mode support",
-            "Project showcase with advanced filtering",
-            "LinkedIn-style experience timeline",
-            "Custom footer with terms and privacy policy",
-            "Smooth animations and micro-interactions"
-        ],
-        challenges: [
-            "Integrating multiple Google APIs (Calendar and Meet) seamlessly",
-            "Implementing real-time calendar availability synchronization",
-            "Creating a responsive PDF generation system that preserves formatting",
-            "Managing multi-language content without compromising performance",
-            "Ensuring email deliverability across different providers",
-            "Maintaining consistent design across all pages and components",
-            "Implementing secure contact form with spam protection"
-        ],
-        solutions: [
-            "Used Google Calendar API with OAuth 2.0 for secure calendar access",
-            "Implemented server-side PDF generation with dynamic content",
-            "Created a custom i18n solution for seamless language switching",
-            "Used Resend for reliable email delivery with React Email templates",
-            "Implemented rate limiting and validation on contact forms",
-            "Created reusable component system for design consistency",
-            "Used optimistic UI updates for better user experience"
-        ],
-        results: [
-            "Reduced client booking time from email chains to one-click scheduling",
-            "Automated 100% of appointment confirmation and reminder emails",
-            "Enabled seamless resume access in both digital and printable formats",
-            "Improved page load performance with 95+ Lighthouse score",
-            "Increased client inquiries by implementing streamlined contact methods",
-            "Created a scalable foundation for continuous feature additions"
-        ],
-        learnings: [
-            "Advanced API integration patterns with Google services",
-            "Server-side PDF generation and dynamic content rendering",
-            "Email template design and deliverability optimization",
-            "Internationalization (i18n) implementation strategies",
-            "Performance optimization in data-intensive applications",
-            "User experience design for conversion optimization"
-        ],
-        gradient: "from-orange-500 to-red-600",
-        liveUrl: "https://portfolio-six-mu-c3zpt9l3gd.vercel.app", // Your actual portfolio URL
-        githubUrl: "https://github.com/Akram-Hafaiedh/portfolio", // If it's public
-        featured: true, // Definitely feature this!
-    }
+
 ];
 
 export const featuredProjects = projects.filter(project => project.featured === true);
