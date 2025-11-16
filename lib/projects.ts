@@ -32,7 +32,7 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: 1,
-        title: "Personal Portfolio Website",
+        title: "Personal Portfolio",
         shortDescription: "Modern, full-stack portfolio with real-time booking system, multi-language resume, and automated email communications. Built with cutting-edge technologies to showcase my work and streamline client interactions.",
         longDescription: "A comprehensive portfolio platform that goes beyond traditional showcases by integrating real client interaction tools. Features include a Google Calendar booking system with automated Google Meet creation, multi-language resume with PDF generation, and seamless email communications via Resend.",
         fullDescription: "Designed and developed a full-stack portfolio website that serves as both a project showcase and a client interaction platform. The site features a real-time booking system integrated with Google Calendar and Google Meet, automated email notifications using Resend, a dynamic multi-language resume system with live preview and PDF download capabilities, and a modern, responsive design built with Next.js and TailwindCSS. The portfolio demonstrates advanced full-stack development skills while solving real business needs for client acquisition and communication.",

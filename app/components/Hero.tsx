@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaEnvelope, FaCode, FaRocket, FaCalendar } from "react-icons/fa";
 
@@ -13,9 +14,12 @@ export default function Hero() {
                     {/* Enhanced Avatar with floating animation */}
                     <div className="relative inline-block mb-8 group">
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse-slow" />
-                        <img
+                        <Image
                             src="/avatar.jpg"
-                            alt="Avatar"
+                            alt="Akram Hafaiedh - Full-Stack Developer"
+                            width={128}
+                            height={128}
+                            priority
                             className="relative w-32 h-32 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl transform group-hover:scale-110 transition-transform duration-300 animate-bounce-in"
                         />
                     </div>
