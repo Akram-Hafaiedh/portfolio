@@ -1,16 +1,12 @@
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import ScrollToTop from "../components/ScrollToTop";
+
 import { getAllExperiences } from "@/lib/experiences";
-import { FaBriefcase, FaBuilding, FaRocket } from "react-icons/fa6";
-import { FaMapMarkerAlt, FaRegCalendarAlt } from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa6";
 
 export default function ExperiencePage() {
     const experiences = getAllExperiences();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <Navigation />
+        <div>
 
             <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 {/* Background Elements */}
@@ -134,9 +130,6 @@ export default function ExperiencePage() {
                     </div>
                 </div>
             </section>
-
-            <Footer />
-            <ScrollToTop />
         </div>
     );
 }

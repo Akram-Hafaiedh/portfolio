@@ -10,9 +10,7 @@ import { Video } from "lucide-react";
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <Navigation />
-
+        <div>
             {/* Enhanced Hero Section */}
             <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 {/* Background Elements */}
@@ -271,8 +269,6 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            <Footer />
-            <ScrollToTop />
         </div>
     );
 }

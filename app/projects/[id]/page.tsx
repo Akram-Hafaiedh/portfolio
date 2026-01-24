@@ -1,8 +1,5 @@
-import Footer from "@/app/components/Footer";
-import Navigation from "@/app/components/Navigation";
 import ProjectGallery from "@/app/components/ProjectGallery";
 import ProjectImage from "@/app/components/ProjectImage";
-import ScrollToTop from "@/app/components/ScrollToTop";
 import { getProjectById } from "@/lib/projects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -42,9 +39,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     const hasGallery = project.gallery && project.gallery.length > 0;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-
-            <Navigation />
+        <div>
 
             <section className="pt-24 pb-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
@@ -354,10 +349,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </div>
                 </div>
             </section>
-
-
-            <Footer />
-            <ScrollToTop />
         </div>
     )
 

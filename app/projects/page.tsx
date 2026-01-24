@@ -1,8 +1,5 @@
 'use client'
 
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import ScrollToTop from "../components/ScrollToTop";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { FaRocket, FaCode, FaUsers, FaLightbulb, FaArrowRight, FaCalendar } from "react-icons/fa";
@@ -53,8 +50,7 @@ export default function ProjectsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <Navigation />
+        <div>
 
             {/* Enhanced Hero Section */}
             <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -232,9 +228,6 @@ export default function ProjectsPage() {
                     </div>
                 </div>
             </section>
-
-            <Footer />
-            <ScrollToTop />
         </div>
     );
 }

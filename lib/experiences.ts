@@ -77,7 +77,7 @@ export const getFeaturedExperiences = (count = 2) => {
         .filter(exp => exp.featured)
         .slice(0, count)
         .map(({ id, title, company, location, period, description, skills }) => ({
-            id, title, company: `${company} • ${location}`, period, description, skills
+            id, title, company, location, period, description, skills
         }));
 };
 

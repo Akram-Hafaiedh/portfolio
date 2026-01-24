@@ -20,8 +20,7 @@ export default function ResumePage() {
     const data = resumeData[language];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <Navigation />
+        <div>
 
             {/* Action Bar - Hide on print */}
             <div className="no-print sticky top-16 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
@@ -63,7 +62,6 @@ export default function ResumePage() {
                     <div className="flex justify-center gap-6 text-slate-600 dark:text-slate-300 flex-wrap print:text-black print:text-sm">
                         <span>📧 {data.contact.email}</span>
                         <span>📱 {data.contact.phone}</span>
-                        <span>📍 {data.contact.location}</span>
                     </div>
                 </header>
 
@@ -217,9 +215,6 @@ export default function ResumePage() {
                     </main>
                 </div>
             </div>
-
-            <Footer />
-            <ScrollToTop />
 
             {/* Print Styles */}
             <style jsx global>{`

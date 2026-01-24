@@ -1,15 +1,10 @@
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import ScrollToTop from "../components/ScrollToTop";
 import AllSkills from "../components/AllSkills";
 import { FaBriefcase } from "react-icons/fa";
 import { projects } from "@/lib/projects";
 
 export default function SkillsPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <Navigation />
-
+        <div>
             {/* Enhanced Hero Section */}
             <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
 
@@ -201,9 +196,6 @@ export default function SkillsPage() {
                     </div>
                 </div>
             </section>
-
-            <Footer />
-            <ScrollToTop />
         </div>
     );
 }
