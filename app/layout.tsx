@@ -86,7 +86,6 @@ export default function RootLayout({
           {children}
 
           <Footer />
-          <ScrollToTop />
         </div>
         <Analytics />
       </body>

@@ -2,7 +2,11 @@
 import { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 
-export default function ScrollProgress() {
+interface ScrollProgressProps {
+    sections?: string[];
+}
+
+export default function ScrollProgress({ sections = ['Hero', 'About', 'Experience', 'Projects', 'Contact'] }: ScrollProgressProps) {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -25,6 +29,8 @@ export default function ScrollProgress() {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    const segmentSize = 100 / sections.length;
 
     return (
         <div className={`fixed left-8 top-1/2 -translate-y-1/2 z-50 transition-all duration-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
@@ -92,19 +98,19 @@ export default function ScrollProgress() {
 
                 {/* Section Indicators */}
                 <div className="flex flex-col gap-3">
-                    {['Hero', 'About', 'Experience', 'Projects', 'Contact'].map((section, i) => {
-                        const sectionProgress = (i + 1) * 20;
-                        const isActive = scrollProgress >= (i * 20) && scrollProgress < sectionProgress;
-                        const isPassed = scrollProgress >= sectionProgress;
+                    {sections.map((section, i) => {
+                        const sectionCutoff = (i + 1) * segmentSize;
+                        const isActive = scrollProgress >= (i * segmentSize) && scrollProgress < sectionCutoff;
+                        const isPassed = scrollProgress >= sectionCutoff;
 
                         return (
                             <div key={section} className="relative group">
                                 <div
                                     className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive
-                                            ? 'bg-gradient-to-r from-blue-500 to-purple-500 scale-150'
-                                            : isPassed
-                                                ? 'bg-purple-500 scale-100'
-                                                : 'bg-slate-700 scale-100'
+                                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 scale-150'
+                                        : isPassed
+                                            ? 'bg-purple-500 scale-100'
+                                            : 'bg-slate-700 scale-100'
                                         }`}
                                 />
                                 {/* Tooltip */}
