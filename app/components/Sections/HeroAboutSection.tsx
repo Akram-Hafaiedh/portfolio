@@ -5,21 +5,11 @@ import { FaEnvelope, FaCode, FaRocket, FaCalendar, FaGithub, FaLinkedin, FaArrow
 import { useState, useEffect } from 'react';
 
 export default function HeroAboutSection() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         setIsVisible(true);
-
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
-
-    const skills = ['React', 'Next.js', 'Vue', 'Angular', 'Node.js', 'Laravel', 'TypeScript', 'TailwindCSS'];
 
     const values = [
         {
@@ -49,40 +39,9 @@ export default function HeroAboutSection() {
     ];
 
     return (
-        <section className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
-            {/* Animated background grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
-
-            {/* Floating orbs with mouse interaction */}
-            <div
-                className="absolute w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse"
-                style={{
-                    top: '10%',
-                    left: '10%',
-                    transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
-                }}
-            />
-            <div
-                className="absolute w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse"
-                style={{
-                    top: '50%',
-                    right: '10%',
-                    animationDelay: '1s',
-                    transform: `translate(${-mousePosition.x * 0.015}px, ${-mousePosition.y * 0.015}px)`
-                }}
-            />
-            <div
-                className="absolute w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse"
-                style={{
-                    bottom: '10%',
-                    left: '30%',
-                    animationDelay: '2s',
-                    transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`
-                }}
-            />
-
+        <section className="relative">
             {/* HERO SECTION */}
-            <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+            <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
                 <div className="max-w-7xl mx-auto w-full">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Left Column - Text Content */}
@@ -220,14 +179,18 @@ export default function HeroAboutSection() {
                                     {/* Social Links */}
                                     <div className="flex gap-3 pt-4 border-t border-slate-800">
                                         <a
-                                            href="#"
+                                            href="https://github.com/Akram-Hafaiedh"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-300 hover:text-white transition-all group"
                                         >
                                             <FaGithub className="group-hover:scale-110 transition-transform" />
                                             <span className="text-sm">GitHub</span>
                                         </a>
                                         <a
-                                            href="#"
+                                            href="https://www.linkedin.com/in/akram-hafaiedh-368b3312b/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-slate-300 hover:text-white transition-all group"
                                         >
                                             <FaLinkedin className="group-hover:scale-110 transition-transform" />
@@ -250,7 +213,7 @@ export default function HeroAboutSection() {
             </div>
 
             {/* ABOUT SECTION - Seamlessly continues */}
-            <div className="relative z-10 pb-20 px-4 sm:px-6 lg:px-8">
+            <div className="relative pb-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
                     {/* Section Header */}
                     <div className="text-center mb-16">
