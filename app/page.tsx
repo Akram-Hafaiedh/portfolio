@@ -1,6 +1,7 @@
 import Contact from "./components/Contact";
 import ExperienceHighlights from "./components/ExperienceHighlights";
 import ProjectsHighlights from "./components/ProjectsHighlights";
+import ScrollProgress from "./components/ScrollProgress";
 import HeroAboutSection from "./components/Sections/HeroAboutSection";
 
 export default function Home() {
@@ -13,6 +14,11 @@ export default function Home() {
       <div className="fixed top-10 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" />
       <div className="fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
       <div className="fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+      
+
+
+      <ScrollProgress />
+
       
       {/* Content with relative positioning */}
       <div className="relative z-10">
