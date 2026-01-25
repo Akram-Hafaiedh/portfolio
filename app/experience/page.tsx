@@ -26,36 +26,50 @@ export default function UnifiedExperiencePage() {
     };
 
     return (
-        <div className="relative bg-slate-950 overflow-hidden min-h-screen">
-            {/* Background Effects */}
-            <div className="fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
-            <div className="fixed top-10 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" />
-            <div className="fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
-            <div className="fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+        <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden min-h-screen">
+            {/* Animated Background Grid - Light Mode */}
+            <div className="block dark:hidden fixed inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
+
+            {/* Animated Background Grid - Dark Mode */}
+            <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
+
+            {/* Floating Gradient Orbs - Light Mode */}
+            <div className="block dark:hidden fixed top-10 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" />
+            <div className="block dark:hidden fixed top-1/2 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
+            <div className="block dark:hidden fixed bottom-10 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+
+            {/* Floating Gradient Orbs - Dark Mode */}
+            <div className="hidden dark:block fixed top-10 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" />
+            <div className="hidden dark:block fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
+            <div className="hidden dark:block fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+
+            {/* Additional Subtle Orbs */}
+            <div className="block dark:hidden fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
+            <div className="hidden dark:block fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
 
             <div className="relative z-10">
                 {/* Hero Section */}
                 <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-4xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm font-medium mb-6 animate-fade-in-up">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-600 dark:text-purple-400 text-sm font-medium mb-6 animate-fade-in-up">
                             <FaBriefcase className="text-xs" />
                             {data.experienceSection.badge}
                         </div>
-                        <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                        <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                             {data.experienceSection.title}
                         </h1>
-                        <p className="text-xl text-slate-400 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                        <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             {data.experienceSection.subtitle}
                         </p>
                     </div>
                 </div>
 
                 {/* Skills Summary Section */}
-                <div className="px-4 sm:px-6 lg:px-8 pb-20 border-b border-slate-800/50">
+                <div className="px-4 sm:px-6 lg:px-8 pb-20 border-b border-slate-200 dark:border-slate-800/50">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-white mb-4">Technical Expertise</h2>
-                            <p className="text-slate-400">Core technologies and frameworks I work with</p>
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Technical Expertise</h2>
+                            <p className="text-slate-600 dark:text-slate-400">Core technologies and frameworks I work with</p>
                         </div>
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -87,16 +101,16 @@ export default function UnifiedExperiencePage() {
                                     style={{ animationDelay: `${index * 100}ms` }}
                                 >
                                     <div className={`absolute -inset-1 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity`} />
-                                    <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl hover:border-purple-500/50 transition-all h-full">
+                                    <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl hover:border-purple-500/50 transition-all h-full">
                                         <div className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                                             <span className="text-white text-2xl font-bold">{category.title.charAt(0)}</span>
                                         </div>
-                                        <h3 className="text-lg font-bold text-white mb-4">{category.title}</h3>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{category.title}</h3>
                                         <div className="flex flex-wrap gap-2">
                                             {category.skills.map((skill, i) => (
                                                 <span
                                                     key={i}
-                                                    className="px-3 py-1 bg-slate-700/50 border border-slate-600/50 text-slate-300 rounded-lg text-xs hover:border-purple-500/50 hover:text-white transition-all"
+                                                    className="px-3 py-1 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 text-slate-700 dark:text-slate-300 rounded-lg text-xs hover:border-purple-500/50 hover:text-slate-900 dark:hover:text-white transition-all"
                                                 >
                                                     {skill}
                                                 </span>
@@ -134,7 +148,7 @@ export default function UnifiedExperiencePage() {
                                             <div className="hidden md:block absolute left-1/2 top-8 transform -translate-x-1/2 -translate-y-1/2">
                                                 <div className="relative">
                                                     <div className={`absolute inset-0 bg-gradient-to-r ${color} rounded-full animate-ping opacity-75`} />
-                                                    <div className={`relative w-4 h-4 bg-gradient-to-r ${color} rounded-full border-4 border-slate-950`} />
+                                                    <div className={`relative w-4 h-4 bg-gradient-to-r ${color} rounded-full border-4 border-white dark:border-slate-950`} />
                                                 </div>
                                             </div>
 
@@ -142,7 +156,7 @@ export default function UnifiedExperiencePage() {
                                             <div className="group relative">
                                                 <div className={`absolute -inset-1 bg-gradient-to-r ${color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
 
-                                                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-slate-700/50 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
+                                                <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-slate-200 dark:border-slate-700/50 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
                                                     {/* Header */}
                                                     <div className={`flex items-start gap-4 mb-4 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                                                         <div className={`w-14 h-14 bg-gradient-to-r ${color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
@@ -152,31 +166,31 @@ export default function UnifiedExperiencePage() {
                                                             <div className={`text-sm font-bold bg-gradient-to-r ${color} bg-clip-text text-transparent mb-1`}>
                                                                 {exp.period}
                                                             </div>
-                                                            <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">
+                                                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                                                 {exp.title}
                                                             </h3>
-                                                            <p className="text-purple-400 font-semibold text-sm mb-2">
+                                                            <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-2">
                                                                 {exp.company} • {exp.location}
                                                             </p>
-                                                            <span className={`inline-block px-3 py-1 bg-gradient-to-r ${color} bg-opacity-10 border border-purple-500/30 rounded-full text-xs font-semibold text-purple-300`}>
+                                                            <span className={`inline-block px-3 py-1 bg-gradient-to-r ${color} bg-opacity-10 border border-purple-500/30 rounded-full text-xs font-semibold text-purple-700 dark:text-purple-300`}>
                                                                 {exp.type}
                                                             </span>
                                                         </div>
                                                     </div>
 
                                                     {/* Description */}
-                                                    <p className={`text-slate-300 leading-relaxed mb-4 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
+                                                    <p className={`text-slate-700 dark:text-slate-300 leading-relaxed mb-4 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
                                                         {exp.description}
                                                     </p>
 
                                                     {/* Achievements */}
                                                     <div className={`mb-6 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                                                        <h4 className="text-sm font-bold text-slate-400 uppercase mb-3">{data.keyAchievements}</h4>
+                                                        <h4 className="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase mb-3">{data.keyAchievements}</h4>
                                                         <ul className="space-y-2">
                                                             {exp.achievements.map((achievement, i) => (
                                                                 <li key={i} className={`flex items-start gap-2 ${index % 2 === 0 ? 'md:flex-row-reverse md:text-right' : ''}`}>
                                                                     <span className={`text-transparent bg-clip-text bg-gradient-to-r ${color} mt-1`}>•</span>
-                                                                    <span className="text-slate-300 text-sm">{achievement}</span>
+                                                                    <span className="text-slate-700 dark:text-slate-300 text-sm">{achievement}</span>
                                                                 </li>
                                                             ))}
                                                         </ul>
@@ -188,7 +202,7 @@ export default function UnifiedExperiencePage() {
                                                             {exp.skills.map((skill, i) => (
                                                                 <span
                                                                     key={i}
-                                                                    className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-xs font-medium hover:scale-105 transition-transform"
+                                                                    className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 text-blue-700 dark:text-blue-300 rounded-lg text-xs font-medium hover:scale-105 transition-transform"
                                                                 >
                                                                     {skill}
                                                                 </span>
@@ -206,11 +220,11 @@ export default function UnifiedExperiencePage() {
                 </div>
 
                 {/* Stats & Download Section */}
-                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/50">
+                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-white mb-4">{data.professionalSummary.title}</h2>
-                            <p className="text-slate-400">{data.professionalSummary.subtitle}</p>
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{data.professionalSummary.title}</h2>
+                            <p className="text-slate-600 dark:text-slate-400">{data.professionalSummary.subtitle}</p>
                         </div>
 
                         {/* Stats */}
@@ -222,10 +236,10 @@ export default function UnifiedExperiencePage() {
                             ].map((stat, index) => (
                                 <div key={index} className="group relative">
                                     <div className={`absolute -inset-1 bg-gradient-to-r ${stat.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity`} />
-                                    <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl text-center group-hover:scale-105 transition-transform">
+                                    <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl text-center group-hover:scale-105 transition-transform">
                                         <div className="text-4xl mb-3">{stat.icon}</div>
-                                        <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
-                                        <div className="text-sm text-slate-400">{stat.label}</div>
+                                        <div className="text-4xl font-bold text-slate-900 dark:text-white mb-2">{stat.value}</div>
+                                        <div className="text-sm text-slate-600 dark:text-slate-400">{stat.label}</div>
                                     </div>
                                 </div>
                             ))}
@@ -240,25 +254,25 @@ export default function UnifiedExperiencePage() {
                                 <FaDownload className="text-xl" />
                                 <span className="text-lg">{data.downloadBtn}</span>
                             </button>
-                            <p className="text-slate-500 text-sm mt-4">{data.professionalSummary.downloadDescription}</p>
+                            <p className="text-slate-500 dark:text-slate-500 text-sm mt-4">{data.professionalSummary.downloadDescription}</p>
                         </div>
                     </div>
                 </div>
 
                 {/* CTA Section */}
-                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/50">
+                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
                     <div className="max-w-4xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium mb-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 dark:text-green-400 text-sm font-medium mb-6">
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 dark:bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600 dark:bg-green-500"></span>
                             </span>
                             {data.cta.badge}
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                             {data.cta.title}
                         </h2>
-                        <p className="text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
+                        <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
                             {data.cta.description}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -270,7 +284,7 @@ export default function UnifiedExperiencePage() {
                             </a>
                             <a
                                 href="/projects"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 border-2 border-slate-700 hover:border-purple-500 text-white rounded-xl font-bold transition-all hover:scale-105"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-purple-500 text-slate-900 dark:text-white rounded-xl font-bold transition-all hover:scale-105"
                             >
                                 {data.cta.viewWork}
                             </a>
@@ -278,23 +292,6 @@ export default function UnifiedExperiencePage() {
                     </div>
                 </div>
             </div>
-
-            {/* Global Styles */}
-            <style jsx global>{`
-                @keyframes fade-in-up {
-                    from {
-                        opacity: 0;
-                        transform: translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.6s ease-out forwards;
-                }
-            `}</style>
         </div>
     );
-} 
+}
