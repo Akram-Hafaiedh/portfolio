@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import { LanguageProvider } from "./context/LanguageContext";
 
 
 const geistSans = Geist({
@@ -81,12 +82,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-          <Navigation />
-          {children}
+        <LanguageProvider>
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+            <Navigation />
+            {children}
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>

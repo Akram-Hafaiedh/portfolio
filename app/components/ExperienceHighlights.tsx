@@ -1,9 +1,15 @@
+'use client';
+
 import { getFeaturedExperiences } from "@/lib/experiences";
 import Link from "next/link";
 import { FaArrowRight, FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
+import { dictionary } from "@/lib/dictionary";
 
 export default function ExperienceHighlights() {
-    const experiences = getFeaturedExperiences(2);
+    const { language } = useLanguage();
+    const t = dictionary[language];
+    const experiences = getFeaturedExperiences(language, 2);
 
     return (
         <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative">
@@ -12,13 +18,13 @@ export default function ExperienceHighlights() {
                 <div className="text-center mb-16 animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm font-medium mb-4">
                         <FaBriefcase className="text-xs" />
-                        Professional Journey
+                        {t.sections.professionalJourney}
                     </div>
                     <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-                        Recent Experience
+                        {t.sections.recentExperience}
                     </h2>
                     <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                        Building impactful solutions across diverse technologies and industries
+                        {t.sections.experienceSubtitle}
                     </p>
                 </div>
 
@@ -114,7 +120,7 @@ export default function ExperienceHighlights() {
                         href="/experience"
                         className="inline-flex items-center gap-3 px-8 py-4 bg-slate-800 border-2 border-slate-700 hover:border-purple-500 text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-2xl group"
                     >
-                        <span>View All Experience</span>
+                        <span>{t.sections.viewAllExperience}</span>
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>

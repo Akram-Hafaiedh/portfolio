@@ -1,9 +1,16 @@
+'use client';
+
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaCheckCircle } from "react-icons/fa";
 import ContactForm from "./ContactForm";
 import Link from "next/link";
 import { Video } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
+import { dictionary } from "@/lib/dictionary";
 
 export default function Contact() {
+    const { language } = useLanguage();
+    const t = dictionary[language];
+
     return (
         <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative">
             <div className="max-w-7xl mx-auto relative z-10">
@@ -11,13 +18,13 @@ export default function Contact() {
                 <div className="text-center mb-20 animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium mb-4">
                         <FaEnvelope className="text-xs" />
-                        Get In Touch
+                        {t.sections.contactTitle}
                     </div>
                     <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-                        Let's Work Together
+                        {t.sections.contactHeadline}
                     </h2>
                     <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                        Ready to start your project? Choose how you'd like to connect
+                        {t.sections.contactSubtitle}
                     </p>
                 </div>
 
@@ -34,7 +41,7 @@ export default function Contact() {
                                 <FaEnvelope className="text-blue-400 text-2xl" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                                Email Me
+                                {t.sections.emailMe}
                             </h3>
                             <p className="text-slate-400 text-sm mb-4">
                                 Send me a detailed message about your project
@@ -56,7 +63,7 @@ export default function Contact() {
                                 <FaPhone className="text-green-400 text-2xl" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
-                                Call Me
+                                {t.sections.callMe}
                             </h3>
                             <p className="text-slate-400 text-sm mb-4">
                                 Prefer to talk? Give me a call directly
@@ -75,7 +82,7 @@ export default function Contact() {
                                 <FaMapMarkerAlt className="text-purple-400 text-2xl" />
                             </div>
                             <h3 className="text-xl font-bold text-white mb-2">
-                                Location
+                                {t.sections.location}
                             </h3>
                             <p className="text-slate-400 text-sm mb-4">
                                 Based in Tunisia, working globally
@@ -95,10 +102,10 @@ export default function Contact() {
                             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity" />
                             <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl">
                                 <h3 className="text-2xl font-bold text-white mb-2">
-                                    Send a Message
+                                    {t.sections.sendMessage}
                                 </h3>
                                 <p className="text-slate-400 mb-8">
-                                    Fill out the form and I'll get back to you within 24 hours
+                                    {t.sections.sendMessageSubtitle}
                                 </p>
                                 <ContactForm />
                             </div>
@@ -117,7 +124,7 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h4 className="text-lg font-bold text-white mb-1">
-                                            Free Consultation
+                                            {t.sections.freeConsultation}
                                         </h4>
                                         <p className="text-green-50 text-sm">
                                             30-min video call to discuss your project
@@ -129,14 +136,14 @@ export default function Contact() {
                                     className="flex items-center justify-center gap-2 w-full bg-white hover:bg-green-50 text-green-600 px-4 py-3 rounded-xl font-bold transition-all hover:scale-105 shadow-lg"
                                 >
                                     <FaCalendar className="text-sm" />
-                                    Book a Meeting
+                                    {t.sections.bookMeeting}
                                 </Link>
                             </div>
                         </div>
 
                         {/* Social Links */}
                         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                            <h4 className="font-bold text-white mb-4">Connect With Me</h4>
+                            <h4 className="font-bold text-white mb-4">{t.sections.connectWithMe}</h4>
                             <div className="space-y-3">
                                 <a
                                     href="https://www.linkedin.com/in/akram-hafaiedh-368b3312b/"
@@ -161,7 +168,7 @@ export default function Contact() {
 
                         {/* Availability Info */}
                         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                            <h4 className="font-bold text-white mb-4">Availability</h4>
+                            <h4 className="font-bold text-white mb-4">{t.sections.availability}</h4>
                             <div className="space-y-3">
                                 {[
                                     { icon: FaCheckCircle, text: 'Freelance projects', color: 'text-green-400' },

@@ -3,40 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaEnvelope, FaCode, FaRocket, FaCalendar, FaGithub, FaLinkedin, FaArrowRight, FaLightbulb, FaUsers } from "react-icons/fa";
 import { useState, useEffect } from 'react';
+import { useLanguage } from "@/app/context/LanguageContext";
+import { heroContent as enHero } from "@/lib/data/en/hero";
+import { heroContent as frHero } from "@/lib/data/fr/hero";
 
 export default function HeroAboutSection() {
     const [isVisible, setIsVisible] = useState(false);
+    const { language } = useLanguage();
+
+    // Select content based on language
+    const content = language === 'fr' ? frHero : enHero;
 
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
-    const values = [
-        {
-            icon: FaCode,
-            title: "Clean Code",
-            description: "Writing maintainable, scalable code that stands the test of time",
-            gradient: "from-blue-500 to-cyan-500"
-        },
-        {
-            icon: FaLightbulb,
-            title: "Innovation",
-            description: "Leveraging cutting-edge technologies to solve complex problems",
-            gradient: "from-purple-500 to-pink-500"
-        },
-        {
-            icon: FaUsers,
-            title: "User-Centric",
-            description: "Building intuitive experiences that users love to interact with",
-            gradient: "from-green-500 to-emerald-500"
-        },
-        {
-            icon: FaRocket,
-            title: "Performance",
-            description: "Optimizing every detail for speed and efficiency",
-            gradient: "from-orange-500 to-red-500"
-        }
-    ];
+    const icons = [FaCode, FaLightbulb, FaUsers, FaRocket];
+
+    // Map values to include icons
+    const values = content.values.map((val, index) => ({
+        ...val,
+        icon: icons[index]
+    }));
 
     return (
         <section className="relative">
@@ -52,27 +40,25 @@ export default function HeroAboutSection() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                 </span>
-                                Available for new projects
+                                {content.badge}
                             </div>
 
                             {/* Main Heading */}
                             <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight">
-                                    <span className="block text-white">Hi, I'm</span>
+                                    <span className="block text-white">{content.greeting}</span>
                                     <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                                        Akram Hafaiedh
+                                        {content.name}
                                     </span>
                                 </h1>
                                 <p className="text-2xl sm:text-3xl font-bold text-slate-300">
-                                    Full-Stack Developer
+                                    {content.role}
                                 </p>
                             </div>
 
                             {/* Description */}
                             <p className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                                I craft exceptional digital experiences with{' '}
-                                <span className="text-blue-400 font-semibold">JavaScript</span> (React, Vue, Angular, Next.js, Node.js) and{' '}
-                                <span className="text-purple-400 font-semibold">PHP</span> (Laravel), turning complex problems into elegant solutions.
+                                {content.description}
                             </p>
 
                             {/* CTA Buttons */}
@@ -84,7 +70,7 @@ export default function HeroAboutSection() {
                                     <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     <span className="relative flex items-center justify-center gap-2">
                                         <FaCalendar />
-                                        Book a Meeting
+                                        {content.cta.book}
                                     </span>
                                 </Link>
 
@@ -94,7 +80,7 @@ export default function HeroAboutSection() {
                                 >
                                     <span className="relative flex items-center justify-center gap-2">
                                         <FaEnvelope />
-                                        Get in Touch
+                                        {content.cta.contact}
                                     </span>
                                 </Link>
                             </div>
@@ -106,14 +92,14 @@ export default function HeroAboutSection() {
                                     className="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-2 group"
                                 >
                                     <FaRocket className="group-hover:rotate-12 transition-transform" />
-                                    <span className="border-b border-slate-600 group-hover:border-purple-400">Resume</span>
+                                    <span className="border-b border-slate-600 group-hover:border-purple-400">{content.links.resume}</span>
                                 </Link>
                                 <Link
                                     href="/projects"
                                     className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group"
                                 >
                                     <FaCode className="group-hover:scale-110 transition-transform" />
-                                    <span className="border-b border-slate-600 group-hover:border-blue-400">Projects</span>
+                                    <span className="border-b border-slate-600 group-hover:border-blue-400">{content.links.projects}</span>
                                 </Link>
                             </div>
                         </div>
@@ -140,30 +126,30 @@ export default function HeroAboutSection() {
                                             />
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold text-white">Akram Hafaiedh</h3>
-                                            <p className="text-slate-400">Full-Stack Developer</p>
+                                            <h3 className="text-xl font-bold text-white">{content.name}</h3>
+                                            <p className="text-slate-400">{content.role}</p>
                                         </div>
                                     </div>
 
                                     {/* Stats Grid */}
                                     <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-800">
                                         <div className="text-center">
-                                            <div className="text-2xl font-bold text-blue-400">5+</div>
-                                            <div className="text-xs text-slate-500">Years Exp</div>
+                                            <div className="text-2xl font-bold text-blue-400">{content.stats.exp.value}</div>
+                                            <div className="text-xs text-slate-500">{content.stats.exp.label}</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-2xl font-bold text-purple-400">50+</div>
-                                            <div className="text-xs text-slate-500">Projects</div>
+                                            <div className="text-2xl font-bold text-purple-400">{content.stats.projects.value}</div>
+                                            <div className="text-xs text-slate-500">{content.stats.projects.label}</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-2xl font-bold text-pink-400">100%</div>
-                                            <div className="text-xs text-slate-500">Satisfied</div>
+                                            <div className="text-2xl font-bold text-pink-400">{content.stats.satisfied.value}</div>
+                                            <div className="text-xs text-slate-500">{content.stats.satisfied.label}</div>
                                         </div>
                                     </div>
 
                                     {/* Tech Stack */}
                                     <div className="space-y-3">
-                                        <p className="text-sm text-slate-400 font-medium">Core Technologies</p>
+                                        <p className="text-sm text-slate-400 font-medium">{content.techStack}</p>
                                         <div className="flex flex-wrap gap-2">
                                             {['React', 'Next.js', 'Node.js', 'Laravel', 'TypeScript', 'TailwindCSS'].map((tech) => (
                                                 <span
@@ -229,18 +215,13 @@ export default function HeroAboutSection() {
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium mb-4">
                             <FaCode className="text-xs" />
-                            About Me
+                            {content.aboutPreview.badge}
                         </div>
                         <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-                            Building Digital Solutions That{' '}
-                            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                Make an Impact
-                            </span>
+                            {content.aboutPreview.title}
                         </h2>
                         <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                            I'm a Full Stack Developer passionate about building scalable web applications that solve real-world problems.
-                            With expertise across both <strong className="text-blue-400">JavaScript</strong> (React, Vue.js, Next.js, Node.js) and <strong className="text-purple-400">PHP</strong> (Laravel) ecosystems,
-                            I bring versatility and depth to every project.
+                            {content.aboutPreview.description}
                         </p>
                     </div>
 
@@ -272,58 +253,34 @@ export default function HeroAboutSection() {
                         <div className="grid md:grid-cols-2 gap-8 items-center">
                             <div>
                                 <h3 className="text-2xl font-bold text-white mb-4">
-                                    My Approach
+                                    {content.aboutPreview.approach.title}
                                 </h3>
                                 <p className="text-slate-300 mb-6 leading-relaxed">
-                                    My approach combines technical excellence with user-centric design, ensuring that every application
-                                    I build is not only powerful under the hood but also delightful to use. I believe in writing clean,
-                                    maintainable code and delivering solutions that truly make a difference.
+                                    {content.aboutPreview.approach.description}
                                 </p>
                                 <Link
                                     href="/about"
                                     className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all hover:scale-105 group"
                                 >
-                                    Learn More About Me
+                                    {content.aboutPreview.approach.cta}
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
 
                             <div className="space-y-4">
-                                <div className="flex items-start gap-4 p-4 bg-slate-900 rounded-xl">
-                                    <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <span className="text-2xl">🎯</span>
+                                {content.aboutPreview.traits.map((trait, index) => (
+                                    <div key={index} className="flex items-start gap-4 p-4 bg-slate-900 rounded-xl">
+                                        <div className={`w-10 h-10 ${index === 0 ? 'bg-blue-500/10' : index === 1 ? 'bg-purple-500/10' : 'bg-green-500/10'} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                                            <span className="text-2xl">{trait.emoji}</span>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-white mb-1">{trait.title}</h4>
+                                            <p className="text-sm text-slate-400">
+                                                {trait.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4 className="font-semibold text-white mb-1">Problem Solver</h4>
-                                        <p className="text-sm text-slate-400">
-                                            I thrive on tackling complex challenges and finding elegant solutions
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-4 p-4 bg-slate-900 rounded-xl">
-                                    <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <span className="text-2xl">🚀</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-white mb-1">Fast Learner</h4>
-                                        <p className="text-sm text-slate-400">
-                                            Constantly exploring new technologies and best practices
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-4 p-4 bg-slate-900 rounded-xl">
-                                    <div className="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <span className="text-2xl">🤝</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-white mb-1">Team Player</h4>
-                                        <p className="text-sm text-slate-400">
-                                            Collaborating effectively with designers, developers, and stakeholders
-                                        </p>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>

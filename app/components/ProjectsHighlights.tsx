@@ -1,11 +1,16 @@
 'use client';
-import { featuredProjects } from "@/lib/projects";
+import { getFeaturedProjects } from "@/lib/projects";
 import Link from "next/link";
 import { FaArrowRight, FaRocket, FaExternalLinkAlt, FaGithub, FaStar, FaPlay } from "react-icons/fa";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { dictionary } from "@/lib/dictionary";
 
 export default function ProjectsHighlights() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const { language } = useLanguage();
+    const t = dictionary[language];
+    const featuredProjects = getFeaturedProjects(language);
 
     return (
         <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
@@ -14,16 +19,13 @@ export default function ProjectsHighlights() {
                 <div className="text-center mb-16 animate-fade-in-up">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 border border-pink-500/20 rounded-full text-pink-400 text-sm font-medium mb-4">
                         <FaRocket className="text-xs" />
-                        Featured Work
+                        {t.sections.featuredWork}
                     </div>
                     <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-                        Projects That{' '}
-                        <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                            Make a Difference
-                        </span>
+                        {t.sections.projectsTitle}
                     </h2>
                     <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                        Real-world applications that solve problems and deliver results
+                        {t.sections.projectsSubtitle}
                     </p>
                 </div>
 
@@ -38,10 +40,9 @@ export default function ProjectsHighlights() {
                             onMouseLeave={() => setHoveredIndex(null)}
                         >
                             {/* Animated Glow Effect */}
-                            <div className={`absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur-xl transition-all duration-500 ${
-                                hoveredIndex === index ? 'opacity-30 scale-105' : 'opacity-0'
-                            }`} />
-                            
+                            <div className={`absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur-xl transition-all duration-500 ${hoveredIndex === index ? 'opacity-30 scale-105' : 'opacity-0'
+                                }`} />
+
                             {/* Card Container */}
                             <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 h-full flex flex-col group-hover:translate-y-[-8px]">
                                 {/* Project Image/Preview with Overlay */}
@@ -55,11 +56,10 @@ export default function ProjectsHighlights() {
                                             />
                                             {/* Interactive Overlay */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
-                                            
+
                                             {/* View Project Button on Hover */}
-                                            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
-                                                hoveredIndex === index ? 'opacity-100' : 'opacity-0'
-                                            }`}>
+                                            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                                                }`}>
                                                 <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-4 transform transition-transform duration-300 group-hover:scale-110">
                                                     <FaPlay className="text-white text-2xl" />
                                                 </div>
@@ -89,11 +89,10 @@ export default function ProjectsHighlights() {
                                         <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
                                             {project.title}
                                         </h3>
-                                        <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 ${
-                                            hoveredIndex === index ? 'w-full' : 'w-0'
-                                        }`} />
+                                        <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 ${hoveredIndex === index ? 'w-full' : 'w-0'
+                                            }`} />
                                     </div>
-                                    
+
                                     {/* Description */}
                                     <p className="text-slate-400 text-sm mb-4 leading-relaxed line-clamp-3 flex-1">
                                         {project.shortDescription}
@@ -102,10 +101,10 @@ export default function ProjectsHighlights() {
                                     {/* Tech Stack with Stagger Animation */}
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {project.technologies?.slice(0, 3).map((tech, i) => (
-                                            <span 
+                                            <span
                                                 key={i}
                                                 className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-300 rounded-lg text-xs font-medium hover:bg-blue-500/20 hover:scale-110 transition-all duration-300 cursor-default"
-                                                style={{ 
+                                                style={{
                                                     transitionDelay: hoveredIndex === index ? `${i * 50}ms` : '0ms',
                                                     transform: hoveredIndex === index ? 'translateY(0)' : 'translateY(2px)'
                                                 }}
@@ -158,14 +157,12 @@ export default function ProjectsHighlights() {
                                 </div>
 
                                 {/* Animated Corner Gradient */}
-                                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl transition-all duration-700 ${
-                                    hoveredIndex === index ? 'scale-150 opacity-100' : 'scale-100 opacity-0'
-                                }`} />
-                                
+                                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl transition-all duration-700 ${hoveredIndex === index ? 'scale-150 opacity-100' : 'scale-100 opacity-0'
+                                    }`} />
+
                                 {/* Bottom Corner Accent */}
-                                <div className={`absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 rounded-full blur-2xl transition-all duration-700 ${
-                                    hoveredIndex === index ? 'scale-150 opacity-100' : 'scale-100 opacity-0'
-                                }`} />
+                                <div className={`absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 rounded-full blur-2xl transition-all duration-700 ${hoveredIndex === index ? 'scale-150 opacity-100' : 'scale-100 opacity-0'
+                                    }`} />
                             </div>
                         </div>
                     ))}
@@ -177,11 +174,11 @@ export default function ProjectsHighlights() {
                         href="/projects"
                         className="inline-flex items-center gap-3 px-8 py-4 bg-slate-800 border-2 border-slate-700 hover:border-purple-500 text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-2xl group"
                     >
-                        <span>View All Projects</span>
+                        <span>{t.sections.viewAllProjects}</span>
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <p className="text-sm text-slate-500 mt-4">
-                        Explore detailed case studies and technical documentation
+                        {t.sections.projectsFooter}
                     </p>
                 </div>
             </div>
