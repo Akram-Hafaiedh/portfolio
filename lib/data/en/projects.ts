@@ -1,3 +1,4 @@
+// lib/data/en/projects.ts
 export interface ProjectImage {
     url: string;
     caption: string;

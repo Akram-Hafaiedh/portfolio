@@ -1,3 +1,5 @@
+// lib/projects.ts
+
 import { projects as enProjects, Project, ProjectImage } from './data/en/projects';
 import { projects as frProjects } from './data/fr/projects';
 
