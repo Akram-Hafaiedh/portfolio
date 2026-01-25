@@ -56,6 +56,23 @@ export interface ProfessionalData {
         subtitle: string;
         badge: string;
     };
+    professionalSummary: {
+        title: string;
+        subtitle: string;
+        stats: {
+            yearsLabel: string;
+            companiesLabel: string;
+            technologiesLabel: string;
+        };
+        downloadDescription: string;
+    };
+    cta: {
+        badge: string;
+        title: string;
+        description: string;
+        getInTouch: string;
+        viewWork: string;
+    };
     experiences: Experience[];
     education: {
         title: string;
@@ -100,6 +117,23 @@ export const professionalData: Record<Language, ProfessionalData> = {
             title: "My Journey",
             subtitle: "Building impactful solutions across diverse technologies and industries",
             badge: "Professional Journey"
+        },
+        professionalSummary: {
+            title: "Professional Summary",
+            subtitle: "A snapshot of my professional journey",
+            stats: {
+                yearsLabel: "Years Experience",
+                companiesLabel: "Companies Worked",
+                technologiesLabel: "Technologies"
+            },
+            downloadDescription: "Get the full details of my professional experience"
+        },
+        cta: {
+            badge: "Available for Opportunities",
+            title: "Let's Build Something Great Together",
+            description: "I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!",
+            getInTouch: "Get in Touch",
+            viewWork: "View My Work"
         },
         experiences: [
             {
@@ -288,6 +322,23 @@ export const professionalData: Record<Language, ProfessionalData> = {
             title: "Mon Parcours",
             subtitle: "Construire des solutions impactantes à travers diverses technologies et industries",
             badge: "Parcours Professionnel"
+        },
+        professionalSummary: {
+            title: "Résumé Professionnel",
+            subtitle: "Un aperçu de mon parcours professionnel",
+            stats: {
+                yearsLabel: "Années d'Expérience",
+                companiesLabel: "Entreprises",
+                technologiesLabel: "Technologies"
+            },
+            downloadDescription: "Obtenez tous les détails de mon expérience professionnelle"
+        },
+        cta: {
+            badge: "Disponible pour Opportunités",
+            title: "Construisons Quelque Chose de Génial Ensemble",
+            description: "Je suis toujours intéressé par de nouveaux projets et opportunités. Que vous ayez une question ou que vous souhaitiez simplement dire bonjour, n'hésitez pas à me contacter !",
+            getInTouch: "Me Contacter",
+            viewWork: "Voir Mon Travail"
         },
         experiences: [
             {

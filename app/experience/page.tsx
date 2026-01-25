@@ -44,37 +44,9 @@ export default function UnifiedExperiencePage() {
                         <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                             {data.experienceSection.title}
                         </h1>
-                        <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                        <p className="text-xl text-slate-400 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             {data.experienceSection.subtitle}
                         </p>
-
-                        {/* Download Resume Button */}
-                        <div className="mb-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                            <button
-                                onClick={handleDownload}
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105"
-                            >
-                                <FaDownload />
-                                {data.downloadBtn}
-                            </button>
-                        </div>
-
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                            {[
-                                { label: "Years", value: "4+", color: "from-blue-600 to-cyan-600" },
-                                { label: "Companies", value: data.experiences.length.toString(), color: "from-purple-600 to-pink-600" },
-                                { label: "Technologies", value: "20+", color: "from-green-600 to-emerald-600" }
-                            ].map((stat, index) => (
-                                <div key={index} className="group relative">
-                                    <div className={`absolute -inset-1 bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity`} />
-                                    <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-4 rounded-xl text-center group-hover:scale-105 transition-transform">
-                                        <div className="text-3xl font-bold text-white">{stat.value}</div>
-                                        <div className="text-xs text-slate-400">{stat.label}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
 
@@ -233,6 +205,46 @@ export default function UnifiedExperiencePage() {
                     </div>
                 </div>
 
+                {/* Stats & Download Section */}
+                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/50">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-white mb-4">{data.professionalSummary.title}</h2>
+                            <p className="text-slate-400">{data.professionalSummary.subtitle}</p>
+                        </div>
+
+                        {/* Stats */}
+                        <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+                            {[
+                                { label: data.professionalSummary.stats.yearsLabel, value: "4+", color: "from-blue-600 to-cyan-600", icon: "📅" },
+                                { label: data.professionalSummary.stats.companiesLabel, value: data.experiences.length.toString(), color: "from-purple-600 to-pink-600", icon: "🏢" },
+                                { label: data.professionalSummary.stats.technologiesLabel, value: "20+", color: "from-green-600 to-emerald-600", icon: "⚡" }
+                            ].map((stat, index) => (
+                                <div key={index} className="group relative">
+                                    <div className={`absolute -inset-1 bg-gradient-to-r ${stat.color} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity`} />
+                                    <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl text-center group-hover:scale-105 transition-transform">
+                                        <div className="text-4xl mb-3">{stat.icon}</div>
+                                        <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
+                                        <div className="text-sm text-slate-400">{stat.label}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Download Resume Button */}
+                        <div className="text-center">
+                            <button
+                                onClick={handleDownload}
+                                className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105"
+                            >
+                                <FaDownload className="text-xl" />
+                                <span className="text-lg">{data.downloadBtn}</span>
+                            </button>
+                            <p className="text-slate-500 text-sm mt-4">{data.professionalSummary.downloadDescription}</p>
+                        </div>
+                    </div>
+                </div>
+
                 {/* CTA Section */}
                 <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/50">
                     <div className="max-w-4xl mx-auto text-center">
@@ -241,26 +253,26 @@ export default function UnifiedExperiencePage() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            Available for Opportunities
+                            {data.cta.badge}
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                            Let's Build Something Great Together
+                            {data.cta.title}
                         </h2>
                         <p className="text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
-                            I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!
+                            {data.cta.description}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <a
                                 href="/contact"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg"
                             >
-                                Get in Touch
+                                {data.cta.getInTouch}
                             </a>
                             <a
                                 href="/projects"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 border-2 border-slate-700 hover:border-purple-500 text-white rounded-xl font-bold transition-all hover:scale-105"
                             >
-                                View My Work
+                                {data.cta.viewWork}
                             </a>
                         </div>
                     </div>
