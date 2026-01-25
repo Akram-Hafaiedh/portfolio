@@ -88,7 +88,7 @@ export default function HeroAboutSection() {
                             {/* Quick Links */}
                             <div className="flex gap-4 animate-fade-in-up justify-center lg:justify-start" style={{ animationDelay: '0.4s' }}>
                                 <Link
-                                    href="/resume"
+                                    href="/experience"
                                     className="text-slate-400 hover:text-purple-400 transition-colors flex items-center gap-2 group"
                                 >
                                     <FaRocket className="group-hover:rotate-12 transition-transform" />

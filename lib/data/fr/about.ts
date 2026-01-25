@@ -172,7 +172,7 @@ export const aboutPageContent = {
     cta: {
         title: "Travaillons Ensemble",
         description: "Intéressé par une collaboration ou envie d'en savoir plus sur mon expérience ?",
-        resume: "Voir Mon CV",
+        resume: "Voir Mon Parcours",
         schedule: "Planifier un Appel"
     }
 };
