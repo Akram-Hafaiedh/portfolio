@@ -1,9 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import ScrollToTop from "../components/ScrollToTop";
 import { FaDownload, FaGlobe, FaBriefcase, FaGraduationCap } from "react-icons/fa";
 import { resumeData, type Language } from "@/lib/resume";
 

@@ -1,3 +1,4 @@
+//lib/experiences.ts
 export const allExperiences = [
 
     {
