@@ -1,0 +1,54 @@
+// lib/data/en/booking.ts
+export const bookingContent = {
+  hero: {
+    badge: "Instant Booking",
+    title: "Schedule a Meeting",
+    subtitle: "Let's discuss your project and bring your ideas to life",
+    emphasis: "Choose a time that works for you."
+  },
+  calendar: {
+    title: "Select Date & Time",
+    dateLabel: "Choose a Date",
+    durationLabel: "Meeting Duration",
+    slotsLabel: "Available Time Slots",
+    loadingSlots: "Loading available slots...",
+    noSlots: "No available slots for this date",
+    selectedTime: "Selected Meeting Time",
+    minutes: "minutes"
+  },
+  form: {
+    title: "Your Information",
+    name: "Your Name",
+    email: "Email Address",
+    subject: "Meeting Subject",
+    subjectPlaceholder: "e.g., Job Opportunity, Project Discussion, Technical Interview",
+    message: "Additional Message",
+    messagePlaceholder: "Tell me a bit about what you'd like to discuss, your project requirements, or any specific topics you want to cover...",
+    namePlaceholder: "Enter your full name",
+    emailPlaceholder: "your.email@example.com",
+    required: "*",
+    submit: "Schedule Meeting",
+    submitting: "Scheduling Meeting...",
+    disclaimer: "By scheduling this meeting, you agree to our privacy policy and terms of service."
+  },
+  meetingDetails: {
+    title: "Meeting Details",
+    googleMeet: "Google Meet link will be provided",
+    calendar: "Calendar invitation with reminders",
+    remote: "Available for remote meetings worldwide",
+    flexible: "Flexible rescheduling available"
+  },
+  messages: {
+    success: "Appointment scheduled successfully! Check your email for the meeting link.",
+    error: "Error scheduling appointment. Please try again.",
+    selectSlot: "Please select a time slot",
+    fetchError: "Failed to fetch availability"
+  },
+  durations: {
+    30: "30 minutes",
+    45: "45 minutes",
+    60: "1 hour",
+    90: "1.5 hours",
+    120: "2 hours"
+  }
+};
