@@ -1,243 +1,332 @@
 'use client';
-import ScrollToTop from "../components/ScrollToTop";
-import { FaGavel, FaExclamationTriangle, FaFileContract } from "react-icons/fa";
-import { useLanguage } from "../context/LanguageContext";
+import { FaGavel, FaExclamationTriangle, FaFileContract, FaShieldAlt, FaUserCheck, FaLightbulb, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { useState } from "react";
+import { useLanguage } from "@/app/context/LanguageContext";
 import { termsContent as enContent } from "@/lib/data/en/terms";
 import { termsContent as frContent } from "@/lib/data/fr/terms";
 
 export default function TermsPage() {
+    const [activeSection, setActiveSection] = useState<number | null>(null);
     const { language } = useLanguage();
     const content = language === 'fr' ? frContent : enContent;
 
+    const sections = [
+        {
+            id: 1,
+            title: content.sections.acceptance.title,
+            icon: FaUserCheck,
+            color: "from-blue-500 to-cyan-500",
+            description: content.sections.acceptance.description,
+            items: content.sections.acceptance.items
+        },
+        {
+            id: 2,
+            title: content.sections.services.title,
+            icon: FaShieldAlt,
+            color: "from-purple-500 to-pink-500",
+            description: content.sections.services.description,
+            permitted: content.sections.services.permitted,
+            prohibited: content.sections.services.prohibited
+        },
+        {
+            id: 3,
+            title: content.sections.ip.title,
+            icon: FaFileContract,
+            color: "from-green-500 to-emerald-500",
+            description: content.sections.ip.description,
+            may: content.sections.ip.may,
+            mayNot: content.sections.ip.mayNot
+        },
+        {
+            id: 4,
+            title: content.sections.contact.title,
+            icon: FaEnvelope,
+            color: "from-orange-500 to-red-500",
+            description: content.sections.contact.description,
+            items: content.sections.contact.items
+        },
+        {
+            id: 5,
+            title: content.sections.liability.title,
+            icon: FaExclamationTriangle,
+            color: "from-yellow-500 to-orange-500",
+            description: content.sections.liability.description,
+            important: content.sections.liability.important,
+            disclaimer: content.sections.liability.disclaimer
+        },
+        {
+            id: 6,
+            title: content.sections.changes.title,
+            icon: FaLightbulb,
+            color: "from-indigo-500 to-purple-500",
+            description: content.sections.changes.description
+        }
+    ];
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-            {/* Hero Section */}
-            <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-                {/* Background Elements - Light Mode */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="block dark:hidden absolute -top-40 -right-32 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
-                    <div className="block dark:hidden absolute -bottom-40 -left-32 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-                </div>
+        <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden min-h-screen">
+            {/* Animated Background Grid - Light Mode */}
+            <div className="block dark:hidden fixed inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
 
-                {/* Background Elements - Dark Mode */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="hidden dark:block absolute -top-40 -right-32 w-80 h-80 bg-blue-900 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-float"></div>
-                    <div className="hidden dark:block absolute -bottom-40 -left-32 w-80 h-80 bg-purple-900 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
-                </div>
+            {/* Animated Background Grid - Dark Mode */}
+            <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
 
-                <div className="max-w-6xl mx-auto relative">
-                    <div className="text-center">
-                        {/* Animated Icon/Badge */}
-                        <div className="relative inline-block mb-8">
-                            <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center animate-bounce-in shadow-lg">
-                                <FaGavel className="text-white text-3xl" />
-                            </div>
-                            <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
-                                {content.hero.badge}
-                            </div>
+            {/* Floating Gradient Orbs - Light Mode */}
+            <div className="block dark:hidden fixed top-10 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" />
+            <div className="block dark:hidden fixed top-1/2 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
+            <div className="block dark:hidden fixed bottom-10 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+
+            {/* Floating Gradient Orbs - Dark Mode */}
+            <div className="hidden dark:block fixed top-10 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" />
+            <div className="hidden dark:block fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
+            <div className="hidden dark:block fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+
+            {/* Additional Subtle Orbs */}
+            <div className="block dark:hidden fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
+            <div className="hidden dark:block fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
+
+            <div className="relative z-10">
+                {/* Hero Section */}
+                <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-6 animate-fade-in-up">
+                            <FaGavel className="text-xs" />
+                            {content.hero.badge}
                         </div>
-
-                        <h1 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up">
+                        <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                             {content.hero.title}
                         </h1>
+                        <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                            {content.hero.subtitle}
+                        </p>
+                        <p className="text-lg text-slate-500 dark:text-slate-500 mb-4 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
+                            {content.hero.emphasis}
+                        </p>
+                        <p className="text-sm text-slate-500 dark:text-slate-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            <strong>{content.hero.badge}:</strong> {new Date().toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}
+                        </p>
+                    </div>
+                </div>
 
-                        {/* Enhanced Subtitle */}
-                        <div className="relative inline-block max-w-3xl mx-auto">
-                            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-8 animate-slide-up">
-                                {content.hero.subtitle}
-                                <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
-                                    {content.hero.emphasis}
-                                </span>
-                            </p>
-                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse-slow"></div>
-                        </div>
-
-                        {/* Last Updated */}
-                        <div className="mt-8 p-4 bg-white/50 dark:bg-slate-800/50 rounded-lg inline-block">
-                            <p className="text-sm text-slate-600 dark:text-slate-300">
-                                <strong>{content.hero.badge}:</strong> {new Date().toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                })}
-                            </p>
+                {/* Introduction Card */}
+                <div className="px-4 sm:px-6 lg:px-8 pb-12">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="group relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity" />
+                            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-8 rounded-2xl">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <FaFileContract className="text-white text-xl" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{content.sections.welcome.title}</h2>
+                                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                            {content.sections.welcome.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            {/* Terms Content */}
-            <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
-                <div className="max-w-4xl mx-auto">
-                    <div className="prose prose-lg dark:prose-invert max-w-none">
-                        {/* Introduction */}
-                        <div className="mb-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
-                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                                <FaFileContract className="text-blue-600 dark:text-blue-400" />
-                                {content.sections.welcome.title}
-                            </h2>
+                {/* Terms Sections */}
+                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
+                    <div className="max-w-5xl mx-auto space-y-8">
+                        {sections.map((section, index) => {
+                            const Icon = section.icon;
+                            const isExpanded = activeSection === section.id;
+
+                            return (
+                                <div
+                                    key={section.id}
+                                    className="group relative animate-fade-in-up"
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                >
+                                    <div className={`absolute -inset-1 bg-gradient-to-r ${section.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity`} />
+                                    
+                                    <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all">
+                                        {/* Header */}
+                                        <button
+                                            onClick={() => setActiveSection(isExpanded ? null : section.id)}
+                                            className="w-full p-6 sm:p-8 text-left"
+                                        >
+                                            <div className="flex items-start gap-4">
+                                                <div className={`w-14 h-14 bg-gradient-to-r ${section.color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                                                    <Icon className="text-white text-2xl" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <div className={`text-sm font-bold bg-gradient-to-r ${section.color} bg-clip-text text-transparent mb-2`}>
+                                                        {language === 'fr' ? 'Section' : 'Section'} {section.id}
+                                                    </div>
+                                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                                        {section.title}
+                                                    </h3>
+                                                    <p className="text-slate-600 dark:text-slate-300">
+                                                        {section.description}
+                                                    </p>
+                                                </div>
+                                                <div className={`text-2xl text-slate-400 dark:text-slate-500 transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
+                                                    ↓
+                                                </div>
+                                            </div>
+                                        </button>
+
+                                        {/* Expandable Content */}
+                                        <div className={`transition-all duration-300 overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                                            <div className="px-6 sm:px-8 pb-8 pt-4 border-t border-slate-200 dark:border-slate-700/50">
+                                                {/* Liability Section Special Content */}
+                                                {section.important && (
+                                                    <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
+                                                        <p className="text-slate-700 dark:text-slate-300">
+                                                            <strong className="text-yellow-800 dark:text-yellow-300">{section.important}</strong> {section.description}
+                                                        </p>
+                                                        {section.disclaimer && (
+                                                            <p className="text-slate-600 dark:text-slate-400 mt-3">
+                                                                {section.disclaimer}
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                )}
+
+                                                {/* Regular Items */}
+                                                {section.items && !section.important && (
+                                                    <ul className="space-y-3">
+                                                        {section.items.map((item, i) => (
+                                                            <li key={i} className="flex items-start gap-3">
+                                                                <span className={`text-transparent bg-clip-text bg-gradient-to-r ${section.color} mt-1 text-xl`}>•</span>
+                                                                <span className="text-slate-700 dark:text-slate-300">{item}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+
+                                                {/* Permitted/Prohibited Items */}
+                                                {section.permitted && section.prohibited && (
+                                                    <div className="grid md:grid-cols-2 gap-6">
+                                                        <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                                                            <h4 className="font-semibold text-green-800 dark:text-green-300 mb-3 flex items-center gap-2">
+                                                                <span className="text-green-500 text-xl">✓</span>
+                                                                {section.permitted.title}
+                                                            </h4>
+                                                            <ul className="space-y-2">
+                                                                {section.permitted.items.map((item, i) => (
+                                                                    <li key={i} className="text-sm text-green-700 dark:text-green-400 flex items-start gap-2">
+                                                                        <span>•</span>
+                                                                        <span>{item}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                        <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                                                            <h4 className="font-semibold text-red-800 dark:text-red-300 mb-3 flex items-center gap-2">
+                                                                <FaExclamationTriangle className="text-red-500" />
+                                                                {section.prohibited.title}
+                                                            </h4>
+                                                            <ul className="space-y-2">
+                                                                {section.prohibited.items.map((item, i) => (
+                                                                    <li key={i} className="text-sm text-red-700 dark:text-red-400 flex items-start gap-2">
+                                                                        <span>•</span>
+                                                                        <span>{item}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {/* May/May Not Items */}
+                                                {section.may && section.mayNot && (
+                                                    <div className="space-y-4">
+                                                        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
+                                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{section.may.title}</h4>
+                                                            <ul className="space-y-2">
+                                                                {section.may.items.map((item, i) => (
+                                                                    <li key={i} className="text-slate-600 dark:text-slate-300 flex items-start gap-2">
+                                                                        <span className="text-green-500 mt-1">✓</span>
+                                                                        <span>{item}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
+                                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{section.mayNot.title}</h4>
+                                                            <ul className="space-y-2">
+                                                                {section.mayNot.items.map((item, i) => (
+                                                                    <li key={i} className="text-slate-600 dark:text-slate-300 flex items-start gap-2">
+                                                                        <span className="text-red-500 mt-1">✗</span>
+                                                                        <span>{item}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Contact Information Section */}
+                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{content.sections.contactInfo.title}</h2>
+                            <p className="text-slate-600 dark:text-slate-400">{content.sections.contactInfo.description}</p>
+                        </div>
+
+                        <div className="group relative">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl opacity-30 group-hover:opacity-50 blur-xl transition-opacity" />
+                            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-8 rounded-2xl">
+                                <div className="grid md:grid-cols-3 gap-6">
+                                    <div className="text-center p-4">
+                                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                                            <FaEnvelope className="text-white text-xl" />
+                                        </div>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.email}</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-300">hafaiedhakram@gmail.com</p>
+                                    </div>
+                                    <div className="text-center p-4">
+                                        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                                            <FaPhone className="text-white text-xl" />
+                                        </div>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.phone}</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-300">+216 50 569 298</p>
+                                    </div>
+                                    <div className="text-center p-4">
+                                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                                            <FaMapMarkerAlt className="text-white text-xl" />
+                                        </div>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.location}</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-300">{content.sections.contactInfo.locationValue}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Footer Note */}
+                <div className="px-4 sm:px-6 lg:px-8 pb-20">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800/50 text-center">
                             <p className="text-slate-700 dark:text-slate-300">
-                                {content.sections.welcome.description}
+                                {language === 'fr' 
+                                    ? "En utilisant ce site, vous reconnaissez avoir lu et compris ces conditions d'utilisation et acceptez d'être lié par celles-ci."
+                                    : "By using this website, you acknowledge that you have read and understood these terms and conditions and agree to be bound by them."}
                             </p>
-                        </div>
-
-                        {/* Terms Sections */}
-                        <div className="space-y-12">
-                            {/* Acceptance of Terms */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    1. {content.sections.acceptance.title}
-                                </h2>
-                                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                                    {content.sections.acceptance.description}
-                                </p>
-                                <ul className="text-slate-600 dark:text-slate-300 space-y-2 ml-6">
-                                    {content.sections.acceptance.items.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-2">
-                                            <span className="text-blue-500 dark:text-blue-400 mt-1">•</span>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </section>
-
-                            {/* Use of Services */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    2. {content.sections.services.title}
-                                </h2>
-                                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                                    {content.sections.services.description}
-                                </p>
-                                <div className="grid md:grid-cols-2 gap-6 mt-6">
-                                    <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                                        <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2 flex items-center gap-2">
-                                            <span className="text-green-500">✓</span>
-                                            {content.sections.services.permitted.title}
-                                        </h4>
-                                        <ul className="text-sm text-green-700 dark:text-green-400 space-y-1">
-                                            {content.sections.services.permitted.items.map((item, i) => (
-                                                <li key={i}>• {item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
-                                        <h4 className="font-semibold text-red-800 dark:text-red-300 mb-2 flex items-center gap-2">
-                                            <FaExclamationTriangle className="text-red-500" />
-                                            {content.sections.services.prohibited.title}
-                                        </h4>
-                                        <ul className="text-sm text-red-700 dark:text-red-400 space-y-1">
-                                            {content.sections.services.prohibited.items.map((item, i) => (
-                                                <li key={i}>• {item}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section>
-
-                            {/* Intellectual Property */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    3. {content.sections.ip.title}
-                                </h2>
-                                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                                    {content.sections.ip.description}
-                                </p>
-                                <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg">
-                                    <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{content.sections.ip.may.title}</h4>
-                                    <ul className="text-slate-600 dark:text-slate-300 space-y-2 mb-6">
-                                        {content.sections.ip.may.items.map((item, i) => (
-                                            <li key={i} className="flex items-start gap-2">
-                                                <span className="text-green-500 mt-1">✓</span>
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{content.sections.ip.mayNot.title}</h4>
-                                    <ul className="text-slate-600 dark:text-slate-300 space-y-2">
-                                        {content.sections.ip.mayNot.items.map((item, i) => (
-                                            <li key={i} className="flex items-start gap-2">
-                                                <span className="text-red-500 mt-1">✗</span>
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </section>
-
-                            {/* Contact & Communication */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    4. {content.sections.contact.title}
-                                </h2>
-                                <p className="text-slate-600 dark:text-slate-300 mb-4">
-                                    {content.sections.contact.description}
-                                </p>
-                                <ul className="text-slate-600 dark:text-slate-300 space-y-3 ml-6">
-                                    {content.sections.contact.items.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-2">
-                                            <span className="text-blue-500 dark:text-blue-400 mt-1">•</span>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </section>
-
-                            {/* Limitation of Liability */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    5. {content.sections.liability.title}
-                                </h2>
-                                <div className="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg border-l-4 border-yellow-500">
-                                    <p className="text-slate-700 dark:text-slate-300">
-                                        <strong>{content.sections.liability.important}</strong> {content.sections.liability.description}
-                                    </p>
-                                </div>
-                                <p className="text-slate-600 dark:text-slate-300 mt-4">
-                                    {content.sections.liability.disclaimer}
-                                </p>
-                            </section>
-
-                            {/* Changes to Terms */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    6. {content.sections.changes.title}
-                                </h2>
-                                <p className="text-slate-600 dark:text-slate-300">
-                                    {content.sections.changes.description}
-                                </p>
-                            </section>
-
-                            {/* Contact Information */}
-                            <section className="animate-slide-up">
-                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    7. {content.sections.contactInfo.title}
-                                </h2>
-                                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-lg">
-                                    <p className="text-slate-700 dark:text-slate-300 mb-4">
-                                        {content.sections.contactInfo.description}
-                                    </p>
-                                    <div className="space-y-2 text-slate-600 dark:text-slate-300">
-                                        <p>📧 <strong>{content.sections.contactInfo.email}</strong> hafaiedhakram@gmail.com</p>
-                                        <p>📱 <strong>{content.sections.contactInfo.phone}</strong> +216 50 569 298</p>
-                                        <p>📍 <strong>{content.sections.contactInfo.location}</strong> {content.sections.contactInfo.locationValue}</p>
-                                    </div>
-                                </div>
-                            </section>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <ScrollToTop />
+            </div>
         </div>
     );
 }
