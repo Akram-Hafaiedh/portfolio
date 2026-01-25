@@ -2,36 +2,36 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-4 px-4 sm:px-6 lg:px-8 bg-slate-900 dark:bg-slate-950 text-center">
+        <footer className="py-4 px-4 sm:px-6 lg:px-8 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 text-center">
             <div className="max-w-6xl mx-auto">
                 {/* Developer Credits */}
                 <div className="">
                     <div className="px-4 py-4">
                         <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-2 text-sm">
                             {/* Copyright */}
-                            <div className="text-gray-400 order-3 lg:order-1">
+                            <div className="text-slate-600 dark:text-gray-400 order-3 lg:order-1">
                                 © {currentYear} Akram Hafaiedh. All rights reserved.
                             </div>
                             {/* Terms and Privacy Links */}
-                            <div className="flex items-center gap-4 text-gray-400 order-2 lg:order-2">
+                            <div className="flex items-center gap-4 text-slate-600 dark:text-gray-400 order-2 lg:order-2">
                                 <a
                                     href="/terms"
-                                    className="hover:text-white transition-colors"
+                                    className="hover:text-slate-900 dark:hover:text-white transition-colors"
                                 >
                                     Terms
                                 </a>
                                 <span>•</span>
                                 <a
                                     href="/policy"
-                                    className="hover:text-white transition-colors"
+                                    className="hover:text-slate-900 dark:hover:text-white transition-colors"
                                 >
                                     Policy
                                 </a>
                             </div>
                             {/* Developer Credit – wraps nicely on small screens */}
-                            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-gray-400 order-1 lg:order-3">
+                            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-slate-600 dark:text-gray-400 order-1 lg:order-3">
                                 <span>Developed with</span>
-                                <div className="flex items-center gap-1 text-red-500">
+                                <div className="flex items-center gap-1 text-red-500 dark:text-red-500">
                                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                         <path
                                             fillRule="evenodd"
@@ -45,7 +45,7 @@ export default function Footer() {
                                     href="https://portfolio-six-mu-c3zpt9l3gd.vercel.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-blue-400 hover:text-blue-300 transition-colors font-medium bg-blue-500/10 px-3 py-1 rounded-full hover:bg-blue-500/20"
+                                    className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium bg-blue-500/10 dark:bg-blue-500/10 px-3 py-1 rounded-full hover:bg-blue-500/20 dark:hover:bg-blue-500/20"
                                 >
                                     Akram Hafaiedh
                                 </a>
@@ -54,7 +54,7 @@ export default function Footer() {
                                     href="https://github.com/Akram-Hafaiedh/e-commerce"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-1"
+                                    className="text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1"
                                 >
                                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                         <path

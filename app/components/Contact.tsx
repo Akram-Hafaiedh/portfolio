@@ -16,37 +16,34 @@ export default function Contact() {
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-20 animate-fade-in-up">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium mb-4">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 dark:text-green-400 text-sm font-medium mb-4">
                         <FaEnvelope className="text-xs" />
                         {t.sections.contactTitle}
                     </div>
-                    <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+                    <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
                         {t.sections.contactHeadline}
                     </h2>
-                    <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+                    <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                         {t.sections.contactSubtitle}
                     </p>
                 </div>
 
-                {/* Contact Methods & Info */}
+                {/* Contact Methods */}
                 <div className="grid lg:grid-cols-3 gap-8 mb-16">
                     {/* Email */}
                     <div className="group relative animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                         <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                        <a
-                            href="mailto:hafaiedhakram@gmail.com"
-                            className="relative block p-8 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl hover:border-blue-500/50 transition-all h-full"
-                        >
+                        <a href="mailto:hafaiedhakram@gmail.com" className="relative block p-8 bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl hover:border-blue-500/50 transition-all h-full">
                             <div className="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <FaEnvelope className="text-blue-400 text-2xl" />
+                                <FaEnvelope className="text-blue-500 dark:text-blue-400 text-2xl" />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                 {t.sections.emailMe}
                             </h3>
-                            <p className="text-slate-400 text-sm mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
                                 Send me a detailed message about your project
                             </p>
-                            <p className="text-slate-300 font-medium break-all">
+                            <p className="text-slate-700 dark:text-slate-300 font-medium break-all">
                                 hafaiedhakram@gmail.com
                             </p>
                         </a>
@@ -55,20 +52,17 @@ export default function Contact() {
                     {/* Phone */}
                     <div className="group relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                         <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                        <a
-                            href="tel:+21650569298"
-                            className="relative block p-8 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl hover:border-green-500/50 transition-all h-full"
-                        >
+                        <a href="tel:+21650569298" className="relative block p-8 bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl hover:border-green-500/50 transition-all h-full">
                             <div className="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <FaPhone className="text-green-400 text-2xl" />
+                                <FaPhone className="text-green-500 dark:text-green-400 text-2xl" />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                                 {t.sections.callMe}
                             </h3>
-                            <p className="text-slate-400 text-sm mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
                                 Prefer to talk? Give me a call directly
                             </p>
-                            <p className="text-slate-300 font-medium">
+                            <p className="text-slate-700 dark:text-slate-300 font-medium">
                                 +216 50 569 298
                             </p>
                         </a>
@@ -77,34 +71,34 @@ export default function Contact() {
                     {/* Location */}
                     <div className="group relative animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                         <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                        <div className="relative block p-8 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl h-full">
+                        <div className="relative block p-8 bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl h-full">
                             <div className="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6">
-                                <FaMapMarkerAlt className="text-purple-400 text-2xl" />
+                                <FaMapMarkerAlt className="text-purple-500 dark:text-purple-400 text-2xl" />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                                 {t.sections.location}
                             </h3>
-                            <p className="text-slate-400 text-sm mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
                                 Based in Tunisia, working globally
                             </p>
-                            <p className="text-slate-300 font-medium">
+                            <p className="text-slate-700 dark:text-slate-300 font-medium">
                                 Carthage, Tunis, Tunisia
                             </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom Section - Form & Additional Info */}
+                {/* Bottom Section */}
                 <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Left - Form (2 columns) */}
+                    {/* Form */}
                     <div className="lg:col-span-2 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity" />
-                            <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl">
-                                <h3 className="text-2xl font-bold text-white mb-2">
+                            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-8 rounded-2xl">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                                     {t.sections.sendMessage}
                                 </h3>
-                                <p className="text-slate-400 mb-8">
+                                <p className="text-slate-600 dark:text-slate-400 mb-8">
                                     {t.sections.sendMessageSubtitle}
                                 </p>
                                 <ContactForm />
@@ -112,9 +106,9 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    {/* Right - Additional Info (1 column) */}
+                    {/* Sidebar */}
                     <div className="space-y-8 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-                        {/* Meeting CTA Card */}
+                        {/* Meeting CTA */}
                         <div className="group relative">
                             <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity" />
                             <div className="relative bg-gradient-to-br from-green-500 to-emerald-600 p-6 rounded-2xl shadow-xl">
@@ -131,10 +125,7 @@ export default function Contact() {
                                         </p>
                                     </div>
                                 </div>
-                                <Link
-                                    href="/booking"
-                                    className="flex items-center justify-center gap-2 w-full bg-white hover:bg-green-50 text-green-600 px-4 py-3 rounded-xl font-bold transition-all hover:scale-105 shadow-lg"
-                                >
+                                <Link href="/booking" className="flex items-center justify-center gap-2 w-full bg-white hover:bg-green-50 text-green-600 px-4 py-3 rounded-xl font-bold transition-all hover:scale-105 shadow-lg">
                                     <FaCalendar className="text-sm" />
                                     {t.sections.bookMeeting}
                                 </Link>
@@ -142,43 +133,33 @@ export default function Contact() {
                         </div>
 
                         {/* Social Links */}
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                            <h4 className="font-bold text-white mb-4">{t.sections.connectWithMe}</h4>
+                        <div className="bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl">
+                            <h4 className="font-bold text-slate-900 dark:text-white mb-4">{t.sections.connectWithMe}</h4>
                             <div className="space-y-3">
-                                <a
-                                    href="https://www.linkedin.com/in/akram-hafaiedh-368b3312b/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-3 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 rounded-xl text-slate-300 hover:text-blue-400 font-medium transition-all hover:scale-105 group"
-                                >
+                                <a href="https://www.linkedin.com/in/akram-hafaiedh-368b3312b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-4 py-3 bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all hover:scale-105 group">
                                     <FaLinkedin className="text-xl group-hover:scale-110 transition-transform" />
                                     LinkedIn
                                 </a>
-                                <a
-                                    href="https://github.com/Akram-Hafaiedh"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-3 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 rounded-xl text-slate-300 hover:text-white font-medium transition-all hover:scale-105 group"
-                                >
+                                <a href="https://github.com/Akram-Hafaiedh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-4 py-3 bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium transition-all hover:scale-105 group">
                                     <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
                                     GitHub
                                 </a>
                             </div>
                         </div>
 
-                        {/* Availability Info */}
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl">
-                            <h4 className="font-bold text-white mb-4">{t.sections.availability}</h4>
+                        {/* Availability */}
+                        <div className="bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl">
+                            <h4 className="font-bold text-slate-900 dark:text-white mb-4">{t.sections.availability}</h4>
                             <div className="space-y-3">
                                 {[
-                                    { icon: FaCheckCircle, text: 'Freelance projects', color: 'text-green-400' },
-                                    { icon: FaCheckCircle, text: 'Full-time roles', color: 'text-blue-400' },
-                                    { icon: FaCheckCircle, text: 'Remote work', color: 'text-purple-400' },
-                                    { icon: FaCheckCircle, text: '24h response', color: 'text-orange-400' },
+                                    { icon: FaCheckCircle, text: 'Freelance projects', color: 'text-green-500 dark:text-green-400' },
+                                    { icon: FaCheckCircle, text: 'Full-time roles', color: 'text-blue-500 dark:text-blue-400' },
+                                    { icon: FaCheckCircle, text: 'Remote work', color: 'text-purple-500 dark:text-purple-400' },
+                                    { icon: FaCheckCircle, text: '24h response', color: 'text-orange-500 dark:text-orange-400' },
                                 ].map((item, index) => (
                                     <div key={index} className="flex items-center gap-3">
                                         <item.icon className={`${item.color} flex-shrink-0`} />
-                                        <span className="text-slate-300 text-sm">{item.text}</span>
+                                        <span className="text-slate-700 dark:text-slate-300 text-sm">{item.text}</span>
                                     </div>
                                 ))}
                             </div>

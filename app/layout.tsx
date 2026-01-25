@@ -46,19 +46,9 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var savedTheme = localStorage.getItem('theme');
-                  var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  
-                  var shouldBeDark = false;
-                  
-                  if (savedTheme === 'dark') {
-                    shouldBeDark = true;
-                  } else if (savedTheme === 'light') {
-                    shouldBeDark = false;
-                  } else {
-                    // No saved preference, use system preference
-                    shouldBeDark = systemPrefersDark;
-                  }
+                  const savedTheme = localStorage.getItem('theme');
+                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const shouldBeDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
                   
                   if (shouldBeDark) {
                     document.documentElement.classList.add('dark');
@@ -83,7 +73,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
-          <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+          <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors">
             <Navigation />
             {children}
 
