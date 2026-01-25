@@ -372,7 +372,6 @@ export default function PrivacyPage() {
                 </div>
             </section>
 
-            <Footer />
             <ScrollToTop />
         </div>
     );
