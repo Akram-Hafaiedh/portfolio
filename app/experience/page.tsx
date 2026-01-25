@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
-import { FaBriefcase, FaGlobe, FaDownload } from 'react-icons/fa';
-import { getProfessionalData, type Language } from '@/lib/professionalData';
+import { FaBriefcase, FaDownload } from 'react-icons/fa';
+import { getProfessionalData } from '@/lib/professionalData';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 // Color mapping for each experience
 const experienceColors = [
@@ -13,7 +13,7 @@ const experienceColors = [
 ];
 
 export default function UnifiedExperiencePage() {
-    const [language, setLanguage] = useState<Language>('en');
+    const { language } = useLanguage();
     const data = getProfessionalData(language);
 
     const handleDownload = () => {
@@ -33,26 +33,6 @@ export default function UnifiedExperiencePage() {
             <div className="fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
             <div className="fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
 
-            {/* Language Toggle Bar */}
-            <div className="sticky top-16 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-                    <button
-                        onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
-                        className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg hover:bg-slate-700/50 hover:border-purple-500/50 transition-all"
-                    >
-                        <FaGlobe className="text-purple-400" />
-                        <span className="text-white">{language === 'en' ? '🇫🇷 Français' : '🇬🇧 English'}</span>
-                    </button>
-                    <button
-                        onClick={handleDownload}
-                        className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
-                    >
-                        <FaDownload />
-                        {data.downloadBtn}
-                    </button>
-                </div>
-            </div>
-
             <div className="relative z-10">
                 {/* Hero Section */}
                 <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -68,8 +48,19 @@ export default function UnifiedExperiencePage() {
                             {data.experienceSection.subtitle}
                         </p>
 
+                        {/* Download Resume Button */}
+                        <div className="mb-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            <button
+                                onClick={handleDownload}
+                                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105"
+                            >
+                                <FaDownload />
+                                {data.downloadBtn}
+                            </button>
+                        </div>
+
                         {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                             {[
                                 { label: "Years", value: "4+", color: "from-blue-600 to-cyan-600" },
                                 { label: "Companies", value: data.experiences.length.toString(), color: "from-purple-600 to-pink-600" },
@@ -80,6 +71,65 @@ export default function UnifiedExperiencePage() {
                                     <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-4 rounded-xl text-center group-hover:scale-105 transition-transform">
                                         <div className="text-3xl font-bold text-white">{stat.value}</div>
                                         <div className="text-xs text-slate-400">{stat.label}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Skills Summary Section */}
+                <div className="px-4 sm:px-6 lg:px-8 pb-20 border-b border-slate-800/50">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-white mb-4">Technical Expertise</h2>
+                            <p className="text-slate-400">Core technologies and frameworks I work with</p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {[
+                                {
+                                    title: "Frontend",
+                                    color: "from-blue-500 to-cyan-500",
+                                    skills: ["React", "Vue.js", "Next.js", "Nuxt.js", "Angular", "TypeScript", "TailwindCSS"]
+                                },
+                                {
+                                    title: "Backend",
+                                    color: "from-green-500 to-emerald-500",
+                                    skills: ["Laravel", "Node.js", "Express.js", "Django", "REST API", "GraphQL"]
+                                },
+                                {
+                                    title: "Database",
+                                    color: "from-purple-500 to-pink-500",
+                                    skills: ["MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis"]
+                                },
+                                {
+                                    title: "Tools & Others",
+                                    color: "from-orange-500 to-red-500",
+                                    skills: ["Git", "Docker", "Vercel", "AWS", "Ionic", "Livewire"]
+                                }
+                            ].map((category, index) => (
+                                <div
+                                    key={index}
+                                    className="group relative animate-fade-in-up"
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                >
+                                    <div className={`absolute -inset-1 bg-gradient-to-r ${category.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity`} />
+                                    <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-2xl hover:border-purple-500/50 transition-all h-full">
+                                        <div className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                                            <span className="text-white text-2xl font-bold">{category.title.charAt(0)}</span>
+                                        </div>
+                                        <h3 className="text-lg font-bold text-white mb-4">{category.title}</h3>
+                                        <div className="flex flex-wrap gap-2">
+                                            {category.skills.map((skill, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="px-3 py-1 bg-slate-700/50 border border-slate-600/50 text-slate-300 rounded-lg text-xs hover:border-purple-500/50 hover:text-white transition-all"
+                                                >
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -103,8 +153,8 @@ export default function UnifiedExperiencePage() {
                                         <div
                                             key={exp.id}
                                             className={`relative animate-fade-in-up ${index % 2 === 0
-                                                    ? 'md:pr-[calc(50%+2rem)] md:text-right'
-                                                    : 'md:pl-[calc(50%+2rem)] md:text-left'
+                                                ? 'md:pr-[calc(50%+2rem)] md:text-right'
+                                                : 'md:pl-[calc(50%+2rem)] md:text-left'
                                                 }`}
                                             style={{ animationDelay: `${index * 150}ms` }}
                                         >
@@ -179,6 +229,39 @@ export default function UnifiedExperiencePage() {
                                     );
                                 })}
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* CTA Section */}
+                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/50">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium mb-6">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            Available for Opportunities
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                            Let's Build Something Great Together
+                        </h2>
+                        <p className="text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
+                            I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a
+                                href="/contact"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg"
+                            >
+                                Get in Touch
+                            </a>
+                            <a
+                                href="/projects"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 border-2 border-slate-700 hover:border-purple-500 text-white rounded-xl font-bold transition-all hover:scale-105"
+                            >
+                                View My Work
+                            </a>
                         </div>
                     </div>
                 </div>
