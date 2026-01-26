@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { FaExternalLinkAlt, FaGithub, FaStar } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub, FaStar, FaPlay, FaArrowRight } from "react-icons/fa";
 import { Project } from "@/lib/projects";
-import ProjectImage from "./ProjectImage";
+import { useState } from "react";
 
 interface ProjectCardProps {
     project: Project;
@@ -11,132 +11,160 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index, showFeaturedBadge = true, className = "" }: ProjectCardProps) {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <div
-            className={`group relative animate-slide-up ${className}`}
+            className={`group relative animate-fade-in-up ${className}`}
             style={{ animationDelay: `${index * 100}ms` }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Electric glow effect (appears on hover) */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-75 blur-lg transition-all duration-500 animate-electric-pulse"></div>
+            {/* Glow Effect */}
+            <div className={`absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur-xl transition-all duration-500 ${isHovered ? 'opacity-30 scale-105' : 'opacity-0'}`} />
 
-            {/* Main card container */}
-            <div className="relative bg-white dark:bg-slate-900 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-slate-200 dark:border-slate-700 group-hover:border-cyan-400 dark:group-hover:border-cyan-500">
+            {/* Card */}
+            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 h-full flex flex-col group-hover:translate-y-[-8px]">
+                {/* Image */}
+                <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
+                    {project.image ? (
+                        <>
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
+                            <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-4 transform transition-transform duration-300 group-hover:scale-110">
+                                    <FaPlay className="text-white text-2xl" />
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                            <div className="text-6xl opacity-20 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
+                                {index % 3 === 0 ? '💼' : index % 3 === 1 ? '📊' : '🚀'}
+                            </div>
+                        </div>
+                    )}
 
-                {/* Project Image */}
-                <div className="relative overflow-hidden h-48">
-                    <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-gradient-to-t group-hover:from-cyan-900/20 group-hover:via-transparent transition-all duration-300 z-10"></div>
-
+                    {/* Featured Badge */}
                     {showFeaturedBadge && project.featured && (
-                        <div className="absolute top-4 left-4 z-20">
-                            <span className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-lg shadow-cyan-500/50 animate-glow">
-                                <FaStar className="text-yellow-300 animate-pulse" />
-                                Featured
-                            </span>
+                        <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full text-xs font-bold text-white flex items-center gap-1 shadow-lg animate-pulse">
+                            <FaStar className="text-xs animate-spin" style={{ animationDuration: '3s' }} />
+                            Featured
                         </div>
                     )}
 
                     {/* Project Type Badge */}
-                    <div className="absolute top-4 right-4 z-20">
-                        <span className="bg-slate-800/90 border border-cyan-500/30 text-cyan-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm group-hover:border-cyan-400/60 transition-colors">
+                    <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-slate-900/80 dark:bg-slate-800/80 backdrop-blur-sm border border-white/20 text-white rounded-full text-xs font-medium">
                             {project.type}
                         </span>
                     </div>
-
-                    {/* Use ProjectImage component */}
-                    <ProjectImage
-                        project={project}
-                        imageUrl={project.image}
-                        compact={true}
-                        className="w-full h-full group-hover:scale-110 transition-transform duration-700"
-                    />
                 </div>
 
-                {/* Project Content */}
-                <div className="p-6 relative z-10">
-                    <Link href={`/projects/${project.id}`}>
-                        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all cursor-pointer">
-                            {project.title}
-                        </h3>
-                    </Link>
+                {/* Content */}
+                <div className="p-6 flex-1 flex flex-col">
+                    {/* Title */}
+                    <div className="relative mb-3">
+                        <Link href={`/projects/${project.id}`}>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 cursor-pointer">
+                                {project.title}
+                            </h3>
+                        </Link>
+                        <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 ${isHovered ? 'w-full' : 'w-0'}`} />
+                    </div>
 
-                    <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-3">
+                    {/* Description */}
+                    <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed line-clamp-3 flex-1">
                         {project.shortDescription || project.longDescription}
                     </p>
 
                     {/* Quick Info */}
                     <div className="grid grid-cols-2 gap-2 mb-4">
-                        <div className="text-center p-2 bg-slate-50 dark:bg-slate-800 rounded-lg border border-transparent group-hover:border-cyan-500/20 transition-colors">
+                        <div className="text-center p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
                             <div className="text-xs text-slate-500 dark:text-slate-400">Role</div>
                             <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">{project.role}</div>
                         </div>
-                        <div className="text-center p-2 bg-slate-50 dark:bg-slate-800 rounded-lg border border-transparent group-hover:border-cyan-500/20 transition-colors">
+                        <div className="text-center p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
                             <div className="text-xs text-slate-500 dark:text-slate-400">Timeline</div>
                             <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">{project.timeline}</div>
                         </div>
                     </div>
 
-                    {/* Technologies */}
+                    {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                        {project.technologies?.slice(0, 3).map((tech, i) => (
                             <span
-                                key={techIndex}
-                                className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full text-xs font-medium border border-transparent group-hover:border-cyan-500/30 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-all"
+                                key={i}
+                                className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-300 rounded-lg text-xs font-medium hover:bg-blue-500/20 hover:scale-110 transition-all duration-300 cursor-default"
+                                style={{
+                                    transitionDelay: isHovered ? `${i * 50}ms` : '0ms',
+                                    transform: isHovered ? 'translateY(0)' : 'translateY(2px)'
+                                }}
                             >
                                 {tech}
                             </span>
                         ))}
-                        {project.technologies.length > 3 && (
-                            <span className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full text-xs font-medium border border-transparent group-hover:border-cyan-500/30 transition-all">
-                                +{project.technologies.length - 3} more
+                        {project.technologies?.length > 3 && (
+                            <span className="px-3 py-1 bg-slate-200 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-slate-300 dark:hover:bg-slate-600/50 transition-all cursor-default">
+                                +{project.technologies.length - 3}
                             </span>
                         )}
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex justify-between items-center pt-4 border-t border-slate-200 dark:border-slate-700 group-hover:border-cyan-500/30 transition-colors">
-                        <div className="flex gap-3">
-                            {project.liveUrl && project.liveUrl !== "#" ? (
-                                <a
-                                    href={project.liveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors text-sm font-medium group/link"
-                                >
-                                    <FaExternalLinkAlt className="group-hover/link:animate-bounce" />
-                                    Live Demo
-                                </a>
-                            ) : (
-                                <span className="flex items-center gap-2 text-slate-400 dark:text-slate-600 text-sm font-medium cursor-not-allowed">
-                                    <FaExternalLinkAlt />
-                                    No Demo
-                                </span>
-                            )}
-                            {project.githubUrl && project.githubUrl !== "#" ? (
-                                <a
-                                    href={project.githubUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-cyan-400 transition-colors text-sm font-medium group/link"
-                                >
-                                    <FaGithub className="group-hover/link:animate-spin-slow" />
-                                    Code
-                                </a>
-                            ) : (
-                                <span className="flex items-center gap-2 text-slate-400 dark:text-slate-600 text-sm font-medium cursor-not-allowed">
-                                    <FaGithub />
-                                    Private
-                                </span>
-                            )}
-                        </div>
+                    <div className="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700/50">
+                        {project.liveUrl && project.liveUrl !== '#' ? (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg text-white text-sm font-semibold transition-all hover:scale-105 overflow-hidden group/btn"
+                            >
+                                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-300" />
+                                <FaExternalLinkAlt className="text-xs relative z-10" />
+                                <span className="relative z-10">Live Demo</span>
+                            </a>
+                        ) : project.githubUrl && project.githubUrl !== '#' ? (
+                            <a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 border border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500"
+                            >
+                                <FaGithub className="group-hover:rotate-12 transition-transform" />
+                                Code
+                            </a>
+                        ) : (
+                            <Link
+                                href={`/projects/${project.id}`}
+                                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105"
+                            >
+                                View Details
+                                <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        )}
 
-                        <Link
-                            href={`/projects/${project.id}`}
-                            className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 text-sm font-medium transition-all hover:translate-x-1 inline-block"
-                        >
-                            View Details →
-                        </Link>
+                        {project.githubUrl && project.githubUrl !== '#' && project.liveUrl && project.liveUrl !== '#' && (
+                            <a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 border border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500"
+                            >
+                                <FaGithub className="group-hover:rotate-12 transition-transform" />
+                                Code
+                            </a>
+                        )}
                     </div>
                 </div>
+
+                {/* Corner Gradients */}
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl transition-all duration-700 ${isHovered ? 'scale-150 opacity-100' : 'scale-100 opacity-0'}`} />
+                <div className={`absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 rounded-full blur-2xl transition-all duration-700 ${isHovered ? 'scale-150 opacity-100' : 'scale-100 opacity-0'}`} />
             </div>
         </div>
     );
