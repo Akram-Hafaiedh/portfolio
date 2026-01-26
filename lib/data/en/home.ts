@@ -17,7 +17,7 @@ export const homeContent = {
         },
         stats: {
             exp: { value: "5+", label: "Years Exp" },
-            projects: { value: "50+", label: "Projects" },
+            projects: { value: "5+", label: "Projects" },
             satisfied: { value: "100%", label: "Satisfied" }
         },
         techStack: "Core Technologies",
