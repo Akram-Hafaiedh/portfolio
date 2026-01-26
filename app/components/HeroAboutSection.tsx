@@ -4,13 +4,14 @@ import Link from "next/link";
 import { FaEnvelope, FaCode, FaRocket, FaCalendar, FaGithub, FaLinkedin, FaArrowRight, FaLightbulb, FaUsers } from "react-icons/fa";
 import { useState, useEffect } from 'react';
 import { useLanguage } from "@/app/context/LanguageContext";
-import { heroContent as enHero } from "@/lib/data/en/hero";
-import { heroContent as frHero } from "@/lib/data/fr/hero";
+import { homeContent as enContent } from "@/lib/data/en/home";
+import { homeContent as frContent } from "@/lib/data/fr/home";
 
 export default function HeroAboutSection() {
     const [isVisible, setIsVisible] = useState(false);
     const { language } = useLanguage();
-    const content = language === 'fr' ? frHero : enHero;
+    const homeData = language === 'fr' ? frContent : enContent;
+    const content = homeData.hero; // Access hero section from home content
 
     useEffect(() => {
         setIsVisible(true);

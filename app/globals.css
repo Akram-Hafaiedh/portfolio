@@ -22,6 +22,7 @@
   --animate-spin-slow: spin 3s linear infinite;
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-gradient-x: gradientX 3s ease infinite;
+  --animate-scan: scan 3s linear infinite;
 }
 
 /* Keyframe animations */
@@ -215,6 +216,16 @@
   }
 }
 
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
 /* Base styles */
 html {
   scroll-behavior: smooth;
@@ -274,4 +285,25 @@ body {
 /* Dark mode color scheme */
 .dark {
   color-scheme: dark;
+}
+
+/* 3D Transform utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.group-hover\/flip:hover .group-hover\/flip\:rotate-y-180 {
+  transform: rotateY(180deg);
 }

@@ -1,0 +1,45 @@
+// lib/data/en/projectDetails.ts
+export const projectDetailsContent = {
+    backButton: "Back to Projects",
+    status: {
+        completed: "Completed",
+        inProgress: "In Progress",
+        onHold: "On Hold",
+        cancelled: "Cancelled"
+    },
+    badges: {
+        featured: "Featured"
+    },
+    buttons: {
+        viewLiveDemo: "View Live Demo",
+        viewSourceCode: "View Source Code",
+        bookCall: "Book a Call",
+        getInTouch: "Get in Touch"
+    },
+    meta: {
+        role: "Role",
+        timeline: "Timeline",
+        company: "Company",
+        personal: "Personal",
+        technologies: "Technologies"
+    },
+    sections: {
+        projectOverview: "Project Overview",
+        projectGallery: "Project Gallery",
+        keyFeatures: "Key Features",
+        challengesSolutions: "Challenges & Solutions",
+        challenge: "Challenge:",
+        solution: "Solution:",
+        resultsImpact: "Results & Impact",
+        techStack: "Tech Stack",
+        keyLearnings: "Key Learnings",
+        quickLinks: "Quick Links",
+        liveDemo: "Live Demo",
+        sourceCode: "Source Code",
+        allProjects: "All Projects"
+    },
+    cta: {
+        title: "Interested in working together?",
+        description: "Let's discuss your project and create something amazing together."
+    }
+};
