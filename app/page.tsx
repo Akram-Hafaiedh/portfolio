@@ -1,10 +1,19 @@
+'use client';
+
 import Contact from "./components/Contact";
 import ExperienceHighlights from "./components/ExperienceHighlights";
 import ProjectsHighlights from "./components/ProjectsHighlights";
 import ScrollProgress from "./components/ScrollProgress";
-import HeroAboutSection from "./components/Sections/HeroAboutSection";
+import HeroAboutSection from "./components/HeroAboutSection";
+import CTA from "./components/CTA";
+import { useLanguage } from "./context/LanguageContext";
+import { homeContent as enContent } from "@/lib/data/en/home";
+import { homeContent as frContent } from "@/lib/data/fr/home";
 
 export default function Home() {
+  const { language } = useLanguage();
+  const content = language === 'fr' ? frContent : enContent;
+
   return (
     <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden min-h-screen">
       {/* Animated Background Grid - Light Mode */}
@@ -23,7 +32,7 @@ export default function Home() {
       <div className="hidden dark:block fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
       <div className="hidden dark:block fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
 
-      {/* Additional Subtle Orbs for More Depth */}
+      {/* Additional Subtle Orbs */}
       <div className="block dark:hidden fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
       <div className="hidden dark:block fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
 
@@ -35,6 +44,13 @@ export default function Home() {
         <ExperienceHighlights />
         <ProjectsHighlights />
         <Contact />
+
+        {/* Final CTA before footer */}
+        <CTA
+          title={content.cta.title}
+          description={content.cta.description}
+          buttons={[]}
+        />
       </div>
     </div>
   );

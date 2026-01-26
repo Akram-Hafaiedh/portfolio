@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { aboutPageContent as enContent } from "@/lib/data/en/about";
 import { aboutPageContent as frContent } from "@/lib/data/fr/about";
+import CTA from "../components/CTA";
 
 export default function AboutPage() {
     const [hoveredEmoji, setHoveredEmoji] = useState<string | number | null>(null);
@@ -26,7 +27,7 @@ export default function AboutPage() {
         <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden min-h-screen">
             {/* Animated Background Grid - Light Mode */}
             <div className="block dark:hidden fixed inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
-            
+
             {/* Animated Background Grid - Dark Mode */}
             <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
 
@@ -34,7 +35,7 @@ export default function AboutPage() {
             <div className="block dark:hidden fixed top-10 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" />
             <div className="block dark:hidden fixed top-1/2 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
             <div className="block dark:hidden fixed bottom-10 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
-            
+
             {/* Floating Gradient Orbs - Dark Mode */}
             <div className="hidden dark:block fixed top-10 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" />
             <div className="hidden dark:block fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
@@ -342,30 +343,24 @@ export default function AboutPage() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{content.cta.title}</h2>
-                        <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg">
-                            {content.cta.description}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
-                                href="/experience"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg"
-                            >
-                                <FaRocket />
-                                {content.cta.resume}
-                            </Link>
-                            <Link
-                                href="/booking"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-green-500 text-slate-900 dark:text-white rounded-xl font-bold transition-all hover:scale-105"
-                            >
-                                <FaCalendar />
-                                {content.cta.schedule}
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                <CTA
+                    title={content.cta.title}
+                    description={content.cta.description}
+                    buttons={[
+                        {
+                            label: content.cta.resume,
+                            href: '/experience',
+                            type: 'primary',
+                            icon: 'briefcase'
+                        },
+                        {
+                            label: content.cta.schedule,
+                            href: '/booking',
+                            type: 'secondary',
+                            icon: 'calendar'
+                        }
+                    ]}
+                />
             </div>
         </div>
     );

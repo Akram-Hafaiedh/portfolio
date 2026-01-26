@@ -2,6 +2,7 @@
 import { FaBriefcase, FaDownload } from 'react-icons/fa';
 import { getProfessionalData } from '@/lib/professionalData';
 import { useLanguage } from '@/app/context/LanguageContext';
+import CTA from '../components/CTA';
 
 // Color mapping for each experience
 const experienceColors = [
@@ -260,37 +261,24 @@ export default function UnifiedExperiencePage() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 dark:text-green-400 text-sm font-medium mb-6">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 dark:bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600 dark:bg-green-500"></span>
-                            </span>
-                            {data.cta.badge}
-                        </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                            {data.cta.title}
-                        </h2>
-                        <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
-                            {data.cta.description}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a
-                                href="/contact"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg"
-                            >
-                                {data.cta.getInTouch}
-                            </a>
-                            <a
-                                href="/projects"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-purple-500 text-slate-900 dark:text-white rounded-xl font-bold transition-all hover:scale-105"
-                            >
-                                {data.cta.viewWork}
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <CTA
+                    badge={data.cta.badge}
+                    title={data.cta.title}
+                    description={data.cta.description}
+                    buttons={[
+                        {
+                            label: data.cta.getInTouch,
+                            href: '/contact',
+                            type: 'primary'
+                        },
+                        {
+                            label: data.cta.viewWork,
+                            href: '/projects',
+                            type: 'secondary',
+                            icon: 'code'
+                        }
+                    ]}
+                />
             </div>
         </div>
     );
