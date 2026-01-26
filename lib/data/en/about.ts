@@ -7,7 +7,7 @@ export const aboutPageContent = {
     },
     stats: [
         { iconName: "FaGraduationCap", label: "Master's Degree", value: "Biomedical", color: "blue" },
-        { iconName: "FaCode", label: "Projects Completed", value: "50+", color: "green" }, // Value handled dynamically ideally, but hardcoding provided value format in list is okay if consistent
+        { iconName: "FaCode", label: "Projects Completed", value: "5+", color: "green" }, // Value handled dynamically ideally, but hardcoding provided value format in list is okay if consistent
         { iconName: "FaGlobe", label: "Languages", value: "4", color: "purple" },
         { iconName: "FaMapMarkerAlt", label: "Location", value: "Tunisia", color: "orange" }
     ],

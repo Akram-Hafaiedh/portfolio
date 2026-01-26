@@ -17,7 +17,7 @@ export const homeContent = {
     },
     stats: {
       exp: { value: "5+", label: "Années Exp" },
-      projects: { value: "0+", label: "Projets" },
+      projects: { value: "5+", label: "Projets" },
       satisfied: { value: "100%", label: "Satisfait" }
     },
     techStack: "Technologies Clés",
