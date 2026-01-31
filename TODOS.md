@@ -42,8 +42,9 @@ This document tracks completed features and planned improvements for the portfol
 - [x] **UX Discoverability**: Integrated search triggers in Navigation and synchronized search bars.
 
 ### 🚀 Long-term SEO & Content
-- [/] **next-intl Migration**: Localized routing (`/fr/`) and robust SEO structure.
-- [ ] **MDX Blog**: Simple, powerful technical blog.
+- [x] **next-intl Migration**: Localized routing (`/fr/`) and robust SEO structure.
+- [ ] **Phase 17: MDX Blog**: Simple, powerful technical blog.
+- [ ] **Phase 18: Architectural Refactor**: Modularizing the architecture towards a microservices-like pattern (module-wise/page-wise).
 
 ---
-*Last Updated: January 31, 2026*
+*Last Updated: January 31, 2026 (Refactored for i18n & Modular Architecture)*

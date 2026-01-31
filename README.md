@@ -22,8 +22,9 @@ A high-fidelity, multilingual portfolio built with **Next.js 15**, **TypeScript*
 ## 🔜 Roadmap: Phase 13+
 
 - [x] **Adaptive Grid**: Variable-span cards for a dynamic editorial layout.
-- [ ] **next-intl Migration**: Localized routing support and SEO boost.
-- [ ] **MDX Technical Blog**: Content-rich discovery.
+- [x] **next-intl Migration**: Robust localized routing (`/en`, `/fr`) and optimized SEO indexing.
+- [ ] **Phase 17: MDX Technical Blog**: Content-rich discovery and thought leadership.
+- [ ] **Phase 18: Microservices-like Architecture**: Modular refactor for page-based concerns and scalable structure.
 
 ---
 © 2026 Akram Hafaiedh
