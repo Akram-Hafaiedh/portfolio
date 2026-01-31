@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 import { getFeaturedProjects } from "@/lib/projects";
 import Link from "next/link";
 import { FaArrowRight, FaRocket, FaExternalLinkAlt, FaGithub, FaStar, FaPlay } from "react-icons/fa";
@@ -42,7 +43,14 @@ export default function ProjectsHighlights() {
                                 <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
                                     {project.image ? (
                                         <>
-                                            <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75" />
+                                            <Image
+                                                src={project.image}
+                                                alt={project.title}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                                                priority={index < 3}
+                                            />
                                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
                                             <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
                                                 <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-4 transform transition-transform duration-300 group-hover:scale-110">

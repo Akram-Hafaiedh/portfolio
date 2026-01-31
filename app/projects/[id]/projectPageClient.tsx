@@ -2,6 +2,7 @@
 'use client';
 
 import ProjectGallery from "@/app/components/ProjectGallery";
+import Image from "next/image";
 import Link from "next/link";
 import {
     FaArrowLeft,
@@ -154,10 +155,12 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                         <div className="relative animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
                             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                                 <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} opacity-30 blur-2xl`} />
-                                <img
+                                <Image
                                     src={project.image}
                                     alt={project.title}
-                                    className="relative w-full h-[500px] object-cover rounded-3xl"
+                                    fill
+                                    className="object-cover rounded-3xl"
+                                    priority
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent rounded-3xl" />
                             </div>
