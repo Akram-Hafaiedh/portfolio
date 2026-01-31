@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import Image from "next/image";
 import GalleryLightbox from "./GalleryLightbox";
 import { ProjectImage } from "@/lib/projects";
 
@@ -8,15 +9,21 @@ interface ProjectGalleryProps {
     images?: ProjectImage[];
     title?: string;
     initialDisplayCount?: number;
+    onImageClick?: (index: number) => void;
 }
 
-export default function ProjectGallery({ images, title = "Project Gallery", initialDisplayCount = 6 }: ProjectGalleryProps) {
+export default function ProjectGallery({ images, title = "Project Gallery", initialDisplayCount = 6, onImageClick }: ProjectGalleryProps) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [displayCount, setDisplayCount] = useState(initialDisplayCount);
+
     const openLightbox = (index: number) => {
-        setSelectedImageIndex(index);
-        setLightboxOpen(true);
+        if (onImageClick) {
+            onImageClick(index);
+        } else {
+            setSelectedImageIndex(index);
+            setLightboxOpen(true);
+        }
     };
 
     const closeLightbox = () => {
@@ -52,13 +59,14 @@ export default function ProjectGallery({ images, title = "Project Gallery", init
                     <div
                         key={index}
                         onClick={() => openLightbox(index)}
-                        className="group relative overflow-hidden rounded-lg shadow-md cursor-pointer bg-slate-100 dark:bg-slate-800 hover:shadow-xl transition-all duration-300"
+                        className="group relative h-56 overflow-hidden rounded-lg shadow-md cursor-pointer bg-slate-100 dark:bg-slate-800 hover:shadow-xl transition-all duration-300"
                     >
-                        <img
+                        <Image
                             src={image.url}
                             alt={image.caption}
-                            className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                            loading="lazy"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                             <div className="w-full">

@@ -2,6 +2,8 @@
 'use client';
 
 import ProjectGallery from "@/app/components/ProjectGallery";
+import GalleryLightbox from "@/app/components/GalleryLightbox";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -35,9 +37,21 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
     const { language } = useLanguage();
     const content = language === 'fr' ? frContent : enContent;
 
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
     const hasGallery = project.gallery && project.gallery.length > 0;
 
-    // Helper function to get status translation
+    // Combine main image with gallery for a single slideshow experience
+    const allImages = [
+        { url: project.image, caption: project.title, category: 'Main' },
+        ...(project.gallery || [])
+    ];
+
+    const openLightbox = (index: number) => {
+        setSelectedImageIndex(index);
+        setLightboxOpen(true);
+    };
     const getStatusText = (status?: string) => {
         if (!status) return '';
         switch (status) {
@@ -152,9 +166,13 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
 
                     {/* Project Image or Fallback */}
                     {project.image ? (
-                        <div className="relative animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-                            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                                <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} opacity-30 blur-2xl`} />
+                        <div
+                            className="relative animate-fade-in-up cursor-pointer group/main-img"
+                            style={{ animationDelay: '0.5s' }}
+                            onClick={() => openLightbox(0)}
+                        >
+                            <div className="relative h-[500px] overflow-hidden rounded-3xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                                <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} opacity-30 blur-2xl group-hover:opacity-50 transition-opacity`} />
                                 <Image
                                     src={project.image}
                                     alt={project.title}
@@ -163,6 +181,11 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     priority
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent rounded-3xl" />
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-4 transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                        <FaRocket className="text-white text-3xl" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ) : (
@@ -225,7 +248,11 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                         </div>
                                         {content.sections.projectGallery}
                                     </h2>
-                                    <ProjectGallery images={project.gallery} title="" />
+                                    <ProjectGallery
+                                        images={project.gallery}
+                                        title=""
+                                        onImageClick={(index: number) => openLightbox(index + 1)}
+                                    />
                                 </div>
                             )}
 
@@ -415,6 +442,14 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                 ]}
                 variant="default"
                 showIcon={true}
+            />
+
+            {/* Lightbox Integration */}
+            <GalleryLightbox
+                images={allImages}
+                isOpen={lightboxOpen}
+                initialIndex={selectedImageIndex}
+                onClose={() => setLightboxOpen(false)}
             />
         </div>
     );

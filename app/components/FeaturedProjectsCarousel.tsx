@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { FaCode, FaStar, FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Project } from '@/lib/projects';
 
@@ -109,11 +110,13 @@ export default function FeaturedProjectsCarousel({ projects, content }: Featured
                                                     {project.image ? (
                                                         <div className="relative w-full max-w-md group-hover/card:scale-105 transition-transform duration-700">
                                                             {/* Device frame mockup */}
-                                                            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-slate-700 dark:border-slate-800">
-                                                                <img
+                                                            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border-8 border-slate-700 dark:border-slate-800">
+                                                                <Image
                                                                     src={project.image}
                                                                     alt={project.title}
-                                                                    className="w-full h-auto"
+                                                                    fill
+                                                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                                                    className="object-cover"
                                                                 />
                                                                 {/* Screen glow effect */}
                                                                 <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-0 group-hover/card:opacity-20 transition-opacity duration-500`} />
@@ -141,8 +144,8 @@ export default function FeaturedProjectsCarousel({ projects, content }: Featured
                                                             {project.type}
                                                         </span>
                                                         <span className={`px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm ${project.status === 'Completed' ? 'bg-green-500/90 text-white' :
-                                                                project.status === 'In Progress' ? 'bg-blue-500/90 text-white' :
-                                                                    'bg-slate-500/90 text-white'
+                                                            project.status === 'In Progress' ? 'bg-blue-500/90 text-white' :
+                                                                'bg-slate-500/90 text-white'
                                                             }`}>
                                                             {project.status}
                                                         </span>
@@ -272,8 +275,8 @@ export default function FeaturedProjectsCarousel({ projects, content }: Featured
                                         }`}
                                 >
                                     <div className={`absolute inset-0 rounded-full transition-all ${index === currentSlide
-                                            ? `bg-gradient-to-r ${project.gradient}`
-                                            : 'bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600'
+                                        ? `bg-gradient-to-r ${project.gradient}`
+                                        : 'bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600'
                                         }`} />
                                     {index === currentSlide && (
                                         <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${project.gradient} blur-md opacity-50`} />

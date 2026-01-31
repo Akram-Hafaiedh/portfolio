@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub, FaStar, FaPlay, FaArrowRight } from "react-icons/fa";
 import { Project } from "@/lib/projects";
 import { useState } from "react";
@@ -29,10 +30,12 @@ export default function ProjectCard({ project, index, showFeaturedBadge = true, 
                 <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
                     {project.image ? (
                         <>
-                            <img
+                            <Image
                                 src={project.image}
                                 alt={project.title}
-                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
                             <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
@@ -123,6 +126,7 @@ export default function ProjectCard({ project, index, showFeaturedBadge = true, 
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="relative flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg text-white text-sm font-semibold transition-all hover:scale-105 overflow-hidden group/btn"
+                                aria-label={`View live demo of ${project.title}`}
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-300" />
                                 <FaExternalLinkAlt className="text-xs relative z-10" />

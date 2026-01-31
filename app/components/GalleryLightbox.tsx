@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { FaTimes, FaChevronLeft, FaChevronRight, FaDownload } from "react-icons/fa";
 
 interface GalleryImage {
@@ -129,24 +130,31 @@ export default function GalleryLightbox({ images, isOpen, initialIndex, onClose 
             )}
 
             {/* Image Container */}
-            <div className="max-w-5xl w-full max-h-full" onClick={(e) => e.stopPropagation()}>
-                <img
-                    src={currentImage.url}
-                    alt={currentImage.caption}
-                    className="w-full h-auto max-h-[80vh] object-contain rounded-lg animate-slide-up"
-                />
-                <div className="text-center mt-4">
-                    {currentImage.category && (
-                        <span className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full mr-3">
-                            {currentImage.category}
-                        </span>
-                    )}
-                    <p className="text-white text-lg mt-2">{currentImage.caption}</p>
-                    {images.length > 1 && (
-                        <p className="text-gray-400 text-sm mt-1">
-                            {currentImageIndex + 1} / {images.length}
-                        </p>
-                    )}
+            <div className="max-w-7xl w-full h-[85vh] flex flex-col items-center justify-center gap-4" onClick={(e) => e.stopPropagation()}>
+                <div className="relative w-full h-full animate-slide-up flex items-center justify-center">
+                    <Image
+                        src={currentImage.url}
+                        alt={currentImage.caption}
+                        fill
+                        className="object-contain"
+                        priority
+                        sizes="100vw"
+                    />
+                </div>
+                <div className="text-center pb-4 max-w-2xl">
+                    <div className="flex items-center justify-center gap-3 mb-2">
+                        {currentImage.category && (
+                            <span className="text-xs bg-blue-600/80 backdrop-blur-sm text-white px-3 py-1 rounded-full font-medium">
+                                {currentImage.category}
+                            </span>
+                        )}
+                        {images.length > 1 && (
+                            <span className="text-gray-400 text-sm font-medium">
+                                {currentImageIndex + 1} / {images.length}
+                            </span>
+                        )}
+                    </div>
+                    <p className="text-white text-lg font-medium leading-tight">{currentImage.caption}</p>
                 </div>
             </div>
 
