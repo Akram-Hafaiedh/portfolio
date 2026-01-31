@@ -14,10 +14,10 @@ export default function ProjectsHighlights() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const { language } = useLanguage();
     const t = language === 'fr' ? frCommon : enCommon;
-    const featuredProjects = getFeaturedProjects(language);
+    const featuredProjects = getFeaturedProjects(language).sort((a, b) => (b.layoutPriority || 0) - (a.layoutPriority || 0));
 
     const containerVariants: Variants = {
-        hidden: { opacity: 0 },
+        // ... (omitting unchanged variants)
         visible: {
             opacity: 1,
             transition: {
@@ -68,14 +68,16 @@ export default function ProjectsHighlights() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
                     variants={containerVariants}
-                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-dense gap-8 mb-12"
                 >
                     {featuredProjects.map((project, index) => (
                         <motion.div
                             key={project.id}
                             variants={itemVariants}
                             whileHover={{ y: -8 }}
-                            className="group relative h-full"
+                            className={`group relative h-full ${project.layoutSpan === 2 ? 'md:col-span-2' :
+                                project.layoutSpan === 3 ? 'md:col-span-2 lg:col-span-3' : ''
+                                }`}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                         >
@@ -83,16 +85,16 @@ export default function ProjectsHighlights() {
                             <div className={`absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur-xl transition-all duration-500 ${hoveredIndex === index ? 'opacity-30 scale-105' : 'opacity-0'}`} />
 
                             {/* Card */}
-                            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 h-full flex flex-col">
+                            <div className={`relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 h-full flex flex-col ${project.layoutSpan === 2 ? 'md:flex-row' : ''}`}>
                                 {/* Image */}
-                                <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
+                                <div className={`relative bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-800 overflow-hidden ${project.layoutSpan === 2 ? 'md:w-1/2 h-64 md:h-auto' : 'h-48'}`}>
                                     {project.image ? (
                                         <>
                                             <Image
                                                 src={project.image}
                                                 alt={project.title}
                                                 fill
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                sizes={project.layoutSpan === 2 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
                                                 className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                                                 priority={index < 3}
                                             />
@@ -137,7 +139,7 @@ export default function ProjectsHighlights() {
 
                                     {/* Tech Stack */}
                                     <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.technologies?.slice(0, 3).map((tech, i) => (
+                                        {project.technologies?.slice(0, project.layoutSpan === 2 ? 6 : 3).map((tech, i) => (
                                             <motion.span
                                                 key={i}
                                                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(59, 130, 246, 0.2)' }}
@@ -146,9 +148,9 @@ export default function ProjectsHighlights() {
                                                 {tech}
                                             </motion.span>
                                         ))}
-                                        {project.technologies?.length > 3 && (
+                                        {project.technologies?.length > (project.layoutSpan === 2 ? 6 : 3) && (
                                             <span className="px-3 py-1 bg-slate-200 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-slate-300 dark:hover:bg-slate-600/50 transition-all cursor-default">
-                                                +{project.technologies.length - 3}
+                                                +{project.technologies.length - (project.layoutSpan === 2 ? 6 : 3)}
                                             </span>
                                         )}
                                     </div>

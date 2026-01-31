@@ -29,6 +29,8 @@ export interface Project {
     learnings?: string[];
     featured: boolean;
     gradient: string;
+    layoutSpan?: 1 | 2 | 3;
+    layoutPriority?: number;
 }
 
 export const projectsPageContent = {
@@ -244,6 +246,8 @@ export const projects: Project[] = [
             "Stratégies de mise en œuvre de l'internationalisation (i18n)"
         ],
         gradient: "from-orange-500 to-red-600",
+        layoutSpan: 1,
+        layoutPriority: 9,
         liveUrl: "https://portfolio-six-mu-c3zpt9l3gd.vercel.app",
         githubUrl: "https://github.com/Akram-Hafaiedh/portfolio",
         featured: true,
@@ -298,6 +302,8 @@ export const projects: Project[] = [
         ],
         featured: true,
         gradient: "from-green-500 to-teal-600",
+        layoutSpan: 1,
+        layoutPriority: 8,
         liveUrl: "#",
         githubUrl: "#"
     },
@@ -351,6 +357,8 @@ export const projects: Project[] = [
         ],
         featured: true,
         gradient: "from-blue-500 to-purple-600",
+        layoutSpan: 2,
+        layoutPriority: 10,
         liveUrl: "https://finances.iberis.io/fr/",
         githubUrl: "#"
     },
@@ -487,8 +495,10 @@ export const projects: Project[] = [
             "Stratégies SEO pour marketplaces dynamiques à grande échelle",
             "Récupération de données haute performance avec Prisma et Next.js"
         ],
-        featured: false,
+        featured: true,
         gradient: "from-cyan-500 to-blue-600",
+        layoutSpan: 2,
+        layoutPriority: 7,
         liveUrl: "#",
         githubUrl: "#"
     },

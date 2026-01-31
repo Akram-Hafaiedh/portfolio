@@ -29,6 +29,8 @@ export interface Project {
     learnings?: string[];
     featured: boolean;
     gradient: string;
+    layoutSpan?: 1 | 2 | 3; // Grid column span
+    layoutPriority?: number; // Sorting priority for grid layout
 }
 
 export const projectsPageContent = {
@@ -249,6 +251,8 @@ export const projects: Project[] = [
         ],
         featured: true,
         gradient: "from-blue-600 to-purple-600",
+        layoutSpan: 1,
+        layoutPriority: 9,
         liveUrl: "https://portfolio-six-mu-c3zpt9l3gd.vercel.app",
         githubUrl: "https://github.com/Akram-Hafaiedh/portfolio"
     },
@@ -302,6 +306,8 @@ export const projects: Project[] = [
         ],
         featured: true,
         gradient: "from-green-500 to-teal-600",
+        layoutSpan: 1,
+        layoutPriority: 8,
         liveUrl: "#",
         githubUrl: "#"
     },
@@ -355,6 +361,8 @@ export const projects: Project[] = [
         ],
         featured: true,
         gradient: "from-blue-500 to-purple-600",
+        layoutSpan: 2,
+        layoutPriority: 10,
         liveUrl: "https://finances.iberis.io/fr/",
         githubUrl: "#"
     },
@@ -491,8 +499,10 @@ export const projects: Project[] = [
             "SEO strategies for large-scale dynamic marketplaces",
             "High-performance data fetching with Prisma and Next.js"
         ],
-        featured: false,
+        featured: true,
         gradient: "from-cyan-500 to-blue-600",
+        layoutSpan: 2,
+        layoutPriority: 7,
         liveUrl: "#",
         githubUrl: "#"
     },

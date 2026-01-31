@@ -4,15 +4,14 @@ import Contact from "./components/Contact";
 import ExperienceHighlights from "./components/home/ExperienceHighlights";
 import Hero from "./components/home/Hero";
 import About from "./components/home/About";
-import ProjectHeroEditorial from "./components/projects/ProjectHeroEditorial";
 import ScrollProgress from "./components/ScrollProgress";
-import { getFeaturedProjects } from "@/lib/projects";
 import CTA from "./components/CTA";
 import { useLanguage } from "./context/LanguageContext";
 import { homeContent as enHome } from "@/lib/data/en/home";
 import { homeContent as frHome } from "@/lib/data/fr/home";
 import { commonContent as enCommon } from "@/lib/data/en/common";
 import { commonContent as frCommon } from "@/lib/data/fr/common";
+import ProjectsHighlights from "./components/home/ProjectsHighlights";
 
 export default function Home() {
   const { language } = useLanguage();
@@ -48,13 +47,7 @@ export default function Home() {
         <Hero />
         <About />
         <ExperienceHighlights />
-        <ProjectHeroEditorial
-          projects={getFeaturedProjects(language)}
-          content={{
-            title: common.sections.projectsTitle,
-            description: common.sections.projectsSubtitle
-          }}
-        />
+        <ProjectsHighlights />
         <Contact />
 
         {/* Final CTA before footer */}
