@@ -1,141 +1,73 @@
-# Akram Hafaiedh - Portfolio
+# Akram Hafaiedh | Full Stack Developer Portfolio
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. This portfolio showcases my skills, experience, and projects as a Software Engineer and Full Stack Developer.
+[![Built with Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black?style=flat-square&logo=vercel)](https://vercel.com/)
 
-## 🚀 Features
+A premium, high-performance portfolio showcase built with the latest web technologies. This project emphasizes speed, SEO excellence, and a seamless user experience across all devices.
 
-- **Modern Design**: Clean and professional design with smooth animations
-- **Responsive**: Fully responsive design that works on all devices
-- **Dark Mode**: Toggle between light and dark themes
-- **Fast Performance**: Built with Next.js for optimal performance
-- **SEO Optimized**: Proper meta tags and structured data
-- **Accessible**: Follows accessibility best practices
-- **Mobile First**: Optimized for mobile devices with touch-friendly navigation
+## 🌟 Key Highlights
 
-## 🛠️ Technologies Used
+-   **⚡ Performance First**: Fully optimized image delivery using `next/image`, zero-layout shift, and optimized bundle sizes.
+-   **🔍 SEO Excellence**: Dynamic sitemaps, robots.txt, JSON-LD structured data, and automated internationalization (EN/FR) SEO markers.
+-   **🎨 Premium Aesthetics**: A sleek, dark-mode-first design with smooth transitions and a unified project gallery experience.
+-   **🌍 Bilingual Support**: Seamlessly switch between English and French with persistent language state.
+-   **📱 Fully Responsive**: Tailored experiences for mobile, tablet, and desktop users with touch-optimized navigation.
 
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: React Icons
-- **Deployment**: Vercel
+## 🛠️ Tech Stack
 
-## 📋 Sections
+-   **Core**: Next.js 15 (App Router), React 19, TypeScript
+-   **Styling**: Tailwind CSS, Vanilla CSS
+-   **State & Logic**: Context API (Language), React Hooks
+-   **Icons**: React Icons (Fa, Si, Md)
+-   **Optimization**: Sharp (Image processing), ESLint, Prettier
 
-1. **Hero Section**: Introduction and call-to-action
-2. **About**: Personal information and background
-3. **Experience**: Work history and achievements
-4. **Skills**: Technical skills and technologies
-5. **Projects**: Featured projects with descriptions
-6. **Contact**: Contact information and social links
+## 🚀 Future Roadmap
 
-## 🚀 Getting Started
+-   [ ] **Micro-Interactions**: Enhanced animations using Framer Motion for a more fluid feel.
+-   [ ] **Advanced Lead Gen**: Improved booking experience and high-fidelity contact form interactions.
+-   [ ] **Interactive Testimonials**: Dynamic client feedback showcase.
+-   [ ] **Automated Analytics**: Insights into project engagement and user flows.
 
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
+## 💻 Getting Started
 
 ### Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/Akram-Hafaiedh/portfolio.git
+    cd portfolio
+    ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-3. Run the development server:
-```bash
-npm run dev
-```
+3.  Configure Environment:
+    Create a `.env.local` file based on the project requirements (if any).
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4.  Development:
+    ```bash
+    npm run dev
+    ```
 
-### Building for Production
+### Production
 
 ```bash
 npm run build
 npm start
 ```
 
-## 📁 Project Structure
+## 📁 Key Directories
 
-```
-portfolio/
-├── app/
-│   ├── components/
-│   │   ├── Navigation.tsx
-│   │   └── ThemeToggle.tsx
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── public/
-├── package.json
-└── README.md
-```
-
-## 🎨 Customization
-
-### Personal Information
-Update the following in `app/page.tsx`:
-- Name and title
-- About section content
-- Experience details
-- Skills and technologies
-- Project information
-- Contact details
-
-### Styling
-- Colors and themes can be customized in `app/globals.css`
-- Tailwind classes can be modified for different styling
-- Icons can be changed using different React Icons
-
-### Adding New Sections
-1. Create new section components in `app/components/`
-2. Add navigation links in `Navigation.tsx`
-3. Import and use components in `page.tsx`
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive with breakpoints:
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
-## 🌙 Dark Mode
-
-The portfolio includes a dark mode toggle that:
-- Respects user's system preference
-- Saves preference in localStorage
-- Provides smooth transitions between themes
-
-## 🚀 Deployment
-
-This portfolio is optimized for deployment on Vercel:
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically on every push
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Contact
-
-- **LinkedIn**: [Akram Hafaiedh](https://www.linkedin.com/in/akram-hafaiedh-368b3312b/)
-- **Email**: akram.hafaiedh@example.com
-- **Location**: Tunisia
+-   `app/`: Core application logic and routing (Next.js App Router).
+-   `app/components/`: Reusable UI components and design system.
+-   `lib/data/`: Multi-language content and project metadata.
+-   `public/`: Optimized assets, manifest, and SEO files.
 
 ---
 
-Built with ❤️ using Next.js and Tailwind CSS
+Built with passion by [Akram Hafaiedh](https://www.linkedin.com/in/akram-hafaiedh-368b3312b/)
+ Tunisia 🇹🇳
