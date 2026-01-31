@@ -4,7 +4,6 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
 import { LanguageProvider } from "./context/LanguageContext";
 
 
@@ -19,17 +18,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Akram Hafaiedh - Full Stack Web Developer",
+  metadataBase: new URL('https://portfolio-six-mu-c3zpt9l3gd.vercel.app'),
+  title: {
+    default: "Akram Hafaiedh - Full Stack Web Developer",
+    template: "%s | Akram Hafaiedh"
+  },
   description: "Professional portfolio of Akram Hafaiedh, a passionate Full Stack Web Developer with expertise in React, Vue.js, Laravel, Node.js, and modern web technologies.",
   keywords: ["Full Stack Developer", "React", "Vue.js", "Laravel", "Node.js", "JavaScript", "TypeScript", "Web Development", "Tunisia"],
   authors: [{ name: "Akram Hafaiedh" }],
+  creator: "Akram Hafaiedh",
   openGraph: {
     title: "Akram Hafaiedh - Full Stack Web Developer",
     description: "Professional portfolio showcasing full stack development projects and expertise",
-    type: "website",
+    url: 'https://portfolio-six-mu-c3zpt9l3gd.vercel.app',
+    siteName: 'Akram Hafaiedh Portfolio',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Akram Hafaiedh - Full Stack Web Developer",
+    description: "Professional portfolio showcasing full stack development projects and expertise",
+  },
+  manifest: '/manifest.json',
+  alternates: {
+    canonical: '/',
   },
   appleWebApp: {
-    title: 'MyWebSite',
+    title: 'Akram Portfolio',
+    statusBarStyle: 'default',
+    capable: true,
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
 };
 
