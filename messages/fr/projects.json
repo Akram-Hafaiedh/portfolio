@@ -1,0 +1,68 @@
+{
+    "Projects": {
+        "hero": {
+            "badge": "Projets",
+            "projectsCount": "Projets Réalisés et en Cours",
+            "mainTitle": "Création d'Expériences",
+            "mainTitleSecond": "Numériques",
+            "subtitle": "Transformer",
+            "subtitleHighlight1": "des problèmes complexes",
+            "subtitleMiddle": "en",
+            "subtitleHighlight2": "solutions élégantes",
+            "subtitleEnd": "par le code, la créativité et l'innovation",
+            "scrollText": "Défiler pour explorer les projets"
+        },
+        "stats": {
+            "completed": "Terminés",
+            "completedDesc": "Solutions déployées avec impact",
+            "inProgress": "En Cours",
+            "inProgressDesc": "Développements actifs",
+            "technologies": "Technologies",
+            "technologiesDesc": "Stacks technologiques modernes",
+            "experience": "Années d'Exp",
+            "experienceDesc": "D'apprentissage continu"
+        },
+        "featured": {
+            "title": "Projets en Vedette",
+            "description": "Mise en avant de mes meilleures réalisations"
+        },
+        "technologies": {
+            "title": "Technologies Utilisées",
+            "subtitle": "Une pile technologique diversifiée pour des solutions innovantes"
+        },
+        "filters": {
+            "all": "Tous les Projets",
+            "saas": "SaaS & ERP",
+            "enterprise": "Entreprise",
+            "mobile": "Mobile & R&D",
+            "personal": "Personnel"
+        },
+        "search": {
+            "placeholder": "Rechercher projets, technologies...",
+            "grid": "Grille",
+            "list": "Liste"
+        },
+        "results": {
+            "showing": "Affichage de",
+            "of": "sur",
+            "projects": "projets",
+            "in": "dans",
+            "matching": "correspondant à",
+            "noProjects": "Aucun projet trouvé",
+            "noResults": "Aucun résultat pour",
+            "noType": "Aucun",
+            "available": "projet disponible",
+            "showAll": "Afficher Tous les Projets"
+        },
+        "loadMore": {
+            "button": "Charger Plus de Projets",
+            "remaining": "restant"
+        },
+        "cta": {
+            "title": "Prêt à Lancer Votre Projet ?",
+            "description": "Je suis passionné par la transformation des idées en réalité. Discutons de la manière dont nous pouvons donner vie à votre vision avec une technologie de pointe et des expériences utilisateur exceptionnelles.",
+            "bookCall": "Réserver un Appel Projet",
+            "viewExperience": "Voir Mon Expérience"
+        }
+    }
+}

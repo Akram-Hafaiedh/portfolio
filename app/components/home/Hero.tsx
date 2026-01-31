@@ -1,16 +1,15 @@
 'use client';
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/navigation';
+import { getProjects } from '@/lib/projects';
 import { FaEnvelope, FaCode, FaRocket, FaCalendar, FaGithub, FaLinkedin } from "react-icons/fa";
-import { useLanguage } from "@/app/context/LanguageContext";
-import { homeContent as enContent } from "@/lib/data/en/home";
-import { homeContent as frContent } from "@/lib/data/fr/home";
 
 export default function Hero() {
-    const { language } = useLanguage();
-    const homeData = language === 'fr' ? frContent : enContent;
-    const content = homeData.hero;
+    const t = useTranslations('Home');
+    const locale = useLocale();
+    const projectsCount = getProjects(locale as any).length;
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
@@ -80,19 +79,19 @@ export default function Hero() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 dark:bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600 dark:bg-green-500"></span>
                             </span>
-                            {content.badge}
+                            {t('hero.badge')}
                         </motion.div>
 
                         {/* Heading */}
                         <motion.div variants={fadeInUp} className="space-y-4">
                             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight">
-                                <span className="block text-slate-900 dark:text-white">{content.greeting}</span>
+                                <span className="block text-slate-900 dark:text-white">{t('hero.greeting')}</span>
                                 <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                                    {content.name}
+                                    {t('hero.name')}
                                 </span>
                             </h1>
                             <p className="text-2xl sm:text-3xl font-bold text-slate-700 dark:text-slate-300">
-                                {content.role}
+                                {t('hero.role')}
                             </p>
                         </motion.div>
 
@@ -101,7 +100,7 @@ export default function Hero() {
                             variants={fadeInUp}
                             className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0"
                         >
-                            {content.description}
+                            {t('hero.description')}
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -110,14 +109,14 @@ export default function Hero() {
                                 <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <span className="relative flex items-center justify-center gap-2">
                                     <FaCalendar />
-                                    {content.cta.book}
+                                    {t('hero.cta.book')}
                                 </span>
                             </Link>
 
                             <Link href="/contact" className="group relative px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-purple-500 rounded-xl font-bold text-slate-900 dark:text-white transition-all hover:scale-105 text-center">
                                 <span className="relative flex items-center justify-center gap-2">
                                     <FaEnvelope />
-                                    {content.cta.contact}
+                                    {t('hero.cta.contact')}
                                 </span>
                             </Link>
                         </motion.div>
@@ -126,11 +125,11 @@ export default function Hero() {
                         <motion.div variants={fadeInUp} className="flex gap-4 justify-center lg:justify-start">
                             <Link href="/experience" className="text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors flex items-center gap-2 group">
                                 <FaRocket className="group-hover:rotate-12 transition-transform" />
-                                <span className="border-b border-slate-400 dark:border-slate-600 group-hover:border-purple-600 dark:group-hover:border-purple-400">{content.links.resume}</span>
+                                <span className="border-b border-slate-400 dark:border-slate-600 group-hover:border-purple-600 dark:group-hover:border-purple-400">{t('hero.links.resume')}</span>
                             </Link>
                             <Link href="/projects" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2 group">
                                 <FaCode className="group-hover:scale-110 transition-transform" />
-                                <span className="border-b border-slate-400 dark:border-slate-600 group-hover:border-blue-600 dark:group-hover:border-blue-400">{content.links.projects}</span>
+                                <span className="border-b border-slate-400 dark:border-slate-600 group-hover:border-blue-600 dark:group-hover:border-blue-400">{t('hero.links.projects')}</span>
                             </Link>
                         </motion.div>
                     </motion.div>
@@ -155,32 +154,32 @@ export default function Hero() {
                                         <Image src="/avatar.jpg" alt="Akram Hafaiedh" width={80} height={80} className="relative w-20 h-20 rounded-full border-2 border-slate-200 dark:border-slate-700" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">{content.name}</h3>
-                                        <p className="text-slate-600 dark:text-slate-400">{content.role}</p>
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t('hero.name')}</h3>
+                                        <p className="text-slate-600 dark:text-slate-400">{t('hero.role')}</p>
                                     </div>
                                 </div>
 
                                 {/* Stats */}
                                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
                                     <div className="text-center group-hover:scale-110 transition-transform">
-                                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{content.stats.exp.value}</div>
-                                        <div className="text-xs text-slate-500">{content.stats.exp.label}</div>
+                                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{t('hero.stats.exp.value')}</div>
+                                        <div className="text-xs text-slate-500">{t('hero.stats.exp.label')}</div>
                                     </div>
                                     <div className="text-center group-hover:scale-110 transition-transform duration-300">
                                         <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                                            {require('@/lib/projects').getProjects(language).length}+
+                                            {projectsCount}+
                                         </div>
-                                        <div className="text-xs text-slate-500">{content.stats.projects.label}</div>
+                                        <div className="text-xs text-slate-500">{t('hero.stats.projects.label')}</div>
                                     </div>
                                     <div className="text-center group-hover:scale-110 transition-transform duration-500">
-                                        <div className="text-2xl font-bold text-pink-600 dark:text-pink-400">{content.stats.satisfied.value}</div>
-                                        <div className="text-xs text-slate-500">{content.stats.satisfied.label}</div>
+                                        <div className="text-2xl font-bold text-pink-600 dark:text-pink-400">{t('hero.stats.satisfied.value')}</div>
+                                        <div className="text-xs text-slate-500">{t('hero.stats.satisfied.label')}</div>
                                     </div>
                                 </div>
 
                                 {/* Tech Stack */}
                                 <div className="space-y-3">
-                                    <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">{content.techStack}</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">{t('hero.techStack')}</p>
                                     <div className="flex flex-wrap gap-2">
                                         {['React', 'Next.js', 'Node.js', 'Laravel', 'TypeScript', 'TailwindCSS'].map((tech) => (
                                             <motion.span
@@ -243,7 +242,7 @@ export default function Hero() {
                             transition={{ duration: 2, repeat: Infinity }}
                         />
                     </div>
-                    <p className="text-xs text-slate-500 uppercase tracking-widest">{content.links.scroll}</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-widest">{t('hero.links.scroll')}</p>
                 </div>
             </motion.div>
         </section>

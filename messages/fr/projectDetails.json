@@ -1,0 +1,54 @@
+{
+    "ProjectDetails": {
+        "backButton": "Retour aux Projets",
+        "status": {
+            "completed": "Terminé",
+            "inProgress": "En Cours",
+            "onHold": "En Pause",
+            "cancelled": "Annulé"
+        },
+        "badges": {
+            "featured": "En Vedette"
+        },
+        "buttons": {
+            "viewLiveDemo": "Voir Démo Live",
+            "viewSourceCode": "Voir Code Source",
+            "bookCall": "Réserver un Appel",
+            "getInTouch": "Me Contacter"
+        },
+        "meta": {
+            "role": "Rôle",
+            "timeline": "Chronologie",
+            "company": "Entreprise",
+            "personal": "Personnel",
+            "technologies": "Technologies"
+        },
+        "sections": {
+            "projectOverview": "Aperçu du Projet",
+            "projectGallery": "Galerie du Projet",
+            "keyFeatures": "Fonctionnalités Clés",
+            "challengesSolutions": "Défis & Solutions",
+            "challenge": "Défi :",
+            "solution": "Solution :",
+            "resultsImpact": "Résultats & Impact",
+            "techStack": "Pile Technique",
+            "keyLearnings": "Apprentissages Clés",
+            "quickLinks": "Liens Rapides",
+            "liveDemo": "Démo Live",
+            "sourceCode": "Code Source",
+            "allProjects": "Tous les Projets",
+            "relatedProjects": "Projets Similaires qui pourraient vous plaire"
+        },
+        "cta": {
+            "title": "Intéressé par une collaboration ?",
+            "description": "Discutons de votre projet et créons quelque chose d'incroyable ensemble."
+        },
+        "comingSoon": {
+            "title": "Bientôt Disponible",
+            "description": "Ce projet est actuellement en développement actif. Restez à l'écoute pour les mises à jour !",
+            "featuresTitle": "Fonctionnalités Prévues",
+            "techTitle": "Pile Technique Envisagée",
+            "notifyText": "Voulez-vous être notifié quand ce sera en ligne ?"
+        }
+    }
+}

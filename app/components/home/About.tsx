@@ -1,20 +1,32 @@
 'use client';
 import { motion, Variants } from "framer-motion";
-import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
 import { FaCode, FaArrowRight, FaLightbulb, FaUsers, FaRocket } from "react-icons/fa";
-import { useLanguage } from "@/app/context/LanguageContext";
-import { homeContent as enContent } from "@/lib/data/en/home";
-import { homeContent as frContent } from "@/lib/data/fr/home";
 
 export default function About() {
-    const { language } = useLanguage();
-    const homeData = language === 'fr' ? frContent : enContent;
-    const content = homeData.hero; // The about section data is nested in the hero content object in data/en/home.ts
+    const t = useTranslations('Home');
 
     const icons = [FaCode, FaLightbulb, FaUsers, FaRocket];
-    const values = content.values.map((val: any, index: number) => ({
-        ...val,
-        icon: icons[index]
+    const gradients = [
+        "from-blue-500 to-cyan-500",
+        "from-purple-500 to-pink-500",
+        "from-green-500 to-emerald-500",
+        "from-orange-500 to-red-500"
+    ];
+
+    // Get the values array from translations
+    const values = [0, 1, 2, 3].map((index) => ({
+        title: t(`hero.values.${index}.title`),
+        description: t(`hero.values.${index}.description`),
+        icon: icons[index],
+        gradient: gradients[index]
+    }));
+
+    const traits = [0, 1, 2].map((index) => ({
+        emoji: index === 0 ? "🎯" : index === 1 ? "🚀" : "🤝",
+        title: t(`hero.aboutPreview.traits.${index}.title`),
+        description: t(`hero.aboutPreview.traits.${index}.description`)
     }));
 
     const containerVariants: Variants = {
@@ -53,13 +65,13 @@ export default function About() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
                         <FaCode className="text-xs" />
-                        {content.aboutPreview.badge}
+                        {t('hero.aboutPreview.badge')}
                     </div>
                     <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-                        {content.aboutPreview.title}
+                        {t('hero.aboutPreview.title')}
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                        {content.aboutPreview.description}
+                        {t('hero.aboutPreview.description')}
                     </p>
                 </motion.div>
 
@@ -96,19 +108,19 @@ export default function About() {
                     <div className="grid md:grid-cols-2 gap-8 items-center">
                         <div>
                             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                                {content.aboutPreview.approach.title}
+                                {t('hero.aboutPreview.approach.title')}
                             </h3>
                             <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
-                                {content.aboutPreview.approach.description}
+                                {t('hero.aboutPreview.approach.description')}
                             </p>
                             <Link href="/about" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all hover:scale-105 group">
-                                {content.aboutPreview.approach.cta}
+                                {t('hero.aboutPreview.approach.cta')}
                                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
 
                         <div className="space-y-4">
-                            {content.aboutPreview.traits.map((trait: any, index: number) => (
+                            {traits.map((trait: any, index: number) => (
                                 <motion.div
                                     key={index}
                                     whileHover={{ x: 10 }}

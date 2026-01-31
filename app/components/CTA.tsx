@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { FaCalendar, FaEnvelope, FaRocket, FaBriefcase, FaCode } from 'react-icons/fa';
 
 interface CTAButton {

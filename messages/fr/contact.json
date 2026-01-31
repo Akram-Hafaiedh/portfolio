@@ -1,0 +1,109 @@
+{
+    "Contact": {
+        "hero": {
+            "badge": "Connectons-nous",
+            "titlePrefix": "Prêt à Lancer Votre",
+            "titleHighlight": "Prochain Projet ?",
+            "description": "Je suis là pour aider à donner vie à vos idées. Choisissez votre mode de connexion préféré et je vous répondrai rapidement.",
+            "limitedSlots": "Plages horaires limitées"
+        },
+        "methods": [
+            {
+                "iconName": "FaEnvelope",
+                "title": "Email",
+                "description": "Idéal pour les discussions détaillées",
+                "action": "hafaiedhakram@gmail.com",
+                "color": "blue"
+            },
+            {
+                "iconName": "FaPhone",
+                "title": "Téléphone",
+                "description": "Questions rapides et consultations",
+                "action": "+216 50 569 298",
+                "color": "green"
+            },
+            {
+                "iconName": "FaCalendar",
+                "title": "Appel Vidéo",
+                "description": "Consultation gratuite de 30 min",
+                "action": "Réserver un Rendez-vous",
+                "color": "purple"
+            }
+        ],
+        "responseTime": {
+            "title": "Temps de Réponse",
+            "subtitle": "Je priorise les réponses rapides et utiles",
+            "items": [
+                {
+                    "time": "< 2 heures",
+                    "type": "Demandes Urgentes",
+                    "color": "from-red-500 to-orange-500"
+                },
+                {
+                    "time": "< 24 heures",
+                    "type": "Messages Généraux",
+                    "color": "from-blue-500 to-purple-500"
+                },
+                {
+                    "time": "< 48 heures",
+                    "type": "Propositions de Projet",
+                    "color": "from-green-500 to-emerald-500"
+                }
+            ]
+        },
+        "whyMe": {
+            "title": "Pourquoi Travailler Avec Moi ?",
+            "subtitle": "Ce que vous pouvez attendre de notre collaboration",
+            "items": [
+                {
+                    "iconName": "FaCheckCircle",
+                    "title": "Qualité d'Abord",
+                    "description": "Code propre et maintenable suivant les meilleures pratiques"
+                },
+                {
+                    "iconName": "FaCheckCircle",
+                    "title": "Communication Claire",
+                    "description": "Mises à jour régulières et suivi transparent des progrès"
+                },
+                {
+                    "iconName": "FaCheckCircle",
+                    "title": "Délais Respectés",
+                    "description": "Respect des échéances sans compromettre la qualité"
+                },
+                {
+                    "iconName": "FaCheckCircle",
+                    "title": "Support Post-Lancement",
+                    "description": "Assistance continue après la fin du projet"
+                }
+            ]
+        },
+        "faq": {
+            "title": "Foire Aux Questions",
+            "subtitle": "Questions courantes sur la collaboration",
+            "items": [
+                {
+                    "question": "Quels types de projets développez-vous ?",
+                    "answer": "Je me spécialise dans le développement web full-stack, incluant les plateformes e-commerce, les systèmes de gestion d'entreprise, les applications mobiles et les solutions web sur mesure. Je travaille aussi bien avec des startups que des entreprises établies."
+                },
+                {
+                    "question": "Travaillez-vous à distance ?",
+                    "answer": "Oui, je travaille principalement à distance et j'ai l'expérience de la collaboration avec des équipes internationales. Je suis disponible pour des projets à distance comme sur site, selon les besoins."
+                },
+                {
+                    "question": "Quel est votre délai de réalisation typique ?",
+                    "answer": "Les délais varient selon la complexité. Les petits projets prennent généralement 2-4 semaines, les projets moyens 1-3 mois, et les grands projets 3-6 mois. Je fournis toujours un planning détaillé lors de la phase de planification."
+                },
+                {
+                    "question": "Fournissez-vous un support continu ?",
+                    "answer": "Oui, je propose une maintenance continue, des mises à jour et un support pour tous les projets que je développe. Je peux également fournir une formation et de la documentation pour aider votre équipe à gérer le système."
+                }
+            ]
+        },
+        "cta": {
+            "title": "Construisons Quelque Chose d'Incroyable Ensemble",
+            "description": "Prêt à passer à l'étape suivante ? Choisissez comment vous souhaitez vous connecter et discutons de votre projet.",
+            "schedule": "Planifier un Appel",
+            "email": "Envoyer un Email"
+        }
+    }
+}

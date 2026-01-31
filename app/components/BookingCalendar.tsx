@@ -3,9 +3,7 @@
 import React, { useCallback, useState } from 'react';
 import { FaCalendarAlt, FaClock, FaUsers, FaMapMarkerAlt, FaVideo } from 'react-icons/fa';
 import { TimeSlot, BookingFormData, AvailabilityResponse, AppointmentResponse } from '@/types/booking';
-import { useLanguage } from '@/app/context/LanguageContext';
-import { bookingContent as enContent } from '@/lib/data/en/contact';
-import { bookingContent as frContent } from '@/lib/data/fr/contact';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 interface DurationOption {
@@ -14,8 +12,8 @@ interface DurationOption {
 }
 
 export default function BookingCalendar() {
-    const { language } = useLanguage();
-    const content = language === 'fr' ? frContent : enContent;
+    const locale = useLocale();
+    const t = useTranslations('Booking');
 
     const [selectedDate, setSelectedDate] = useState<string>('');
     const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
@@ -34,11 +32,11 @@ export default function BookingCalendar() {
     });
 
     const durationOptions: DurationOption[] = [
-        { value: 30, label: content.durations[30] },
-        { value: 45, label: content.durations[45] },
-        { value: 60, label: content.durations[60] },
-        { value: 90, label: content.durations[90] },
-        { value: 120, label: content.durations[120] },
+        { value: 30, label: t('durations.30') },
+        { value: 45, label: t('durations.45') },
+        { value: 60, label: t('durations.60') },
+        { value: 90, label: t('durations.90') },
+        { value: 120, label: t('durations.120') },
     ];
 
     const fetchAvailability = useCallback(async (date: string, duration: number) => {
@@ -49,18 +47,18 @@ export default function BookingCalendar() {
             const data: AvailabilityResponse = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || content.messages.fetchError);
+                throw new Error(data.error || t('messages.fetchError'));
             }
 
             setAvailableSlots(data.availableSlots);
         } catch (error) {
             console.error('Error fetching availability:', error);
-            setBookingError(error instanceof Error ? error.message : content.messages.fetchError);
+            setBookingError(error instanceof Error ? error.message : t('messages.fetchError'));
             setAvailableSlots([]);
         } finally {
             setIsLoading(false);
         }
-    }, [content.messages.fetchError]);
+    }, [t]);
 
     const isFormValid = () => {
         return (
@@ -89,7 +87,7 @@ export default function BookingCalendar() {
         e.preventDefault();
 
         if (!selectedSlot) {
-            setBookingError(content.messages.selectSlot);
+            setBookingError(t('messages.selectSlot'));
             return;
         }
 
@@ -112,7 +110,7 @@ export default function BookingCalendar() {
             const result: AppointmentResponse = await response.json();
 
             if (result.success) {
-                setBookingSuccess(content.messages.success);
+                setBookingSuccess(t('messages.success'));
                 setFormData({
                     name: '',
                     email: '',
@@ -124,10 +122,10 @@ export default function BookingCalendar() {
                 setSelectedSlot(null);
                 setAvailableSlots([]);
             } else {
-                setBookingError(result.message || content.messages.error);
+                setBookingError(result.message || t('messages.error'));
             }
         } catch (error) {
-            setBookingError(content.messages.error);
+            setBookingError(t('messages.error'));
         } finally {
             setIsBooking(false);
         }
@@ -178,16 +176,16 @@ export default function BookingCalendar() {
                     >
                         <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
                             <FaCalendarAlt className="w-4 h-4" />
-                            {content.hero.badge}
+                            {t('hero.badge')}
                         </motion.div>
                         <motion.h1 variants={fadeInUp} className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-                            {content.hero.title}
+                            {t('hero.title')}
                         </motion.h1>
                         <motion.p variants={fadeInUp} className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-4">
-                            {content.hero.subtitle}
+                            {t('hero.subtitle')}
                         </motion.p>
                         <motion.p variants={fadeInUp} className="text-lg text-slate-500 dark:text-slate-500">
-                            {content.hero.emphasis}
+                            {t('hero.emphasis')}
                         </motion.p>
                     </motion.div>
                 </div>
@@ -205,7 +203,7 @@ export default function BookingCalendar() {
                             >
                                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
                                     <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    {content.calendar.title}
+                                    {t('calendar.title')}
                                 </h2>
 
                                 {/* Date Selection */}
@@ -214,7 +212,7 @@ export default function BookingCalendar() {
                                     <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl transition-all">
                                         <label className="block text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                             <FaCalendarAlt className="text-blue-600 dark:text-blue-400" />
-                                            {content.calendar.dateLabel}
+                                            {t('calendar.dateLabel')}
                                         </label>
                                         <input
                                             name="date"
@@ -234,7 +232,7 @@ export default function BookingCalendar() {
                                     <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl transition-all">
                                         <label className="block text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                             <FaClock className="text-purple-600 dark:text-purple-400" />
-                                            {content.calendar.durationLabel}
+                                            {t('calendar.durationLabel')}
                                         </label>
                                         <select
                                             id="duration"
@@ -266,13 +264,13 @@ export default function BookingCalendar() {
                                             <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl">
                                                 <label className="block text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                                     <FaUsers className="text-green-600 dark:text-green-400" />
-                                                    {content.calendar.slotsLabel}
+                                                    {t('calendar.slotsLabel')}
                                                 </label>
 
                                                 {isLoading ? (
                                                     <div className="text-center py-8">
                                                         <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400"></div>
-                                                        <p className="text-slate-600 dark:text-slate-400 mt-2">{content.calendar.loadingSlots}</p>
+                                                        <p className="text-slate-600 dark:text-slate-400 mt-2">{t('calendar.loadingSlots')}</p>
                                                     </div>
                                                 ) : availableSlots.length > 0 ? (
                                                     <motion.div
@@ -301,7 +299,7 @@ export default function BookingCalendar() {
                                                 ) : (
                                                     <div className="text-center py-8">
                                                         <p className="text-slate-500 dark:text-slate-400">
-                                                            {bookingError || content.calendar.noSlots}
+                                                            {bookingError || t('calendar.noSlots')}
                                                         </p>
                                                     </div>
                                                 )}
@@ -323,10 +321,10 @@ export default function BookingCalendar() {
                                             <div className="relative bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/10 dark:to-blue-900/10 p-6 rounded-2xl border border-green-200 dark:border-green-800/50">
                                                 <h3 className="font-semibold text-green-800 dark:text-green-300 mb-2 flex items-center gap-2">
                                                     <FaVideo className="text-green-600 dark:text-green-400" />
-                                                    {content.calendar.selectedTime}
+                                                    {t('calendar.selectedTime')}
                                                 </h3>
                                                 <p className="text-green-700 dark:text-green-400 font-medium">
-                                                    {new Date(selectedSlot.start).toLocaleString(language === 'fr' ? 'fr-FR' : 'en-US', {
+                                                    {new Date(selectedSlot.start).toLocaleString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                                                         weekday: 'long',
                                                         year: 'numeric',
                                                         month: 'long',
@@ -335,7 +333,7 @@ export default function BookingCalendar() {
                                                         minute: '2-digit',
                                                     })}
                                                     <span className="ml-3 text-xs bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-100 px-2 py-1 rounded-full font-bold uppercase tracking-wider">
-                                                        {formData.duration} {content.calendar.minutes}
+                                                        {formData.duration} {t('calendar.minutes')}
                                                     </span>
                                                 </p>
                                             </div>
@@ -353,7 +351,7 @@ export default function BookingCalendar() {
                             >
                                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
                                     <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-600 rounded"></div>
-                                    {content.form.title}
+                                    {t('form.title')}
                                 </h2>
 
                                 <div className="space-y-6">
@@ -383,7 +381,7 @@ export default function BookingCalendar() {
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                                {content.form.name} <span className="text-red-500">{content.form.required}</span>
+                                                {t('form.name')} <span className="text-red-500">{t('form.required')}</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -391,13 +389,13 @@ export default function BookingCalendar() {
                                                 value={formData.name}
                                                 onChange={handleInputChange}
                                                 className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                                                placeholder={content.form.namePlaceholder}
+                                                placeholder={t('form.namePlaceholder')}
                                             />
                                         </div>
 
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                                {content.form.email} <span className="text-red-500">{content.form.required}</span>
+                                                {t('form.email')} <span className="text-red-500">{t('form.required')}</span>
                                             </label>
                                             <input
                                                 type="email"
@@ -405,35 +403,35 @@ export default function BookingCalendar() {
                                                 value={formData.email}
                                                 onChange={handleInputChange}
                                                 className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                                                placeholder={content.form.emailPlaceholder}
+                                                placeholder={t('form.emailPlaceholder')}
                                             />
                                         </div>
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                            {content.form.subject} <span className="text-red-500">{content.form.required}</span>
+                                            {t('form.subject')} <span className="text-red-500">{t('form.required')}</span>
                                         </label>
                                         <input
                                             type="text"
                                             name="subject"
                                             value={formData.subject}
                                             onChange={handleInputChange}
-                                            placeholder={content.form.subjectPlaceholder}
+                                            placeholder={t('form.subjectPlaceholder')}
                                             className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
                                         />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                            {content.form.message}
+                                            {t('form.message')}
                                         </label>
                                         <textarea
                                             name="message"
                                             value={formData.message}
                                             onChange={handleInputChange}
                                             rows={4}
-                                            placeholder={content.form.messagePlaceholder}
+                                            placeholder={t('form.messagePlaceholder')}
                                             className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none resize-none"
                                         />
                                     </div>
@@ -444,24 +442,24 @@ export default function BookingCalendar() {
                                         <div className="relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800/30 dark:to-slate-900/30 p-6 rounded-2xl border border-slate-200 dark:border-slate-700/50">
                                             <h3 className="font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                                 <FaMapMarkerAlt className="text-blue-600 dark:text-blue-400 w-5 h-5" />
-                                                {content.meetingDetails.title}
+                                                {t('meetingDetails.title')}
                                             </h3>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-600 dark:text-slate-400">
                                                 <div className="flex items-center gap-2 bg-white dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-700">
                                                     <span className="text-green-600 dark:text-green-500 font-bold">✓</span>
-                                                    <span>{content.meetingDetails.googleMeet}</span>
+                                                    <span>{t('meetingDetails.googleMeet')}</span>
                                                 </div>
                                                 <div className="flex items-center gap-2 bg-white dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-700">
                                                     <span className="text-green-600 dark:text-green-500 font-bold">✓</span>
-                                                    <span>{content.meetingDetails.calendar}</span>
+                                                    <span>{t('meetingDetails.calendar')}</span>
                                                 </div>
                                                 <div className="flex items-center gap-2 bg-white dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-700">
                                                     <span className="text-green-600 dark:text-green-500 font-bold">✓</span>
-                                                    <span>{content.meetingDetails.remote}</span>
+                                                    <span>{t('meetingDetails.remote')}</span>
                                                 </div>
                                                 <div className="flex items-center gap-2 bg-white dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-700">
                                                     <span className="text-green-600 dark:text-green-500 font-bold">✓</span>
-                                                    <span>{content.meetingDetails.flexible}</span>
+                                                    <span>{t('meetingDetails.flexible')}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -485,7 +483,7 @@ export default function BookingCalendar() {
                                                     className="flex items-center justify-center gap-3"
                                                 >
                                                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                                                    {content.form.submitting}
+                                                    {t('form.submitting')}
                                                 </motion.span>
                                             ) : (
                                                 <motion.span
@@ -494,14 +492,14 @@ export default function BookingCalendar() {
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0 }}
                                                 >
-                                                    {content.form.submit}
+                                                    {t('form.submit')}
                                                 </motion.span>
                                             )}
                                         </AnimatePresence>
                                     </motion.button>
 
                                     <p className="text-xs text-center text-slate-500 dark:text-slate-500">
-                                        {content.form.disclaimer}
+                                        {t('form.disclaimer')}
                                     </p>
                                 </div>
                             </motion.div>

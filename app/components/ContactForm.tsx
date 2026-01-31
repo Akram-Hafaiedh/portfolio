@@ -3,13 +3,10 @@
 import { useState } from 'react';
 import { FaPaperPlane, FaCheck, FaExclamationTriangle } from "react-icons/fa";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { useLanguage } from "../context/LanguageContext";
-import { commonContent as enCommon } from "@/lib/data/en/common";
-import { commonContent as frCommon } from "@/lib/data/fr/common";
+import { useTranslations } from 'next-intl';
 
 export default function ContactForm() {
-    const { language } = useLanguage();
-    const t = language === 'fr' ? frCommon : enCommon;
+    const t = useTranslations('Common');
 
     const [formData, setFormData] = useState({
         name: '',
@@ -48,7 +45,7 @@ export default function ContactForm() {
             if (response.ok) {
                 setSubmitState({
                     type: 'success',
-                    message: t.sections.formSuccessMessage
+                    message: t('sections.formSuccessMessage')
                 });
                 // Reset form
                 setFormData({
@@ -60,13 +57,13 @@ export default function ContactForm() {
             } else {
                 setSubmitState({
                     type: 'error',
-                    message: result.error || result.message || t.sections.formErrorMessage
+                    message: result.error || result.message || t('sections.formErrorMessage')
                 });
             }
         } catch (error) {
             setSubmitState({
                 type: 'error',
-                message: 'Network error. Please check your connection and try again.'
+                message: t('sections.formNetworkError')
             });
         } finally {
             setIsSubmitting(false);
@@ -121,7 +118,7 @@ export default function ContactForm() {
                         </div>
                         <div className="pt-1">
                             <p className="font-bold mb-1">
-                                {submitState.type === 'success' ? t.sections.formSuccessTitle : t.sections.formErrorTitle}
+                                {submitState.type === 'success' ? t('sections.formSuccessTitle') : t('sections.formErrorTitle')}
                             </p>
                             <p className="text-sm opacity-90 leading-relaxed">{submitState.message}</p>
                         </div>
@@ -140,7 +137,7 @@ export default function ContactForm() {
                     {/* Name Field */}
                     <motion.div variants={itemVariants} className="group relative">
                         <label htmlFor="name" className="block text-sm font-semibold text-slate-700 dark:text-slate-400 mb-2.5 transition-colors group-focus-within:text-blue-500">
-                            {t.sections.formName}
+                            {t('sections.formName')}
                         </label>
                         <div className="relative">
                             <AnimatePresence>
@@ -165,7 +162,7 @@ export default function ContactForm() {
                                 required
                                 disabled={isSubmitting}
                                 className={inputClasses}
-                                placeholder={t.sections.formNamePlaceholder}
+                                placeholder={t('sections.formNamePlaceholder')}
                             />
                         </div>
                     </motion.div>
@@ -173,7 +170,7 @@ export default function ContactForm() {
                     {/* Email Field */}
                     <motion.div variants={itemVariants} className="group relative">
                         <label htmlFor="email" className="block text-sm font-semibold text-slate-700 dark:text-slate-400 mb-2.5 transition-colors group-focus-within:text-blue-500">
-                            {t.sections.formEmail}
+                            {t('sections.formEmail')}
                         </label>
                         <div className="relative">
                             <AnimatePresence>
@@ -198,7 +195,7 @@ export default function ContactForm() {
                                 required
                                 disabled={isSubmitting}
                                 className={inputClasses}
-                                placeholder={t.sections.formEmailPlaceholder}
+                                placeholder={t('sections.formEmailPlaceholder')}
                             />
                         </div>
                     </motion.div>
@@ -207,7 +204,7 @@ export default function ContactForm() {
                 {/* Subject Field */}
                 <motion.div variants={itemVariants} className="group relative">
                     <label htmlFor="subject" className="block text-sm font-semibold text-slate-700 dark:text-slate-400 mb-2.5 transition-colors group-focus-within:text-blue-500">
-                        {t.sections.formSubject}
+                        {t('sections.formSubject')}
                     </label>
                     <div className="relative">
                         <AnimatePresence>
@@ -232,7 +229,7 @@ export default function ContactForm() {
                             required
                             disabled={isSubmitting}
                             className={inputClasses}
-                            placeholder={t.sections.formSubjectPlaceholder}
+                            placeholder={t('sections.formSubjectPlaceholder')}
                         />
                     </div>
                 </motion.div>
@@ -240,7 +237,7 @@ export default function ContactForm() {
                 {/* Message Field */}
                 <motion.div variants={itemVariants} className="group relative">
                     <label htmlFor="message" className="block text-sm font-semibold text-slate-700 dark:text-slate-400 mb-2.5 transition-colors group-focus-within:text-blue-500">
-                        {t.sections.formMessage}
+                        {t('sections.formMessage')}
                     </label>
                     <div className="relative">
                         <AnimatePresence>
@@ -265,7 +262,7 @@ export default function ContactForm() {
                             disabled={isSubmitting}
                             rows={6}
                             className={`${inputClasses} resize-none`}
-                            placeholder={t.sections.formMessagePlaceholder}
+                            placeholder={t('sections.formMessagePlaceholder')}
                         />
                     </div>
                 </motion.div>
@@ -289,7 +286,7 @@ export default function ContactForm() {
                                         className="flex items-center gap-3"
                                     >
                                         <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                                        <span>{t.sections.formSending}</span>
+                                        <span>{t('sections.formSending')}</span>
                                     </motion.div>
                                 ) : (
                                     <motion.div
@@ -300,14 +297,14 @@ export default function ContactForm() {
                                         className="flex items-center gap-3"
                                     >
                                         <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                                        <span>{t.sections.formSubmit}</span>
+                                        <span>{t('sections.formSubmit')}</span>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
                         </div>
                     </button>
                     <p className="mt-4 text-center text-xs text-slate-500 dark:text-slate-600">
-                        {t.sections.formResponseTime}
+                        {t('sections.formResponseTime')}
                     </p>
                 </motion.div>
             </motion.form>

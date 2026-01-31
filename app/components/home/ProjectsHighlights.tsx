@@ -2,22 +2,20 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { getFeaturedProjects } from "@/lib/projects";
-import Link from "next/link";
+import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/navigation';
 import { FaArrowRight, FaRocket, FaExternalLinkAlt, FaGithub, FaStar, FaPlay } from "react-icons/fa";
 import { useState } from "react";
 import ProjectPlaceholder from "../projects/ProjectPlaceholder";
-import { useLanguage } from "../../context/LanguageContext";
-import { commonContent as enCommon } from "@/lib/data/en/common";
-import { commonContent as frCommon } from "@/lib/data/fr/common";
 
 export default function ProjectsHighlights() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const { language } = useLanguage();
-    const t = language === 'fr' ? frCommon : enCommon;
-    const featuredProjects = getFeaturedProjects(language).sort((a, b) => (b.layoutPriority || 0) - (a.layoutPriority || 0));
+    const locale = useLocale();
+    const t = useTranslations('Common');
+    const featuredProjects = getFeaturedProjects(locale as any).sort((a, b) => (b.layoutPriority || 0) - (a.layoutPriority || 0));
 
     const containerVariants: Variants = {
-        // ... (omitting unchanged variants)
+        hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
@@ -52,13 +50,13 @@ export default function ProjectsHighlights() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 border border-pink-500/20 rounded-full text-pink-600 dark:text-pink-400 text-sm font-medium mb-4">
                         <FaRocket className="text-xs" />
-                        {t.sections.featuredWork}
+                        {t('sections.featuredWork')}
                     </div>
                     <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                        {t.sections.projectsTitle}
+                        {t('sections.projectsTitle')}
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                        {t.sections.projectsSubtitle}
+                        {t('sections.projectsSubtitle')}
                     </p>
                 </motion.div>
 
@@ -139,7 +137,7 @@ export default function ProjectsHighlights() {
 
                                     {/* Tech Stack */}
                                     <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.technologies?.slice(0, project.layoutSpan === 2 ? 6 : 3).map((tech, i) => (
+                                        {project.technologies?.slice(0, project.layoutSpan === 2 ? 6 : 3).map((tech: string, i: number) => (
                                             <motion.span
                                                 key={i}
                                                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(59, 130, 246, 0.2)' }}
@@ -161,18 +159,18 @@ export default function ProjectsHighlights() {
                                             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="relative flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg text-white text-sm font-semibold transition-all hover:scale-105 overflow-hidden group/btn">
                                                 <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-300" />
                                                 <FaExternalLinkAlt className="text-xs relative z-10" />
-                                                <span className="relative z-10">{t.sections.liveDemo}</span>
+                                                <span className="relative z-10">{t('sections.liveDemo')}</span>
                                             </a>
                                         )}
                                         {project.githubUrl && (
                                             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 border border-slate-300 dark:border-slate-700 group/code">
                                                 <FaGithub className="group-hover/code:rotate-12 transition-transform" />
-                                                {t.sections.viewCode}
+                                                {t('sections.viewCode')}
                                             </a>
                                         )}
                                         {!project.liveUrl && !project.githubUrl && (
                                             <Link href={`/projects/${project.id}`} className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 group/details">
-                                                {t.sections.viewDetails}
+                                                {t('sections.viewDetails')}
                                                 <FaArrowRight className="text-xs group-hover/details:translate-x-1 transition-transform" />
                                             </Link>
                                         )}
@@ -196,11 +194,11 @@ export default function ProjectsHighlights() {
                     className="text-center mt-16"
                 >
                     <Link href="/projects" className="inline-flex items-center gap-3 px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-purple-500 text-slate-900 dark:text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-2xl group">
-                        <span>{t.sections.viewAllProjects}</span>
+                        <span>{t('sections.viewAllProjects')}</span>
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <p className="text-sm text-slate-500 mt-4">
-                        {t.sections.projectsFooter}
+                        {t('sections.projectsFooter')}
                     </p>
                 </motion.div>
             </div>

@@ -2,16 +2,13 @@
 
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendar, FaCheckCircle, FaPaperPlane } from "react-icons/fa";
 import ContactForm from "./ContactForm";
-import Link from "next/link";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
 import { Video } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
-import { commonContent as enCommon } from "@/lib/data/en/common";
-import { commonContent as frCommon } from "@/lib/data/fr/common";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function Contact() {
-    const { language } = useLanguage();
-    const t = language === 'fr' ? frCommon : enCommon;
+    const t = useTranslations('Common');
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
@@ -53,13 +50,13 @@ export default function Contact() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 dark:text-green-400 text-sm font-medium mb-6">
                         <FaEnvelope className="text-xs" />
-                        {t.sections.contactTitle}
+                        {t('sections.contactTitle')}
                     </div>
                     <h2 className="text-4xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
-                        {t.sections.contactHeadline}
+                        {t('sections.contactHeadline')}
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                        {t.sections.contactSubtitle}
+                        {t('sections.contactSubtitle')}
                     </p>
                 </motion.div>
 
@@ -75,8 +72,8 @@ export default function Contact() {
                     {[
                         {
                             icon: FaEnvelope,
-                            title: t.sections.emailMe,
-                            subtitle: t.sections.methodEmailSubtitle,
+                            title: t('sections.emailMe'),
+                            subtitle: t('sections.methodEmailSubtitle'),
                             value: "hafaiedhakram@gmail.com",
                             href: "mailto:hafaiedhakram@gmail.com",
                             gradient: "from-blue-600/20 to-purple-600/20",
@@ -85,19 +82,19 @@ export default function Contact() {
                         },
                         {
                             icon: FaPhone,
-                            title: t.sections.callMe,
-                            subtitle: t.sections.methodPhoneSubtitle,
+                            title: t('sections.callMe'),
+                            subtitle: t('sections.methodPhoneSubtitle'),
                             value: "+216 50 569 298",
                             href: "tel:+21650569298",
-                            gradient: "from-blue-600/20 to-purple-600/20", // Unified with premium theme
+                            gradient: "from-blue-600/20 to-purple-600/20",
                             iconColor: "text-blue-500 dark:text-blue-400",
                             iconBg: "bg-blue-500/10"
                         },
                         {
                             icon: FaMapMarkerAlt,
-                            title: t.sections.location,
-                            subtitle: t.sections.methodLocationSubtitle,
-                            value: t.sections.methodLocationValue,
+                            title: t('sections.location'),
+                            subtitle: t('sections.methodLocationSubtitle'),
+                            value: t('sections.methodLocationValue'),
                             href: null,
                             gradient: "from-purple-600/20 to-pink-600/20",
                             iconColor: "text-purple-500 dark:text-purple-400",
@@ -160,10 +157,10 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                                            {t.sections.sendMessage}
+                                            {t('sections.sendMessage')}
                                         </h3>
                                         <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                            {t.sections.sendMessageSubtitle}
+                                            {t('sections.sendMessageSubtitle')}
                                         </p>
                                     </div>
                                 </div>
@@ -196,10 +193,10 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h4 className="text-xl font-bold text-white mb-2 leading-tight">
-                                            {t.sections.freeConsultation}
+                                            {t('sections.freeConsultation')}
                                         </h4>
                                         <p className="text-slate-400 text-sm leading-relaxed opacity-90">
-                                            {t.sections.freeConsultationSubtitle}
+                                            {t('sections.freeConsultationSubtitle')}
                                         </p>
                                     </div>
                                 </div>
@@ -209,10 +206,10 @@ export default function Contact() {
                                 >
                                     <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300" />
                                     <FaCalendar className="text-sm group-hover/btn:rotate-12 transition-transform text-blue-600" />
-                                    {t.sections.bookMeeting}
+                                    {t('sections.bookMeeting')}
                                 </Link>
                                 <p className="mt-4 text-center text-[10px] text-slate-500 uppercase tracking-widest font-semibold relative z-10">
-                                    Limited Slots Available
+                                    {t('sections.limitedSlots')}
                                 </p>
                             </div>
                         </motion.div>
@@ -223,7 +220,7 @@ export default function Contact() {
                             <motion.div variants={itemVariants} className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
                                 <h4 className="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                                     <span className="w-1.5 h-6 bg-blue-500 rounded-full" />
-                                    {t.sections.connectWithMe}
+                                    {t('sections.connectWithMe')}
                                 </h4>
                                 <div className="space-y-4">
                                     {[
@@ -248,14 +245,14 @@ export default function Contact() {
                             <motion.div variants={itemVariants} className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
                                 <h4 className="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
                                     <span className="w-1.5 h-6 bg-green-500 rounded-full" />
-                                    {t.sections.availability}
+                                    {t('sections.availability')}
                                 </h4>
                                 <div className="space-y-4">
                                     {[
-                                        { icon: FaCheckCircle, text: t.sections.availabilityFreelance, color: 'text-green-500 dark:text-green-400' },
-                                        { icon: FaCheckCircle, text: t.sections.availabilityFullTime, color: 'text-blue-500 dark:text-blue-400' },
-                                        { icon: FaCheckCircle, text: t.sections.availabilityRemote, color: 'text-purple-500 dark:text-purple-400' },
-                                        { icon: FaPaperPlane, text: t.sections.availabilityResponse, color: 'text-orange-500 dark:text-orange-400' },
+                                        { icon: FaCheckCircle, text: t('sections.availabilityFreelance'), color: 'text-green-500 dark:text-green-400' },
+                                        { icon: FaCheckCircle, text: t('sections.availabilityFullTime'), color: 'text-blue-500 dark:text-blue-400' },
+                                        { icon: FaCheckCircle, text: t('sections.availabilityRemote'), color: 'text-purple-500 dark:text-purple-400' },
+                                        { icon: FaPaperPlane, text: t('sections.availabilityResponse'), color: 'text-orange-500 dark:text-orange-400' },
                                     ].map((item, index) => (
                                         <div key={index} className="flex items-center gap-3">
                                             <item.icon className={`${item.color} flex-shrink-0 text-lg`} />
@@ -268,6 +265,6 @@ export default function Contact() {
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

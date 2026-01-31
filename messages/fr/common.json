@@ -1,0 +1,121 @@
+{
+    "Common": {
+        "nav": {
+            "home": "Accueil",
+            "about": "À propos",
+            "experience": "Expérience",
+            "skills": "Compétences",
+            "projects": "Projets",
+            "journey": "Parcours",
+            "contact": "Contact",
+            "personal": "Personnel",
+            "methods": "Méthodes",
+            "response": "Réponse",
+            "faq": "FAQ",
+            "portfolio": "Portfolio",
+            "explore": "Explorer",
+            "connect": "Connecter",
+            "overview": "Aperçu",
+            "details": "Détails",
+            "features": "Fonctionnalités",
+            "tech stack": "Pile Technique"
+        },
+        "sections": {
+            "recentExperience": "Expériences Récentes",
+            "viewAllExperience": "Voir Toute l'Expérience",
+            "professionalJourney": "Parcours Professionnel",
+            "experienceSubtitle": "Création de solutions percutantes à travers diverses technologies et industries",
+            "featuredWork": "Travaux en Vedette",
+            "projectsTitle": "Des Projets Qui Font la Différence",
+            "projectsSubtitle": "Des applications concrètes qui résolvent des problèmes et donnent des résultats",
+            "viewAllProjects": "Voir Tous les Projets",
+            "projectsFooter": "Explorez des études de cas détaillées et la documentation technique",
+            "contactTitle": "Contactez-moi",
+            "contactHeadline": "Travaillons Ensemble",
+            "contactSubtitle": "Prêt à démarrer votre projet ? Choisissez comment vous souhaitez vous connecter",
+            "emailMe": "Envoyez-moi un email",
+            "callMe": "Appelez-moi",
+            "location": "Localisation",
+            "sendMessage": "Envoyer un message",
+            "sendMessageSubtitle": "Remplissez le formulaire et je vous répondrai dans les 24 heures",
+            "freeConsultation": "Consultation Gratuite",
+            "freeConsultationSubtitle": "Un appel stratégique de 30 minutes pour discuter de votre vision du projet.",
+            "bookMeeting": "Prendre Rendez-vous",
+            "connectWithMe": "Connectez-vous avec moi",
+            "availability": "Disponibilité",
+            "formName": "Nom Complet",
+            "formNamePlaceholder": "Akram Hafaiedh",
+            "formEmail": "Adresse Email",
+            "formEmailPlaceholder": "bonjour@exemple.com",
+            "formSubject": "Objet du Projet",
+            "formSubjectPlaceholder": "Que souhaitez-vous construire ?",
+            "formMessage": "Détails du Message",
+            "formMessagePlaceholder": "Dites-m'en plus sur vos idées...",
+            "formSubmit": "Envoyer ma demande",
+            "formSending": "Envoi du message...",
+            "formSuccessTitle": "Succès !",
+            "formSuccessMessage": "Message envoyé avec succès ! Je vous répondrai bientôt.",
+            "formErrorTitle": "Une erreur est survenue",
+            "formErrorMessage": "Une erreur s'est produite. Veuillez réessayer.",
+            "formNetworkError": "Erreur réseau. Veuillez vérifier votre connexion et réessayer.",
+            "formResponseTime": "Je réponds généralement à toutes les demandes dans les 24 heures.",
+            "availabilityFreelance": "Projets freelance",
+            "availabilityFullTime": "Postes à plein temps",
+            "availabilityRemote": "Travail à distance",
+            "availabilityResponse": "Réponse rapide en 24h",
+            "methodEmailSubtitle": "Envoyez-moi un message détaillé sur votre projet",
+            "methodPhoneSubtitle": "Vous préférez parler ? Appelez-moi directement",
+            "methodLocationSubtitle": "Basé en Tunisie, travaillant dans le monde entier",
+            "methodLocationValue": "Carthage, Tunis, Tunisie",
+            "liveDemo": "Démo en Direct",
+            "viewCode": "Voir le Code",
+            "viewDetails": "Voir les Détails",
+            "limitedSlots": "Plages horaires limitées"
+        },
+        "footer": {
+            "rights": "Tous droits réservés.",
+            "terms": "Conditions",
+            "policy": "Confidentialité",
+            "developedWith": "Développé avec",
+            "by": "par",
+            "sourceCode": "Code Source"
+        },
+        "search": {
+            "placeholder": "Rechercher...",
+            "commandPlaceholder": "Tapez une commande ou recherchez...",
+            "esc": "ESC",
+            "select": "Sélectionner",
+            "navigate": "Naviguer",
+            "premium": "Recherche Premium"
+        },
+        "commandPalette": {
+            "sections": {
+                "navigation": "Navigation",
+                "preferences": "Préférences",
+                "projects": "Projets"
+            },
+            "actions": {
+                "home": "Accueil",
+                "about": "À propos",
+                "experience": "Expérience",
+                "booking": "Réserver un appel",
+                "contact": "Contact",
+                "toggleTheme": "Changer le thème",
+                "changeToEnglish": "Passer en Anglais",
+                "passerEnFrancais": "Passer en Français"
+            }
+        },
+        "seo": {
+            "title": "Akram Hafaiedh - Développeur Web Full Stack",
+            "description": "Portfolio professionnel d'Akram Hafaiedh, développeur web Full Stack passionné spécialisé en React, Vue.js, Laravel, Node.js et technologies web modernes.",
+            "keywords": "Développeur Full Stack, React, Vue.js, Laravel, Node.js, JavaScript, TypeScript, Développement Web, Tunisie",
+            "pages": {
+                "about": "À Propos de Moi",
+                "experience": "Expériences Professionnelles",
+                "projects": "Portfolio des Projets",
+                "contact": "Contact & Collaboration",
+                "booking": "Réserver un Appel Stratégique"
+            }
+        }
+    }
+}

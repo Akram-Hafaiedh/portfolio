@@ -1,0 +1,12 @@
+{
+    "Experience": {
+        "technicalExpertise": "Expertise Technique",
+        "expertiseSubtitle": "Un aperçu complet de mes compétences techniques et outils",
+        "categories": {
+            "frontend": "Développement Frontend",
+            "backend": "Développement Backend",
+            "database": "Gestion de Base de Données",
+            "tools": "DevOps & Outils"
+        }
+    }
+}

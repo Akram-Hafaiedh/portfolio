@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode } from 'react-icons/fa';
 import { Project } from '@/lib/projects';
 import { getRelatedProjects } from '@/lib/recommendations';
-import { useLanguage } from '@/app/context/LanguageContext';
+import { useLocale } from 'next-intl';
 import { projectDetailsContent as enContent } from '@/lib/data/en/projects';
 import { projectDetailsContent as frContent } from '@/lib/data/fr/projects';
 
@@ -18,9 +18,9 @@ interface RelatedProjectsProps {
 }
 
 export default function RelatedProjects({ currentProject }: RelatedProjectsProps) {
-    const { language } = useLanguage();
-    const content = language === 'fr' ? frContent : enContent;
-    const related = getRelatedProjects(currentProject, language, 3);
+    const locale = useLocale();
+    const content = locale === 'fr' ? frContent : enContent;
+    const related = getRelatedProjects(currentProject, locale as 'en' | 'fr', 3);
 
     const getPlaceholderVariant = (index: number) => {
         const variants: ('orange' | 'blue' | 'purple')[] = ['orange', 'blue', 'purple'];

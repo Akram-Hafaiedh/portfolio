@@ -1,0 +1,55 @@
+{
+    "Booking": {
+        "hero": {
+            "badge": "Réservation Instantanée",
+            "title": "Planifier une Réunion",
+            "subtitle": "Discutons de votre projet et donnons vie à vos idées",
+            "emphasis": "Choisissez un créneau qui vous convient."
+        },
+        "calendar": {
+            "title": "Sélectionner Date & Heure",
+            "dateLabel": "Choisir une Date",
+            "durationLabel": "Durée de la Réunion",
+            "slotsLabel": "Créneaux Disponibles",
+            "loadingSlots": "Chargement des créneaux...",
+            "noSlots": "Aucun créneau disponible pour cette date",
+            "selectedTime": "Heure de Réunion Sélectionnée",
+            "minutes": "minutes"
+        },
+        "form": {
+            "title": "Vos Informations",
+            "name": "Votre Nom",
+            "email": "Adresse Email",
+            "subject": "Sujet de la Réunion",
+            "subjectPlaceholder": "ex: Opportunité d'emploi, Discussion projet, Entretien technique",
+            "message": "Message Supplémentaire",
+            "messagePlaceholder": "Dites-m'en un peu plus sur ce dont vous aimeriez discuter...",
+            "namePlaceholder": "Entrez votre nom complet",
+            "emailPlaceholder": "votre.email@exemple.com",
+            "required": "*",
+            "submit": "Planifier la Réunion",
+            "submitting": "Planification en cours...",
+            "disclaimer": "En planifiant cette réunion, vous acceptez notre politique de confidentialité et nos conditions d'utilisation."
+        },
+        "meetingDetails": {
+            "title": "Détails de la Réunion",
+            "googleMeet": "Le lien Google Meet sera fourni",
+            "calendar": "Invitation calendrier avec rappels",
+            "remote": "Disponible pour réunions à distance",
+            "flexible": "Reprogrammation flexible disponible"
+        },
+        "messages": {
+            "success": "Rendez-vous planifié avec succès ! Vérifiez votre email pour le lien.",
+            "error": "Erreur lors de la planification. Veuillez réessayer.",
+            "selectSlot": "Veuillez sélectionner un créneau horaire",
+            "fetchError": "Échec de récupération des disponibilités"
+        },
+        "durations": {
+            "30": "30 minutes",
+            "45": "45 minutes",
+            "60": "1 heure",
+            "90": "1.5 heures",
+            "120": "2 heures"
+        }
+    }
+}

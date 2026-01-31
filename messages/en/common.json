@@ -1,0 +1,121 @@
+{
+    "Common": {
+        "nav": {
+            "home": "Home",
+            "about": "About",
+            "experience": "Experience",
+            "skills": "Skills",
+            "projects": "Projects",
+            "journey": "Journey",
+            "contact": "Contact",
+            "personal": "Personal",
+            "methods": "Methods",
+            "response": "Response",
+            "faq": "FAQ",
+            "portfolio": "Portfolio",
+            "explore": "Explore",
+            "connect": "Connect",
+            "overview": "Overview",
+            "details": "Details",
+            "features": "Features",
+            "tech stack": "Tech Stack"
+        },
+        "sections": {
+            "recentExperience": "Recent Experience",
+            "viewAllExperience": "View All Experience",
+            "professionalJourney": "Professional Journey",
+            "experienceSubtitle": "Building impactful solutions across diverse technologies and industries",
+            "featuredWork": "Featured Work",
+            "projectsTitle": "Projects That Make a Difference",
+            "projectsSubtitle": "Real-world applications that solve problems and deliver results",
+            "viewAllProjects": "View All Projects",
+            "projectsFooter": "Explore detailed case studies and technical documentation",
+            "contactTitle": "Get In Touch",
+            "contactHeadline": "Let's Work Together",
+            "contactSubtitle": "Ready to start your project? Choose how you'd like to connect",
+            "emailMe": "Email Me",
+            "callMe": "Call Me",
+            "location": "Location",
+            "sendMessage": "Send a Message",
+            "sendMessageSubtitle": "Fill out the form and I'll get back to you within 24 hours",
+            "freeConsultation": "Free Consultation",
+            "freeConsultationSubtitle": "A dedicated 30-min strategy call to discuss your project vision.",
+            "bookMeeting": "Book a Meeting",
+            "connectWithMe": "Connect With Me",
+            "availability": "Availability",
+            "formName": "Full Name",
+            "formNamePlaceholder": "Akram Hafaiedh",
+            "formEmail": "Email Address",
+            "formEmailPlaceholder": "hi@example.com",
+            "formSubject": "Project Subject",
+            "formSubjectPlaceholder": "What would you like to build?",
+            "formMessage": "Message Details",
+            "formMessagePlaceholder": "Tell me more about your ideas...",
+            "formSubmit": "Send My Inquiry",
+            "formSending": "Sending Message...",
+            "formSuccessTitle": "Success!",
+            "formSuccessMessage": "Message sent successfully! I'll get back to you soon.",
+            "formErrorTitle": "Error occurred",
+            "formErrorMessage": "Something went wrong. Please try again.",
+            "formNetworkError": "Network error. Please check your connection and try again.",
+            "formResponseTime": "I typically respond to all inquiries within 24 hours.",
+            "availabilityFreelance": "Freelance projects",
+            "availabilityFullTime": "Full-time roles",
+            "availabilityRemote": "Remote work",
+            "availabilityResponse": "24h quick response",
+            "methodEmailSubtitle": "Send me a detailed message about your project",
+            "methodPhoneSubtitle": "Prefer to talk? Give me a call directly",
+            "methodLocationSubtitle": "Based in Tunisia, working globally",
+            "methodLocationValue": "Carthage, Tunis, Tunisia",
+            "liveDemo": "Live Demo",
+            "viewCode": "View Code",
+            "viewDetails": "View Details",
+            "limitedSlots": "Limited Slots Available"
+        },
+        "footer": {
+            "rights": "All rights reserved.",
+            "terms": "Terms",
+            "policy": "Policy",
+            "developedWith": "Developed with",
+            "by": "by",
+            "sourceCode": "Source Code"
+        },
+        "search": {
+            "placeholder": "Search...",
+            "commandPlaceholder": "Type a command or search...",
+            "esc": "ESC",
+            "select": "Select",
+            "navigate": "Navigate",
+            "premium": "Premium Search"
+        },
+        "commandPalette": {
+            "sections": {
+                "navigation": "Navigation",
+                "preferences": "Preferences",
+                "projects": "Projects"
+            },
+            "actions": {
+                "home": "Home",
+                "about": "About",
+                "experience": "Experience",
+                "booking": "Book a Call",
+                "contact": "Contact",
+                "toggleTheme": "Toggle Theme",
+                "changeToEnglish": "Change to English",
+                "passerEnFrancais": "Passer en Français"
+            }
+        },
+        "seo": {
+            "title": "Akram Hafaiedh - Full Stack Web Developer",
+            "description": "Professional portfolio of Akram Hafaiedh, a passionate Full Stack Web Developer with expertise in React, Vue.js, Laravel, Node.js, and modern web technologies.",
+            "keywords": "Full Stack Developer, React, Vue.js, Laravel, Node.js, JavaScript, TypeScript, Web Development, Tunisia",
+            "pages": {
+                "about": "About Me",
+                "experience": "Professional Experience",
+                "projects": "Portfolio Projects",
+                "contact": "Contact & Collaboration",
+                "booking": "Book a Strategy Call"
+            }
+        }
+    }
+}

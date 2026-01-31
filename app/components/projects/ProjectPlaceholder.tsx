@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { FaClock } from 'react-icons/fa';
-import { useLanguage } from '@/app/context/LanguageContext';
+import { useLocale } from 'next-intl';
 
 interface ProjectPlaceholderProps {
     title: string;
@@ -13,7 +13,7 @@ interface ProjectPlaceholderProps {
 }
 
 const ProjectPlaceholder: React.FC<ProjectPlaceholderProps> = ({ title, status, variant = 'orange', className = '', compact = false }) => {
-    const { language } = useLanguage();
+    const locale = useLocale();
 
     const isCompleted = status === 'Completed';
 
@@ -30,7 +30,7 @@ const ProjectPlaceholder: React.FC<ProjectPlaceholderProps> = ({ title, status, 
                 ? "Ce projet est terminé et déployé avec succès. Plongez dans les détails !"
                 : "Ce projet est actuellement en cours de développement. Restez à l'écoute pour les détails techniques et la démo en direct !"
         }
-    }[language as 'en' | 'fr'] || {
+    }[locale as 'en' | 'fr'] || {
         badge: isCompleted ? "Project Live" : "Coming Soon",
         description: isCompleted
             ? "This project is successfully completed and deployed. Dive into the details!"

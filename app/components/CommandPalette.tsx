@@ -9,11 +9,12 @@ import {
     KBarSearch,
     KBarResults,
     useMatches,
-    Action
+    Action,
+    useRegisterActions
 } from 'kbar';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { useLanguage } from '@/app/context/LanguageContext';
+import { useRouter, usePathname } from '@/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import { getProjects } from '@/lib/projects';
 import {
     FaSearch,
@@ -29,61 +30,111 @@ import {
 } from 'react-icons/fa';
 
 export default function CommandPalette({ children }: { children: React.ReactNode }) {
+    const t = useTranslations('Common');
+    const locale = useLocale();
+    return (
+        <KBarProvider key={locale}>
+            <CommandPaletteActions />
+            <KBarPortal>
+                <KBarPositioner className="bg-slate-900/60 backdrop-blur-md z-[9999] p-4">
+                    <KBarAnimator className="w-full max-w-[650px] bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] overflow-hidden border border-white/20 dark:border-slate-800/50">
+                        <div className="flex items-center px-6 py-5 border-b border-slate-200/50 dark:border-slate-800/50 group">
+                            <FaSearch className="w-5 h-5 text-slate-400 group-focus-within:text-blue-500 transition-colors mr-4" />
+                            <KBarSearch
+                                defaultPlaceholder={t('search.commandPlaceholder')}
+                                className="w-full bg-transparent border-none outline-none text-slate-900 dark:text-white placeholder-slate-400 text-xl font-medium tracking-tight"
+                            />
+                            <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-100/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
+                                <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">{t('search.esc')}</span>
+                            </div>
+                        </div>
+                        <div className="max-h-[450px] overflow-y-auto hide-scrollbar">
+                            <RenderResults />
+                        </div>
+                        <div className="px-6 py-3 bg-slate-50/50 dark:bg-slate-950/20 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
+                            <div className="flex gap-4">
+                                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase font-black tracking-widest">
+                                    <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">↵</kbd>
+                                    <span>{t('search.select')}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase font-black tracking-widest">
+                                    <div className="flex gap-0.5">
+                                        <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">↑</kbd>
+                                        <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">↓</kbd>
+                                    </div>
+                                    <span>{t('search.navigate')}</span>
+                                </div>
+                            </div>
+                            <div className="text-[10px] text-blue-500 font-black uppercase tracking-widest animate-pulse">
+                                {t('search.premium')}
+                            </div>
+                        </div>
+                    </KBarAnimator>
+                </KBarPositioner>
+            </KBarPortal>
+            {children}
+        </KBarProvider>
+    );
+}
+
+function CommandPaletteActions() {
     const router = useRouter();
-    const { language, setLanguage } = useLanguage();
-    const projects = getProjects(language);
+    const pathname = usePathname();
+    const locale = useLocale();
+    const t = useTranslations('Common');
+    const projects = getProjects(locale as 'en' | 'fr');
 
     const actions: Action[] = [
         // Navigation
         {
             id: 'home',
-            name: language === 'fr' ? 'Accueil' : 'Home',
+            name: t('commandPalette.actions.home'),
             shortcut: ['h'],
             keywords: 'home index start',
             perform: () => router.push('/'),
             icon: <FaHome className="w-5 h-5" />,
-            section: language === 'fr' ? 'Navigation' : 'Navigation',
+            section: t('commandPalette.sections.navigation'),
         },
         {
             id: 'about',
-            name: language === 'fr' ? 'À propos' : 'About',
+            name: t('commandPalette.actions.about'),
             shortcut: ['a'],
             keywords: 'about biography me',
             perform: () => router.push('/about'),
             icon: <FaUser className="w-5 h-5" />,
-            section: language === 'fr' ? 'Navigation' : 'Navigation',
+            section: t('commandPalette.sections.navigation'),
         },
         {
             id: 'experience',
-            name: language === 'fr' ? 'Expérience' : 'Experience',
+            name: t('commandPalette.actions.experience'),
             shortcut: ['e'],
             keywords: 'experience work job history resume',
             perform: () => router.push('/experience'),
             icon: <FaBriefcase className="w-5 h-5" />,
-            section: language === 'fr' ? 'Navigation' : 'Navigation',
+            section: t('commandPalette.sections.navigation'),
         },
         {
             id: 'booking',
-            name: language === 'fr' ? 'Réserver un appel' : 'Book a Call',
+            name: t('commandPalette.actions.booking'),
             shortcut: ['b'],
             keywords: 'book calendar meeting schedule call strategy',
             perform: () => router.push('/booking'),
             icon: <FaCalendarAlt className="w-5 h-5" />,
-            section: language === 'fr' ? 'Navigation' : 'Navigation',
+            section: t('commandPalette.sections.navigation'),
         },
         {
             id: 'contact',
-            name: 'Contact',
+            name: t('commandPalette.actions.contact'),
             shortcut: ['c'],
             keywords: 'contact email message hire',
             perform: () => router.push('/contact'),
             icon: <FaEnvelope className="w-5 h-5" />,
-            section: language === 'fr' ? 'Navigation' : 'Navigation',
+            section: t('commandPalette.sections.navigation'),
         },
         // Utilities
         {
             id: 'theme',
-            name: language === 'fr' ? 'Changer le thème' : 'Toggle Theme',
+            name: t('commandPalette.actions.toggleTheme'),
             shortcut: ['t'],
             keywords: 'theme dark light mode color style',
             perform: () => {
@@ -97,16 +148,16 @@ export default function CommandPalette({ children }: { children: React.ReactNode
                 }
             },
             icon: <FaMoon className="w-5 h-5" />,
-            section: language === 'fr' ? 'Préférences' : 'Preferences',
+            section: t('commandPalette.sections.preferences'),
         },
         {
             id: 'language',
-            name: language === 'fr' ? 'Change to English' : 'Passer en Français',
+            name: locale === 'fr' ? t('commandPalette.actions.changeToEnglish') : t('commandPalette.actions.passerEnFrancais'),
             shortcut: ['l'],
             keywords: 'language traduction translate english french',
-            perform: () => setLanguage(language === 'en' ? 'fr' : 'en'),
+            perform: () => router.replace(pathname, { locale: locale === 'en' ? 'fr' : 'en' }),
             icon: <FaLanguage className="w-5 h-5" />,
-            section: language === 'fr' ? 'Préférences' : 'Preferences',
+            section: t('commandPalette.sections.preferences'),
         },
         // Projects Search
         ...projects.map(project => ({
@@ -115,50 +166,14 @@ export default function CommandPalette({ children }: { children: React.ReactNode
             keywords: `${project.title} ${project.type} ${project.technologies.join(' ')}`,
             perform: () => router.push(`/projects/${project.id}`),
             icon: <FaCode className="w-5 h-5" />,
-            section: language === 'fr' ? 'Projets' : 'Projects',
+            section: t('commandPalette.sections.projects'),
             subtitle: project.type
         }))
     ];
 
-    return (
-        <KBarProvider actions={actions}>
-            <KBarPortal>
-                <KBarPositioner className="bg-slate-900/60 backdrop-blur-md z-[9999] p-4">
-                    <KBarAnimator className="w-full max-w-[650px] bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] overflow-hidden border border-white/20 dark:border-slate-800/50">
-                        <div className="flex items-center px-6 py-5 border-b border-slate-200/50 dark:border-slate-800/50 group">
-                            <FaSearch className="w-5 h-5 text-slate-400 group-focus-within:text-blue-500 transition-colors mr-4" />
-                            <KBarSearch className="w-full bg-transparent border-none outline-none text-slate-900 dark:text-white placeholder-slate-400 text-xl font-medium tracking-tight" />
-                            <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-100/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
-                                <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">ESC</span>
-                            </div>
-                        </div>
-                        <div className="max-h-[450px] overflow-y-auto hide-scrollbar">
-                            <RenderResults />
-                        </div>
-                        <div className="px-6 py-3 bg-slate-50/50 dark:bg-slate-950/20 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
-                            <div className="flex gap-4">
-                                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase font-black tracking-widest">
-                                    <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">↵</kbd>
-                                    <span>Select</span>
-                                </div>
-                                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 uppercase font-black tracking-widest">
-                                    <div className="flex gap-0.5">
-                                        <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">↑</kbd>
-                                        <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">↓</kbd>
-                                    </div>
-                                    <span>Navigate</span>
-                                </div>
-                            </div>
-                            <div className="text-[10px] text-blue-500 font-black uppercase tracking-widest animate-pulse">
-                                Premium Search
-                            </div>
-                        </div>
-                    </KBarAnimator>
-                </KBarPositioner>
-            </KBarPortal>
-            {children}
-        </KBarProvider>
-    );
+    useRegisterActions(actions, [pathname, locale]);
+
+    return null;
 }
 
 function RenderResults() {

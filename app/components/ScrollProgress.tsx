@@ -1,12 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
+import { useTranslations } from 'next-intl';
 
 interface ScrollProgressProps {
     sections?: string[];
 }
 
-export default function ScrollProgress({ sections = ['Hero', 'About', 'Experience', 'Projects', 'Contact'] }: ScrollProgressProps) {
+export default function ScrollProgress({ sections = ['home', 'about', 'experience', 'projects', 'contact'] }: ScrollProgressProps) {
+    const t = useTranslations('Common');
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -74,7 +76,7 @@ export default function ScrollProgress({ sections = ['Hero', 'About', 'Experienc
                                 <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-blue-500 to-purple-500 scale-150' : isPassed ? 'bg-purple-500 scale-100' : 'bg-slate-400 dark:bg-slate-700 scale-100'}`} />
                                 <div className="absolute left-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                     <div className="bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-1 rounded-lg whitespace-nowrap text-xs text-slate-900 dark:text-white">
-                                        {section}
+                                        {t(`nav.${section.toLowerCase() as any}`)}
                                     </div>
                                 </div>
                             </div>

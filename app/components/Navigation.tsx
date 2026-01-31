@@ -5,18 +5,18 @@ import { FaBars, FaTimes, FaGlobe, FaSearch } from 'react-icons/fa';
 import { useKBar } from 'kbar';
 import ThemeToggle from './ThemeToggle';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useLanguage } from '../context/LanguageContext';
-import { commonContent as enCommon } from "@/lib/data/en/common";
-import { commonContent as frCommon } from "@/lib/data/fr/common";
+import { useTranslations, useLocale } from 'next-intl';
+import { Link, useRouter, usePathname } from '@/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-    const { language, setLanguage } = useLanguage();
+    const locale = useLocale();
+    const router = useRouter();
+    const pathname = usePathname();
     const { query } = useKBar();
-    const t = language === 'fr' ? frCommon : enCommon;
+    const t = useTranslations('Common');
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -31,11 +31,11 @@ export default function Navigation() {
     };
 
     const navItems = [
-        { href: '/', label: t.nav.home },
-        { href: '/about', label: t.nav.about },
-        { href: '/experience', label: t.nav.experience },
-        { href: '/projects', label: t.nav.projects },
-        { href: '/contact', label: t.nav.contact },
+        { href: '/', label: t('nav.home') },
+        { href: '/about', label: t('nav.about') },
+        { href: '/experience', label: t('nav.experience') },
+        { href: '/projects', label: t('nav.projects') },
+        { href: '/contact', label: t('nav.contact') },
     ];
 
     return (
@@ -80,7 +80,7 @@ export default function Navigation() {
                                 aria-label="Open search"
                             >
                                 <FaSearch size={14} className="group-hover:text-blue-500 transition-colors" />
-                                <span className="text-xs font-medium">Search...</span>
+                                <span className="text-xs font-medium">{t('search.placeholder')}</span>
                                 <kbd className="hidden lg:inline-block px-1.5 py-0.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-[10px] font-black opacity-60">⌘K</kbd>
                             </motion.button>
 
@@ -95,7 +95,7 @@ export default function Navigation() {
                                     aria-haspopup="true"
                                 >
                                     <FaGlobe size={16} />
-                                    <span className="uppercase font-bold text-xs tracking-wider">{language}</span>
+                                    <span className="uppercase font-bold text-xs tracking-wider">{locale}</span>
                                 </motion.button>
 
                                 <AnimatePresence>
@@ -108,23 +108,23 @@ export default function Navigation() {
                                         >
                                             <button
                                                 onClick={() => {
-                                                    setLanguage('en');
+                                                    router.replace(pathname, { locale: 'en' });
                                                     setIsLangMenuOpen(false);
                                                 }}
-                                                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${language === 'en' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
+                                                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${locale === 'en' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
                                             >
                                                 English
-                                                {language === 'en' && <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />}
+                                                {locale === 'en' && <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />}
                                             </button>
                                             <button
                                                 onClick={() => {
-                                                    setLanguage('fr');
+                                                    router.replace(pathname, { locale: 'fr' });
                                                     setIsLangMenuOpen(false);
                                                 }}
-                                                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${language === 'fr' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
+                                                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${locale === 'fr' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
                                             >
                                                 Français
-                                                {language === 'fr' && <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />}
+                                                {locale === 'fr' && <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />}
                                             </button>
                                         </motion.div>
                                     )}
@@ -213,19 +213,19 @@ export default function Navigation() {
                                 >
                                     <button
                                         onClick={() => {
-                                            setLanguage('en');
+                                            router.replace(pathname, { locale: 'en' });
                                             closeMenu();
                                         }}
-                                        className={`px-4 py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider transition-all ${language === 'en' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                        className={`px-4 py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider transition-all ${locale === 'en' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
                                     >
                                         EN
                                     </button>
                                     <button
                                         onClick={() => {
-                                            setLanguage('fr');
+                                            router.replace(pathname, { locale: 'fr' });
                                             closeMenu();
                                         }}
-                                        className={`px-4 py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider transition-all ${language === 'fr' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                        className={`px-4 py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider transition-all ${locale === 'fr' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
                                     >
                                         FR
                                     </button>

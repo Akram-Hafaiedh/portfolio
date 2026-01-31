@@ -1,16 +1,14 @@
 'use client';
 import { motion, Variants } from "framer-motion";
 import { getFeaturedExperiences } from "@/lib/experiences";
-import Link from "next/link";
+import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/navigation';
 import { FaArrowRight, FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { useLanguage } from "../../context/LanguageContext";
-import { commonContent as enCommon } from "@/lib/data/en/common";
-import { commonContent as frCommon } from "@/lib/data/fr/common";
 
 export default function ExperienceHighlights() {
-    const { language } = useLanguage();
-    const t = language === 'fr' ? frCommon : enCommon;
-    const experiences = getFeaturedExperiences(language, 2);
+    const locale = useLocale();
+    const t = useTranslations('Common');
+    const experiences = getFeaturedExperiences(locale as any, 2);
 
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
@@ -38,6 +36,7 @@ export default function ExperienceHighlights() {
     const lineVariants: Variants = {
         hidden: { scaleY: 0 },
         visible: {
+            opacity: 1,
             scaleY: 1,
             transition: {
                 duration: 1.5,
@@ -59,13 +58,13 @@ export default function ExperienceHighlights() {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-600 dark:text-purple-400 text-sm font-medium mb-4">
                         <FaBriefcase className="text-xs" />
-                        {t.sections.professionalJourney}
+                        {t('sections.professionalJourney')}
                     </div>
                     <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                        {t.sections.recentExperience}
+                        {t('sections.recentExperience')}
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                        {t.sections.experienceSubtitle}
+                        {t('sections.experienceSubtitle')}
                     </p>
                 </motion.div>
 
@@ -113,7 +112,7 @@ export default function ExperienceHighlights() {
                                         <div className="mb-6">
                                             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
                                                 <div className={index % 2 === 0 ? 'md:ml-auto' : ''}>
-                                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                                                         {exp.title}
                                                     </h3>
                                                     <div className={`flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold text-lg mb-2 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
@@ -174,7 +173,7 @@ export default function ExperienceHighlights() {
                     className="text-center mt-16"
                 >
                     <Link href="/experience" className="inline-flex items-center gap-3 px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-purple-500 text-slate-900 dark:text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-2xl group">
-                        <span>{t.sections.viewAllExperience}</span>
+                        <span>{t('sections.viewAllExperience')}</span>
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </motion.div>
