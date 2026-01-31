@@ -13,11 +13,12 @@ export const homeContent = {
     },
     links: {
       resume: "CV",
-      projects: "Projets"
+      projects: "Projets",
+      scroll: "Défiler"
     },
     stats: {
       exp: { value: "5+", label: "Années Exp" },
-      projects: { value: "5+", label: "Projets" },
+      projects: { value: "9+", label: "Projets" },
       satisfied: { value: "100%", label: "Satisfait" }
     },
     techStack: "Technologies Clés",

@@ -7,7 +7,7 @@ export const aboutPageContent = {
     },
     stats: [
         { iconName: "FaGraduationCap", label: "Master", value: "Biomédical", color: "blue" },
-        { iconName: "FaCode", label: "Projets Réalisés", value: "5+", color: "green" },
+        { iconName: "FaCode", label: "Projets Réalisés", value: "9+", color: "green" },
         { iconName: "FaGlobe", label: "Langues", value: "4", color: "purple" },
         { iconName: "FaMapMarkerAlt", label: "Localisation", value: "Tunisie", color: "orange" }
     ],
