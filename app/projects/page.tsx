@@ -9,7 +9,7 @@ import { useLanguage } from "@/app/context/LanguageContext";
 import { useKBar } from 'kbar';
 import { projectsPageContent as enContent } from "@/lib/data/en/projects";
 import { projectsPageContent as frContent } from "@/lib/data/fr/projects";
-import { FaRocket, FaCode, FaSearch, FaTimes, FaCheckCircle, FaClock } from 'react-icons/fa';
+import { FaRocket, FaCode, FaCheckCircle, FaClock, FaSearch } from 'react-icons/fa';
 
 type FilterType = 'all' | 'SaaS' | 'Enterprise' | 'Mobile' | 'Personal';
 
@@ -21,8 +21,6 @@ export default function EnhancedProjectsPage() {
 
     const [activeFilter, setActiveFilter] = useState<FilterType>('all');
     // We remove visibleProjects for horizontal scroll as we want to show all filtered
-    const [searchQuery, setSearchQuery] = useState('');
-    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const filteredProjects = useMemo(() => {
         let filtered = projects;
@@ -37,18 +35,8 @@ export default function EnhancedProjectsPage() {
             });
         }
 
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase();
-            filtered = filtered.filter(p =>
-                p.title.toLowerCase().includes(query) ||
-                p.shortDescription?.toLowerCase().includes(query) ||
-                p.longDescription.toLowerCase().includes(query) ||
-                p.technologies.some(t => t.toLowerCase().includes(query))
-            );
-        }
-
         return filtered;
-    }, [activeFilter, searchQuery, projects]);
+    }, [activeFilter, projects]);
 
     const filterButtons: { key: FilterType; label: string }[] = [
         { key: 'all', label: content.filters.all },
@@ -143,13 +131,12 @@ export default function EnhancedProjectsPage() {
                     </div>
                 </div>
 
-                {/* Refined Filter & Search Section */}
+                {/* Refined Filter Section */}
                 <div className="px-4 sm:px-6 lg:px-8 mb-16">
                     <div className="max-w-7xl mx-auto">
-                        <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-
+                        <div className="flex justify-center">
                             {/* Filter Pills - Independent & Responsive Track */}
-                            <div className="flex items-center gap-3 overflow-x-auto hide-scrollbar w-full lg:w-auto pb-4 lg:pb-0 scroll-smooth">
+                            <div className="flex items-center gap-3 overflow-x-auto hide-scrollbar pb-4 scroll-smooth">
                                 {filterButtons.map((button) => (
                                     <button
                                         key={button.key}
@@ -162,33 +149,6 @@ export default function EnhancedProjectsPage() {
                                         {button.label}
                                     </button>
                                 ))}
-                            </div>
-
-                            {/* Search Input - Clean & Minimalist */}
-                            <div className="relative w-full lg:w-96 group">
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="relative flex items-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-slate-200/50 dark:border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-300 focus-within:bg-white/80 dark:focus-within:bg-slate-900/80 focus-within:border-blue-500/30 focus-within:shadow-xl focus-within:shadow-blue-500/5">
-                                    <div className="pl-5 text-slate-400">
-                                        <FaSearch className="text-xs" />
-                                    </div>
-                                    <input
-                                        ref={searchInputRef}
-                                        type="text"
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                        onClick={() => query.toggle()}
-                                        placeholder={content.search.placeholder}
-                                        className="w-full pl-4 pr-12 py-4 bg-transparent border-none outline-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 text-sm cursor-pointer"
-                                    />
-                                    {searchQuery && (
-                                        <button
-                                            onClick={() => setSearchQuery('')}
-                                            className="absolute right-4 p-2 text-slate-400 hover:text-red-500 transition-colors"
-                                        >
-                                            <FaTimes className="text-xs" />
-                                        </button>
-                                    )}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -205,7 +165,7 @@ export default function EnhancedProjectsPage() {
                             </div>
                             <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">{content.results.noProjects}</h3>
                             <button
-                                onClick={() => { setActiveFilter('all'); setSearchQuery(''); }}
+                                onClick={() => setActiveFilter('all')}
                                 className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-transform"
                             >
                                 {content.results.showAll}
