@@ -66,6 +66,9 @@ export default function Navigation() {
                                 <button
                                     onClick={toggleLangMenu}
                                     className="flex items-center gap-2 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                    aria-label="Select language"
+                                    aria-expanded={isLangMenuOpen}
+                                    aria-haspopup="true"
                                 >
                                     <FaGlobe size={16} />
                                     <span className="uppercase font-medium">{language}</span>

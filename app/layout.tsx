@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
+import LangSync from "./components/LangSync";
 
 
 const geistSans = Geist({
@@ -60,9 +61,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Akram Hafaiedh",
+    "url": "https://portfolio-six-mu-c3zpt9l3gd.vercel.app",
+    "jobTitle": "Full Stack Web Developer",
+    "image": "https://portfolio-six-mu-c3zpt9l3gd.vercel.app/profile.jpg", // Assuming there's a profile image or I can just use a placeholder
+    "description": "Professional portfolio of Akram Hafaiedh, a passionate Full Stack Web Developer with expertise in React, Vue.js, Laravel, Node.js, and modern web technologies.",
+    "knowsAbout": ["React", "Vue.js", "Laravel", "Node.js", "TypeScript", "JavaScript", "Web Development"],
+    "sameAs": [
+      "https://github.com/Akram-Hafaiedh",
+      "https://linkedin.com/in/akram-hafaiedh"
+    ]
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -95,6 +115,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
+          <LangSync />
           <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors">
             <Navigation />
             {children}
