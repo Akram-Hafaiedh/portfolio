@@ -131,7 +131,8 @@ export const projectDetailsContent = {
         quickLinks: "Liens Rapides",
         liveDemo: "Démo en Direct",
         sourceCode: "Code Source",
-        allProjects: "Tous les Projets"
+        allProjects: "Tous les Projets",
+        relatedProjects: "Projets connexes que vous pourriez aimer"
     },
     cta: {
         title: "Intéressé à travailler ensemble ?",

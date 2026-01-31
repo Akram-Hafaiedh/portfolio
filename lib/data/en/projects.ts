@@ -131,7 +131,8 @@ export const projectDetailsContent = {
         quickLinks: "Quick Links",
         liveDemo: "Live Demo",
         sourceCode: "Source Code",
-        allProjects: "All Projects"
+        allProjects: "All Projects",
+        relatedProjects: "Related Projects you might like"
     },
     cta: {
         title: "Interested in working together?",
