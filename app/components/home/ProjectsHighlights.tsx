@@ -5,6 +5,7 @@ import { getFeaturedProjects } from "@/lib/projects";
 import Link from "next/link";
 import { FaArrowRight, FaRocket, FaExternalLinkAlt, FaGithub, FaStar, FaPlay } from "react-icons/fa";
 import { useState } from "react";
+import ProjectPlaceholder from "../projects/ProjectPlaceholder";
 import { useLanguage } from "../../context/LanguageContext";
 import { commonContent as enCommon } from "@/lib/data/en/common";
 import { commonContent as frCommon } from "@/lib/data/fr/common";
@@ -103,11 +104,11 @@ export default function ProjectsHighlights() {
                                             </div>
                                         </>
                                     ) : (
-                                        <div className="w-full h-full flex items-center justify-center">
-                                            <div className="text-6xl opacity-20 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
-                                                {index === 0 ? '💼' : index === 1 ? '📊' : '🚀'}
-                                            </div>
-                                        </div>
+                                        <ProjectPlaceholder
+                                            title={project.title}
+                                            status={project.status}
+                                            variant={index % 3 === 0 ? 'orange' : index % 3 === 1 ? 'blue' : 'purple'}
+                                        />
                                     )}
 
                                     {/* Featured Badge */}

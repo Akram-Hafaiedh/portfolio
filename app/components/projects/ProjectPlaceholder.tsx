@@ -6,25 +6,35 @@ import { useLanguage } from '@/app/context/LanguageContext';
 
 interface ProjectPlaceholderProps {
     title: string;
+    status?: string;
     variant?: 'orange' | 'blue' | 'purple';
     className?: string;
+    compact?: boolean;
 }
 
-const ProjectPlaceholder: React.FC<ProjectPlaceholderProps> = ({ title, variant = 'orange', className = '' }) => {
+const ProjectPlaceholder: React.FC<ProjectPlaceholderProps> = ({ title, status, variant = 'orange', className = '', compact = false }) => {
     const { language } = useLanguage();
+
+    const isCompleted = status === 'Completed';
 
     const t = {
         en: {
-            badge: "Coming Soon",
-            description: "This project is currently under active development. Stay tuned for technical details and the live demo!"
+            badge: isCompleted ? "Project Live" : "Coming Soon",
+            description: isCompleted
+                ? "This project is successfully completed and deployed. Dive into the details!"
+                : "This project is currently under active development. Stay tuned for technical details and the live demo!"
         },
         fr: {
-            badge: "Bientôt Disponible",
-            description: "Ce projet est actuellement en cours de développement. Restez à l'écoute pour les détails techniques et la démo en direct !"
+            badge: isCompleted ? "Projet en Ligne" : "Bientôt Disponible",
+            description: isCompleted
+                ? "Ce projet est terminé et déployé avec succès. Plongez dans les détails !"
+                : "Ce projet est actuellement en cours de développement. Restez à l'écoute pour les détails techniques et la démo en direct !"
         }
     }[language as 'en' | 'fr'] || {
-        badge: "Coming Soon",
-        description: "This project is currently under active development. Stay tuned for technical details and the live demo!"
+        badge: isCompleted ? "Project Live" : "Coming Soon",
+        description: isCompleted
+            ? "This project is successfully completed and deployed. Dive into the details!"
+            : "This project is currently under active development. Stay tuned for technical details and the live demo!"
     };
 
     const gradients = {
@@ -41,22 +51,24 @@ const ProjectPlaceholder: React.FC<ProjectPlaceholderProps> = ({ title, variant 
                 backgroundSize: '40px 40px'
             }} />
 
-            <div className="relative z-10 space-y-4 animate-fade-in-up">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-bold border border-white/30 mb-2">
+            <div className={`relative z-10 space-y-4 animate-fade-in-up ${compact ? 'space-y-2' : 'space-y-4'}`}>
+                <div className={`inline-flex items-center gap-2 ${compact ? 'px-2 py-1 text-[10px]' : 'px-4 py-2 text-xs'} bg-white/20 backdrop-blur-md rounded-full text-white font-bold border border-white/30 mb-2`}>
                     <FaClock className="animate-pulse" />
                     <span>{t.badge}</span>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-black text-white drop-shadow-lg">
+                <h3 className={`${compact ? 'text-xl' : 'text-3xl md:text-4xl'} font-black text-white drop-shadow-lg`}>
                     {title}
                 </h3>
 
-                <p className="text-white/80 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
-                    {t.description}
-                </p>
+                {!compact && (
+                    <p className="text-white/80 max-w-sm mx-auto text-sm md:text-base leading-relaxed">
+                        {t.description}
+                    </p>
+                )}
 
                 <div className="pt-4">
-                    <div className="w-12 h-1 bg-white/40 mx-auto rounded-full" />
+                    <div className={`${compact ? 'w-8 h-0.5' : 'w-12 h-1'} bg-white/40 mx-auto rounded-full`} />
                 </div>
             </div>
 

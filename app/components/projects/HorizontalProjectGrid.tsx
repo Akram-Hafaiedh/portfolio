@@ -75,6 +75,7 @@ const HorizontalProjectGrid: React.FC<HorizontalProjectGridProps> = ({ projects 
                                             ) : (
                                                 <ProjectPlaceholder
                                                     title={project.title}
+                                                    status={project.status}
                                                     variant={index % 3 === 0 ? 'orange' : index % 3 === 1 ? 'blue' : 'purple'}
                                                 />
                                             )}

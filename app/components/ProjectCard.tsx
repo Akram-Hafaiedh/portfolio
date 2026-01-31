@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub, FaStar, FaPlay, FaArrowRight } from "react-icons/fa";
 import { Project } from "@/lib/projects";
 import { useState } from "react";
+import ProjectPlaceholder from "./projects/ProjectPlaceholder";
 
 interface ProjectCardProps {
     project: Project;
@@ -45,11 +46,11 @@ export default function ProjectCard({ project, index, showFeaturedBadge = true, 
                             </div>
                         </>
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                            <div className="text-6xl opacity-20 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
-                                {index % 3 === 0 ? '💼' : index % 3 === 1 ? '📊' : '🚀'}
-                            </div>
-                        </div>
+                        <ProjectPlaceholder
+                            title={project.title}
+                            status={project.status}
+                            variant={index % 3 === 0 ? 'orange' : index % 3 === 1 ? 'blue' : 'purple'}
+                        />
                     )}
 
                     {/* Featured Badge */}
