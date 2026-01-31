@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGlobe, FaSearch } from 'react-icons/fa';
+import { useKBar } from 'kbar';
 import ThemeToggle from './ThemeToggle';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,6 +15,7 @@ export default function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
     const { language, setLanguage } = useLanguage();
+    const { query } = useKBar();
     const t = language === 'fr' ? frCommon : enCommon;
 
     const toggleMenu = () => {
@@ -69,6 +71,19 @@ export default function Navigation() {
                         ))}
 
                         <div className="flex items-center gap-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+                            {/* Search Trigger */}
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => query.toggle()}
+                                className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all group"
+                                aria-label="Open search"
+                            >
+                                <FaSearch size={14} className="group-hover:text-blue-500 transition-colors" />
+                                <span className="text-xs font-medium">Search...</span>
+                                <kbd className="hidden lg:inline-block px-1.5 py-0.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-[10px] font-black opacity-60">⌘K</kbd>
+                            </motion.button>
+
                             {/* Language Switcher Dropdown */}
                             <div className="relative">
                                 <motion.button
@@ -122,6 +137,15 @@ export default function Navigation() {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-4">
+                        <motion.button
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => query.toggle()}
+                            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+                            aria-label="Open search"
+                        >
+                            <FaSearch size={20} />
+                        </motion.button>
+
                         <ThemeToggle />
                         <motion.button
                             whileTap={{ scale: 0.9 }}

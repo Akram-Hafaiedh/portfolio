@@ -2,20 +2,20 @@
 
 import { useMemo, useState, useRef } from 'react';
 import { getProjects } from "@/lib/projects";
-import ProjectCard from "../components/ProjectCard"; // Kept for safety, but likely unused now
-import ProjectHeroEditorial from "../components/projects/ProjectHeroEditorial";
 import HorizontalProjectGrid from "../components/projects/HorizontalProjectGrid";
 import ScrollProgress from "../components/ScrollProgress";
 import CTA from "../components/CTA";
 import { useLanguage } from "@/app/context/LanguageContext";
+import { useKBar } from 'kbar';
 import { projectsPageContent as enContent } from "@/lib/data/en/projects";
 import { projectsPageContent as frContent } from "@/lib/data/fr/projects";
-import { FaRocket, FaCode, FaSearch, FaTimes, FaChevronDown, FaCheckCircle, FaClock } from 'react-icons/fa';
+import { FaRocket, FaCode, FaSearch, FaTimes, FaCheckCircle, FaClock } from 'react-icons/fa';
 
 type FilterType = 'all' | 'SaaS' | 'Enterprise' | 'Mobile' | 'Personal';
 
 export default function EnhancedProjectsPage() {
     const { language } = useLanguage();
+    const { query } = useKBar();
     const content = language === 'fr' ? frContent : enContent;
     const projects = getProjects(language);
 
@@ -176,8 +176,9 @@ export default function EnhancedProjectsPage() {
                                         type="text"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
+                                        onClick={() => query.toggle()}
                                         placeholder={content.search.placeholder}
-                                        className="w-full pl-4 pr-12 py-4 bg-transparent border-none outline-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 text-sm"
+                                        className="w-full pl-4 pr-12 py-4 bg-transparent border-none outline-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 text-sm cursor-pointer"
                                     />
                                     {searchQuery && (
                                         <button

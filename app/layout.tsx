@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
 import LangSync from "./components/LangSync";
+import CommandPalette from "./components/CommandPalette";
 
 
 const geistSans = Geist({
@@ -115,13 +116,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
-          <LangSync />
-          <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors">
-            <Navigation />
-            {children}
+          <CommandPalette>
+            <LangSync />
+            <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors">
+              <Navigation />
+              {children}
 
-            <Footer />
-          </div>
+              <Footer />
+            </div>
+          </CommandPalette>
         </LanguageProvider>
         <Analytics />
       </body>
