@@ -1,23 +1,54 @@
 'use client';
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { getFeaturedProjects } from "@/lib/projects";
 import Link from "next/link";
 import { FaArrowRight, FaRocket, FaExternalLinkAlt, FaGithub, FaStar, FaPlay } from "react-icons/fa";
 import { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import { dictionary } from "@/lib/dictionary";
+import { useLanguage } from "../../context/LanguageContext";
+import { commonContent as enCommon } from "@/lib/data/en/common";
+import { commonContent as frCommon } from "@/lib/data/fr/common";
 
 export default function ProjectsHighlights() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const { language } = useLanguage();
-    const t = dictionary[language];
+    const t = language === 'fr' ? frCommon : enCommon;
     const featuredProjects = getFeaturedProjects(language);
 
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
     return (
-        <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+        <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-16 animate-fade-in-up">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={itemVariants}
+                    className="text-center mb-16"
+                >
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 border border-pink-500/20 rounded-full text-pink-600 dark:text-pink-400 text-sm font-medium mb-4">
                         <FaRocket className="text-xs" />
                         {t.sections.featuredWork}
@@ -28,17 +59,30 @@ export default function ProjectsHighlights() {
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                         {t.sections.projectsSubtitle}
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Projects Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={containerVariants}
+                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+                >
                     {featuredProjects.map((project, index) => (
-                        <div key={project.id} className="group relative animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }} onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
+                        <motion.div
+                            key={project.id}
+                            variants={itemVariants}
+                            whileHover={{ y: -8 }}
+                            className="group relative h-full"
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                        >
                             {/* Glow Effect */}
                             <div className={`absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur-xl transition-all duration-500 ${hoveredIndex === index ? 'opacity-30 scale-105' : 'opacity-0'}`} />
 
                             {/* Card */}
-                            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 h-full flex flex-col group-hover:translate-y-[-8px]">
+                            <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 h-full flex flex-col">
                                 {/* Image */}
                                 <div className="relative h-48 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
                                     {project.image ? (
@@ -93,9 +137,13 @@ export default function ProjectsHighlights() {
                                     {/* Tech Stack */}
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {project.technologies?.slice(0, 3).map((tech, i) => (
-                                            <span key={i} className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-300 rounded-lg text-xs font-medium hover:bg-blue-500/20 hover:scale-110 transition-all duration-300 cursor-default" style={{ transitionDelay: hoveredIndex === index ? `${i * 50}ms` : '0ms', transform: hoveredIndex === index ? 'translateY(0)' : 'translateY(2px)' }}>
+                                            <motion.span
+                                                key={i}
+                                                whileHover={{ scale: 1.1, backgroundColor: 'rgba(59, 130, 246, 0.2)' }}
+                                                className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-300 rounded-lg text-xs font-medium transition-all duration-300 cursor-default"
+                                            >
                                                 {tech}
-                                            </span>
+                                            </motion.span>
                                         ))}
                                         {project.technologies?.length > 3 && (
                                             <span className="px-3 py-1 bg-slate-200 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-medium hover:bg-slate-300 dark:hover:bg-slate-600/50 transition-all cursor-default">
@@ -110,19 +158,19 @@ export default function ProjectsHighlights() {
                                             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="relative flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg text-white text-sm font-semibold transition-all hover:scale-105 overflow-hidden group/btn">
                                                 <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-300" />
                                                 <FaExternalLinkAlt className="text-xs relative z-10" />
-                                                <span className="relative z-10">Live Demo</span>
+                                                <span className="relative z-10">{t.sections.liveDemo}</span>
                                             </a>
                                         )}
                                         {project.githubUrl && (
-                                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 border border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500">
-                                                <FaGithub className="group-hover:rotate-12 transition-transform" />
-                                                Code
+                                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 border border-slate-300 dark:border-slate-700 group/code">
+                                                <FaGithub className="group-hover/code:rotate-12 transition-transform" />
+                                                {t.sections.viewCode}
                                             </a>
                                         )}
                                         {!project.liveUrl && !project.githubUrl && (
-                                            <Link href={`/projects/${project.id}`} className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105">
-                                                View Details
-                                                <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                                            <Link href={`/projects/${project.id}`} className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg text-slate-900 dark:text-white text-sm font-semibold transition-all hover:scale-105 group/details">
+                                                {t.sections.viewDetails}
+                                                <FaArrowRight className="text-xs group-hover/details:translate-x-1 transition-transform" />
                                             </Link>
                                         )}
                                     </div>
@@ -132,12 +180,18 @@ export default function ProjectsHighlights() {
                                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl transition-all duration-700 ${hoveredIndex === index ? 'scale-150 opacity-100' : 'scale-100 opacity-0'}`} />
                                 <div className={`absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 rounded-full blur-2xl transition-all duration-700 ${hoveredIndex === index ? 'scale-150 opacity-100' : 'scale-100 opacity-0'}`} />
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* CTA */}
-                <div className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={itemVariants}
+                    className="text-center mt-16"
+                >
                     <Link href="/projects" className="inline-flex items-center gap-3 px-8 py-4 bg-slate-200 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 hover:border-purple-500 text-slate-900 dark:text-white rounded-xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-2xl group">
                         <span>{t.sections.viewAllProjects}</span>
                         <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -145,7 +199,7 @@ export default function ProjectsHighlights() {
                     <p className="text-sm text-slate-500 mt-4">
                         {t.sections.projectsFooter}
                     </p>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

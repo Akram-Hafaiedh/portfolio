@@ -23,8 +23,8 @@ import {
     FaGraduationCap
 } from "react-icons/fa";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { projectDetailsContent as enContent } from "@/lib/data/en/projectDetails";
-import { projectDetailsContent as frContent } from "@/lib/data/fr/projectDetails";
+import { projectDetailsContent as enContent } from "@/lib/data/en/projects";
+import { projectDetailsContent as frContent } from "@/lib/data/fr/projects";
 import { Project } from "@/lib/projects";
 import CTA from "@/app/components/CTA";
 import ScrollProgress from "@/app/components/ScrollProgress";
@@ -40,25 +40,21 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-    const hasGallery = project.gallery && project.gallery.length > 0;
-
-    // Combine main image with gallery for a single slideshow experience
-    const allImages = [
-        { url: project.image, caption: project.title, category: 'Main' },
-        ...(project.gallery || [])
-    ];
+    const isComingSoon = project.status === 'In Progress' && !project.image && (!project.gallery || project.gallery.length === 0);
 
     const openLightbox = (index: number) => {
+        if (isComingSoon) return;
         setSelectedImageIndex(index);
         setLightboxOpen(true);
     };
+
     const getStatusText = (status?: string) => {
         if (!status) return '';
         switch (status) {
             case 'Completed': return content.status.completed;
             case 'In Progress': return content.status.inProgress;
             case 'On Hold': return content.status.onHold;
-            case 'Cancelled': return content.status.cancelled;
+            case 'Abandoned': return content.status.cancelled;
             default: return status;
         }
     };
@@ -68,7 +64,6 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
             {/* Background Elements */}
             <div className="block dark:hidden fixed inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
             <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
-
 
             <ScrollProgress sections={['Overview', 'Details', 'Features', 'Tech Stack']} />
 
@@ -117,32 +112,33 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                             {project.shortDescription || project.longDescription}
                         </p>
 
-                        {/* Action Buttons */}
-                        <div className="flex gap-4 justify-center mt-8 flex-wrap animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                            {project.liveUrl && project.liveUrl !== "#" && (
-                                <a
-                                    href={project.liveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl overflow-hidden"
-                                >
-                                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
-                                    <FaExternalLinkAlt className="relative group-hover:scale-110 transition-transform" />
-                                    <span className="relative">{content.buttons.viewLiveDemo}</span>
-                                </a>
-                            )}
-                            {project.githubUrl && project.githubUrl !== "#" && (
-                                <a
-                                    href={project.githubUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-3 px-8 py-4 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 border-2 border-slate-300 dark:border-slate-600"
-                                >
-                                    <FaGithub className="group-hover:rotate-12 transition-transform" />
-                                    {content.buttons.viewSourceCode}
-                                </a>
-                            )}
-                        </div>
+                        {!isComingSoon && (
+                            <div className="flex gap-4 justify-center mt-8 flex-wrap animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                                {project.liveUrl && project.liveUrl !== "#" && (
+                                    <a
+                                        href={project.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl overflow-hidden"
+                                    >
+                                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
+                                        <FaExternalLinkAlt className="relative group-hover:scale-110 transition-transform" />
+                                        <span className="relative">{content.buttons.viewLiveDemo}</span>
+                                    </a>
+                                )}
+                                {project.githubUrl && project.githubUrl !== "#" && (
+                                    <a
+                                        href={project.githubUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-3 px-8 py-4 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 border-2 border-slate-300 dark:border-slate-600"
+                                    >
+                                        <FaGithub className="group-hover:rotate-12 transition-transform" />
+                                        {content.buttons.viewSourceCode}
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     {/* Project Meta Grid */}
@@ -151,7 +147,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                             { icon: FaUserTie, label: content.meta.role, value: project.role, gradient: 'from-blue-400 to-cyan-400' },
                             { icon: FaClock, label: content.meta.timeline, value: project.timeline, gradient: 'from-green-400 to-emerald-400' },
                             { icon: FaBuilding, label: content.meta.company, value: project.company || content.meta.personal, gradient: 'from-purple-400 to-pink-400' },
-                            { icon: FaCode, label: content.meta.technologies, value: `${project.technologies.length}+`, gradient: 'from-orange-400 to-red-400' }
+                            { icon: FaCode, label: isComingSoon ? content.comingSoon.techTitle : content.meta.technologies, value: isComingSoon ? 'TBD' : `${project.technologies.length}+`, gradient: 'from-orange-400 to-red-400' }
                         ].map((item, i) => (
                             <div key={i} className="group relative">
                                 <div className={`absolute -inset-1 bg-gradient-to-r ${item.gradient} rounded-xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`} />
@@ -165,7 +161,30 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                     </div>
 
                     {/* Project Image or Fallback */}
-                    {project.image ? (
+                    {isComingSoon ? (
+                        <div className="animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                                <div className={`relative w-full h-[400px] bg-gradient-to-br ${project.gradient} rounded-3xl flex flex-col items-center justify-center p-12 overflow-hidden`}>
+                                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay" />
+                                    <div className="relative z-10 text-white text-center space-y-6 max-w-2xl">
+                                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-bold mb-4 animate-pulse">
+                                            <FaClock className="animate-spin-slow" />
+                                            {content.comingSoon.title}
+                                        </div>
+                                        <h3 className="text-4xl md:text-5xl font-black">{content.comingSoon.title}</h3>
+                                        <p className="text-xl md:text-2xl font-medium opacity-90 leading-relaxed">
+                                            {content.comingSoon.description}
+                                        </p>
+                                        <div className="pt-8">
+                                            <Link href="/contact" className="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-all hover:scale-105 active:scale-95 shadow-xl">
+                                                {content.comingSoon.notifyText}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : project.image ? (
                         <div
                             className="relative animate-fade-in-up cursor-pointer group/main-img"
                             style={{ animationDelay: '0.5s' }}
@@ -230,7 +249,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     <div className={`p-3 bg-gradient-to-r ${project.gradient} rounded-xl`}>
                                         <FaRocket className="text-white text-xl" />
                                     </div>
-                                    {content.sections.projectOverview}
+                                    {isComingSoon ? content.sections.projectOverview : content.sections.projectOverview}
                                 </h2>
                                 <div className="prose prose-lg dark:prose-invert max-w-none">
                                     <p className="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
@@ -239,30 +258,13 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                 </div>
                             </div>
 
-                            {/* Gallery */}
-                            {hasGallery && (
-                                <div className="animate-slide-up">
-                                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                                        <div className={`p-3 bg-gradient-to-r ${project.gradient} rounded-xl`}>
-                                            <FaCode className="text-white text-xl" />
-                                        </div>
-                                        {content.sections.projectGallery}
-                                    </h2>
-                                    <ProjectGallery
-                                        images={project.gallery}
-                                        title=""
-                                        onImageClick={(index: number) => openLightbox(index + 1)}
-                                    />
-                                </div>
-                            )}
-
-                            {/* Key Features */}
+                            {/* Features */}
                             <div className="animate-slide-up">
                                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                                     <div className={`p-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-xl`}>
                                         <FaLightbulb className="text-white text-xl" />
                                     </div>
-                                    {content.sections.keyFeatures}
+                                    {isComingSoon ? content.comingSoon.featuresTitle : content.sections.keyFeatures}
                                 </h2>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     {project.features.map((feature, index) => (
@@ -281,7 +283,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                             </div>
 
                             {/* Challenges & Solutions */}
-                            {project.challenges && project.solutions && (
+                            {!isComingSoon && project.challenges && project.solutions && (
                                 <div className="animate-slide-up">
                                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                                         <div className={`p-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-xl`}>
@@ -317,7 +319,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                             )}
 
                             {/* Results */}
-                            {project.results && (
+                            {!isComingSoon && project.results && project.results.length > 0 && (
                                 <div className="animate-slide-up">
                                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                                         <div className={`p-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl`}>
@@ -349,7 +351,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                 <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
                                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                         <FaCode className="text-blue-500" />
-                                        {content.sections.techStack}
+                                        {isComingSoon ? content.comingSoon.techTitle : content.sections.techStack}
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.technologies.map((tech, index) => (
@@ -364,7 +366,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                 </div>
 
                                 {/* Key Learnings */}
-                                {project.learnings && (
+                                {!isComingSoon && project.learnings && (
                                     <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
                                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                             <FaGraduationCap className="text-purple-500" />
@@ -382,40 +384,42 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                 )}
 
                                 {/* Quick Links */}
-                                <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
-                                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{content.sections.quickLinks}</h3>
-                                    <div className="space-y-3">
-                                        {project.liveUrl && project.liveUrl !== "#" && (
-                                            <a
-                                                href={project.liveUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
-                                            >
-                                                <FaExternalLinkAlt className="group-hover:scale-110 transition-transform" />
-                                                {content.sections.liveDemo}
-                                            </a>
-                                        )}
-                                        {project.githubUrl && project.githubUrl !== "#" && (
-                                            <a
-                                                href={project.githubUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                                {!isComingSoon && (
+                                    <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{content.sections.quickLinks}</h3>
+                                        <div className="space-y-3">
+                                            {project.liveUrl && project.liveUrl !== "#" && (
+                                                <a
+                                                    href={project.liveUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
+                                                >
+                                                    <FaExternalLinkAlt className="group-hover:scale-110 transition-transform" />
+                                                    {content.sections.liveDemo}
+                                                </a>
+                                            )}
+                                            {project.githubUrl && project.githubUrl !== "#" && (
+                                                <a
+                                                    href={project.githubUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
+                                                >
+                                                    <FaGithub className="group-hover:rotate-12 transition-transform" />
+                                                    {content.sections.sourceCode}
+                                                </a>
+                                            )}
+                                            <Link
+                                                href="/projects"
                                                 className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
                                             >
-                                                <FaGithub className="group-hover:rotate-12 transition-transform" />
-                                                {content.sections.sourceCode}
-                                            </a>
-                                        )}
-                                        <Link
-                                            href="/projects"
-                                            className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
-                                        >
-                                            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                                            {content.sections.allProjects}
-                                        </Link>
+                                                <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+                                                {content.sections.allProjects}
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -445,12 +449,17 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
             />
 
             {/* Lightbox Integration */}
-            <GalleryLightbox
-                images={allImages}
-                isOpen={lightboxOpen}
-                initialIndex={selectedImageIndex}
-                onClose={() => setLightboxOpen(false)}
-            />
+            {!isComingSoon && (
+                <GalleryLightbox
+                    images={[
+                        { url: project.image, caption: project.title, category: 'Main' },
+                        ...(project.gallery || [])
+                    ]}
+                    isOpen={lightboxOpen}
+                    initialIndex={selectedImageIndex}
+                    onClose={() => setLightboxOpen(false)}
+                />
+            )}
         </div>
     );
 }
