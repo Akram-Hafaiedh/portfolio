@@ -6,13 +6,15 @@ import ThemeToggle from './ThemeToggle';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
-import { dictionary } from '@/lib/dictionary';
+import { commonContent as enCommon } from "@/lib/data/en/common";
+import { commonContent as frCommon } from "@/lib/data/fr/common";
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
     const { language, setLanguage } = useLanguage();
-    const t = dictionary[language];
+    const t = language === 'fr' ? frCommon : enCommon;
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -35,18 +37,23 @@ export default function Navigation() {
     ];
 
     return (
-        <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm z-50 border-b border-slate-200 dark:border-slate-700">
+        <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    <Link href="/">
-                        <Image
-                            src="/logo.svg"
-                            alt="Logo"
-                            width={40}
-                            height={40}
-                            className="w-10 h-10 object-contain"
-                        />
-                    </Link>
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Link href="/">
+                            <Image
+                                src="/logo.svg"
+                                alt="Logo"
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 object-contain"
+                            />
+                        </Link>
+                    </motion.div>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
@@ -54,48 +61,59 @@ export default function Navigation() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+                                className="relative text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors group py-2"
                             >
                                 {item.label}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
                             </Link>
                         ))}
 
                         <div className="flex items-center gap-4 pl-4 border-l border-slate-200 dark:border-slate-700">
                             {/* Language Switcher Dropdown */}
                             <div className="relative">
-                                <button
+                                <motion.button
+                                    whileHover={{ backgroundColor: 'rgba(0,0,0,0.05)' }}
                                     onClick={toggleLangMenu}
-                                    className="flex items-center gap-2 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                    className="flex items-center gap-2 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors dark:hover:bg-slate-800"
                                     aria-label="Select language"
                                     aria-expanded={isLangMenuOpen}
                                     aria-haspopup="true"
                                 >
                                     <FaGlobe size={16} />
-                                    <span className="uppercase font-medium">{language}</span>
-                                </button>
+                                    <span className="uppercase font-bold text-xs tracking-wider">{language}</span>
+                                </motion.button>
 
-                                {isLangMenuOpen && (
-                                    <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 overflow-hidden">
-                                        <button
-                                            onClick={() => {
-                                                setLanguage('en');
-                                                setIsLangMenuOpen(false);
-                                            }}
-                                            className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 ${language === 'en' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
+                                <AnimatePresence>
+                                    {isLangMenuOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            className="absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 py-1 overflow-hidden"
                                         >
-                                            English
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                setLanguage('fr');
-                                                setIsLangMenuOpen(false);
-                                            }}
-                                            className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 ${language === 'fr' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
-                                        >
-                                            Français
-                                        </button>
-                                    </div>
-                                )}
+                                            <button
+                                                onClick={() => {
+                                                    setLanguage('en');
+                                                    setIsLangMenuOpen(false);
+                                                }}
+                                                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${language === 'en' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
+                                            >
+                                                English
+                                                {language === 'en' && <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />}
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    setLanguage('fr');
+                                                    setIsLangMenuOpen(false);
+                                                }}
+                                                className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between transition-colors hover:bg-slate-50 dark:hover:bg-slate-700 ${language === 'fr' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'text-slate-600 dark:text-slate-300'}`}
+                                            >
+                                                Français
+                                                {language === 'fr' && <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />}
+                                            </button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
 
                             <ThemeToggle />
@@ -105,54 +123,93 @@ export default function Navigation() {
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-4">
                         <ThemeToggle />
-                        <button
+                        <motion.button
+                            whileTap={{ scale: 0.9 }}
                             className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
                             onClick={toggleMenu}
                             aria-label="Toggle menu"
                         >
-                            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                        </button>
+                            <AnimatePresence mode="wait">
+                                {isMenuOpen ? (
+                                    <motion.div
+                                        key="close"
+                                        initial={{ rotate: -90, opacity: 0 }}
+                                        animate={{ rotate: 0, opacity: 1 }}
+                                        exit={{ rotate: 90, opacity: 0 }}
+                                    >
+                                        <FaTimes size={24} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="open"
+                                        initial={{ rotate: 90, opacity: 0 }}
+                                        animate={{ rotate: 0, opacity: 1 }}
+                                        exit={{ rotate: -90, opacity: 0 }}
+                                    >
+                                        <FaBars size={24} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.button>
                     </div>
                 </div>
 
                 {/* Mobile Navigation */}
-                {isMenuOpen && (
-                    <div className="md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700">
-                        <div className="px-2 pt-2 pb-3 space-y-1">
-                            {navItems.map((item) => (
-                                <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className="block px-3 py-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md transition-colors"
-                                    onClick={closeMenu}
-                                >
-                                    {item.label}
-                                </Link>
-                            ))}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 overflow-hidden"
+                        >
+                            <div className="px-4 pt-2 pb-6 space-y-1">
+                                {navItems.map((item, index) => (
+                                    <motion.div
+                                        key={item.href}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.05 }}
+                                    >
+                                        <Link
+                                            href={item.href}
+                                            className="block px-4 py-3 text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+                                            onClick={closeMenu}
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    </motion.div>
+                                ))}
 
-                            <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-700 grid grid-cols-2 gap-2">
-                                <button
-                                    onClick={() => {
-                                        setLanguage('en');
-                                        closeMenu();
-                                    }}
-                                    className={`px-3 py-2 rounded-md text-center text-sm font-medium ${language === 'en' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="pt-6 mt-4 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4"
                                 >
-                                    English
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setLanguage('fr');
-                                        closeMenu();
-                                    }}
-                                    className={`px-3 py-2 rounded-md text-center text-sm font-medium ${language === 'fr' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
-                                >
-                                    Français
-                                </button>
+                                    <button
+                                        onClick={() => {
+                                            setLanguage('en');
+                                            closeMenu();
+                                        }}
+                                        className={`px-4 py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider transition-all ${language === 'en' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                    >
+                                        EN
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setLanguage('fr');
+                                            closeMenu();
+                                        }}
+                                        className={`px-4 py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider transition-all ${language === 'fr' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}
+                                    >
+                                        FR
+                                    </button>
+                                </motion.div>
                             </div>
-                        </div>
-                    </div>
-                )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </nav>
     );

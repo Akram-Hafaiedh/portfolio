@@ -1,18 +1,23 @@
 'use client';
 
 import Contact from "./components/Contact";
-import ExperienceHighlights from "./components/ExperienceHighlights";
-import ProjectsHighlights from "./components/ProjectsHighlights";
+import ExperienceHighlights from "./components/home/ExperienceHighlights";
+import Hero from "./components/home/Hero";
+import About from "./components/home/About";
+import ProjectHeroEditorial from "./components/projects/ProjectHeroEditorial";
 import ScrollProgress from "./components/ScrollProgress";
-import HeroAboutSection from "./components/HeroAboutSection";
+import { getFeaturedProjects } from "@/lib/projects";
 import CTA from "./components/CTA";
 import { useLanguage } from "./context/LanguageContext";
-import { homeContent as enContent } from "@/lib/data/en/home";
-import { homeContent as frContent } from "@/lib/data/fr/home";
+import { homeContent as enHome } from "@/lib/data/en/home";
+import { homeContent as frHome } from "@/lib/data/fr/home";
+import { commonContent as enCommon } from "@/lib/data/en/common";
+import { commonContent as frCommon } from "@/lib/data/fr/common";
 
 export default function Home() {
   const { language } = useLanguage();
-  const content = language === 'fr' ? frContent : enContent;
+  const content = language === 'fr' ? frHome : enHome;
+  const common = language === 'fr' ? frCommon : enCommon;
 
   return (
     <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden min-h-screen">
@@ -36,13 +41,20 @@ export default function Home() {
       <div className="block dark:hidden fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
       <div className="hidden dark:block fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
 
-      <ScrollProgress />
+      <ScrollProgress sections={['Home', 'About', 'Experience', 'Projects', 'Contact']} />
 
       {/* Content with relative positioning */}
       <div className="relative z-10">
-        <HeroAboutSection />
+        <Hero />
+        <About />
         <ExperienceHighlights />
-        <ProjectsHighlights />
+        <ProjectHeroEditorial
+          projects={getFeaturedProjects(language)}
+          content={{
+            title: common.sections.projectsTitle,
+            description: common.sections.projectsSubtitle
+          }}
+        />
         <Contact />
 
         {/* Final CTA before footer */}

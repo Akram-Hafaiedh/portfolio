@@ -69,7 +69,7 @@ export default function AboutPage() {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                             {content.stats.map((stat, index) => {
                                 const Icon = iconMap[stat.iconName];
-                                const value = stat.iconName === 'FaCode' && stat.label.includes('Project') ? projectsCount + '+' : stat.value;
+                                const value = stat.iconName === 'FaCode' ? projectsCount + '+' : stat.value;
 
                                 return (
                                     <div key={index} className="group relative">
