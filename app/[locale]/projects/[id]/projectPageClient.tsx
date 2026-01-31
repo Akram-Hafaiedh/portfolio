@@ -22,9 +22,7 @@ import {
     FaStar,
     FaGraduationCap
 } from "react-icons/fa";
-import { useLocale } from 'next-intl';
-import { projectDetailsContent as enContent } from "@/lib/data/en/projects";
-import { projectDetailsContent as frContent } from "@/lib/data/fr/projects";
+import { useTranslations, useLocale } from 'next-intl';
 import { Project } from "@/lib/projects";
 import CTA from "@/app/components/CTA";
 import ScrollProgress from "@/app/components/ScrollProgress";
@@ -36,7 +34,7 @@ interface ProjectPageClientProps {
 
 export default function ProjectPageClient({ project }: ProjectPageClientProps) {
     const locale = useLocale();
-    const content = locale === 'fr' ? frContent : enContent;
+    const t = useTranslations('ProjectDetails');
 
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -52,10 +50,10 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
     const getStatusText = (status?: string) => {
         if (!status) return '';
         switch (status) {
-            case 'Completed': return content.status.completed;
-            case 'In Progress': return content.status.inProgress;
-            case 'On Hold': return content.status.onHold;
-            case 'Abandoned': return content.status.cancelled;
+            case 'Completed': return t('status.completed');
+            case 'In Progress': return t('status.inProgress');
+            case 'On Hold': return t('status.onHold');
+            case 'Abandoned': return t('status.cancelled');
             default: return status;
         }
     };
@@ -76,7 +74,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                         className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-all group"
                     >
                         <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                        {content.backButton}
+                        {t('backButton')}
                     </Link>
                 </div>
             </section>
@@ -100,7 +98,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                             {project.featured && (
                                 <span className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full text-sm font-bold shadow-lg flex items-center gap-1">
                                     <FaStar className="animate-pulse" />
-                                    {content.badges.featured}
+                                    {t('badges.featured')}
                                 </span>
                             )}
                         </div>
@@ -124,7 +122,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     >
                                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
                                         <FaExternalLinkAlt className="relative group-hover:scale-110 transition-transform" />
-                                        <span className="relative">{content.buttons.viewLiveDemo}</span>
+                                        <span className="relative">{t('buttons.viewLiveDemo')}</span>
                                     </a>
                                 )}
                                 {project.githubUrl && project.githubUrl !== "#" && (
@@ -135,7 +133,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                         className="inline-flex items-center gap-3 px-8 py-4 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 border-2 border-slate-300 dark:border-slate-600"
                                     >
                                         <FaGithub className="group-hover:rotate-12 transition-transform" />
-                                        {content.buttons.viewSourceCode}
+                                        {t('buttons.viewSourceCode')}
                                     </a>
                                 )}
                             </div>
@@ -145,10 +143,10 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                     {/* Project Meta Grid */}
                     <div className="grid md:grid-cols-4 gap-6 mb-12 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                         {[
-                            { icon: FaUserTie, label: content.meta.role, value: project.role, gradient: 'from-blue-400 to-cyan-400' },
-                            { icon: FaClock, label: content.meta.timeline, value: project.timeline, gradient: 'from-green-400 to-emerald-400' },
-                            { icon: FaBuilding, label: content.meta.company, value: project.company || content.meta.personal, gradient: 'from-purple-400 to-pink-400' },
-                            { icon: FaCode, label: isComingSoon ? content.comingSoon.techTitle : content.meta.technologies, value: isComingSoon ? 'TBD' : `${project.technologies.length}+`, gradient: 'from-orange-400 to-red-400' }
+                            { icon: FaUserTie, label: t('meta.role'), value: project.role, gradient: 'from-blue-400 to-cyan-400' },
+                            { icon: FaClock, label: t('meta.timeline'), value: project.timeline, gradient: 'from-green-400 to-emerald-400' },
+                            { icon: FaBuilding, label: t('meta.company'), value: project.company || t('meta.personal'), gradient: 'from-purple-400 to-pink-400' },
+                            { icon: FaCode, label: isComingSoon ? t('comingSoon.techTitle') : t('meta.technologies'), value: isComingSoon ? 'TBD' : `${project.technologies.length}+`, gradient: 'from-orange-400 to-red-400' }
                         ].map((item, i) => (
                             <div key={i} className="group relative">
                                 <div className={`absolute -inset-1 bg-gradient-to-r ${item.gradient} rounded-xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`} />
@@ -170,15 +168,15 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     <div className="relative z-10 text-white text-center space-y-6 max-w-2xl">
                                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-bold mb-4 animate-pulse">
                                             <FaClock className="animate-spin-slow" />
-                                            {content.comingSoon.title}
+                                            {t('comingSoon.title')}
                                         </div>
-                                        <h3 className="text-4xl md:text-5xl font-black">{content.comingSoon.title}</h3>
+                                        <h3 className="text-4xl md:text-5xl font-black">{t('comingSoon.title')}</h3>
                                         <p className="text-xl md:text-2xl font-medium opacity-90 leading-relaxed">
-                                            {content.comingSoon.description}
+                                            {t('comingSoon.description')}
                                         </p>
                                         <div className="pt-8">
                                             <Link href="/contact" className="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-all hover:scale-105 active:scale-95 shadow-xl">
-                                                {content.comingSoon.notifyText}
+                                                {t('comingSoon.notifyText')}
                                             </Link>
                                         </div>
                                     </div>
@@ -250,7 +248,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     <div className={`p-3 bg-gradient-to-r ${project.gradient} rounded-xl`}>
                                         <FaRocket className="text-white text-xl" />
                                     </div>
-                                    {isComingSoon ? content.sections.projectOverview : content.sections.projectOverview}
+                                    {isComingSoon ? t('sections.projectOverview') : t('sections.projectOverview')}
                                 </h2>
                                 <div className="prose prose-lg dark:prose-invert max-w-none">
                                     <p className="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
@@ -265,7 +263,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     <div className={`p-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-xl`}>
                                         <FaLightbulb className="text-white text-xl" />
                                     </div>
-                                    {isComingSoon ? content.comingSoon.featuresTitle : content.sections.keyFeatures}
+                                    {isComingSoon ? t('comingSoon.featuresTitle') : t('sections.keyFeatures')}
                                 </h2>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     {project.features.map((feature, index) => (
@@ -290,7 +288,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                         <div className={`p-3 bg-gradient-to-r from-orange-400 to-red-400 rounded-xl`}>
                                             <FaChartLine className="text-white text-xl" />
                                         </div>
-                                        {content.sections.challengesSolutions}
+                                        {t('sections.challengesSolutions')}
                                     </h2>
                                     <div className="space-y-6">
                                         {project.challenges.map((challenge, index) => (
@@ -300,7 +298,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                             >
                                                 <h4 className="font-bold text-slate-900 dark:text-white mb-3 flex items-start gap-2">
                                                     <span className="text-blue-500">⚡</span>
-                                                    {content.sections.challenge}
+                                                    {t('sections.challenge')}
                                                 </h4>
                                                 <p className="text-slate-600 dark:text-slate-300 mb-4 ml-6">{challenge}</p>
 
@@ -308,7 +306,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                                     <>
                                                         <h4 className="font-bold text-slate-900 dark:text-white mb-3 flex items-start gap-2">
                                                             <span className="text-green-500">✓</span>
-                                                            {content.sections.solution}
+                                                            {t('sections.solution')}
                                                         </h4>
                                                         <p className="text-slate-600 dark:text-slate-300 ml-6">{project.solutions[index]}</p>
                                                     </>
@@ -326,7 +324,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                         <div className={`p-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl`}>
                                             <FaCheckCircle className="text-white text-xl" />
                                         </div>
-                                        {content.sections.resultsImpact}
+                                        {t('sections.resultsImpact')}
                                     </h2>
                                     <div className="grid md:grid-cols-2 gap-4">
                                         {project.results.map((result, index) => (
@@ -352,7 +350,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                 <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
                                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                         <FaCode className="text-blue-500" />
-                                        {isComingSoon ? content.comingSoon.techTitle : content.sections.techStack}
+                                        {isComingSoon ? t('comingSoon.techTitle') : t('sections.techStack')}
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.technologies.map((tech, index) => (
@@ -371,7 +369,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                     <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
                                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                             <FaGraduationCap className="text-purple-500" />
-                                            {content.sections.keyLearnings}
+                                            {t('sections.keyLearnings')}
                                         </h3>
                                         <ul className="space-y-3">
                                             {project.learnings.map((learning, index) => (
@@ -387,7 +385,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                 {/* Quick Links */}
                                 {!isComingSoon && (
                                     <div className="animate-fade-in-up bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
-                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{content.sections.quickLinks}</h3>
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{t('sections.quickLinks')}</h3>
                                         <div className="space-y-3">
                                             {project.liveUrl && project.liveUrl !== "#" && (
                                                 <a
@@ -397,7 +395,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                                     className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
                                                 >
                                                     <FaExternalLinkAlt className="group-hover:scale-110 transition-transform" />
-                                                    {content.sections.liveDemo}
+                                                    {t('sections.liveDemo')}
                                                 </a>
                                             )}
                                             {project.githubUrl && project.githubUrl !== "#" && (
@@ -408,7 +406,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                                     className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
                                                 >
                                                     <FaGithub className="group-hover:rotate-12 transition-transform" />
-                                                    {content.sections.sourceCode}
+                                                    {t('sections.sourceCode')}
                                                 </a>
                                             )}
                                             <Link
@@ -416,7 +414,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                                                 className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
                                             >
                                                 <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                                                {content.sections.allProjects}
+                                                {t('sections.allProjects')}
                                             </Link>
                                         </div>
                                     </div>
@@ -432,17 +430,17 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
 
             {/* CTA Section */}
             <CTA
-                title={content.cta.title}
-                description={content.cta.description}
+                title={t('cta.title')}
+                description={t('cta.description')}
                 buttons={[
                     {
-                        label: content.buttons.bookCall,
+                        label: t('buttons.bookCall'),
                         href: '/booking',
                         type: 'primary',
                         icon: 'calendar'
                     },
                     {
-                        label: content.buttons.getInTouch,
+                        label: t('buttons.getInTouch'),
                         href: '/contact',
                         type: 'secondary',
                         icon: 'envelope'

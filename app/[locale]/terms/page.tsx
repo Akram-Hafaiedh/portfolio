@@ -1,68 +1,75 @@
 'use client';
 import { FaGavel, FaExclamationTriangle, FaFileContract, FaShieldAlt, FaUserCheck, FaLightbulb, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
-import { useLocale } from 'next-intl';
-import { termsContent as enContent } from "@/lib/data/en/legal";
-import { termsContent as frContent } from "@/lib/data/fr/legal";
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function TermsPage() {
     const [activeSection, setActiveSection] = useState<number | null>(null);
     const locale = useLocale();
-    const content = locale === 'fr' ? frContent : enContent;
-
-
-
+    const t = useTranslations('Legal');
 
     const sections = [
         {
             id: 1,
-            title: content.sections.acceptance.title,
+            title: t('Terms.sections.acceptance.title'),
             icon: FaUserCheck,
             color: "from-blue-500 to-cyan-500",
-            description: content.sections.acceptance.description,
-            items: content.sections.acceptance.items
+            description: t('Terms.sections.acceptance.description'),
+            items: t.raw('Terms.sections.acceptance.items') as string[]
         },
         {
             id: 2,
-            title: content.sections.services.title,
+            title: t('Terms.sections.services.title'),
             icon: FaShieldAlt,
             color: "from-purple-500 to-pink-500",
-            description: content.sections.services.description,
-            permitted: content.sections.services.permitted,
-            prohibited: content.sections.services.prohibited
+            description: t('Terms.sections.services.description'),
+            permitted: {
+                title: t('Terms.sections.services.permitted.title'),
+                items: t.raw('Terms.sections.services.permitted.items') as string[]
+            },
+            prohibited: {
+                title: t('Terms.sections.services.prohibited.title'),
+                items: t.raw('Terms.sections.services.prohibited.items') as string[]
+            }
         },
         {
             id: 3,
-            title: content.sections.ip.title,
+            title: t('Terms.sections.ip.title'),
             icon: FaFileContract,
             color: "from-green-500 to-emerald-500",
-            description: content.sections.ip.description,
-            may: content.sections.ip.may,
-            mayNot: content.sections.ip.mayNot
+            description: t('Terms.sections.ip.description'),
+            may: {
+                title: t('Terms.sections.ip.may.title'),
+                items: t.raw('Terms.sections.ip.may.items') as string[]
+            },
+            mayNot: {
+                title: t('Terms.sections.ip.mayNot.title'),
+                items: t.raw('Terms.sections.ip.mayNot.items') as string[]
+            }
         },
         {
             id: 4,
-            title: content.sections.contact.title,
+            title: t('Terms.sections.contact.title'),
             icon: FaEnvelope,
             color: "from-orange-500 to-red-500",
-            description: content.sections.contact.description,
-            items: content.sections.contact.items
+            description: t('Terms.sections.contact.description'),
+            items: t.raw('Terms.sections.contact.items') as string[]
         },
         {
             id: 5,
-            title: content.sections.liability.title,
+            title: t('Terms.sections.liability.title'),
             icon: FaExclamationTriangle,
             color: "from-yellow-500 to-orange-500",
-            description: content.sections.liability.description,
-            important: content.sections.liability.important,
-            disclaimer: content.sections.liability.disclaimer
+            description: t('Terms.sections.liability.description'),
+            important: t('Terms.sections.liability.important'),
+            disclaimer: t('Terms.sections.liability.disclaimer')
         },
         {
             id: 6,
-            title: content.sections.changes.title,
+            title: t('Terms.sections.changes.title'),
             icon: FaLightbulb,
             color: "from-indigo-500 to-purple-500",
-            description: content.sections.changes.description
+            description: t('Terms.sections.changes.description')
         }
     ];
 
@@ -94,19 +101,19 @@ export default function TermsPage() {
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-6 animate-fade-in-up">
                             <FaGavel className="text-xs" />
-                            {content.hero.badge}
+                            {t('Terms.hero.badge')}
                         </div>
                         <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                            {content.hero.title}
+                            {t('Terms.hero.title')}
                         </h1>
                         <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            {content.hero.subtitle}
+                            {t('Terms.hero.subtitle')}
                         </p>
                         <p className="text-lg text-slate-500 dark:text-slate-500 mb-4 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-                            {content.hero.emphasis}
+                            {t('Terms.hero.emphasis')}
                         </p>
                         <p className="text-sm text-slate-500 dark:text-slate-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                            <strong>{content.hero.badge}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                            <strong>{t('Terms.hero.badge')}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
@@ -126,9 +133,9 @@ export default function TermsPage() {
                                         <FaFileContract className="text-white text-xl" />
                                     </div>
                                     <div>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{content.sections.welcome.title}</h2>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{t('Terms.sections.welcome.title')}</h2>
                                         <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                            {content.sections.welcome.description}
+                                            {t('Terms.sections.welcome.description')}
                                         </p>
                                     </div>
                                 </div>
@@ -183,23 +190,23 @@ export default function TermsPage() {
                                         <div className={`transition-all duration-300 overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                                             <div className="px-6 sm:px-8 pb-8 pt-4 border-t border-slate-200 dark:border-slate-700/50">
                                                 {/* Liability Section Special Content */}
-                                                {section.important && (
+                                                {(section as any).important && (
                                                     <div className="mb-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
                                                         <p className="text-slate-700 dark:text-slate-300">
-                                                            <strong className="text-yellow-800 dark:text-yellow-300">{section.important}</strong> {section.description}
+                                                            <strong className="text-yellow-800 dark:text-yellow-300">{(section as any).important}</strong> {section.description}
                                                         </p>
-                                                        {section.disclaimer && (
+                                                        {(section as any).disclaimer && (
                                                             <p className="text-slate-600 dark:text-slate-400 mt-3">
-                                                                {section.disclaimer}
+                                                                {(section as any).disclaimer}
                                                             </p>
                                                         )}
                                                     </div>
                                                 )}
 
                                                 {/* Regular Items */}
-                                                {section.items && !section.important && (
+                                                {(section as any).items && !(section as any).important && (
                                                     <ul className="space-y-3">
-                                                        {section.items.map((item, i) => (
+                                                        {(section as any).items.map((item: string, i: number) => (
                                                             <li key={i} className="flex items-start gap-3">
                                                                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${section.color} mt-1 text-xl`}>•</span>
                                                                 <span className="text-slate-700 dark:text-slate-300">{item}</span>
@@ -209,15 +216,15 @@ export default function TermsPage() {
                                                 )}
 
                                                 {/* Permitted/Prohibited Items */}
-                                                {section.permitted && section.prohibited && (
+                                                {(section as any).permitted && (section as any).prohibited && (
                                                     <div className="grid md:grid-cols-2 gap-6">
                                                         <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
                                                             <h4 className="font-semibold text-green-800 dark:text-green-300 mb-3 flex items-center gap-2">
                                                                 <span className="text-green-500 text-xl">✓</span>
-                                                                {section.permitted.title}
+                                                                {(section as any).permitted.title}
                                                             </h4>
                                                             <ul className="space-y-2">
-                                                                {section.permitted.items.map((item, i) => (
+                                                                {(section as any).permitted.items.map((item: string, i: number) => (
                                                                     <li key={i} className="text-sm text-green-700 dark:text-green-400 flex items-start gap-2">
                                                                         <span>•</span>
                                                                         <span>{item}</span>
@@ -228,10 +235,10 @@ export default function TermsPage() {
                                                         <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
                                                             <h4 className="font-semibold text-red-800 dark:text-red-300 mb-3 flex items-center gap-2">
                                                                 <FaExclamationTriangle className="text-red-500" />
-                                                                {section.prohibited.title}
+                                                                {(section as any).prohibited.title}
                                                             </h4>
                                                             <ul className="space-y-2">
-                                                                {section.prohibited.items.map((item, i) => (
+                                                                {(section as any).prohibited.items.map((item: string, i: number) => (
                                                                     <li key={i} className="text-sm text-red-700 dark:text-red-400 flex items-start gap-2">
                                                                         <span>•</span>
                                                                         <span>{item}</span>
@@ -243,12 +250,12 @@ export default function TermsPage() {
                                                 )}
 
                                                 {/* May/May Not Items */}
-                                                {section.may && section.mayNot && (
+                                                {(section as any).may && (section as any).mayNot && (
                                                     <div className="space-y-4">
                                                         <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
-                                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{section.may.title}</h4>
+                                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{(section as any).may.title}</h4>
                                                             <ul className="space-y-2">
-                                                                {section.may.items.map((item, i) => (
+                                                                {(section as any).may.items.map((item: string, i: number) => (
                                                                     <li key={i} className="text-slate-600 dark:text-slate-300 flex items-start gap-2">
                                                                         <span className="text-green-500 mt-1">✓</span>
                                                                         <span>{item}</span>
@@ -257,9 +264,9 @@ export default function TermsPage() {
                                                             </ul>
                                                         </div>
                                                         <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
-                                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{section.mayNot.title}</h4>
+                                                            <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{(section as any).mayNot.title}</h4>
                                                             <ul className="space-y-2">
-                                                                {section.mayNot.items.map((item, i) => (
+                                                                {(section as any).mayNot.items.map((item: string, i: number) => (
                                                                     <li key={i} className="text-slate-600 dark:text-slate-300 flex items-start gap-2">
                                                                         <span className="text-red-500 mt-1">✗</span>
                                                                         <span>{item}</span>
@@ -282,8 +289,8 @@ export default function TermsPage() {
                 <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{content.sections.contactInfo.title}</h2>
-                            <p className="text-slate-600 dark:text-slate-400">{content.sections.contactInfo.description}</p>
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t('Terms.sections.contactInfo.title')}</h2>
+                            <p className="text-slate-600 dark:text-slate-400">{t('Terms.sections.contactInfo.description')}</p>
                         </div>
 
                         <div className="group relative">
@@ -294,22 +301,22 @@ export default function TermsPage() {
                                         <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                                             <FaEnvelope className="text-white text-xl" />
                                         </div>
-                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.email}</h4>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{t('Terms.sections.contactInfo.email')}</h4>
                                         <p className="text-sm text-slate-600 dark:text-slate-300">hafaiedhakram@gmail.com</p>
                                     </div>
                                     <div className="text-center p-4">
                                         <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                                             <FaPhone className="text-white text-xl" />
                                         </div>
-                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.phone}</h4>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{t('Terms.sections.contactInfo.phone')}</h4>
                                         <p className="text-sm text-slate-600 dark:text-slate-300">+216 50 569 298</p>
                                     </div>
                                     <div className="text-center p-4">
                                         <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                                             <FaMapMarkerAlt className="text-white text-xl" />
                                         </div>
-                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.location}</h4>
-                                        <p className="text-sm text-slate-600 dark:text-slate-300">{content.sections.contactInfo.locationValue}</p>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{t('Terms.sections.contactInfo.location')}</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-300">{t('Terms.sections.contactInfo.locationValue')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -322,9 +329,7 @@ export default function TermsPage() {
                     <div className="max-w-4xl mx-auto">
                         <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800/50 text-center">
                             <p className="text-slate-700 dark:text-slate-300">
-                                {locale === 'fr'
-                                    ? "En utilisant ce site, vous reconnaissez avoir lu et compris ces conditions d'utilisation et acceptez d'être lié par celles-ci."
-                                    : "By using this website, you acknowledge that you have read and understood these terms and conditions and agree to be bound by them."}
+                                {t('Terms.footerNote')}
                             </p>
                         </div>
                     </div>

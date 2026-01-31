@@ -1,67 +1,71 @@
 'use client';
 import { FaShieldAlt, FaUserShield, FaDatabase, FaCookie, FaEye, FaLock, FaHandshake, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
-import { useLocale } from 'next-intl';
-import { privacyContent as enContent } from "@/lib/data/en/legal";
-import { privacyContent as frContent } from "@/lib/data/fr/legal";
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function PrivacyPage() {
     const [activeSection, setActiveSection] = useState<number | null>(null);
     const locale = useLocale();
-    const content = locale === 'fr' ? frContent : enContent;
+    const t = useTranslations('Legal');
 
     const sections = [
         {
             id: 1,
-            title: content.sections.collection.title,
+            title: t('Privacy.sections.collection.title'),
             icon: FaDatabase,
             color: "from-blue-500 to-cyan-500",
             description: "",
             hasCollectionContent: true,
-            direct: content.sections.collection.direct,
-            automatic: content.sections.collection.automatic
+            direct: {
+                title: t('Privacy.sections.collection.direct.title'),
+                items: t.raw('Privacy.sections.collection.direct.items') as string[]
+            },
+            automatic: {
+                title: t('Privacy.sections.collection.automatic.title'),
+                items: t.raw('Privacy.sections.collection.automatic.items') as string[]
+            }
         },
         {
             id: 2,
-            title: content.sections.usage.title,
+            title: t('Privacy.sections.usage.title'),
             icon: FaEye,
             color: "from-purple-500 to-pink-500",
-            description: content.sections.usage.subtitle,
-            purposes: content.sections.usage.purposes
+            description: t('Privacy.sections.usage.subtitle'),
+            purposes: t.raw('Privacy.sections.usage.purposes') as any[]
         },
         {
             id: 3,
-            title: content.sections.sharing.title,
+            title: t('Privacy.sections.sharing.title'),
             icon: FaHandshake,
             color: "from-green-500 to-emerald-500",
-            description: content.sections.sharing.description,
-            noSell: content.sections.sharing.noSell,
-            items: content.sections.sharing.items
+            description: t('Privacy.sections.sharing.description'),
+            noSell: t('Privacy.sections.sharing.noSell'),
+            items: t.raw('Privacy.sections.sharing.items') as any[]
         },
         {
             id: 4,
-            title: content.sections.cookies.title,
+            title: t('Privacy.sections.cookies.title'),
             icon: FaCookie,
             color: "from-orange-500 to-red-500",
-            description: content.sections.cookies.description,
-            cookieTypes: content.sections.cookies.types,
-            cookieItems: content.sections.cookies.items
+            description: t('Privacy.sections.cookies.description'),
+            cookieTypes: t('Privacy.sections.cookies.types'),
+            cookieItems: t.raw('Privacy.sections.cookies.items') as any[]
         },
         {
             id: 5,
-            title: content.sections.security.title,
+            title: t('Privacy.sections.security.title'),
             icon: FaLock,
             color: "from-yellow-500 to-orange-500",
-            description: content.sections.security.description,
-            measures: content.sections.security.measures
+            description: t('Privacy.sections.security.description'),
+            measures: t.raw('Privacy.sections.security.measures') as string[]
         },
         {
             id: 6,
-            title: content.sections.rights.title,
+            title: t('Privacy.sections.rights.title'),
             icon: FaUserShield,
             color: "from-indigo-500 to-purple-500",
-            description: content.sections.rights.description,
-            rights: content.sections.rights.items
+            description: t('Privacy.sections.rights.description'),
+            rights: t.raw('Privacy.sections.rights.items') as any[]
         }
     ];
 
@@ -93,16 +97,16 @@ export default function PrivacyPage() {
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 dark:text-green-400 text-sm font-medium mb-6 animate-fade-in-up">
                             <FaShieldAlt className="text-xs" />
-                            {content.hero.badge}
+                            {t('Privacy.hero.badge')}
                         </div>
                         <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                            {content.hero.title}
+                            {t('Privacy.hero.title')}
                         </h1>
                         <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            {content.hero.subtitle}
+                            {t('Privacy.hero.subtitle')}
                         </p>
                         <p className="text-lg text-slate-500 dark:text-slate-500 mb-4 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-                            {content.hero.emphasis}
+                            {t('Privacy.hero.emphasis')}
                         </p>
                         <p className="text-sm text-slate-500 dark:text-slate-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                             <strong>{locale === 'fr' ? 'Dernière mise à jour' : 'Last Updated'}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
@@ -125,9 +129,9 @@ export default function PrivacyPage() {
                                         <FaUserShield className="text-white text-xl" />
                                     </div>
                                     <div>
-                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{content.sections.intro.title}</h2>
+                                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{t('Privacy.sections.intro.title')}</h2>
                                         <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                                            {content.sections.intro.description}
+                                            {t('Privacy.sections.intro.description')}
                                         </p>
                                     </div>
                                 </div>
@@ -184,15 +188,15 @@ export default function PrivacyPage() {
                                         <div className={`transition-all duration-300 overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
                                             <div className="px-6 sm:px-8 pb-8 pt-4 border-t border-slate-200 dark:border-slate-700/50">
                                                 {/* Information Collection Content */}
-                                                {section.hasCollectionContent && (
+                                                {(section as any).hasCollectionContent && (
                                                     <div className="grid md:grid-cols-2 gap-6">
                                                         <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
                                                             <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center gap-2">
                                                                 <FaDatabase className="text-blue-600 dark:text-blue-400" />
-                                                                {section.direct.title}
+                                                                {(section as any).direct.title}
                                                             </h4>
                                                             <ul className="space-y-2">
-                                                                {section.direct.items.map((item, i) => (
+                                                                {(section as any).direct.items.map((item: string, i: number) => (
                                                                     <li key={i} className="text-sm text-blue-700 dark:text-blue-400 flex items-start gap-2">
                                                                         <span>•</span>
                                                                         <span>{item}</span>
@@ -203,10 +207,10 @@ export default function PrivacyPage() {
                                                         <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
                                                             <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-3 flex items-center gap-2">
                                                                 <FaEye className="text-purple-600 dark:text-purple-400" />
-                                                                {section.automatic.title}
+                                                                {(section as any).automatic.title}
                                                             </h4>
                                                             <ul className="space-y-2">
-                                                                {section.automatic.items.map((item, i) => (
+                                                                {(section as any).automatic.items.map((item: string, i: number) => (
                                                                     <li key={i} className="text-sm text-purple-700 dark:text-purple-400 flex items-start gap-2">
                                                                         <span>•</span>
                                                                         <span>{item}</span>
@@ -218,9 +222,9 @@ export default function PrivacyPage() {
                                                 )}
 
                                                 {/* Usage Purposes */}
-                                                {section.purposes && (
+                                                {(section as any).purposes && (
                                                     <div className="grid md:grid-cols-2 gap-4">
-                                                        {section.purposes.map((purpose, i) => (
+                                                        {(section as any).purposes.map((purpose: any, i: number) => (
                                                             <div key={i} className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
                                                                 <div className={`w-8 h-8 ${i === 0 ? 'bg-green-100 dark:bg-green-900' :
                                                                     i === 1 ? 'bg-blue-100 dark:bg-blue-900' :
@@ -245,15 +249,15 @@ export default function PrivacyPage() {
                                                 )}
 
                                                 {/* Data Sharing Items */}
-                                                {section.noSell && (
+                                                {(section as any).noSell && (
                                                     <div>
                                                         <div className="mb-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
                                                             <p className="text-slate-700 dark:text-slate-300 font-semibold">
-                                                                {section.noSell}
+                                                                {(section as any).noSell}
                                                             </p>
                                                         </div>
                                                         <div className="space-y-3">
-                                                            {section.items.map((item, i) => (
+                                                            {(section as any).items.map((item: any, i: number) => (
                                                                 <div key={i} className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                                                                     <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                                                         <span className="text-blue-600 dark:text-blue-400 text-sm">✓</span>
@@ -268,11 +272,11 @@ export default function PrivacyPage() {
                                                 )}
 
                                                 {/* Cookie Items */}
-                                                {section.cookieItems && (
+                                                {(section as any).cookieItems && (
                                                     <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
-                                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{section.cookieTypes}</h4>
+                                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-3">{(section as any).cookieTypes}</h4>
                                                         <ul className="space-y-2">
-                                                            {section.cookieItems.map((item, i) => (
+                                                            {(section as any).cookieItems.map((item: any, i: number) => (
                                                                 <li key={i} className="text-sm text-slate-600 dark:text-slate-300">
                                                                     • <strong>{item.type}</strong> {item.description}
                                                                 </li>
@@ -282,10 +286,10 @@ export default function PrivacyPage() {
                                                 )}
 
                                                 {/* Security Measures */}
-                                                {section.measures && (
+                                                {(section as any).measures && (
                                                     <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
                                                         <div className="grid md:grid-cols-2 gap-3">
-                                                            {section.measures.map((measure, i) => (
+                                                            {(section as any).measures.map((measure: string, i: number) => (
                                                                 <div key={i} className="flex items-center gap-2 text-sm text-green-700 dark:text-green-400">
                                                                     <span className="text-green-500">✓</span>
                                                                     <span>{measure}</span>
@@ -296,9 +300,9 @@ export default function PrivacyPage() {
                                                 )}
 
                                                 {/* User Rights */}
-                                                {section.rights && (
+                                                {(section as any).rights && (
                                                     <div className="grid md:grid-cols-2 gap-4">
-                                                        {section.rights.map((right, i) => (
+                                                        {(section as any).rights.map((right: any, i: number) => (
                                                             <div key={i} className={`p-4 ${i === 0 ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' :
                                                                 i === 1 ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800' :
                                                                     i === 2 ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' :
@@ -333,8 +337,8 @@ export default function PrivacyPage() {
                 <div className="px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-200 dark:border-slate-800/50">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{content.sections.contactInfo.title}</h2>
-                            <p className="text-slate-600 dark:text-slate-400">{content.sections.contactInfo.description}</p>
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t('Privacy.sections.contactInfo.title')}</h2>
+                            <p className="text-slate-600 dark:text-slate-400">{t('Privacy.sections.contactInfo.description')}</p>
                         </div>
 
                         <div className="group relative">
@@ -345,26 +349,26 @@ export default function PrivacyPage() {
                                         <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                                             <FaEnvelope className="text-white text-xl" />
                                         </div>
-                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.email}</h4>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{t('Privacy.sections.contactInfo.email')}</h4>
                                         <p className="text-sm text-slate-600 dark:text-slate-300">hafaiedhakram@gmail.com</p>
                                     </div>
                                     <div className="text-center p-4">
                                         <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                                             <FaPhone className="text-white text-xl" />
                                         </div>
-                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.phone}</h4>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{t('Privacy.sections.contactInfo.phone')}</h4>
                                         <p className="text-sm text-slate-600 dark:text-slate-300">+216 50 569 298</p>
                                     </div>
                                     <div className="text-center p-4">
                                         <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                                             <FaMapMarkerAlt className="text-white text-xl" />
                                         </div>
-                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{content.sections.contactInfo.location}</h4>
-                                        <p className="text-sm text-slate-600 dark:text-slate-300">{content.sections.contactInfo.locationValue}</p>
+                                        <h4 className="font-semibold text-slate-900 dark:text-white mb-2">{t('Privacy.sections.contactInfo.location')}</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-300">{t('Privacy.sections.contactInfo.locationValue')}</p>
                                     </div>
                                 </div>
                                 <p className="text-sm text-slate-500 dark:text-slate-400 text-center">
-                                    {content.sections.contactInfo.responseTime}
+                                    {t('Privacy.sections.contactInfo.responseTime')}
                                 </p>
                             </div>
                         </div>

@@ -7,9 +7,7 @@ import { motion } from 'framer-motion';
 import { FaArrowRight, FaCode } from 'react-icons/fa';
 import { Project } from '@/lib/projects';
 import { getRelatedProjects } from '@/lib/recommendations';
-import { useLocale } from 'next-intl';
-import { projectDetailsContent as enContent } from '@/lib/data/en/projects';
-import { projectDetailsContent as frContent } from '@/lib/data/fr/projects';
+import { useLocale, useTranslations } from 'next-intl';
 
 import ProjectPlaceholder from './ProjectPlaceholder';
 
@@ -19,7 +17,7 @@ interface RelatedProjectsProps {
 
 export default function RelatedProjects({ currentProject }: RelatedProjectsProps) {
     const locale = useLocale();
-    const content = locale === 'fr' ? frContent : enContent;
+    const t = useTranslations('ProjectDetails');
     const related = getRelatedProjects(currentProject, locale as 'en' | 'fr', 3);
 
     const getPlaceholderVariant = (index: number) => {
@@ -36,10 +34,10 @@ export default function RelatedProjects({ currentProject }: RelatedProjectsProps
                     <div className="space-y-4">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
                             <FaCode className="text-xs" />
-                            {content.sections.allProjects}
+                            {t('sections.allProjects')}
                         </div>
                         <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">
-                            {content.sections.relatedProjects}
+                            {t('sections.relatedProjects')}
                         </h2>
                     </div>
                 </div>
