@@ -6,9 +6,9 @@ A high-fidelity, multilingual portfolio built with **Next.js 15**, **TypeScript*
 
 - **Dynamic i18n Architecture**: Removed static dictionaries in favor of modular localized data.
 - **Performance**: 95+ Lighthouse scores across SEO, Accessibility, and Best Practices.
-- **Premium UI**: Glassmorphic components, editorial project layouts, and custom error handling.
-- **CMD+K Search Hub**: Fully glassmorphic command palette with instant navigation and utility actions.
-- **Discovery Engine**: Intelligent "Related Projects" discovery loop at the footer of project pages.
+- **📐 Adaptive Grid**: Editorial layout with variable-span cards for a dynamic homepage showcase.
+- **⌨️ CMD+K Search Hub**: Fully glassmorphic command palette with instant navigation and utility actions.
+- **💡 Discovery Engine**: Intelligent "Related Projects" discovery loop at the footer of project pages.
 - **Booking Hub**: Integrated Google Calendar & Meet API for automated scheduling.
 
 ## 🛠️ Tech Stack
@@ -21,8 +21,8 @@ A high-fidelity, multilingual portfolio built with **Next.js 15**, **TypeScript*
 
 ## 🔜 Roadmap: Phase 13+
 
-- [ ] **Adaptive Grid**: Variable-span cards for a dynamic editorial layout.
-- [ ] **next-intl Integration**: Full localized routing support.
+- [x] **Adaptive Grid**: Variable-span cards for a dynamic editorial layout.
+- [ ] **next-intl Migration**: Localized routing support and SEO boost.
 - [ ] **MDX Technical Blog**: Content-rich discovery.
 
 ---

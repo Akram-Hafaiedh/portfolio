@@ -34,15 +34,15 @@ This document tracks completed features and planned improvements for the portfol
 - [x] **Custom Error Handling**: Created premium, i18n-ready 404 and global error pages.
 - [x] **Editorial Redesign**: Implemented HorizontalProjectGrid and ProjectHeroEditorial for an immersive experience.
 
-### ✨ Phase 13 & 15: Advanced Features & Discoverability
+### ✨ Phase 13, 14 & 15: Advanced Features & Adaptive Grid
 - [x] **Related Projects**: Logic-based project recommendations at page footers.
 - [x] **Command Palette (CMD+K)**: Global search for projects, navigation, and theme/language switching.
+- [x] **Adaptive Grid**: Variable-span cards for a dynamic editorial layout.
 - [x] **Premium Fallback System**: Dynamic "Project Live" vs "Coming Soon" placeholders.
 - [x] **UX Discoverability**: Integrated search triggers in Navigation and synchronized search bars.
 
 ### 🚀 Long-term SEO & Content
-- [ ] **Adaptive Grid**: Variable-span cards for a dynamic editorial layout.
-- [ ] **next-intl Migration**: Localized routing (`/fr/`) and robust SEO structure.
+- [/] **next-intl Migration**: Localized routing (`/fr/`) and robust SEO structure.
 - [ ] **MDX Blog**: Simple, powerful technical blog.
 
 ---
