@@ -28,6 +28,7 @@ import { projectDetailsContent as frContent } from "@/lib/data/fr/projects";
 import { Project } from "@/lib/projects";
 import CTA from "@/app/components/CTA";
 import ScrollProgress from "@/app/components/ScrollProgress";
+import RelatedProjects from "@/app/components/projects/RelatedProjects";
 
 interface ProjectPageClientProps {
     project: Project;
@@ -425,6 +426,9 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
                     </div>
                 </div>
             </section>
+
+            {/* Related Projects */}
+            <RelatedProjects currentProject={project} />
 
             {/* CTA Section */}
             <CTA
