@@ -5,8 +5,8 @@ import { getFaqData } from "@/lib/faq";
 import { FaRocket, FaClock, FaCheckCircle, FaEnvelope, FaPhone, FaCalendar } from "react-icons/fa";
 import Link from "next/link";
 import { useLanguage } from "../context/LanguageContext";
-import { contactPageContent as enContent } from "@/lib/data/en/contactPage";
-import { contactPageContent as frContent } from "@/lib/data/fr/contactPage";
+import { contactPageContent as enContent } from "@/lib/data/en/contact";
+import { contactPageContent as frContent } from "@/lib/data/fr/contact";
 import CTA from "../components/CTA";
 
 export default function ContactPage() {

@@ -2,16 +2,17 @@
 
 import { useMemo, useState, useRef } from 'react';
 import { getProjects } from "@/lib/projects";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/ProjectCard"; // Kept for safety, but likely unused now
+import ProjectHeroEditorial from "../components/projects/ProjectHeroEditorial";
+import HorizontalProjectGrid from "../components/projects/HorizontalProjectGrid";
 import ScrollProgress from "../components/ScrollProgress";
-import FeaturedProjectsCarousel from "../components/FeaturedProjectsCarousel";
 import CTA from "../components/CTA";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { projectsPageContent as enContent } from "@/lib/data/en/projectsPage";
-import { projectsPageContent as frContent } from "@/lib/data/fr/projectsPage";
+import { projectsPageContent as enContent } from "@/lib/data/en/projects";
+import { projectsPageContent as frContent } from "@/lib/data/fr/projects";
 import { FaRocket, FaCode, FaSearch, FaTimes, FaChevronDown, FaCheckCircle, FaClock } from 'react-icons/fa';
 
-type FilterType = 'all' | 'Full Stack' | 'Frontend' | 'Backend' | 'Mobile' | 'Freelance';
+type FilterType = 'all' | 'SaaS' | 'Enterprise' | 'Mobile' | 'Personal';
 
 export default function EnhancedProjectsPage() {
     const { language } = useLanguage();
@@ -19,7 +20,7 @@ export default function EnhancedProjectsPage() {
     const projects = getProjects(language);
 
     const [activeFilter, setActiveFilter] = useState<FilterType>('all');
-    const [visibleProjects, setVisibleProjects] = useState(6);
+    // We remove visibleProjects for horizontal scroll as we want to show all filtered
     const [searchQuery, setSearchQuery] = useState('');
     const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,7 +28,13 @@ export default function EnhancedProjectsPage() {
         let filtered = projects;
 
         if (activeFilter !== 'all') {
-            filtered = filtered.filter(p => p.type === activeFilter);
+            filtered = filtered.filter(p => {
+                if (activeFilter === 'SaaS') return p.title.includes('Iberis') || p.title.includes('Marketplace');
+                if (activeFilter === 'Enterprise') return p.company === 'Casa-Group (Germany)' || p.company === 'Next Consulting' && !p.title.includes('Marketplace');
+                if (activeFilter === 'Mobile') return p.type === 'Mobile' || p.technologies.includes('React Native') || p.title.includes('Physiomedica');
+                if (activeFilter === 'Personal') return p.company === 'Personal Project' || p.company === 'Freelance Project';
+                return true;
+            });
         }
 
         if (searchQuery) {
@@ -43,15 +50,12 @@ export default function EnhancedProjectsPage() {
         return filtered;
     }, [activeFilter, searchQuery, projects]);
 
-    const displayedProjects = filteredProjects.slice(0, visibleProjects);
-
     const filterButtons: { key: FilterType; label: string }[] = [
         { key: 'all', label: content.filters.all },
-        { key: 'Full Stack', label: content.filters.fullStack },
-        { key: 'Frontend', label: content.filters.frontend },
-        { key: 'Backend', label: content.filters.backend },
+        { key: 'SaaS', label: content.filters.saas },
+        { key: 'Enterprise', label: content.filters.enterprise },
         { key: 'Mobile', label: content.filters.mobile },
-        { key: 'Freelance', label: content.filters.freelance },
+        { key: 'Personal', label: content.filters.personal },
     ];
 
     const completedCount = projects.filter(p => p.status === 'Completed').length;
@@ -66,34 +70,22 @@ export default function EnhancedProjectsPage() {
             {/* Animated Background Grid - Dark Mode */}
             <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
 
-            {/* Floating Gradient Orbs - Light Mode */}
+            {/* Floating Gradient Orbs */}
             <div className="block dark:hidden fixed top-10 left-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" />
-            <div className="block dark:hidden fixed top-1/2 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
-            <div className="block dark:hidden fixed bottom-10 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
-
-            {/* Floating Gradient Orbs - Dark Mode */}
             <div className="hidden dark:block fixed top-10 left-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" />
-            <div className="hidden dark:block fixed top-1/2 right-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
-            <div className="hidden dark:block fixed bottom-10 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
-
-            {/* Additional Subtle Orbs */}
-            <div className="block dark:hidden fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
-            <div className="hidden dark:block fixed top-1/4 right-1/4 w-64 h-64 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
 
             <ScrollProgress sections={['Projects', 'Portfolio', 'Explore', 'Connect']} />
 
             <div className="relative z-10">
                 {/* Hero Section */}
-                <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+                <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="space-y-8">
-                            {/* Dynamic counter badge */}
                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-6 animate-fade-in-up">
                                 <FaRocket className="text-xs" />
                                 {projects.length} {content.hero.projectsCount}
                             </div>
 
-                            {/* Main Title */}
                             <div className="space-y-4">
                                 <h1 className="text-5xl sm:text-6xl font-bold tracking-tight animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                                     <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent animate-gradient-x" style={{ backgroundSize: '200% 200%' }}>
@@ -111,181 +103,114 @@ export default function EnhancedProjectsPage() {
                                     {' '}{content.hero.subtitleEnd}
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            {/* Interactive Stats Dashboard */}
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                                {[
-                                    {
-                                        icon: FaCheckCircle,
-                                        value: completedCount,
-                                        label: content.stats.completed,
-                                        gradient: 'from-green-400 to-emerald-400',
-                                        delay: '0s'
-                                    },
-                                    {
-                                        icon: FaClock,
-                                        value: inProgressCount,
-                                        label: content.stats.inProgress,
-                                        gradient: 'from-blue-400 to-cyan-400',
-                                        delay: '0.1s'
-                                    },
-                                    {
-                                        icon: FaCode,
-                                        value: `${totalTech}+`,
-                                        label: content.stats.technologies,
-                                        gradient: 'from-purple-400 to-pink-400',
-                                        delay: '0.2s'
-                                    },
-                                    {
-                                        icon: FaRocket,
-                                        value: '5+',
-                                        label: content.stats.experience,
-                                        gradient: 'from-orange-400 to-red-400',
-                                        delay: '0.3s'
-                                    }
-                                ].map((stat, i) => (
-                                    <div
-                                        key={i}
-                                        className="group relative"
-                                        style={{ animationDelay: stat.delay }}
-                                    >
-                                        <div className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} rounded-xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`} />
-                                        <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-xl p-4 text-center group-hover:scale-105 transition-transform">
-                                            <stat.icon className={`text-2xl mx-auto mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`} />
-                                            <div className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</div>
-                                            <div className="text-xs text-slate-600 dark:text-slate-400">{stat.label}</div>
-                                        </div>
-                                    </div>
-                                ))}
+                {/* Technical Overview Stats */}
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                    <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+                            <div className="space-y-4">
+                                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                    <FaCheckCircle className="text-2xl" />
+                                </div>
+                                <h4 className="text-sm font-black uppercase tracking-widest text-slate-500">{content.stats.completed}</h4>
+                                <div className="text-4xl font-black text-slate-900 dark:text-white">{completedCount}</div>
+                                <p className="text-sm text-slate-500 leading-relaxed">Projets livrés avec succès, incluant des architectures complexes et des déploiements critiques.</p>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                                    <FaClock className="text-2xl" />
+                                </div>
+                                <h4 className="text-sm font-black uppercase tracking-widest text-slate-500">{content.stats.inProgress}</h4>
+                                <div className="text-4xl font-black text-slate-900 dark:text-white">{inProgressCount}</div>
+                                <p className="text-sm text-slate-500 leading-relaxed">Développements actifs explorant de nouvelles frontières en IA, UX et performance cloud.</p>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="w-12 h-12 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-600 dark:text-pink-400">
+                                    <FaCode className="text-2xl" />
+                                </div>
+                                <h4 className="text-sm font-black uppercase tracking-widest text-slate-500">{content.stats.technologies}</h4>
+                                <div className="text-4xl font-black text-slate-900 dark:text-white">{totalTech}+</div>
+                                <p className="text-sm text-slate-500 leading-relaxed">Une maîtrise polyvalente des frameworks modernes pour des solutions robustes et évolutives.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Featured Projects Carousel Component */}
-                <FeaturedProjectsCarousel
-                    projects={projects}
-                    content={content.featured}
-                />
-
-                {/* Search & Filter Section */}
-                <div className="sticky top-0 z-40 px-4 sm:px-6 lg:px-8 py-6 backdrop-blur-2xl bg-white/80 dark:bg-slate-950/80 border-y border-slate-200/50 dark:border-white/5">
+                {/* Refined Filter & Search Section */}
+                <div className="px-4 sm:px-6 lg:px-8 mb-16">
                     <div className="max-w-7xl mx-auto">
-                        <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-                            {/* Search Bar */}
+                        <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+                            {/* Filter Pills - Independent & Responsive Track */}
+                            <div className="flex items-center gap-3 overflow-x-auto hide-scrollbar w-full lg:w-auto pb-4 lg:pb-0 scroll-smooth">
+                                {filterButtons.map((button) => (
+                                    <button
+                                        key={button.key}
+                                        onClick={() => setActiveFilter(button.key)}
+                                        className={`whitespace-nowrap px-8 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeFilter === button.key
+                                            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-2xl shadow-slate-900/20 dark:shadow-white/10 scale-105'
+                                            : 'text-slate-500 hover:text-slate-900 dark:hover:text-white bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 hover:bg-white dark:hover:bg-slate-800'
+                                            }`}
+                                    >
+                                        {button.label}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Search Input - Clean & Minimalist */}
                             <div className="relative w-full lg:w-96 group">
-                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                                <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="relative flex items-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-slate-200/50 dark:border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-300 focus-within:bg-white/80 dark:focus-within:bg-slate-900/80 focus-within:border-blue-500/30 focus-within:shadow-xl focus-within:shadow-blue-500/5">
+                                    <div className="pl-5 text-slate-400">
+                                        <FaSearch className="text-xs" />
+                                    </div>
                                     <input
                                         ref={searchInputRef}
                                         type="text"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                         placeholder={content.search.placeholder}
-                                        className="w-full pl-12 pr-12 py-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                                        className="w-full pl-4 pr-12 py-4 bg-transparent border-none outline-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 text-sm"
                                     />
-                                    <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 dark:text-slate-500" />
                                     {searchQuery && (
                                         <button
                                             onClick={() => setSearchQuery('')}
-                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+                                            className="absolute right-4 p-2 text-slate-400 hover:text-red-500 transition-colors"
                                         >
-                                            <FaTimes />
+                                            <FaTimes className="text-xs" />
                                         </button>
                                     )}
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Filter Pills */}
-                        <div className="flex flex-wrap gap-3 mt-6 justify-center">
-                            {filterButtons.map((button) => (
-                                <button
-                                    key={button.key}
-                                    onClick={() => {
-                                        setActiveFilter(button.key);
-                                        setVisibleProjects(6);
-                                    }}
-                                    className={`group relative px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${activeFilter === button.key
-                                            ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/50'
-                                            : 'bg-white/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 backdrop-blur-xl'
-                                        }`}
-                                >
-                                    {activeFilter === button.key && (
-                                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-50" />
-                                    )}
-                                    <span className="relative">{button.label}</span>
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Results Count */}
-                        <div className="text-center mt-6">
-                            <p className="text-slate-600 dark:text-slate-400">
-                                {content.results.showing} <span className="font-bold text-slate-900 dark:text-white">{displayedProjects.length}</span> {content.results.of}{' '}
-                                <span className="font-bold text-slate-900 dark:text-white">{filteredProjects.length}</span> {content.results.projects}
-                                {activeFilter !== 'all' && <span className="text-blue-600 dark:text-blue-400"> {content.results.in} {activeFilter}</span>}
-                                {searchQuery && <span className="text-purple-600 dark:text-purple-400"> {content.results.matching} "{searchQuery}"</span>}
-                            </p>
                         </div>
                     </div>
                 </div>
 
-                {/* Projects Masonry Grid */}
-                <div className="px-4 sm:px-6 lg:px-8 py-20">
-                    <div className="max-w-7xl mx-auto">
-                        {displayedProjects.length > 0 ? (
-                            <>
-                                <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-                                    {displayedProjects.map((project, index) => (
-                                        <div
-                                            key={project.id}
-                                            className="break-inside-avoid mb-8"
-                                            style={{ animationDelay: `${index * 0.1}s` }}
-                                        >
-                                            <ProjectCard
-                                                project={project}
-                                                index={index}
-                                                showFeaturedBadge={false}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {filteredProjects.length > visibleProjects && (
-                                    <div className="text-center mt-16">
-                                        <button
-                                            onClick={() => setVisibleProjects(prev => prev + 6)}
-                                            className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-5 px-10 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50"
-                                        >
-                                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-50 group-hover:opacity-75" />
-                                            <span className="relative">{content.loadMore.button} ({filteredProjects.length - visibleProjects} {content.loadMore.remaining})</span>
-                                            <FaChevronDown className="relative group-hover:translate-y-1 transition-transform" />
-                                        </button>
-                                    </div>
-                                )}
-                            </>
-                        ) : (
-                            <div className="text-center py-32">
-                                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-6">
-                                    <FaSearch className="text-5xl text-slate-400 dark:text-slate-600" />
-                                </div>
-                                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">{content.results.noProjects}</h3>
-                                <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
-                                    {searchQuery ? `${content.results.noResults} "${searchQuery}"` : `${content.results.noType} ${activeFilter} ${content.results.available}`}
-                                </p>
-                                <button
-                                    onClick={() => {
-                                        setActiveFilter('all');
-                                        setSearchQuery('');
-                                    }}
-                                    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-transform"
-                                >
-                                    {content.results.showAll}
-                                </button>
+                {/* Horizontal Project Discovery */}
+                <div className="py-20">
+                    {filteredProjects.length > 0 ? (
+                        <HorizontalProjectGrid projects={filteredProjects} />
+                    ) : (
+                        <div className="text-center py-32">
+                            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-6">
+                                <FaSearch className="text-5xl text-slate-400 dark:text-slate-600" />
                             </div>
-                        )}
-                    </div>
+                            <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-3">{content.results.noProjects}</h3>
+                            <button
+                                onClick={() => { setActiveFilter('all'); setSearchQuery(''); }}
+                                className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-transform"
+                            >
+                                {content.results.showAll}
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 {/* CTA Section */}

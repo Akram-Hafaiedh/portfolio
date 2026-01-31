@@ -2,8 +2,8 @@
 import { FaGavel, FaExclamationTriangle, FaFileContract, FaShieldAlt, FaUserCheck, FaLightbulb, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { termsContent as enContent } from "@/lib/data/en/terms";
-import { termsContent as frContent } from "@/lib/data/fr/terms";
+import { termsContent as enContent } from "@/lib/data/en/legal";
+import { termsContent as frContent } from "@/lib/data/fr/legal";
 
 export default function TermsPage() {
     const [activeSection, setActiveSection] = useState<number | null>(null);
@@ -148,7 +148,7 @@ export default function TermsPage() {
                                     style={{ animationDelay: `${index * 100}ms` }}
                                 >
                                     <div className={`absolute -inset-1 bg-gradient-to-r ${section.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity`} />
-                                    
+
                                     <div className="relative bg-white dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all">
                                         {/* Header */}
                                         <button
@@ -319,7 +319,7 @@ export default function TermsPage() {
                     <div className="max-w-4xl mx-auto">
                         <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800/50 text-center">
                             <p className="text-slate-700 dark:text-slate-300">
-                                {language === 'fr' 
+                                {language === 'fr'
                                     ? "En utilisant ce site, vous reconnaissez avoir lu et compris ces conditions d'utilisation et acceptez d'être lié par celles-ci."
                                     : "By using this website, you acknowledge that you have read and understood these terms and conditions and agree to be bound by them."}
                             </p>

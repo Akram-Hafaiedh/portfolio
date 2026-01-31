@@ -2,8 +2,8 @@
 import { FaShieldAlt, FaUserShield, FaDatabase, FaCookie, FaEye, FaLock, FaHandshake, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { privacyContent as enContent } from "@/lib/data/en/privacy";
-import { privacyContent as frContent } from "@/lib/data/fr/privacy";
+import { privacyContent as enContent } from "@/lib/data/en/legal";
+import { privacyContent as frContent } from "@/lib/data/fr/legal";
 
 export default function PrivacyPage() {
     const [activeSection, setActiveSection] = useState<number | null>(null);
@@ -223,14 +223,14 @@ export default function PrivacyPage() {
                                                         {section.purposes.map((purpose, i) => (
                                                             <div key={i} className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
                                                                 <div className={`w-8 h-8 ${i === 0 ? 'bg-green-100 dark:bg-green-900' :
-                                                                        i === 1 ? 'bg-blue-100 dark:bg-blue-900' :
-                                                                            i === 2 ? 'bg-purple-100 dark:bg-purple-900' :
-                                                                                'bg-orange-100 dark:bg-orange-900'
+                                                                    i === 1 ? 'bg-blue-100 dark:bg-blue-900' :
+                                                                        i === 2 ? 'bg-purple-100 dark:bg-purple-900' :
+                                                                            'bg-orange-100 dark:bg-orange-900'
                                                                     } rounded-full flex items-center justify-center flex-shrink-0`}>
                                                                     <span className={`${i === 0 ? 'text-green-600 dark:text-green-400' :
-                                                                            i === 1 ? 'text-blue-600 dark:text-blue-400' :
-                                                                                i === 2 ? 'text-purple-600 dark:text-purple-400' :
-                                                                                    'text-orange-600 dark:text-orange-400'
+                                                                        i === 1 ? 'text-blue-600 dark:text-blue-400' :
+                                                                            i === 2 ? 'text-purple-600 dark:text-purple-400' :
+                                                                                'text-orange-600 dark:text-orange-400'
                                                                         } font-bold text-sm`}>{i + 1}</span>
                                                                 </div>
                                                                 <div>
@@ -300,19 +300,19 @@ export default function PrivacyPage() {
                                                     <div className="grid md:grid-cols-2 gap-4">
                                                         {section.rights.map((right, i) => (
                                                             <div key={i} className={`p-4 ${i === 0 ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' :
-                                                                    i === 1 ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800' :
-                                                                        i === 2 ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' :
-                                                                            'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800'
+                                                                i === 1 ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800' :
+                                                                    i === 2 ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' :
+                                                                        'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800'
                                                                 } rounded-lg border`}>
                                                                 <h4 className={`font-semibold mb-2 ${i === 0 ? 'text-blue-800 dark:text-blue-300' :
-                                                                        i === 1 ? 'text-purple-800 dark:text-purple-300' :
-                                                                            i === 2 ? 'text-green-800 dark:text-green-300' :
-                                                                                'text-orange-800 dark:text-orange-300'
+                                                                    i === 1 ? 'text-purple-800 dark:text-purple-300' :
+                                                                        i === 2 ? 'text-green-800 dark:text-green-300' :
+                                                                            'text-orange-800 dark:text-orange-300'
                                                                     }`}>{right.title}</h4>
                                                                 <p className={`text-sm ${i === 0 ? 'text-blue-700 dark:text-blue-400' :
-                                                                        i === 1 ? 'text-purple-700 dark:text-purple-400' :
-                                                                            i === 2 ? 'text-green-700 dark:text-green-400' :
-                                                                                'text-orange-700 dark:text-orange-400'
+                                                                    i === 1 ? 'text-purple-700 dark:text-purple-400' :
+                                                                        i === 2 ? 'text-green-700 dark:text-green-400' :
+                                                                            'text-orange-700 dark:text-orange-400'
                                                                     }`}>
                                                                     {right.description}
                                                                 </p>
