@@ -42,11 +42,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: 'Akram Hafaiedh Portfolio',
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       type: 'website',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'Akram Hafaiedh Portfolio',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('seo.title'),
       description: t('seo.description'),
+      images: ['/og-image.png'],
     },
     manifest: '/manifest.json',
     alternates: {
