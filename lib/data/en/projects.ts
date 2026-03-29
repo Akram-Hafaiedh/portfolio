@@ -385,7 +385,7 @@ export const projects: Project[] = [
             "SEO strategies for large-scale dynamic marketplaces",
             "High-performance data fetching with Prisma and Next.js"
         ],
-        featured: true,
+        featured: false,
         gradient: "from-cyan-500 to-blue-600",
         layoutSpan: 2,
         layoutPriority: 7,
@@ -526,5 +526,62 @@ export const projects: Project[] = [
         gradient: "from-amber-500 to-rose-700",
         liveUrl: "#",
         githubUrl: "#"
+    },
+    {
+        id: 10,
+        title: "Elyssa Energy",
+        shortDescription: "A modern, high-performance landing page for a solar energy company. Built with Next.js and animated with Framer Motion, it features dynamic scroll effects and a responsive layout to effectively showcase renewable energy solutions.",
+        longDescription: "A sophisticated frontend project designed for Elyssa Energy, a Tunisian-inspired solar panel installation and renewable energy company. The platform is optimized for performance and aesthetics, utilizing modern web design principles to create a trustworthy and engaging online presence.",
+        fullDescription: "Developed a comprehensive landing page and promotional site for Elyssa Energy. The project focuses heavily on visual storytelling and user engagement, featuring smooth scroll-triggered animations implemented via Framer Motion. The UI is crafted with TailwindCSS for a highly responsive, glassmorphic design that adapts beautifully to all screen sizes. Key sections include dynamic statistics counters, an interactive FAQ with boxed card layouts, a premium 'Peace of Mind' guarantee section, and a dedicated contact page. The architecture prioritizes speed, SEO, and maintainability, leveraging Next.js App Router for optimal performance.",
+        image: "/projects/elyssa.png",
+        gallery: [],
+        type: "Frontend",
+        role: "Frontend Developer",
+        timeline: "Mar 2026 - Present",
+        company: "Freelance Project",
+        status: "Completed",
+        technologies: [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "Lucide React",
+            "React Hook Form",
+            "Vercel"
+        ],
+        features: [
+            "Premium, responsive design with glassmorphism and modern aesthetics",
+            "Scroll-triggered animations and dynamic statistics counters",
+            "Interactive FAQ section with customized expanding cards",
+            "Optimized multi-page routing layout with Next.js App Router",
+            "High-fidelity UI components built from scratch using TailwindCSS",
+            "Accessible and SEO-friendly structure"
+        ],
+        challenges: [
+            "Ensuring highly performant scroll animations without stuttering on lower-end devices",
+            "Creating complex, fluid layout transitions and interactive elements",
+            "Structuring the application strictly for rapid frontend loading avoiding unnecessary server-side rendering overhead"
+        ],
+        solutions: [
+            "Leveraged Framer Motion's whileInView and viewport optimizations for smooth rendering",
+            "Employed a highly modular component architecture using TailwindCSS utility classes",
+            "Tuned Next.js static site generation for optimal initial loading times"
+        ],
+        results: [
+            "Delivered a visually stunning and performant web experience",
+            "Achieved near-perfect Lighthouse scores for Performance, Accessibility, and SEO",
+            "Increased perceived trust and brand value for the renewable energy startup"
+        ],
+        learnings: [
+            "Advanced Framer Motion orchestration and physics-based animations",
+            "Modern landing page optimization techniques",
+            "Implementing premium UI patterns like dynamic counters and customized accordions"
+        ],
+        featured: true,
+        gradient: "from-amber-400 to-orange-600",
+        layoutSpan: 2,
+        layoutPriority: 6,
+        liveUrl: "https://elyssa-energy-sooty.vercel.app",
+        githubUrl: "https://github.com/Akram-Hafaiedh/renewable"
     }
 ];

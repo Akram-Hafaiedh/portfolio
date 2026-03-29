@@ -381,7 +381,7 @@ export const projects: Project[] = [
             "Stratégies SEO pour marketplaces dynamiques à grande échelle",
             "Récupération de données haute performance avec Prisma et Next.js"
         ],
-        featured: true,
+        featured: false,
         gradient: "from-cyan-500 to-blue-600",
         layoutSpan: 2,
         layoutPriority: 7,
@@ -522,5 +522,61 @@ export const projects: Project[] = [
         gradient: "from-amber-500 to-rose-700",
         liveUrl: "#",
         githubUrl: "#"
+    },
+    {
+        id: 10,
+        title: "Elyssa Energy",
+        shortDescription: "Une landing page moderne et performante pour une entreprise d'énergie solaire. Construite avec Next.js et animée avec Framer Motion, elle propose des effets de défilement dynamiques et un design responsive pour mettre en valeur les solutions d'énergie renouvelable.",
+        longDescription: "Un projet frontend sophistiqué conçu pour Elyssa Energy, une entreprise d'installation de panneaux solaires d'inspiration tunisienne. La plateforme est optimisée pour la performance et l'esthétique, utilisant les principes du design web moderne pour créer une présence en ligne fiable et engageante.",
+        fullDescription: "Développement d'une landing page complète et d'un site promotionnel pour Elyssa Energy. Le projet se concentre fortement sur la narration visuelle et l'engagement des utilisateurs, avec des animations fluides déclenchées par le défilement implémentées via Framer Motion. L'interface utilisateur est réalisée avec TailwindCSS pour un design 'glassmorphic' très réactif qui s'adapte parfaitement à toutes les tailles d'écran. Les sections clés incluent des compteurs de statistiques dynamiques, une FAQ interactive avec des cartes extensibles, une section de garantie 'Tranquillité d'esprit' premium et une page de contact dédiée. L'architecture privilégie la vitesse, le SEO et la maintenabilité, en s'appuyant sur Next.js App Router pour des performances optimales.",
+        image: "/projects/elyssa.png",
+        gallery: [],
+        type: "Frontend",
+        role: "Développeur Frontend",
+        timeline: "Mar 2026 - Présent",
+        company: "Projet Freelance",
+        status: "Completed",
+        technologies: [
+            "Next.js 14",
+            "TypeScript",
+            "TailwindCSS",
+            "Framer Motion",
+            "Lucide React",
+            "React Hook Form",
+            "Vercel"
+        ],
+        features: [
+            "Design premium et responsive avec esthétique moderne et glassmorphisme",
+            "Animations déclenchées par le défilement et compteurs de statistiques dynamiques",
+            "Section FAQ interactive avec cartes personnalisées",
+            "Composants UI haute fidélité construits à partir de zéro avec TailwindCSS",
+            "Structure accessible et optimisée pour le SEO"
+        ],
+        challenges: [
+            "Garantir des animations de défilement très performantes sans saccades sur les appareils moins puissants",
+            "Créer des transitions de mise en page fluides et des éléments interactifs complexes",
+            "Structurer l'application strictement pour un chargement frontend rapide en évitant la surcharge du rendu côté serveur"
+        ],
+        solutions: [
+            "Mise à profit des optimisations viewport et whileInView de Framer Motion",
+            "Utilisation d'une architecture de composants hautement modulaire avec des classes utilitaires TailwindCSS",
+            "Ajustement de la génération de site statique Next.js pour des temps de chargement initiaux optimaux"
+        ],
+        results: [
+            "Livraison d'une expérience web visuellement époustouflante et performante",
+            "Obtention d'excellents scores Lighthouse en Performance, Accessibilité et SEO",
+            "Augmentation de la confiance perçue et de la valeur de la marque pour la startup d'énergie renouvelable"
+        ],
+        learnings: [
+            "Orchestration avancée de Framer Motion et animations basées sur la physique",
+            "Techniques modernes d'optimisation de landing page",
+            "Implémentation de modèles d'interface utilisateur premium comme les compteurs dynamiques"
+        ],
+        featured: true,
+        gradient: "from-amber-400 to-orange-600",
+        layoutSpan: 2,
+        layoutPriority: 6,
+        liveUrl: "https://elyssa-energy-sooty.vercel.app",
+        githubUrl: "https://github.com/Akram-Hafaiedh/renewable"
     }
 ];
