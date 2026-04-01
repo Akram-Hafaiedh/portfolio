@@ -113,7 +113,7 @@ export default function TermsPage() {
                             {t('Terms.hero.emphasis')}
                         </p>
                         <p className="text-sm text-slate-500 dark:text-slate-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                            <strong>{t('Terms.hero.badge')}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                            <strong>{t('Terms.hero.badgeLabel')}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
@@ -171,7 +171,7 @@ export default function TermsPage() {
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className={`text-sm font-bold bg-gradient-to-r ${section.color} bg-clip-text text-transparent mb-2`}>
-                                                        {locale === 'fr' ? 'Section' : 'Section'} {section.id}
+                                                        {t('Section')} {section.id}
                                                     </div>
                                                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                                         {section.title}

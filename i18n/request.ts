@@ -18,6 +18,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     const contact = (await import(`../messages/${locale}/contact.json`)).default;
     const booking = (await import(`../messages/${locale}/booking.json`)).default;
     const experience = (await import(`../messages/${locale}/experience.json`)).default;
+    const legal = (await import(`../messages/${locale}/legal.json`)).default;
 
     return {
         locale: locale as string,
@@ -29,7 +30,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
             ...projectDetails,
             ...contact,
             ...booking,
-            ...experience
+            ...experience,
+            ...legal
         }
     };
 });

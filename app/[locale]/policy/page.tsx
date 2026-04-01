@@ -109,7 +109,7 @@ export default function PrivacyPage() {
                             {t('Privacy.hero.emphasis')}
                         </p>
                         <p className="text-sm text-slate-500 dark:text-slate-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                            <strong>{locale === 'fr' ? 'Dernière mise à jour' : 'Last Updated'}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
+                            <strong>{t('Terms.hero.badgeLabel')}:</strong> {new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
@@ -167,7 +167,7 @@ export default function PrivacyPage() {
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className={`text-sm font-bold bg-gradient-to-r ${section.color} bg-clip-text text-transparent mb-2`}>
-                                                        {locale === 'fr' ? 'Section' : 'Section'} {section.id}
+                                                        {t('Section')} {section.id}
                                                     </div>
                                                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                                         {section.title}
@@ -380,9 +380,7 @@ export default function PrivacyPage() {
                     <div className="max-w-4xl mx-auto">
                         <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800/50 text-center">
                             <p className="text-slate-700 dark:text-slate-300">
-                                {locale === 'fr'
-                                    ? "En utilisant ce site, vous reconnaissez avoir lu et compris cette politique de confidentialité."
-                                    : "By using this website, you acknowledge that you have read and understood this privacy policy."}
+                                {t('Privacy.footerNote')}
                             </p>
                         </div>
                     </div>
