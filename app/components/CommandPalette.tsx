@@ -16,6 +16,7 @@ import { motion } from 'framer-motion';
 import { useRouter, usePathname } from '@/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { getProjects } from '@/lib/projects';
+import { getBlogPosts } from '@/lib/blog';
 import {
     FaSearch,
     FaBriefcase,
@@ -26,7 +27,8 @@ import {
     FaMoon,
     FaLanguage,
     FaCode,
-    FaArrowRight
+    FaArrowRight,
+    FaBookOpen
 } from 'react-icons/fa';
 
 export default function CommandPalette({ children }: { children: React.ReactNode }) {
@@ -83,6 +85,7 @@ function CommandPaletteActions() {
     const locale = useLocale();
     const t = useTranslations('Common');
     const projects = getProjects(locale as 'en' | 'fr');
+    const blogPosts = getBlogPosts(locale as 'en' | 'fr');
 
     const actions: Action[] = [
         // Navigation
@@ -131,6 +134,15 @@ function CommandPaletteActions() {
             icon: <FaEnvelope className="w-5 h-5" />,
             section: t('commandPalette.sections.navigation'),
         },
+        {
+            id: 'blog',
+            name: t('nav.blog'),
+            shortcut: ['g'],
+            keywords: 'blog posts articles tutorials technology engineering writing',
+            perform: () => router.push('/blog'),
+            icon: <FaBookOpen className="w-5 h-5" />,
+            section: t('commandPalette.sections.navigation'),
+        },
         // Utilities
         {
             id: 'theme',
@@ -168,6 +180,16 @@ function CommandPaletteActions() {
             icon: <FaCode className="w-5 h-5" />,
             section: t('commandPalette.sections.projects'),
             subtitle: project.type
+        })),
+        // Blog Search
+        ...blogPosts.map(post => ({
+            id: `blog-${post.slug}`,
+            name: post.title,
+            keywords: `${post.title} ${post.category} ${post.tags.join(' ')}`,
+            perform: () => router.push(`/blog/${post.slug}`),
+            icon: <FaBookOpen className="w-5 h-5" />,
+            section: t('commandPalette.sections.blog'),
+            subtitle: post.category
         }))
     ];
 

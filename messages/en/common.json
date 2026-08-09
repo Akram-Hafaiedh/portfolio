@@ -18,7 +18,8 @@
             "overview": "Overview",
             "details": "Details",
             "features": "Features",
-            "tech stack": "Tech Stack"
+            "tech stack": "Tech Stack",
+            "blog": "Blog"
         },
         "sections": {
             "recentExperience": "Recent Experience",
@@ -92,7 +93,8 @@
             "sections": {
                 "navigation": "Navigation",
                 "preferences": "Preferences",
-                "projects": "Projects"
+                "projects": "Projects",
+                "blog": "Blog"
             },
             "actions": {
                 "home": "Home",
@@ -114,8 +116,29 @@
                 "experience": "Professional Experience",
                 "projects": "Portfolio Projects",
                 "contact": "Contact & Collaboration",
-                "booking": "Book a Strategy Call"
+                "booking": "Book a Strategy Call",
+                "blog": "Technical Blog"
             }
+        },
+        "blog": {
+            "title": "Technical Blog",
+            "subtitle": "Thoughts, tutorials, and insights on software engineering, web performance, and full-stack development.",
+            "searchPlaceholder": "Search articles...",
+            "categories": {
+                "all": "All",
+                "engineering": "Engineering",
+                "design": "Design",
+                "devops": "DevOps",
+                "backend": "Backend"
+            },
+            "noPosts": "No articles found.",
+            "backToHome": "Back to Home",
+            "backToBlog": "Back to Blog",
+            "featured": "Featured Post",
+            "share": "Share article",
+            "relatedPosts": "Related Articles",
+            "copied": "Link Copied!",
+            "copyLink": "Copy Link"
         }
     }
 }

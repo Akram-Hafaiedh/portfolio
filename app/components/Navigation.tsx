@@ -35,6 +35,7 @@ export default function Navigation() {
         { href: '/about', label: t('nav.about') },
         { href: '/experience', label: t('nav.experience') },
         { href: '/projects', label: t('nav.projects') },
+        { href: '/blog', label: t('nav.blog') },
         { href: '/contact', label: t('nav.contact') },
     ];
 

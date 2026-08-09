@@ -18,7 +18,8 @@
             "overview": "Aperçu",
             "details": "Détails",
             "features": "Fonctionnalités",
-            "tech stack": "Pile Technique"
+            "tech stack": "Pile Technique",
+            "blog": "Blog"
         },
         "sections": {
             "recentExperience": "Expériences Récentes",
@@ -92,7 +93,8 @@
             "sections": {
                 "navigation": "Navigation",
                 "preferences": "Préférences",
-                "projects": "Projets"
+                "projects": "Projets",
+                "blog": "Blog"
             },
             "actions": {
                 "home": "Accueil",
@@ -114,8 +116,29 @@
                 "experience": "Expériences Professionnelles",
                 "projects": "Portfolio des Projets",
                 "contact": "Contact & Collaboration",
-                "booking": "Réserver un Appel Stratégique"
+                "booking": "Réserver un Appel Stratégique",
+                "blog": "Blog Technique"
             }
+        },
+        "blog": {
+            "title": "Blog Technique",
+            "subtitle": "Réflexions, tutoriels et analyses sur le génie logiciel, la performance web et le développement full-stack.",
+            "searchPlaceholder": "Rechercher des articles...",
+            "categories": {
+                "all": "Tous",
+                "engineering": "Engineering",
+                "design": "Design",
+                "devops": "DevOps",
+                "backend": "Backend"
+            },
+            "noPosts": "Aucun article trouvé.",
+            "backToHome": "Retour à l'accueil",
+            "backToBlog": "Retour au Blog",
+            "featured": "Article à la Une",
+            "share": "Partager l'article",
+            "relatedPosts": "Articles Similaires",
+            "copied": "Lien copié !",
+            "copyLink": "Copier le lien"
         }
     }
 }

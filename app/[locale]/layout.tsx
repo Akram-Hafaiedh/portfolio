@@ -106,7 +106,7 @@ export default async function RootLayout({
     "name": "Akram Hafaiedh",
     "url": "https://portfolio-six-mu-c3zpt9l3gd.vercel.app",
     "jobTitle": t('seo.title'),
-    "image": "https://portfolio-six-mu-c3zpt9l3gd.vercel.app/profile.jpg",
+    "image": "https://portfolio-six-mu-c3zpt9l3gd.vercel.app/avatar.jpg",
     "description": t('seo.description'),
     "knowsAbout": t('seo.keywords').split(',').map(k => k.trim()),
     "sameAs": [
