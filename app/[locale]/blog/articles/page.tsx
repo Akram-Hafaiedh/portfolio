@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { FaSearch, FaArrowRight, FaCalendarAlt, FaClock, FaFolderOpen, FaArrowLeft, FaChevronLeft, FaChevronRight, FaThList, FaThLarge } from 'react-icons/fa';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import BlogCoverImage from '@/app/components/blog/BlogCoverImage';
 
 const POSTS_PER_PAGE = 6;
 
@@ -179,13 +180,12 @@ function AllArticlesContent() {
                                     >
                                         {/* Image Thumbnail */}
                                         <div className="md:col-span-4 relative h-48 sm:h-52 rounded-2xl overflow-hidden shadow-inner">
-                                            <Image
+                                            <BlogCoverImage
                                                 src={post.image}
                                                 alt={post.title}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                category={post.category}
                                             />
-                                            <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5">
+                                            <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5 z-10">
                                                 {post.category}
                                             </div>
                                         </div>
@@ -273,13 +273,12 @@ function AllArticlesContent() {
                                     >
                                         <div className="space-y-4">
                                             <div className="relative h-48 w-full rounded-2xl overflow-hidden shadow-inner mb-4">
-                                                <Image
+                                                <BlogCoverImage
                                                     src={post.image}
                                                     alt={post.title}
-                                                    fill
-                                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                    category={post.category}
                                                 />
-                                                <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5">
+                                                <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5 z-10">
                                                     {post.category}
                                                 </div>
                                             </div>

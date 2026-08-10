@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { FaSearch, FaArrowRight, FaCalendarAlt, FaClock, FaFolderOpen } from 'react-icons/fa';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import BlogCoverImage from '@/app/components/blog/BlogCoverImage';
 
 function BlogListingContent() {
     const locale = useLocale();
@@ -154,14 +155,13 @@ function BlogListingContent() {
                         <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-[2.5rem] overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 lg:p-8 hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
                             {/* Visual Display banner */}
                             <div className="lg:col-span-7 relative h-64 sm:h-96 rounded-2xl overflow-hidden shadow-inner">
-                                <Image
+                                <BlogCoverImage
                                     src={featuredPost.image}
                                     alt={featuredPost.title}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                    category={featuredPost.category}
                                     priority
                                 />
-                                <div className="absolute top-4 left-4 px-4 py-2 bg-slate-900/80 backdrop-blur-md rounded-xl text-[10px] uppercase font-black tracking-widest text-blue-400 border border-white/10">
+                                <div className="absolute top-4 left-4 px-4 py-2 bg-slate-900/80 backdrop-blur-md rounded-xl text-[10px] uppercase font-black tracking-widest text-blue-400 border border-white/10 z-10">
                                     {t('blog.featured')}
                                 </div>
                             </div>
@@ -256,13 +256,12 @@ function BlogListingContent() {
                                     <div className="space-y-4">
                                         {/* Image Display */}
                                         <div className="relative h-48 w-full rounded-2xl overflow-hidden shadow-inner mb-4">
-                                            <Image
+                                            <BlogCoverImage
                                                 src={post.image}
                                                 alt={post.title}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                category={post.category}
                                             />
-                                            <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5">
+                                            <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5 z-10">
                                                 {post.category}
                                             </div>
                                         </div>

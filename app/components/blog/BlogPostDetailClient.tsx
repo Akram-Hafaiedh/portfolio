@@ -22,6 +22,7 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import MarkdownRenderer from './MarkdownRenderer';
+import BlogCoverImage from './BlogCoverImage';
 
 interface BlogPostDetailClientProps {
     post: BlogPost;
@@ -235,11 +236,10 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
 
                 {/* Banner Image */}
                 <div className="relative h-64 sm:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-12 max-w-5xl mx-auto">
-                    <Image
+                    <BlogCoverImage
                         src={post.image}
                         alt={post.title}
-                        fill
-                        className="object-cover"
+                        category={post.category}
                         priority
                     />
                 </div>

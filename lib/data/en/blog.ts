@@ -107,14 +107,14 @@ By separating interactivity from content, your bundle sizes remain small and pag
 `
   },
   {
-    slug: "multi-tenant-data-isolation-laravel",
+    slug: "laravel-global-scopes-multi-tenancy-isolation",
     title: "Strict Tenant Data Isolation in Laravel using Global Scopes",
-    excerpt: "How to architect a secure multi-tenant SaaS application that isolates tenant database records automatically to prevent data leakage and compliance issues.",
-    date: "2026-02-01",
-    readTime: "4 min read",
-    category: "Backend",
-    tags: ["Laravel", "SaaS", "Security", "MySQL"],
-    image: "/projects/iberis.png", // The ERP SaaS project
+    excerpt: "How to enforce automatic multi-tenant data isolation at the ORM layer to prevent cross-tenant data leaks in enterprise SaaS applications.",
+    date: "2026-02-15",
+    readTime: "6 min read",
+    category: "Architecture",
+    tags: ["Laravel", "Multi-Tenancy", "Security", "PHP"],
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -342,7 +342,7 @@ export async function createMeeting(clientData: { name: string; email: string; d
     readTime: "3 min read",
     category: "Engineering",
     tags: ["Next.js", "Prisma", "Meilisearch", "Database"],
-    image: "/projects/portfolio.png",
+    image: "/blog/covers/database-optimization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
