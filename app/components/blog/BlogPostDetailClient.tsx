@@ -1,11 +1,11 @@
 // app/components/blog/BlogPostDetailClient.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { BlogPost } from '@/lib/blog';
 import { Link } from '@/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
     FaArrowLeft,
     FaCalendarAlt,
@@ -14,7 +14,11 @@ import {
     FaTwitter,
     FaLink,
     FaCheck,
-    FaTag
+    FaTag,
+    FaListUl,
+    FaRocket,
+    FaCalendarCheck,
+    FaPaperPlane
 } from 'react-icons/fa';
 import Image from 'next/image';
 import MarkdownRenderer from './MarkdownRenderer';
@@ -27,18 +31,59 @@ interface BlogPostDetailClientProps {
 export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDetailClientProps) {
     const t = useTranslations('Common');
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [showFloatingHeader, setShowFloatingHeader] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [activeHeadingId, setActiveHeadingId] = useState<string>('');
 
-    // Scroll tracker for reading progress
+    // Extract Table of Contents items dynamically from markdown
+    const tocItems = useMemo(() => {
+        const lines = post.content.split('\n');
+        const items: { id: string; text: string; level: number }[] = [];
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (trimmed.startsWith('## ')) {
+                const text = trimmed.substring(3).replace(/[*`[\]]/g, '').trim();
+                const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+                items.push({ id, text, level: 2 });
+            } else if (trimmed.startsWith('### ')) {
+                const text = trimmed.substring(4).replace(/[*`[\]]/g, '').trim();
+                const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+                items.push({ id, text, level: 3 });
+            }
+        }
+        return items;
+    }, [post.content]);
+
+    // Scroll tracker & IntersectionObserver for active heading
     useEffect(() => {
         const handleScroll = () => {
             const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
             if (totalHeight > 0) {
                 setScrollProgress((window.scrollY / totalHeight) * 100);
             }
+            setShowFloatingHeader(window.scrollY > 400);
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Heading IntersectionObserver
+        const headingElements = Array.from(document.querySelectorAll('h2[id], h3[id]'));
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveHeadingId(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: '-80px 0px -40% 0px' }
+        );
+
+        headingElements.forEach((el) => observer.observe(el));
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            observer.disconnect();
+        };
     }, []);
 
     const handleCopyLink = async () => {
@@ -61,7 +106,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
 
     return (
         <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 min-h-screen pt-32 pb-24 transition-colors duration-500">
-            {/* Reading Progress Indicator */}
+            {/* Reading Progress Top Bar */}
             <div className="fixed top-16 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800 z-50">
                 <div
                     className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-75"
@@ -69,11 +114,67 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                 />
             </div>
 
+            {/* Floating Mini Top Header (shows when scrolled past hero) */}
+            <AnimatePresence>
+                {showFloatingHeader && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="fixed top-20 left-0 right-0 z-40 px-4 pointer-events-none"
+                    >
+                        <div className="max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-800/60 rounded-2xl px-6 py-3 shadow-2xl flex items-center justify-between pointer-events-auto">
+                            <div className="flex items-center gap-4 min-w-0">
+                                <Link
+                                    href="/blog"
+                                    className="text-xs font-black uppercase tracking-widest text-slate-500 hover:text-blue-500 transition-colors flex items-center gap-1.5 shrink-0"
+                                >
+                                    <FaArrowLeft size={10} />
+                                    Blog
+                                </Link>
+                                <span className="text-slate-300 dark:text-slate-700">|</span>
+                                <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                                    {post.title}
+                                </h4>
+                            </div>
+
+                            <div className="flex items-center gap-3 shrink-0 ml-4">
+                                <a
+                                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-slate-400 hover:text-[#0077b5] transition-colors"
+                                    aria-label="Share on LinkedIn"
+                                >
+                                    <FaLinkedin size={14} />
+                                </a>
+                                <a
+                                    href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-slate-400 hover:text-[#1da1f2] transition-colors"
+                                    aria-label="Share on Twitter"
+                                >
+                                    <FaTwitter size={14} />
+                                </a>
+                                <Link
+                                    href="/booking"
+                                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all"
+                                >
+                                    <FaCalendarCheck size={10} />
+                                    Book Call
+                                </Link>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Background design grids */}
             <div className="block dark:hidden fixed inset-0 bg-[linear-gradient(rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
             <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Back to Blog */}
                 <div className="mb-8">
                     <Link
@@ -86,7 +187,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                 </div>
 
                 {/* Article Header */}
-                <header className="space-y-6 mb-12">
+                <header className="space-y-6 mb-12 max-w-4xl mx-auto">
                     {/* Breadcrumbs */}
                     <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400">
                         <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
@@ -133,7 +234,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                 </header>
 
                 {/* Banner Image */}
-                <div className="relative h-64 sm:h-[450px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-12">
+                <div className="relative h-64 sm:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-12 max-w-5xl mx-auto">
                     <Image
                         src={post.image}
                         alt={post.title}
@@ -143,10 +244,10 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                     />
                 </div>
 
-                {/* Main Content Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                    {/* Share / Actions bar (sticky side desktop, inline top mobile) */}
-                    <div className="lg:col-span-1 lg:block flex lg:flex-col items-center justify-center gap-4 lg:sticky lg:top-32 h-fit z-20">
+                {/* Main Content Layout with Sticky Sidebar */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
+                    {/* Share / Actions bar */}
+                    <div className="lg:col-span-1 lg:block flex lg:flex-col items-center justify-start gap-4 lg:sticky lg:top-32 h-fit z-20 order-2 lg:order-1">
                         <span className="hidden lg:block text-[9px] uppercase font-black tracking-widest text-slate-400 mb-2 whitespace-nowrap [writing-mode:vertical-lr] rotate-180 select-none mx-auto">
                             {t('blog.share')}
                         </span>
@@ -182,8 +283,8 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                         </button>
                     </div>
 
-                    {/* Markdown Body */}
-                    <div className="lg:col-span-11 bg-white/30 dark:bg-slate-900/30 backdrop-blur-xl border border-slate-200/40 dark:border-slate-800/40 rounded-[2rem] p-6 sm:p-10 md:p-12 overflow-hidden shadow-sm">
+                    {/* Article Body */}
+                    <div className="lg:col-span-8 bg-white/30 dark:bg-slate-900/30 backdrop-blur-xl border border-slate-200/40 dark:border-slate-800/40 rounded-[2rem] p-6 sm:p-10 md:p-12 overflow-hidden shadow-sm order-1 lg:order-2">
                         <MarkdownRenderer content={post.content} />
 
                         {/* Article Tags Footer */}
@@ -200,11 +301,75 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                             ))}
                         </div>
                     </div>
+
+                    {/* Table of Contents Sticky Sidebar */}
+                    <div className="lg:col-span-3 order-3 hidden lg:block">
+                        <div className="sticky top-32 space-y-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 p-6 rounded-3xl">
+                            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                                <FaListUl className="text-blue-500" size={14} />
+                                Table of Contents
+                            </div>
+
+                            <nav className="space-y-2 max-h-[60vh] overflow-y-auto hide-scrollbar">
+                                {tocItems.map((item) => (
+                                    <a
+                                        key={item.id}
+                                        href={`#${item.id}`}
+                                        className={`block text-xs leading-relaxed transition-all duration-200 ${item.level === 3 ? 'pl-4' : ''} ${activeHeadingId === item.id
+                                            ? 'text-blue-600 dark:text-blue-400 font-black translate-x-1'
+                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                            }`}
+                                    >
+                                        {item.text}
+                                    </a>
+                                ))}
+                            </nav>
+                        </div>
+                    </div>
                 </div>
+
+                {/* End-of-Article Engagement & Hire Me CTA Card */}
+                <section className="mt-16 max-w-4xl mx-auto">
+                    <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl border border-blue-500/20 relative overflow-hidden">
+                        <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="space-y-4 max-w-xl text-center md:text-left">
+                                <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 rounded-lg text-blue-300 text-[10px] font-black uppercase tracking-widest border border-blue-400/20">
+                                    <FaRocket size={10} />
+                                    Engineering Collaboration
+                                </span>
+                                <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+                                    Building a High-Scale SaaS or Complex System?
+                                </h3>
+                                <p className="text-sm text-slate-300 leading-relaxed">
+                                    Let’s discuss your architecture, full-stack development, or system modernization needs.
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
+                                <Link
+                                    href="/booking"
+                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-xl hover:scale-105"
+                                >
+                                    <FaCalendarCheck size={12} />
+                                    Book Call
+                                </Link>
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all border border-white/10"
+                                >
+                                    <FaPaperPlane size={12} />
+                                    Contact
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 {/* Related Articles Section */}
                 {relatedPosts.length > 0 && (
-                    <section className="mt-24 pt-16 border-t border-slate-200/50 dark:border-slate-800/50">
+                    <section className="mt-20 pt-16 border-t border-slate-200/50 dark:border-slate-800/50 max-w-4xl mx-auto">
                         <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-8">
                             {t('blog.relatedPosts')}
                         </h2>

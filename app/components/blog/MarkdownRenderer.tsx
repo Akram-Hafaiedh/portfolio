@@ -281,21 +281,27 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         }
 
         if (trimmed.startsWith('# ')) {
+            const headingText = trimmed.substring(2);
+            const id = headingText.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
             elements.push(
-                <h1 key={`h1-${i}`} className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-12 mb-6 tracking-tight leading-tight">
-                    {parseInline(trimmed.substring(2))}
+                <h1 id={id} key={`h1-${i}`} className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-12 mb-6 tracking-tight leading-tight scroll-mt-24">
+                    {parseInline(headingText)}
                 </h1>
             );
         } else if (trimmed.startsWith('## ')) {
+            const headingText = trimmed.substring(3);
+            const id = headingText.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
             elements.push(
-                <h2 key={`h2-${i}`} className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-10 mb-5 tracking-tight border-b border-slate-100 dark:border-slate-800/80 pb-3">
-                    {parseInline(trimmed.substring(3))}
+                <h2 id={id} key={`h2-${i}`} className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-10 mb-5 tracking-tight border-b border-slate-100 dark:border-slate-800/80 pb-3 scroll-mt-24">
+                    {parseInline(headingText)}
                 </h2>
             );
         } else if (trimmed.startsWith('### ')) {
+            const headingText = trimmed.substring(4);
+            const id = headingText.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
             elements.push(
-                <h3 key={`h3-${i}`} className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight">
-                    {parseInline(trimmed.substring(4))}
+                <h3 id={id} key={`h3-${i}`} className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-8 mb-4 tracking-tight scroll-mt-24">
+                    {parseInline(headingText)}
                 </h3>
             );
         } else if (trimmed.startsWith('> ')) {
