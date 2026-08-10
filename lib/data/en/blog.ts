@@ -434,7 +434,7 @@ By offloading searching search filters to a specialized search-index, your main 
     readTime: "4 min read",
     category: "DevOps",
     tags: ["Redis", "Laravel Queues", "Fintech", "Docker"],
-    image: "/projects/portfolio-deployment.png",
+    image: "/blog/covers/realtime-websockets.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -535,7 +535,7 @@ Using **Redis** as a broker and background workers lets your application remain 
     readTime: "5 min read",
     category: "Engineering",
     tags: ["Vue 3", "Laravel", "Vite", "Frontend Migration"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -702,7 +702,7 @@ This progressive approach lets you transition your legacy ERP views to a modern 
     readTime: "4 min read",
     category: "Security",
     tags: ["OAuth 2.0", "Laravel Socialite", "SMTP", "Security"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/security-rbac.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -844,7 +844,7 @@ By queueing notification dispatches and linking social accounts dynamically, you
     readTime: "5 min read",
     category: "Engineering",
     tags: ["Vue 3", "State Management", "Sessions", "Security"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -985,7 +985,7 @@ Using a synchronized interceptor and context validation middleware preserves use
     readTime: "4 min read",
     category: "Backend",
     tags: ["Fintech", "Payment Gateways", "Laravel", "APIs"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/fintech-monetization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1122,7 +1122,7 @@ By separating subscriptions from invoice histories and using atomic Webhook hand
     readTime: "4 min read",
     category: "Frontend",
     tags: ["Vue 3", "Laravel", "Routing", "UX"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1329,7 +1329,7 @@ By binding form attributes to route parameters and abstracting inputs, you maint
     readTime: "5 min read",
     category: "Architecture",
     tags: ["Laravel", "RBAC", "SaaS Monetization", "Security"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/security-rbac.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1482,7 +1482,7 @@ By combining granular permission scoping, tenant-wide subscription enforcement, 
     readTime: "5 min read",
     category: "Architecture",
     tags: ["SaaS Pricing", "API Rate Limiting", "Laravel", "Monetization"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/fintech-monetization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1634,7 +1634,7 @@ Monetizing API throughput and multi-company slots transforms static pricing plan
     readTime: "5 min read",
     category: "Frontend",
     tags: ["Vue 3", "Laravel", "Search", "Content Migration"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1763,7 +1763,7 @@ Migrating the legacy blog to Vue 3, adding dedicated search and pagination, and 
     readTime: "6 min read",
     category: "Architecture",
     tags: ["WebSockets", "Laravel Echo", "Redis", "Real-Time"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/realtime-websockets.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1898,7 +1898,7 @@ Replacing periodic HTTP polling with WebSocket event streaming reduced backend A
     readTime: "5 min read",
     category: "Backend",
     tags: ["Laravel", "Performance", "Data Exports", "Vue 3"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -2009,7 +2009,7 @@ Streamed HTTP cursor responses enabled our platform to process 100,000+ transact
     readTime: "6 min read",
     category: "Backend",
     tags: ["MySQL", "Database Optimization", "Laravel", "Multi-Tenancy"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/database-optimization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",

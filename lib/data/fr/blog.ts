@@ -114,7 +114,7 @@ En séparant l'interactivité du contenu, vous optimisez la taille de vos bundle
     readTime: "4 min de lecture",
     category: "Backend",
     tags: ["Laravel", "SaaS", "Sécurité", "MySQL"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -342,7 +342,7 @@ export async function createMeeting(clientData: { name: string; email: string; d
     readTime: "3 min de lecture",
     category: "Engineering",
     tags: ["Next.js", "Prisma", "Meilisearch", "Base de données"],
-    image: "/projects/portfolio.png",
+    image: "/blog/covers/database-optimization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -434,7 +434,7 @@ En déléguant la recherche à un index optimisé pour cela, votre base de donn�
     readTime: "4 min de lecture",
     category: "DevOps",
     tags: ["Redis", "Laravel Queues", "Fintech", "Docker"],
-    image: "/projects/portfolio-deployment.png",
+    image: "/blog/covers/realtime-websockets.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -535,7 +535,7 @@ L'utilisation de **Redis** comme courtier de messages combiné à des files d'at
     readTime: "5 min de lecture",
     category: "Engineering",
     tags: ["Vue 3", "Laravel", "Vite", "Migration Frontend"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -702,7 +702,7 @@ Cette approche progressive vous permet de moderniser vos vues ERP bloc par bloc 
     readTime: "4 min de lecture",
     category: "Security",
     tags: ["OAuth 2.0", "Laravel Socialite", "SMTP", "Sécurité"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/security-rbac.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -844,7 +844,7 @@ En mettant en file d'attente vos notifications et en associant dynamiquement les
     readTime: "5 min de lecture",
     category: "Engineering",
     tags: ["Vue 3", "State Management", "Sessions", "Sécurité"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -985,7 +985,7 @@ L'utilisation combinée d'un intercepteur synchronisé et d'un middleware de vé
     readTime: "4 min de lecture",
     category: "Backend",
     tags: ["Fintech", "Payment Gateways", "Laravel", "APIs"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/fintech-monetization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1122,7 +1122,7 @@ En structurant vos abonnements séparément de l'historique des paiements et en 
     readTime: "4 min de lecture",
     category: "Frontend",
     tags: ["Vue 3", "Laravel", "Routing", "UX"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1329,7 +1329,7 @@ En mappant les formulaires CRUD réutilisables sur les paramètres d'URL, vous m
     readTime: "5 min de lecture",
     category: "Architecture",
     tags: ["Laravel", "RBAC", "Monétisation SaaS", "Sécurité"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/security-rbac.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1482,7 +1482,7 @@ En combinant contrôle d'accès granulaire, verrouillage global du tenant et mon
     readTime: "5 min de lecture",
     category: "Architecture",
     tags: ["Tarification SaaS", "Limitation API", "Laravel", "Monétisation"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/fintech-monetization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1634,7 +1634,7 @@ Monétiser le débit d'API et les emplacements d'entreprises transforme une gril
     readTime: "5 min de lecture",
     category: "Frontend",
     tags: ["Vue 3", "Laravel", "Recherche", "Migration de Contenu"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1763,7 +1763,7 @@ La migration du blog hérité vers Vue 3, l'ajout de la recherche et de la pagin
     readTime: "6 min de lecture",
     category: "Architecture",
     tags: ["WebSockets", "Laravel Echo", "Redis", "Temps Réel"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/realtime-websockets.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -1898,7 +1898,7 @@ Le remplacement des requêtes HTTP périodiques par la diffusion d'événements 
     readTime: "5 min de lecture",
     category: "Backend",
     tags: ["Laravel", "Performance", "Export de Données", "Vue 3"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/backend-tenancy.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
@@ -2009,7 +2009,7 @@ L'utilisation des flux continus HTTP et des curseurs a permis d'exporter plus de
     readTime: "6 min de lecture",
     category: "Backend",
     tags: ["MySQL", "Optimisation BDD", "Laravel", "Multi-Tenant"],
-    image: "/projects/iberis.png",
+    image: "/blog/covers/database-optimization.png",
     author: {
       name: "Akram Hafaiedh",
       avatar: "/avatar.jpg",
