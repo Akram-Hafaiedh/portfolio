@@ -82,22 +82,36 @@ function AllArticlesContent() {
                 </div>
 
                 {/* Hero Head */}
-                <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white"
-                    >
-                        Articles Catalog
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-base sm:text-lg text-slate-600 dark:text-slate-400"
-                    >
-                        Detailed engineering case studies, system architecture guides, and technical tutorials.
-                    </motion.p>
+                <div className="text-center max-w-4xl mx-auto mb-14 space-y-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium animate-fade-in-up">
+                        <FaThList className="text-xs" />
+                        Full Articles Catalog ({posts.length} Total)
+                    </div>
+
+                    <div className="space-y-4">
+                        <motion.h1
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight"
+                        >
+                            <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                                Engineering Articles Catalog
+                            </span>
+                            <span className="block text-slate-900 dark:text-white mt-2 relative">
+                                System Architecture & Technical Tutorials
+                                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse" />
+                            </span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed pt-2"
+                        >
+                            Explore the complete catalog of production case studies, system architecture guides, and technical tutorials.
+                        </motion.p>
+                    </div>
                 </div>
 
                 {/* Filter & Search Bar */}

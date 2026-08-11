@@ -84,24 +84,36 @@ function BlogListingContent() {
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Hero Head */}
-                <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-5xl sm:text-6xl font-black tracking-tight"
-                    >
-                        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-                            {t('blog.title')}
-                        </span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed"
-                    >
-                        {t('blog.subtitle')}
-                    </motion.p>
+                <div className="text-center max-w-4xl mx-auto mb-16 space-y-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium animate-fade-in-up">
+                        <FaFolderOpen className="text-xs" />
+                        {posts.length} Technical Articles & Architecture Notes
+                    </div>
+
+                    <div className="space-y-4">
+                        <motion.h1
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-5xl sm:text-6xl font-black tracking-tight"
+                        >
+                            <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                                {t('blog.title')}
+                            </span>
+                            <span className="block text-slate-900 dark:text-white mt-2 relative">
+                                Engineering & Architecture Insights
+                                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse" />
+                            </span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed pt-2"
+                        >
+                            {t('blog.subtitle')}
+                        </motion.p>
+                    </div>
                 </div>
 
                 {/* Filter & Search Bar */}

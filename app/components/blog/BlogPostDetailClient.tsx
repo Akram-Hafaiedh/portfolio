@@ -122,7 +122,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed top-20 left-0 right-0 z-40 px-4 pointer-events-none"
+                        className="fixed top-16 pt-2 left-0 right-0 z-40 px-4 pointer-events-none"
                     >
                         <div className="max-w-4xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-800/60 rounded-2xl px-6 py-3 shadow-2xl flex items-center justify-between pointer-events-auto">
                             <div className="flex items-center gap-4 min-w-0">
