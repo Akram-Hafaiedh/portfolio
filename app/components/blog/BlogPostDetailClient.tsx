@@ -239,7 +239,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                 </header>
 
                 {/* Banner Image */}
-                <div className="relative h-64 sm:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-10 max-w-5xl mx-auto">
+                <div className="relative h-64 sm:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-10 max-w-4xl mx-auto">
                     <BlogCoverImage
                         src={post.image}
                         alt={post.title}
@@ -284,17 +284,17 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                             <Link
                                                 key={seriesItem.slug}
                                                 href={`/blog/${seriesItem.slug}`}
-                                                className={`flex items-center justify-between p-4 rounded-2xl transition-all border text-xs sm:text-sm font-semibold gap-4 ${
+                                                className={`flex items-center justify-between p-4 rounded-2xl transition-all text-xs sm:text-sm font-semibold gap-4 ${
                                                     isCurrent
-                                                        ? 'bg-indigo-600 text-white dark:bg-indigo-500/20 dark:text-indigo-300 border-indigo-600 dark:border-indigo-500/40 shadow-md scale-[1.01]'
-                                                        : 'bg-white/90 dark:bg-slate-900/60 border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/90 hover:border-indigo-400/50 dark:hover:border-white/20 shadow-sm'
+                                                        ? 'bg-gradient-to-r from-indigo-500/15 via-indigo-500/10 to-transparent border-l-4 border-indigo-600 dark:border-indigo-400 text-slate-900 dark:text-white border-y border-r border-indigo-500/30 shadow-sm scale-[1.005]'
+                                                        : 'bg-white/90 dark:bg-slate-900/60 border border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/90 hover:border-indigo-400/50 dark:hover:border-white/20 shadow-sm'
                                                 }`}
                                             >
                                                 <div className="flex items-center gap-3.5 min-w-0">
                                                     <span
                                                         className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold shrink-0 ${
                                                             isCurrent
-                                                                ? 'bg-white text-indigo-600 dark:bg-indigo-500 dark:text-white shadow-sm'
+                                                                ? 'bg-indigo-600 text-white dark:bg-indigo-500 dark:text-white shadow-sm'
                                                                 : 'bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                                                         }`}
                                                     >
@@ -306,7 +306,8 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                                 </div>
 
                                                 {isCurrent ? (
-                                                    <span className="text-[10px] uppercase font-black tracking-wider text-indigo-600 bg-white px-3 py-1 rounded-lg dark:text-indigo-300 dark:bg-indigo-500/20 dark:border dark:border-indigo-500/30 whitespace-nowrap shrink-0 shadow-sm">
+                                                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono font-bold tracking-wider text-indigo-700 dark:text-indigo-300 bg-indigo-600/10 dark:bg-indigo-500/20 px-2.5 py-1 rounded-lg border border-indigo-600/20 dark:border-indigo-500/30 shrink-0 shadow-xs">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
                                                         Reading Now
                                                     </span>
                                                 ) : (
@@ -334,7 +335,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                             href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 hover:border-blue-500 flex items-center justify-center text-slate-500 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-all hover:-translate-y-0.5 active:scale-95 shadow-md"
+                            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 hover:border-indigo-500 flex items-center justify-center text-slate-500 hover:text-[#0077b5] dark:hover:text-[#0077b5] transition-all hover:-translate-y-0.5 active:scale-95 shadow-md"
                             aria-label="Share on LinkedIn"
                         >
                             <FaLinkedin size={16} />
@@ -343,7 +344,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                             href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 hover:border-blue-400 flex items-center justify-center text-slate-500 hover:text-[#1da1f2] dark:hover:text-[#1da1f2] transition-all hover:-translate-y-0.5 active:scale-95 shadow-md"
+                            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 hover:border-indigo-400 flex items-center justify-center text-slate-500 hover:text-[#1da1f2] dark:hover:text-[#1da1f2] transition-all hover:-translate-y-0.5 active:scale-95 shadow-md"
                             aria-label="Share on Twitter"
                         >
                             <FaTwitter size={16} />
@@ -395,8 +396,8 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                         key={item.id}
                                         href={`#${item.id}`}
                                         className={`block text-xs leading-relaxed transition-all duration-200 ${item.level === 3 ? 'pl-4' : ''} ${activeHeadingId === item.id
-                                            ? 'text-blue-600 dark:text-blue-400 font-black translate-x-1'
-                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                                            ? 'text-indigo-600 dark:text-indigo-400 font-bold translate-x-1 border-l-2 border-indigo-500 pl-2'
+                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium pl-2'
                                             }`}
                                     >
                                         {item.text}
@@ -409,12 +410,12 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
 
                 {/* End-of-Article Engagement & Hire Me CTA Card */}
                 <section className="mt-16 max-w-4xl mx-auto">
-                    <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl border border-blue-500/20 relative overflow-hidden">
-                        <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+                    <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-950 text-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl border border-indigo-500/20 relative overflow-hidden">
+                        <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                             <div className="space-y-4 max-w-xl text-center md:text-left">
-                                <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 rounded-lg text-blue-300 text-[10px] font-black uppercase tracking-widest border border-blue-400/20">
+                                <span className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 rounded-lg text-indigo-300 text-[10px] font-black uppercase tracking-widest border border-indigo-400/20">
                                     <FaRocket size={10} />
                                     Engineering Collaboration
                                 </span>
@@ -429,7 +430,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
                                 <Link
                                     href="/booking"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-xl hover:scale-105"
+                                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-xl hover:scale-105"
                                 >
                                     <FaCalendarCheck size={12} />
                                     Book Call
