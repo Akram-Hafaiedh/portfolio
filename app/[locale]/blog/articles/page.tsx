@@ -163,18 +163,18 @@ function AllArticlesContent() {
                 <div className="mb-8">
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                     >
                         <FaArrowLeft size={10} />
-                        Back to Blog Overview
+                        {locale === 'fr' ? 'Retour à l\'Accueil du Blog' : 'Back to Blog Overview'}
                     </Link>
                 </div>
 
                 {/* Hero Head */}
                 <div className="text-center max-w-4xl mx-auto mb-14 space-y-6">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium animate-fade-in-up">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-600 dark:text-indigo-400 text-sm font-medium animate-fade-in-up">
                         <FaThList className="text-xs" />
-                        Full Articles Catalog ({posts.length} Total)
+                        {locale === 'fr' ? `Catalogue Complet (${posts.length} Articles)` : `Full Articles Catalog (${posts.length} Total)`}
                     </div>
 
                     <div className="space-y-4">
@@ -183,12 +183,12 @@ function AllArticlesContent() {
                             animate={{ opacity: 1, y: 0 }}
                             className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight"
                         >
-                            <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-                                Engineering Articles Catalog
+                            <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                                {locale === 'fr' ? 'Catalogue d\'Articles Techniques' : 'Engineering Articles Catalog'}
                             </span>
                             <span className="block text-slate-900 dark:text-white mt-2 relative">
-                                System Architecture & Technical Tutorials
-                                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse" />
+                                {locale === 'fr' ? 'Architecture Système & Tutoriels' : 'System Architecture & Technical Tutorials'}
+                                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent animate-pulse" />
                             </span>
                         </motion.h1>
 
@@ -198,27 +198,27 @@ function AllArticlesContent() {
                             transition={{ delay: 0.1 }}
                             className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed pt-2"
                         >
-                            Explore the complete catalog of production case studies, system architecture guides, and technical tutorials.
+                            {locale === 'fr'
+                                ? 'Recherchez, filtrez et explorez l\'intégralité de nos guides sur le multi-tenancy Laravel, Redis temps réel, Next.js 15 et la monétisation SaaS.'
+                                : 'Search, filter, and explore all deep-dive technical guides on Laravel multi-tenancy, Redis real-time streaming, Next.js 15, and SaaS monetization.'}
                         </motion.p>
                     </div>
                 </div>
 
-                {/* Filter & Search Bar */}
-                <div className="space-y-6 mb-8 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 p-6 rounded-3xl">
-                    <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
-                        {/* Category Pills with Live Counts */}
-                        <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
+                {/* Filter and Search Toolbar */}
+                <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 mb-10 shadow-xl space-y-4">
+                    {/* Category Selector Bar & Search Bar */}
+                    <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                        {/* Category Selector */}
+                        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
                             <button
                                 onClick={() => setSelectedCategory('all')}
-                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 ${selectedCategory === 'all'
-                                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg'
-                                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/30 dark:border-slate-700/30'
+                                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold tracking-wider transition-all whitespace-nowrap border ${selectedCategory === 'all'
+                                    ? 'bg-indigo-600 text-white border-indigo-500 shadow-md scale-105'
+                                    : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border-slate-200/40 dark:border-slate-700/40 hover:border-indigo-500/50'
                                     }`}
                             >
-                                <span>{t('blog.categories.all')}</span>
-                                <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 font-mono">
-                                    {categoryCounts.all || 0}
-                                </span>
+                                {t('blog.categories.all')} ({categoryCounts.all || 0})
                             </button>
                             {categories.map((cat) => {
                                 const catLower = cat.toLowerCase();
@@ -227,29 +227,26 @@ function AllArticlesContent() {
                                     <button
                                         key={cat}
                                         onClick={() => setSelectedCategory(cat)}
-                                        className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 ${selectedCategory.toLowerCase() === catLower
-                                            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg'
-                                            : 'text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/30 dark:border-slate-700/30'
+                                        className={`px-3.5 py-1.5 rounded-xl text-xs font-bold tracking-wider transition-all whitespace-nowrap border ${selectedCategory.toLowerCase() === catLower
+                                            ? 'bg-indigo-600 text-white border-indigo-500 shadow-md scale-105'
+                                            : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border-slate-200/40 dark:border-slate-700/40 hover:border-indigo-500/50'
                                             }`}
                                     >
-                                        <span>{cat}</span>
-                                        <span className="px-1.5 py-0.5 rounded-full text-[10px] bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 font-mono">
-                                            {count}
-                                        </span>
+                                        {cat} ({count})
                                     </button>
                                 );
                             })}
                         </div>
 
-                        {/* Search Field */}
-                        <div className="relative w-full md:w-80">
-                            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                        {/* Search Input Box */}
+                        <div className="relative min-w-[240px] md:w-72">
+                            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs" />
                             <input
                                 type="text"
-                                placeholder={t('blog.searchPlaceholder')}
+                                placeholder={locale === 'fr' ? 'Rechercher titre, extrait ou #tag...' : 'Search title, excerpt or #tag...'}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-11 pr-4 py-2.5 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 rounded-2xl outline-none text-sm text-slate-900 dark:text-white transition-all placeholder-slate-400 font-medium"
+                                className="w-full pl-11 pr-4 py-2.5 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/50 dark:border-slate-700/50 focus:border-indigo-500 focus:bg-white dark:focus:bg-slate-900 rounded-2xl outline-none text-sm text-slate-900 dark:text-white transition-all placeholder-slate-400 font-medium"
                             />
                         </div>
                     </div>
@@ -258,7 +255,7 @@ function AllArticlesContent() {
                     <div className="pt-4 border-t border-slate-200/40 dark:border-slate-800/40 flex flex-wrap items-center gap-2">
                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mr-2 flex items-center gap-1">
                             <FaFilter size={10} />
-                            Filter Tags:
+                            {locale === 'fr' ? 'Filtrer par Tags:' : 'Filter Tags:'}
                         </span>
                         {allTagsWithCounts.map(([tag, count]) => {
                             const isSelected = selectedTags.includes(tag);
@@ -267,8 +264,8 @@ function AllArticlesContent() {
                                     key={tag}
                                     onClick={() => toggleTag(tag)}
                                     className={`px-3 py-1 rounded-lg text-xs font-semibold tracking-wider transition-all flex items-center gap-1.5 border ${isSelected
-                                        ? 'bg-blue-600 text-white border-blue-500 shadow-md scale-105'
-                                        : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border-slate-200/40 dark:border-slate-700/40 hover:border-blue-500/50'
+                                        ? 'bg-indigo-600 text-white border-indigo-500 shadow-md scale-105'
+                                        : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border-slate-200/40 dark:border-slate-700/40 hover:border-indigo-500/50'
                                         }`}
                                 >
                                     <span>#{tag}</span>
@@ -283,22 +280,22 @@ function AllArticlesContent() {
                     {(selectedCategory !== 'all' || selectedTags.length > 0 || searchQuery !== '' || sortOption !== 'latest') && (
                         <div className="pt-3 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-slate-200/20 dark:border-slate-800/20">
                             <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-slate-400 font-medium">Active Filters:</span>
+                                <span className="text-slate-400 font-medium">{locale === 'fr' ? 'Filtres Actifs:' : 'Active Filters:'}</span>
                                 {selectedCategory !== 'all' && (
                                     <span className="px-2.5 py-1 bg-purple-500/10 border border-purple-500/30 text-purple-400 rounded-lg font-bold uppercase text-[10px] flex items-center gap-1">
-                                        Category: {selectedCategory}
+                                        Catégorie: {selectedCategory}
                                         <FaTimes size={10} className="cursor-pointer" onClick={() => setSelectedCategory('all')} />
                                     </span>
                                 )}
                                 {selectedTags.map((tag) => (
-                                    <span key={tag} className="px-2.5 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-lg font-bold uppercase text-[10px] flex items-center gap-1">
+                                    <span key={tag} className="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-lg font-bold uppercase text-[10px] flex items-center gap-1">
                                         #{tag}
                                         <FaTimes size={10} className="cursor-pointer" onClick={() => toggleTag(tag)} />
                                     </span>
                                 ))}
                                 {searchQuery && (
                                     <span className="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-lg font-bold text-[10px] flex items-center gap-1">
-                                        Query: "{searchQuery}"
+                                        Recherche: "{searchQuery}"
                                         <FaTimes size={10} className="cursor-pointer" onClick={() => setSearchQuery('')} />
                                     </span>
                                 )}
@@ -307,7 +304,7 @@ function AllArticlesContent() {
                                 onClick={clearAllFilters}
                                 className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-rose-500 transition-colors"
                             >
-                                Reset All Filters
+                                {locale === 'fr' ? 'Réinitialiser les Filtres' : 'Reset All Filters'}
                             </button>
                         </div>
                     )}
@@ -316,22 +313,32 @@ function AllArticlesContent() {
                 {/* Catalog Controls Header (Sorting + View Switcher) */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 px-2">
                     <div className="text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                        Showing {filteredPosts.length > 0 ? (currentPage - 1) * POSTS_PER_PAGE + 1 : 0} - {Math.min(currentPage * POSTS_PER_PAGE, filteredPosts.length)} of {filteredPosts.length} Articles
+                        {locale === 'fr'
+                            ? `Affichage ${filteredPosts.length > 0 ? (currentPage - 1) * POSTS_PER_PAGE + 1 : 0} - ${Math.min(currentPage * POSTS_PER_PAGE, filteredPosts.length)} sur ${filteredPosts.length} Articles`
+                            : `Showing ${filteredPosts.length > 0 ? (currentPage - 1) * POSTS_PER_PAGE + 1 : 0} - ${Math.min(currentPage * POSTS_PER_PAGE, filteredPosts.length)} of ${filteredPosts.length} Articles`}
                     </div>
 
                     <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
                         {/* Sorting Selector */}
                         <div className="flex items-center gap-2 bg-slate-100/80 dark:bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
-                            <FaSortAmountDown size={12} className="text-blue-500" />
+                            <FaSortAmountDown size={12} className="text-indigo-500" />
                             <select
                                 value={sortOption}
                                 onChange={(e) => setSortOption(e.target.value as SortOption)}
                                 className="bg-transparent text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 outline-none cursor-pointer"
                             >
-                                <option value="latest">Latest First</option>
-                                <option value="oldest">Oldest First</option>
-                                <option value="readTimeAsc">Shortest Read</option>
-                                <option value="readTimeDesc">Deep Dives</option>
+                                <option value="latest" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                                    {locale === 'fr' ? 'Plus récents' : 'Latest First'}
+                                </option>
+                                <option value="oldest" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                                    {locale === 'fr' ? 'Plus anciens' : 'Oldest First'}
+                                </option>
+                                <option value="readTimeAsc" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                                    {locale === 'fr' ? 'Lecture rapide' : 'Shortest Read'}
+                                </option>
+                                <option value="readTimeDesc" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                                    {locale === 'fr' ? 'Guides approfondis' : 'Deep Dives'}
+                                </option>
                             </select>
                         </div>
 
