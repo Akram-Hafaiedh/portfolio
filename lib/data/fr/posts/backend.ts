@@ -17,6 +17,12 @@ export const backendPosts: BlogPost[] = [
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "realtime-performance",
+      title: "Systèmes Temps Réel & Streaming à Haute Échelle",
+      part: 3,
+      totalParts: 3
+    },
     content: `
 # Traitements en Arrière-plan avec Redis et Queues
 
@@ -289,8 +295,8 @@ Cette approche progressive vous permet de moderniser vos vues ERP bloc par bloc 
     featured: false,
     series: {
       id: "laravel-multi-tenancy",
-      title: "Masterclass Multi-Tenancy avec Laravel",
-      part: 2,
+      title: "Masterclass Multi-Tenancy Laravel",
+      part: 3,
       totalParts: 3
     },
     content: `
@@ -435,6 +441,12 @@ L'utilisation combinée d'un intercepteur synchronisé et d'un middleware de vé
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "Monétisation SaaS & Sécurité des Abonnements",
+      part: 3,
+      totalParts: 3
+    },
     content: `
 # Architecture d'un Moteur de Facturation SaaS
 
@@ -573,6 +585,12 @@ En structurant vos abonnements séparément de l'historique des paiements et en 
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "realtime-performance",
+      title: "Systèmes Temps Réel & Streaming à Haute Échelle",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Exportation de Données Massives : Éviter les Surcharges Mémoire
 
@@ -685,6 +703,12 @@ L'utilisation des flux continus HTTP et des curseurs a permis d'exporter plus de
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "laravel-multi-tenancy",
+      title: "Masterclass Multi-Tenancy Laravel",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Optimisation des Requêtes et Indexation Multi-Tenant
 

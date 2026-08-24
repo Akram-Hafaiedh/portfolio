@@ -17,6 +17,12 @@ export const securityPosts: BlogPost[] = [
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "SaaS Monetization & Subscription Security",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Securing SaaS Auth: OAuth Loops & Mail Recovery
 
@@ -163,7 +169,7 @@ By queueing notification dispatches and linking social accounts dynamically, you
     series: {
       id: "saas-monetization",
       title: "SaaS Monetization & Subscription Security",
-      part: 2,
+      part: 1,
       totalParts: 3
     },
     content: `

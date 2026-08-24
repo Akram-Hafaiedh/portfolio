@@ -124,12 +124,6 @@ En utilisant les scopes globaux, vous empêchez les contaminations croisées de 
       role: "Développeur Full Stack"
     },
     featured: false,
-    series: {
-      id: "saas-monetization",
-      title: "Monétisation SaaS & Sécurité des Abonnements",
-      part: 3,
-      totalParts: 3
-    },
     content: `
 # Monétiser les Quotas d'API et le Multi-Entreprises en SaaS
 
@@ -283,6 +277,12 @@ Monétiser le débit d'API et les emplacements d'entreprises transforme une gril
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "realtime-performance",
+      title: "Systèmes Temps Réel & Streaming à Haute Échelle",
+      part: 1,
+      totalParts: 3
+    },
     content: `
 # Architecture WebSockets en Temps Réel avec Laravel & Redis
 

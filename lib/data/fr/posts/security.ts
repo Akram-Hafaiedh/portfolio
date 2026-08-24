@@ -17,6 +17,12 @@ export const securityPosts: BlogPost[] = [
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "Monétisation SaaS & Sécurité des Abonnements",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Sécurisation SaaS: OAuth & Récupération par Email
 
@@ -163,7 +169,7 @@ En mettant en file d'attente vos notifications et en associant dynamiquement les
     series: {
       id: "saas-monetization",
       title: "Monétisation SaaS & Sécurité des Abonnements",
-      part: 2,
+      part: 1,
       totalParts: 3
     },
     content: `

@@ -283,6 +283,12 @@ Monetizing API throughput and multi-company slots transforms static pricing plan
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "realtime-performance",
+      title: "High-Scale Real-Time & Streaming Systems",
+      part: 1,
+      totalParts: 3
+    },
     content: `
 # Architecting Real-Time Order & Stock Sync with WebSockets
 

@@ -17,6 +17,12 @@ export const backendPosts: BlogPost[] = [
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "realtime-performance",
+      title: "High-Scale Real-Time & Streaming Systems",
+      part: 3,
+      totalParts: 3
+    },
     content: `
 # Scaling Batch Processing with Redis and Queues
 
@@ -290,7 +296,7 @@ This progressive approach lets you transition your legacy ERP views to a modern 
     series: {
       id: "laravel-multi-tenancy",
       title: "Laravel Multi-Tenancy Masterclass",
-      part: 2,
+      part: 3,
       totalParts: 3
     },
     content: `
@@ -435,6 +441,12 @@ Using a synchronized interceptor and context validation middleware preserves use
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "SaaS Monetization & Subscription Security",
+      part: 3,
+      totalParts: 3
+    },
     content: `
 # Architecting a Subscription Billing Engine
 
@@ -573,6 +585,12 @@ By separating subscriptions from invoice histories and using atomic Webhook hand
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "realtime-performance",
+      title: "High-Scale Real-Time & Streaming Systems",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Streaming Large Financial Exports: Preventing Memory Overflows
 
@@ -685,6 +703,12 @@ Streamed HTTP cursor responses enabled our platform to process 100,000+ transact
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "laravel-multi-tenancy",
+      title: "Laravel Multi-Tenancy Masterclass",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Multi-Tenant Query & Database Indexing Optimization
 

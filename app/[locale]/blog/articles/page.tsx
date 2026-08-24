@@ -396,7 +396,7 @@ function AllArticlesContent() {
                                                     {post.series && (
                                                         <>
                                                             <span>•</span>
-                                                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-mono font-bold lowercase tracking-normal">
+                                                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-mono font-bold lowercase tracking-normal">
                                                                 <FaLayerGroup size={9} />
                                                                 part {post.series.part}/{post.series.totalParts} ({post.series.title})
                                                             </span>
