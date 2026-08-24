@@ -181,24 +181,23 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
             <div className="hidden dark:block fixed inset-0 bg-[linear-gradient(rgba(99,102,241,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Back to Blog */}
-                <div className="mb-8">
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white font-bold text-xs uppercase tracking-widest transition-colors group"
-                    >
-                        <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                        {t('blog.backToBlog')}
-                    </Link>
-                </div>
-
                 {/* Article Header */}
                 <header className="space-y-6 mb-12 max-w-4xl mx-auto">
-                    {/* Breadcrumbs */}
-                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400">
-                        <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
-                        <span>/</span>
-                        <span className="text-slate-500">{post.category}</span>
+                    {/* Unified Breadcrumbs & Back Button Bar */}
+                    <div className="flex items-center justify-between gap-4 pb-2">
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/60 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/50 dark:border-slate-800/50 hover:border-blue-500/50 dark:hover:border-blue-400/50 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-bold uppercase tracking-wider transition-all shadow-sm group"
+                        >
+                            <FaArrowLeft size={10} className="group-hover:-translate-x-0.5 transition-transform text-blue-500" />
+                            <span>{t('blog.backToBlog')}</span>
+                        </Link>
+
+                        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-400">
+                            <Link href="/blog" className="hover:text-blue-500 transition-colors">Blog</Link>
+                            <span className="text-slate-300 dark:text-slate-700">/</span>
+                            <span className="text-blue-600 dark:text-blue-400">{post.category}</span>
+                        </div>
                     </div>
 
                     <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-snug">
