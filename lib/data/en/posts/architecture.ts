@@ -17,6 +17,12 @@ export const architecturePosts: BlogPost[] = [
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "laravel-multi-tenancy",
+      title: "Laravel Multi-Tenancy Masterclass",
+      part: 1,
+      totalParts: 3
+    },
     content: `
 # Multi-Tenant Data Isolation in Laravel
 

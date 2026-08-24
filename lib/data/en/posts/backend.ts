@@ -287,6 +287,12 @@ This progressive approach lets you transition your legacy ERP views to a modern 
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "laravel-multi-tenancy",
+      title: "Laravel Multi-Tenancy Masterclass",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Resolving Session Loss in Multi-Company SaaS
 

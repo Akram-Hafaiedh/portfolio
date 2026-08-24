@@ -124,6 +124,12 @@ En utilisant les scopes globaux, vous empêchez les contaminations croisées de 
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "Monétisation SaaS & Sécurité des Abonnements",
+      part: 3,
+      totalParts: 3
+    },
     content: `
 # Monétiser les Quotas d'API et le Multi-Entreprises en SaaS
 

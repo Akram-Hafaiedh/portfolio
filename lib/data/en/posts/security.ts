@@ -160,6 +160,12 @@ By queueing notification dispatches and linking social accounts dynamically, you
       role: "Full Stack Developer"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "SaaS Monetization & Subscription Security",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Granular RBAC & Tenant Subscription Feature Gates
 

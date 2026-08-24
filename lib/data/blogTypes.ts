@@ -6,6 +6,13 @@ export interface Author {
     role?: string;
 }
 
+export interface BlogSeries {
+    id: string;
+    title: string;
+    part: number;
+    totalParts: number;
+}
+
 export interface BlogPost {
     slug: string;
     title: string;
@@ -18,4 +25,5 @@ export interface BlogPost {
     image: string; // Main banner image
     author: Author;
     featured?: boolean;
+    series?: BlogSeries;
 }

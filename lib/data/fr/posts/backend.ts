@@ -287,6 +287,12 @@ Cette approche progressive vous permet de moderniser vos vues ERP bloc par bloc 
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "laravel-multi-tenancy",
+      title: "Masterclass Multi-Tenancy avec Laravel",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Persistance des Sessions dans un SaaS Multi-Entreprises
 

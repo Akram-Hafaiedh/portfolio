@@ -160,6 +160,12 @@ En mettant en file d'attente vos notifications et en associant dynamiquement les
       role: "Développeur Full Stack"
     },
     featured: false,
+    series: {
+      id: "saas-monetization",
+      title: "Monétisation SaaS & Sécurité des Abonnements",
+      part: 2,
+      totalParts: 3
+    },
     content: `
 # Gestion des Droits (RBAC) & Verrouillage d'Abonnement Multi-Utilisateurs
 

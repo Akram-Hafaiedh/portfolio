@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { getBlogPosts, getCategories } from '@/lib/blog';
 import { Link } from '@/navigation';
 import { motion } from 'framer-motion';
-import { FaSearch, FaArrowRight, FaCalendarAlt, FaClock, FaFolderOpen } from 'react-icons/fa';
+import { FaSearch, FaArrowRight, FaCalendarAlt, FaClock, FaFolderOpen, FaLayerGroup } from 'react-icons/fa';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import BlogCoverImage from '@/app/components/blog/BlogCoverImage';
@@ -278,7 +278,7 @@ function BlogListingContent() {
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                        <div className="flex flex-wrap items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-500">
                                             <span className="flex items-center gap-1">
                                                 <FaCalendarAlt size={8} />
                                                 {post.date}
@@ -288,6 +288,15 @@ function BlogListingContent() {
                                                 <FaClock size={8} />
                                                 {post.readTime}
                                             </span>
+                                            {post.series && (
+                                                <>
+                                                    <span>•</span>
+                                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-mono font-bold lowercase tracking-normal">
+                                                        <FaLayerGroup size={9} />
+                                                        part {post.series.part}/{post.series.totalParts} ({post.series.title})
+                                                    </span>
+                                                </>
+                                            )}
                                         </div>
 
                                         <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">

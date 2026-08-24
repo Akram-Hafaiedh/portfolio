@@ -2,18 +2,21 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { BlogPost } from '@/lib/blog';
 import { Link } from '@/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    FaArrowLeft,
     FaCalendarAlt,
     FaClock,
+    FaArrowLeft,
     FaLinkedin,
     FaTwitter,
     FaLink,
     FaCheck,
+    FaLayerGroup,
+    FaChevronRight,
+    FaBookmark,
     FaTag,
     FaListUl,
     FaRocket,
@@ -23,6 +26,7 @@ import {
 import Image from 'next/image';
 import MarkdownRenderer from './MarkdownRenderer';
 import BlogCoverImage from './BlogCoverImage';
+import { getBlogPosts } from '@/lib/blog';
 
 interface BlogPostDetailClientProps {
     post: BlogPost;
@@ -31,6 +35,7 @@ interface BlogPostDetailClientProps {
 
 export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDetailClientProps) {
     const t = useTranslations('Common');
+    const locale = useLocale();
     const [scrollProgress, setScrollProgress] = useState(0);
     const [showFloatingHeader, setShowFloatingHeader] = useState(false);
     const [copied, setCopied] = useState(false);
@@ -196,11 +201,11 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                         <span className="text-slate-500">{post.category}</span>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-snug">
                         {post.title}
                     </h1>
 
-                    <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium italic">
+                    <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                         {post.excerpt}
                     </p>
 
@@ -285,6 +290,71 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
 
                     {/* Article Body */}
                     <div className="lg:col-span-8 bg-white/30 dark:bg-slate-900/30 backdrop-blur-xl border border-slate-200/40 dark:border-slate-800/40 rounded-[2rem] p-6 sm:p-10 md:p-12 overflow-hidden shadow-sm order-1 lg:order-2">
+                        {/* Series Playlist Navigation Card */}
+                        {post.series && (
+                            <div className="bg-gradient-to-br from-blue-900/10 via-slate-900/40 to-purple-900/10 border border-blue-500/30 rounded-3xl p-6 sm:p-8 mb-10 backdrop-blur-xl shadow-xl">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/10">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                                            <FaLayerGroup size={18} />
+                                        </div>
+                                        <div>
+                                            <span className="text-[10px] uppercase font-black tracking-widest text-blue-400 block">
+                                                Featured Engineering Series
+                                            </span>
+                                            <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                                                {post.series.title}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs font-mono font-bold text-blue-400 self-start sm:self-auto">
+                                        Part {post.series.part} of {post.series.totalParts}
+                                    </span>
+                                </div>
+
+                                <div className="space-y-2">
+                                    {getBlogPosts(locale as 'en' | 'fr')
+                                        .filter((p) => p.series?.id === post.series?.id)
+                                        .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0))
+                                        .map((seriesItem) => {
+                                            const isCurrent = seriesItem.slug === post.slug;
+                                            return (
+                                                <Link
+                                                    key={seriesItem.slug}
+                                                    href={`/blog/${seriesItem.slug}`}
+                                                    className={`flex items-center justify-between p-3 rounded-xl transition-all border text-xs sm:text-sm font-medium ${
+                                                        isCurrent
+                                                            ? 'bg-blue-500/20 border-blue-500/40 text-blue-600 dark:text-blue-300 font-bold shadow-md'
+                                                            : 'bg-white/50 dark:bg-slate-900/50 border-slate-200/50 dark:border-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:border-slate-300 dark:hover:border-white/20'
+                                                    }`}
+                                                >
+                                                    <div className="flex items-center gap-3 min-w-0">
+                                                        <span
+                                                            className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold shrink-0 ${
+                                                                isCurrent
+                                                                    ? 'bg-blue-600 text-white'
+                                                                    : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                                                            }`}
+                                                        >
+                                                            {seriesItem.series?.part}
+                                                        </span>
+                                                        <span className="truncate">{seriesItem.title}</span>
+                                                    </div>
+
+                                                    {isCurrent ? (
+                                                        <span className="text-[10px] uppercase font-bold tracking-wider text-blue-500 px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 shrink-0">
+                                                            Reading Now
+                                                        </span>
+                                                    ) : (
+                                                        <FaChevronRight size={10} className="text-slate-400 shrink-0 ml-2" />
+                                                    )}
+                                                </Link>
+                                            );
+                                        })}
+                                </div>
+                            </div>
+                        )}
+
                         <MarkdownRenderer content={post.content} />
 
                         {/* Article Tags Footer */}
@@ -381,13 +451,15 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                     className="group flex flex-col justify-between bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-5 hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
                                 >
                                     <div className="space-y-4">
-                                        <div className="relative h-40 w-full rounded-2xl overflow-hidden mb-3">
-                                            <Image
+                                        <div className="relative h-44 w-full rounded-2xl overflow-hidden mb-3 shadow-inner">
+                                            <BlogCoverImage
                                                 src={rPost.image}
                                                 alt={rPost.title}
-                                                fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                category={rPost.category}
                                             />
+                                            <div className="absolute top-3 left-3 px-3 py-1.5 bg-slate-950/80 backdrop-blur-md rounded-lg text-[9px] uppercase font-black tracking-widest text-blue-400 border border-white/5 z-10">
+                                                {rPost.category}
+                                            </div>
                                         </div>
                                         <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 flex gap-2">
                                             <span>{rPost.date}</span>
