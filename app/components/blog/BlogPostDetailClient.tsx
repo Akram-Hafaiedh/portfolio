@@ -239,7 +239,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                 </header>
 
                 {/* Banner Image */}
-                <div className="relative h-64 sm:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-12 max-w-5xl mx-auto">
+                <div className="relative h-64 sm:h-[480px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-10 max-w-5xl mx-auto">
                     <BlogCoverImage
                         src={post.image}
                         alt={post.title}
@@ -247,6 +247,81 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                         priority
                     />
                 </div>
+
+                {/* Series Playlist Navigation Card (Near Cover Banner Placement) */}
+                {post.series && (
+                    <div className="max-w-4xl mx-auto mb-12">
+                        <div className="bg-gradient-to-br from-indigo-500/10 via-slate-100/90 to-purple-500/10 dark:from-indigo-950/40 dark:via-slate-900/70 dark:to-purple-950/40 border border-indigo-500/30 dark:border-indigo-500/40 rounded-[2rem] p-6 sm:p-8 backdrop-blur-xl shadow-xl">
+                            {/* Series Header */}
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-slate-200/80 dark:border-white/10">
+                                <div className="flex items-center gap-3.5 min-w-0">
+                                    <div className="p-3 rounded-2xl bg-indigo-600/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-600/20 dark:border-indigo-500/30 shadow-sm shrink-0">
+                                        <FaLayerGroup size={20} />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <span className="text-[10px] uppercase font-black tracking-widest text-indigo-600 dark:text-indigo-400 block mb-0.5">
+                                            Complete {post.series.totalParts}-Part Engineering Series
+                                        </span>
+                                        <h3 className="text-base sm:text-xl font-black text-slate-900 dark:text-white truncate">
+                                            {post.series.title}
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <span className="px-4 py-1.5 bg-indigo-600/10 dark:bg-indigo-500/20 border border-indigo-600/20 dark:border-indigo-500/30 rounded-full text-xs font-mono font-bold text-indigo-700 dark:text-indigo-300 whitespace-nowrap shrink-0 shadow-sm self-start sm:self-auto">
+                                    Part {post.series.part} of {post.series.totalParts}
+                                </span>
+                            </div>
+
+                            {/* Series Items Sequence */}
+                            <div className="space-y-3">
+                                {getBlogPosts(locale as 'en' | 'fr')
+                                    .filter((p) => p.series?.id === post.series?.id)
+                                    .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0))
+                                    .map((seriesItem) => {
+                                        const isCurrent = seriesItem.slug === post.slug;
+                                        return (
+                                            <Link
+                                                key={seriesItem.slug}
+                                                href={`/blog/${seriesItem.slug}`}
+                                                className={`flex items-center justify-between p-4 rounded-2xl transition-all border text-xs sm:text-sm font-semibold gap-4 ${
+                                                    isCurrent
+                                                        ? 'bg-indigo-600 text-white dark:bg-indigo-500/20 dark:text-indigo-300 border-indigo-600 dark:border-indigo-500/40 shadow-md scale-[1.01]'
+                                                        : 'bg-white/90 dark:bg-slate-900/60 border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/90 hover:border-indigo-400/50 dark:hover:border-white/20 shadow-sm'
+                                                }`}
+                                            >
+                                                <div className="flex items-center gap-3.5 min-w-0">
+                                                    <span
+                                                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold shrink-0 ${
+                                                            isCurrent
+                                                                ? 'bg-white text-indigo-600 dark:bg-indigo-500 dark:text-white shadow-sm'
+                                                                : 'bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
+                                                        }`}
+                                                    >
+                                                        {seriesItem.series?.part}
+                                                    </span>
+                                                    <span className="truncate">
+                                                        Part {seriesItem.series?.part}: {seriesItem.title}
+                                                    </span>
+                                                </div>
+
+                                                {isCurrent ? (
+                                                    <span className="text-[10px] uppercase font-black tracking-wider text-indigo-600 bg-white px-3 py-1 rounded-lg dark:text-indigo-300 dark:bg-indigo-500/20 dark:border dark:border-indigo-500/30 whitespace-nowrap shrink-0 shadow-sm">
+                                                        Reading Now
+                                                    </span>
+                                                ) : (
+                                                    <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-white whitespace-nowrap">
+                                                        <span>Read</span>
+                                                        <FaChevronRight size={10} className="ml-0.5" />
+                                                    </span>
+                                                )}
+                                            </Link>
+                                        );
+                                    })}
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Main Content Layout with Sticky Sidebar */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
@@ -289,71 +364,6 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
 
                     {/* Article Body */}
                     <div className="lg:col-span-8 bg-white/30 dark:bg-slate-900/30 backdrop-blur-xl border border-slate-200/40 dark:border-slate-800/40 rounded-[2rem] p-6 sm:p-10 md:p-12 overflow-hidden shadow-sm order-1 lg:order-2">
-                        {/* Series Playlist Navigation Card */}
-                        {post.series && (
-                            <div className="bg-gradient-to-br from-blue-500/10 via-slate-100/80 to-purple-500/10 dark:from-blue-950/40 dark:via-slate-900/60 dark:to-purple-950/40 border border-blue-500/30 dark:border-blue-500/40 rounded-3xl p-6 sm:p-8 mb-10 backdrop-blur-xl shadow-lg">
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-200/80 dark:border-white/10">
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-2.5 rounded-xl bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-600/20 dark:border-blue-500/30 shadow-sm">
-                                            <FaLayerGroup size={18} />
-                                        </div>
-                                        <div>
-                                            <span className="text-[10px] uppercase font-black tracking-widest text-blue-600 dark:text-blue-400 block">
-                                                Featured Engineering Series
-                                            </span>
-                                            <h4 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                                                {post.series.title}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <span className="px-3.5 py-1.5 bg-blue-600/10 dark:bg-blue-500/20 border border-blue-600/20 dark:border-blue-500/30 rounded-full text-xs font-mono font-bold text-blue-700 dark:text-blue-300 self-start sm:self-auto shadow-sm">
-                                        Part {post.series.part} of {post.series.totalParts}
-                                    </span>
-                                </div>
-
-                                <div className="space-y-2.5">
-                                    {getBlogPosts(locale as 'en' | 'fr')
-                                        .filter((p) => p.series?.id === post.series?.id)
-                                        .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0))
-                                        .map((seriesItem) => {
-                                            const isCurrent = seriesItem.slug === post.slug;
-                                            return (
-                                                <Link
-                                                    key={seriesItem.slug}
-                                                    href={`/blog/${seriesItem.slug}`}
-                                                    className={`flex items-center justify-between p-3.5 rounded-2xl transition-all border text-xs sm:text-sm font-semibold ${
-                                                        isCurrent
-                                                            ? 'bg-blue-600 text-white dark:bg-blue-500/20 dark:text-blue-300 border-blue-600 dark:border-blue-500/40 shadow-md scale-[1.01]'
-                                                            : 'bg-white/80 dark:bg-slate-900/60 border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/90 hover:border-blue-400/50 dark:hover:border-white/20 shadow-sm'
-                                                    }`}
-                                                >
-                                                    <div className="flex items-center gap-3 min-w-0">
-                                                        <span
-                                                            className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold shrink-0 ${
-                                                                isCurrent
-                                                                    ? 'bg-white text-blue-600 dark:bg-blue-500 dark:text-white'
-                                                                    : 'bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
-                                                            }`}
-                                                        >
-                                                            {seriesItem.series?.part}
-                                                        </span>
-                                                        <span className="truncate">{seriesItem.title}</span>
-                                                    </div>
-
-                                                    {isCurrent ? (
-                                                        <span className="text-[10px] uppercase font-black tracking-wider text-blue-600 bg-white px-2.5 py-1 rounded-lg dark:text-blue-300 dark:bg-blue-500/20 dark:border dark:border-blue-500/30 shrink-0 shadow-sm">
-                                                            Reading Now
-                                                        </span>
-                                                    ) : (
-                                                        <FaChevronRight size={10} className="text-slate-400 dark:text-slate-500 shrink-0 ml-2" />
-                                                    )}
-                                                </Link>
-                                            );
-                                        })}
-                                </div>
-                            </div>
-                        )}
-
                         <MarkdownRenderer content={post.content} />
 
                         {/* Article Tags Footer */}
@@ -363,7 +373,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                 <Link
                                     key={tag}
                                     href={`/blog?search=%23${encodeURIComponent(tag)}`}
-                                    className="px-3.5 py-1.5 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/30 dark:border-slate-700/30 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-500 dark:hover:text-blue-400 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 transition-all active:scale-95"
+                                    className="px-3.5 py-1.5 bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/30 dark:border-slate-700/30 hover:border-indigo-500 dark:hover:border-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-400 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 transition-all active:scale-95"
                                 >
                                     #{tag}
                                 </Link>
@@ -375,7 +385,7 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                     <div className="lg:col-span-3 order-3 hidden lg:block">
                         <div className="sticky top-32 space-y-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 p-6 rounded-3xl">
                             <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
-                                <FaListUl className="text-blue-500" size={14} />
+                                <FaListUl className="text-indigo-500" size={14} />
                                 Table of Contents
                             </div>
 
