@@ -291,27 +291,27 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                     <div className="lg:col-span-8 bg-white/30 dark:bg-slate-900/30 backdrop-blur-xl border border-slate-200/40 dark:border-slate-800/40 rounded-[2rem] p-6 sm:p-10 md:p-12 overflow-hidden shadow-sm order-1 lg:order-2">
                         {/* Series Playlist Navigation Card */}
                         {post.series && (
-                            <div className="bg-gradient-to-br from-blue-900/10 via-slate-900/40 to-purple-900/10 border border-blue-500/30 rounded-3xl p-6 sm:p-8 mb-10 backdrop-blur-xl shadow-xl">
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-white/10">
+                            <div className="bg-gradient-to-br from-blue-500/10 via-slate-100/80 to-purple-500/10 dark:from-blue-950/40 dark:via-slate-900/60 dark:to-purple-950/40 border border-blue-500/30 dark:border-blue-500/40 rounded-3xl p-6 sm:p-8 mb-10 backdrop-blur-xl shadow-lg">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-200/80 dark:border-white/10">
                                     <div className="flex items-center gap-3">
-                                        <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                                        <div className="p-2.5 rounded-xl bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-600/20 dark:border-blue-500/30 shadow-sm">
                                             <FaLayerGroup size={18} />
                                         </div>
                                         <div>
-                                            <span className="text-[10px] uppercase font-black tracking-widest text-blue-400 block">
+                                            <span className="text-[10px] uppercase font-black tracking-widest text-blue-600 dark:text-blue-400 block">
                                                 Featured Engineering Series
                                             </span>
-                                            <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                                            <h4 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
                                                 {post.series.title}
                                             </h4>
                                         </div>
                                     </div>
-                                    <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs font-mono font-bold text-blue-400 self-start sm:self-auto">
+                                    <span className="px-3.5 py-1.5 bg-blue-600/10 dark:bg-blue-500/20 border border-blue-600/20 dark:border-blue-500/30 rounded-full text-xs font-mono font-bold text-blue-700 dark:text-blue-300 self-start sm:self-auto shadow-sm">
                                         Part {post.series.part} of {post.series.totalParts}
                                     </span>
                                 </div>
 
-                                <div className="space-y-2">
+                                <div className="space-y-2.5">
                                     {getBlogPosts(locale as 'en' | 'fr')
                                         .filter((p) => p.series?.id === post.series?.id)
                                         .sort((a, b) => (a.series?.part || 0) - (b.series?.part || 0))
@@ -321,18 +321,18 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                                 <Link
                                                     key={seriesItem.slug}
                                                     href={`/blog/${seriesItem.slug}`}
-                                                    className={`flex items-center justify-between p-3 rounded-xl transition-all border text-xs sm:text-sm font-medium ${
+                                                    className={`flex items-center justify-between p-3.5 rounded-2xl transition-all border text-xs sm:text-sm font-semibold ${
                                                         isCurrent
-                                                            ? 'bg-blue-500/20 border-blue-500/40 text-blue-600 dark:text-blue-300 font-bold shadow-md'
-                                                            : 'bg-white/50 dark:bg-slate-900/50 border-slate-200/50 dark:border-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:border-slate-300 dark:hover:border-white/20'
+                                                            ? 'bg-blue-600 text-white dark:bg-blue-500/20 dark:text-blue-300 border-blue-600 dark:border-blue-500/40 shadow-md scale-[1.01]'
+                                                            : 'bg-white/80 dark:bg-slate-900/60 border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/90 hover:border-blue-400/50 dark:hover:border-white/20 shadow-sm'
                                                     }`}
                                                 >
                                                     <div className="flex items-center gap-3 min-w-0">
                                                         <span
                                                             className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold shrink-0 ${
                                                                 isCurrent
-                                                                    ? 'bg-blue-600 text-white'
-                                                                    : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                                                                    ? 'bg-white text-blue-600 dark:bg-blue-500 dark:text-white'
+                                                                    : 'bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                                                             }`}
                                                         >
                                                             {seriesItem.series?.part}
@@ -341,11 +341,11 @@ export default function BlogPostDetailClient({ post, relatedPosts }: BlogPostDet
                                                     </div>
 
                                                     {isCurrent ? (
-                                                        <span className="text-[10px] uppercase font-bold tracking-wider text-blue-500 px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 shrink-0">
+                                                        <span className="text-[10px] uppercase font-black tracking-wider text-blue-600 bg-white px-2.5 py-1 rounded-lg dark:text-blue-300 dark:bg-blue-500/20 dark:border dark:border-blue-500/30 shrink-0 shadow-sm">
                                                             Reading Now
                                                         </span>
                                                     ) : (
-                                                        <FaChevronRight size={10} className="text-slate-400 shrink-0 ml-2" />
+                                                        <FaChevronRight size={10} className="text-slate-400 dark:text-slate-500 shrink-0 ml-2" />
                                                     )}
                                                 </Link>
                                             );
